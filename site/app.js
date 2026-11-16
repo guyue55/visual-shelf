@@ -17,7 +17,7 @@ function saveState() { const url=new URL(location.href);url.search='';for(const 
 function clearFilters() { for(const key of filterKeys)state[key]=''; }
 function navigateOwner(owner) { clearFilters();state.owner=owner;state.view='assets';render();closeMobile(); }
 function navigateSeries(id) { const series=registry.series.find(x=>x.id===id);clearFilters();state.series=id;state.owner=series?.owner||'';state.view='assets';render();closeMobile(); }
-function closeMobile(){document.body.classList.remove('nav-open');$('#mobile-nav').setAttribute('aria-expanded','false');}
+function closeMobile(){const wasOpen=document.body.classList.contains('nav-open');document.body.classList.remove('nav-open');$('#mobile-nav').setAttribute('aria-expanded','false');if(wasOpen)$('#mobile-nav').focus();}
 function tree() {
   const container=$('#tree');container.replaceChildren();
   for(const owner of registry.owners.filter(x=>x.count>0)) {
@@ -40,7 +40,11 @@ function syncControls() {
   $('#search').value=state.q;$('#sort').value=state.sort;$('#background').value=state.bg;
   document.body.classList.toggle('bg-dark',state.bg==='dark');document.body.classList.toggle('bg-checker',state.bg==='checker');
   $('#view-assets').setAttribute('aria-pressed',String(state.view==='assets'));$('#view-series').setAttribute('aria-pressed',String(state.view==='series'));
-  for(const b of $('#kinds').querySelectorAll('[data-kind]'))b.setAttribute('aria-pressed',String(b.dataset.kind===state.kind));
+  $('#kind').value=state.kind;
+  const advancedKeys=['component','function','platform','status','sort','bg'];
+  const configured=advancedKeys.filter(key=>state[key]!==defaults[key]).length;
+  $('#options-count').hidden=!configured;$('#options-count').textContent=configured+'项已设置';
+  $('#reset').hidden=!filterKeys.some(key=>state[key]);
   for(const [field,label] of [['component','全部组件'],['function','全部功能'],['platform','全部平台']]) {
     const selected=state[field];const available=M.filter(items,{...state,[field]:''},registry);
     const values=new Map();
@@ -50,6 +54,9 @@ function syncControls() {
     for(const [value,count] of [...values.entries()].sort((a,b)=>a[0].localeCompare(b[0],'zh-CN')))select.append(option(value,`${field==='component'?nameFor('components',value,value):value} (${count})`));
     select.value=selected;
   }
+  const statusCounts=new Map();for(const item of M.filter(items,{...state,status:''},registry)){const value=M.status(item);statusCounts.set(value,(statusCounts.get(value)||0)+1);}
+  if(state.status&&!statusCounts.has(state.status))statusCounts.set(state.status,0);
+  $('#status').replaceChildren(option('','全部状态'));for(const [value,count] of statusCounts)$('#status').append(option(value,`${statusNames[value]||value} (${count})`));
   $('#status').value=state.status;
 }
 function chips() {
@@ -66,11 +73,11 @@ function card(item) {
   const preview=el('div',undefined,'preview');preview.dataset.kind=item.kind;
   const img=el('img');img.src=item.path;img.alt=item.name;img.loading='lazy';
   const revision=item.tags.find(t=>t.startsWith('revision:'))?.slice(9);
-  preview.append(el('span',item.path.split('.').pop().toUpperCase()+(revision?' · '+revision:''),'preview-format'),img,el('span','↗','preview-arrow'));
+  preview.append(el('span',item.path.split('.').pop().toUpperCase()+(revision?' · '+revision:''),'preview-format'),img);
   const body=el('div',undefined,'card-info');body.append(el('h4',item.name,'card-title'));
   body.append(el('p',`${nameFor('owners',org.owner,'待整理')} / ${nameFor('components',org.component,'未标注组件')}`,'card-context'));
-  const bottom=el('div',undefined,'card-bottom');const tags=M.visibleTags(item);bottom.append(el('span',tags.slice(0,2).map(t=>'#'+t).join('  '),'card-tags'));
-  const badge=el('span',statusNames[status]||status,'state-badge');badge.dataset.state=status;bottom.append(badge);body.append(bottom);button.append(preview,body);button.addEventListener('click',()=>showDetail(item));return button;
+  if(!['ready','unlabeled'].includes(status)){const badge=el('span',statusNames[status]||status,'state-badge');badge.dataset.state=status;body.append(badge);}
+  button.append(preview,body);button.addEventListener('click',()=>showDetail(item));return button;
 }
 function seriesCard(id,members) {
   const series=registry.series.find(x=>x.id===id)||{name:'未分组素材',description:'可在收录时补充系列信息。',owner:'unknown',accent:'sage'};
@@ -78,7 +85,7 @@ function seriesCard(id,members) {
   const mosaic=el('div',undefined,'series-mosaic');mosaic.dataset.accent=series.accent||'sage';
   for(const item of members.slice(0,3)){const img=el('img');img.src=item.path;img.alt=item.name;img.loading='lazy';mosaic.append(img);}
   const body=el('div',undefined,'series-info');body.append(el('h3',series.name),el('p',series.description));
-  const meta=el('div',undefined,'series-meta');meta.append(el('span',`${nameFor('owners',series.owner,'待整理')} · ${members.length} 份素材`),el('span','打开系列 ↗'));body.append(meta);button.append(mosaic,body);
+  const meta=el('div',undefined,'series-meta');meta.append(el('span',`${nameFor('owners',series.owner,'待整理')} · ${members.length} 份素材`),el('span','查看素材'));body.append(meta);button.append(mosaic,body);
   button.addEventListener('click',()=>{if(id==='unassigned'){state.series='__unassigned__';state.view='assets';render();}else navigateSeries(id);});return button;
 }
 function render() {
@@ -86,18 +93,13 @@ function render() {
   const selectedSeries=registry.series.find(x=>x.id===state.series),owner=registry.owners.find(x=>x.id===state.owner);
   const title=selectedSeries?.name||(state.series==='__unassigned__'?'未分组素材':null)||owner?.name||(state.view==='series'?'系列与合集':'全部素材');
   $('#page-title').textContent=title;$('#top-context').textContent=title;
-  $('#page-description').textContent=selectedSeries?.description||owner?.description||(state.view==='series'?'把同一主题妥帖放在一起，再向细处探索。':'从系列出发，也可以按组件、功能和平台细找。');
+  $('#page-description').textContent=selectedSeries?.description||owner?.description||(state.view==='series'?'按系列查看相关素材。':'按项目或系列浏览，也可以直接搜索。');
   const list=M.filter(items,state,registry);const groups=M.groups(list);const results=$('#results');results.replaceChildren();
   if(state.view==='series') { const grid=el('div',undefined,'series-grid');for(const [id,members] of groups)grid.append(seriesCard(id,members));results.append(grid); }
-  else for(const [id,members] of groups) {
-    const section=el('section',undefined,'asset-group');const heading=el('div',undefined,'group-heading');const title=el('h3',nameFor('series',id,'未分组素材'));title.append(el('span',String(members.length).padStart(2,'0')));heading.append(title);
-    if(!state.series&&id!=='unassigned'){const open=el('button','查看系列 ↗');open.addEventListener('click',()=>navigateSeries(id));heading.append(open);}
-    const grid=el('div',undefined,'grid');for(const item of members)grid.append(card(item));section.append(heading,grid);results.append(section);
-  }
+  else { const grid=el('div',undefined,'grid asset-results');for(const item of list)grid.append(card(item));results.append(grid); }
   $('#count').textContent=state.view==='series'?`${groups.size} 个系列 · ${list.length} 份素材`:`共 ${list.length} 份素材 · ${groups.size} 个系列`;
   $('#empty').hidden=list.length>0;
-  const tagCounts=new Map();for(const item of list)for(const tag of M.visibleTags(item))tagCounts.set(tag,(tagCounts.get(tag)||0)+1);
-  $('#tag-list').replaceChildren();for(const [tag] of [...tagCounts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,5)) {const b=el('button','#'+tag);b.setAttribute('aria-label',`筛选标签 ${tag}`);b.addEventListener('click',()=>{state.tag=tag;render();});$('#tag-list').append(b);}
+
 }
 function showDetail(item,updateHash=true) {
   const org=M.organization(item),status=M.status(item),body=$('#detail-content');body.replaceChildren();
@@ -115,24 +117,23 @@ function showDetail(item,updateHash=true) {
   if(updateHash){const url=new URL(location.href);url.hash=new URLSearchParams({asset:item.id}).toString();history.replaceState(null,'',url);}
 }
 function closeDetail(){ $('#detail').close();const url=new URL(location.href);url.hash='';history.replaceState(null,'',url); }
-for(const id of ['help','sidebar-guide','workflow-help'])$('#'+id).addEventListener('click',()=>$('#guide').showModal());
+for(const id of ['help','sidebar-guide'])$('#'+id).addEventListener('click',()=>$('#guide').showModal());
 for(const b of document.querySelectorAll('[data-close]'))b.addEventListener('click',()=>b.closest('dialog').id==='detail'?closeDetail():b.closest('dialog').close());
 $('#detail').addEventListener('cancel',()=>{const url=new URL(location.href);url.hash='';history.replaceState(null,'',url);});
 $('#nav-assets').addEventListener('click',()=>{clearFilters();state.view='assets';render();closeMobile();});
 $('#nav-series').addEventListener('click',()=>{clearFilters();state.view='series';render();closeMobile();});
 for(const id of ['view-assets','view-series'])$('#'+id).addEventListener('click',()=>{state.view=id==='view-assets'?'assets':'series';render();});
-$('#explore-series').addEventListener('click',()=>{clearFilters();state.view='series';render();$('#workspace').scrollIntoView();});
+
 $('#search').addEventListener('input',()=>{state.q=$('#search').value;render();});$('#sort').addEventListener('change',()=>{state.sort=$('#sort').value;render();});
 for(const field of ['component','function','platform','status'])$('#'+field).addEventListener('change',()=>{state[field]=$('#'+field).value;render();});
 $('#background').addEventListener('change',()=>{state.bg=$('#background').value;render();});
-$('#kinds').addEventListener('click',event=>{const b=event.target.closest('[data-kind]');if(b){state.kind=b.dataset.kind;render();}});
+$('#kind').addEventListener('change',()=>{state.kind=$('#kind').value;render();});
 for(const id of ['reset','empty-reset'])$('#'+id).addEventListener('click',()=>{clearFilters();render();});
 $('#mobile-nav').addEventListener('click',()=>{const open=document.body.classList.toggle('nav-open');$('#mobile-nav').setAttribute('aria-expanded',String(open));});
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMobile();if(event.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)&&!document.querySelector('dialog[open]')){event.preventDefault();$('#search').focus();}});
 window.addEventListener('popstate',()=>{state=readState();render();});
-async function init(){try{const [assetsResponse,groupsResponse]=await Promise.all([fetch('catalog.json',{cache:'no-store'}),fetch('organization.json',{cache:'no-store'})]);if(!assetsResponse.ok||!groupsResponse.ok)throw Error();[items,registry]=await Promise.all([assetsResponse.json(),groupsResponse.json()]);state=readState();
-const stats=registry.stats;$('#stat-assets').textContent=stats.assets;$('#stat-series').textContent=stats.series;$('#stat-products').textContent=stats.products+stats.projects;$('#stat-components').textContent=stats.components;$('#nav-total').textContent=stats.assets;$('#nav-series-count').textContent=stats.series;
-const featured=items.find(x=>x.id==='product-macrightclick-app-icon-moonlit-blue-q96-v01-png')||items[0];if(featured){$('#hero-image').src=featured.path;$('#hero-image').alt=featured.name;$('#hero-image').hidden=false;$('#hero-name').textContent=featured.name.replace('MacRightClick · ','');$('#hero-asset').disabled=false;$('#hero-asset').addEventListener('click',()=>showDetail(featured));}
+async function init(){try{const [assetsResponse,groupsResponse]=await Promise.all([fetch('catalog.json',{cache:'no-store'}),fetch('organization.json',{cache:'no-store'})]);if(!assetsResponse.ok||!groupsResponse.ok)throw Error();[items,registry]=await Promise.all([assetsResponse.json(),groupsResponse.json()]);state=readState();$('#more-options').open=['component','function','platform','status','sort','bg'].some(key=>state[key]!==defaults[key]);
+const stats=registry.stats;$('#nav-total').textContent=stats.assets;$('#nav-series-count').textContent=stats.series;
 render();const id=new URLSearchParams(location.hash.slice(1)).get('asset');const selected=items.find(x=>x.id===id);if(selected)showDetail(selected,false);
-}catch(error){$('#count').textContent='目录加载失败，请先构建并通过 HTTP 访问。';$('#empty').hidden=false;$('#empty h3').textContent='素材目录暂时无法读取';$('#empty p').textContent='请运行本地 start/restart，并检查 catalog.json 与 organization.json。';}}
+}catch(error){$('#count').textContent='素材目录加载失败。';$('#empty').hidden=false;$('#empty h2').textContent='素材目录暂时无法读取';$('#empty p').textContent='请刷新页面重试；仍无法读取时，请维护者检查站点构建。';}}
 init();
