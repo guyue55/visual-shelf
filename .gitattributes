@@ -9,3 +9,5 @@
 
 *.ttf binary
 *.icns binary
+# Preserve the upstream font license verbatim, including its trailing blank.
+resources/fonts/mashanzheng/OFL.txt whitespace=-blank-at-eol
