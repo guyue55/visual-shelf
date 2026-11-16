@@ -11,3 +11,6 @@ node_modules/
 
 # Local preview state and logs
 .runtime/
+
+# Unapproved image work never enters the published catalog
+.drafts/

@@ -11,10 +11,8 @@
 <footer><span>我的图标 / A shelf for visual things.</span><span>来源与许可随素材保存 · 不明确的信息标为 unknown</span></footer>
 </main>
 <dialog id="detail"><div class="dialog-head"><span>ASSET DETAILS</span><button data-close aria-label="关闭详情">✕</button></div><div id="detail-content"></div></dialog>
-<dialog id="guide"><div class="dialog-head"><span>ADD TO YOUR SHELF</span><button data-close aria-label="关闭新增说明">✕</button></div><h2>给收藏添一点新东西</h2><p>在本地项目运行以下命令，登记文件后重新构建。网页用于浏览，不直接修改仓库。</p><h3>导入已有素材</h3><pre>python3 scripts/library.py add /路径/logo.svg \
-  --id my-logo --name "我的 Logo" --kind logos \
-  --tags "品牌,常用" --source unknown --license unknown</pre><h3>创建一张封面</h3><pre>python3 scripts/library.py create \
-  --id project-cover --name "项目手记" --kind covers \
-  --tags "项目,封面" --author "你的名字"</pre><p>然后运行 <code>python3 scripts/library.py build</code>，刷新预览。详细流程见仓库 CONTRIBUTING.md。</p></dialog>
+<dialog id="guide"><div class="dialog-head"><span>CREATE / REVIEW / COLLECT</span><button data-close aria-label="关闭新增说明">✕</button></div><h2>先制作，满意后收录</h2><p>可以直接告诉 AI：用月夜款做一个图标，大字改成“知”，先给我看。AI 会复制参考、准备草稿、检查并展示，得到你明确确认后才加入正式目录。</p><h3>准备一个制作任务</h3><pre>python3 scripts/studio.py prepare \
+  --job knowledge-app-v01 --style moonlit-blue \
+  --purpose app-icon --text '知' --owner product:knowledge</pre><p>支持 web、cover、logo、app-icon 用途，以及水墨浅色 A/B 和月夜深蓝三种风格。prepare 只复制参考并给建议，实际出图由 AI 使用可用图像工具完成。</p><h3>确认与收录</h3><p>候选存入本地 .drafts，运行 review 登记准确文件；你看过并明确满意后再由 AI 执行 accept，补齐归属、名称、标签等信息。修改候选后须重新确认。</p><p>完整流程见仓库 docs/TEMPLATE-WORKFLOW.md。网页用于浏览成品，不直接修改仓库。旧 create 命令现在只出草稿；add 必须有真实用户确认记录。</p></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 </body></html>

@@ -84,7 +84,7 @@ shared 没有 owner-slug。扩展名仍正常保留，例如 `assets/logos/produ
 使用现有参数的示例（demo 为占位符，需替换成真实登记信息）：
 
 ```sh
-python3 scripts/library.py add /绝对路径/logo.svg \
+python3 scripts/library.py add --approval-note "填入用户对该文件的实际确认" /绝对路径/logo.svg \
   --id product-demo-suite-primary-logo-color-v01-svg \
   --name "演示产品 · 主 Logo · 彩色" --kind logos \
   --tags "owner:product:demo-suite,family:demo-suite-primary-logo,variant:color,revision:v01,status:draft,product:demo-suite,品牌" \

@@ -103,6 +103,10 @@ def validate(root=ROOT):
         digest = check_file(path)
         if digest != item['sha256']:
             raise ValueError(f'{item["id"]} 内容哈希不符；确认修改后更新元数据')
+        if 'approval' in item:
+            approval = item['approval']
+            if not isinstance(approval, dict) or not isinstance(approval.get('user_confirmation'), str) or not approval['user_confirmation'].strip() or approval.get('reviewed_sha256') != digest:
+                raise ValueError(f'{item["id"]} 用户确认记录缺失或不匹配当前文件；需重新确认')
         if digest in hashes or str(rel) in paths:
             raise ValueError('重复素材内容或路径')
         ids.add(item['id']); paths.add(str(rel)); hashes.add(digest)
@@ -195,6 +199,8 @@ def main():
         p.add_argument('--tags', required=True, help='逗号分隔，中英文均可')
         p.add_argument('--author', default='unknown')
         p.add_argument('--description', default='unknown')
+        if command == 'add':
+            p.add_argument('--approval-note', required=True, help='用户对当前文件/版本的实际收录确认；AI 不得代签')
     args = parser.parse_args()
     try:
         if args.command == 'validate':
@@ -202,16 +208,25 @@ def main():
         elif args.command == 'build':
             build()
         else:
-            import tempfile
-            with tempfile.TemporaryDirectory() as tmp:
-                if args.command == 'create':
-                    file = Path(tmp) / 'created.svg'
-                    file.write_text(create_svg(args.kind, args.name, args.color, args.subtitle), encoding='utf-8')
-                    source = 'original'
-                else:
-                    file, source = args.file, args.source
-                item = add(file, args.id, args.name, args.kind, [x.strip() for x in args.tags.split(',') if x.strip()], source, args.license, args.author, args.description)
-                print(f'已登记 {item["id"]}；运行 build 更新预览')
+            if args.command == 'create':
+                if not SLUG.fullmatch(args.id):
+                    raise ValueError('id 使用英文小写短横线')
+                svg = create_svg(args.kind, args.name, args.color, args.subtitle)
+                check_svg(svg.encode())
+                directory = ROOT / '.drafts' / args.id
+                directory.mkdir(parents=True, exist_ok=False)
+                (directory / 'template.svg').write_text(svg, encoding='utf-8')
+                write_json(directory / 'task.json', dict(job=args.id, style='parameterized',
+                    purpose=args.kind, kind=args.kind, text=args.name, owner='unknown',
+                    reference=None, reference_sha256=None, state='prepared'))
+                print(f'草稿已创建：{directory / "template.svg"}；尚未收录。用 studio.py review 后展示给用户确认。')
+                return
+            if not args.approval_note.strip():
+                raise ValueError('必须记录用户的实际收录确认')
+            item = add(args.file, args.id, args.name, args.kind, [x.strip() for x in args.tags.split(',') if x.strip()], args.source, args.license, args.author, args.description)
+            item['approval'] = dict(user_confirmation=args.approval_note, reviewed_sha256=item['sha256'])
+            write_json(ROOT / 'catalog' / (args.id + '.json'), item)
+            print(f'已登记 {item["id"]}；运行 build 更新预览')
     except (ValueError, OSError, KeyError, TypeError, ET.ParseError) as exc:
         parser.exit(1, f'失败：{exc}\n')
 

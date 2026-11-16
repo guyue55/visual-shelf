@@ -63,6 +63,12 @@ tests/        有实际边界意义的离线测试
 
 目前可通过标签、[实体登记卡](templates/entity-record.md) 和 [统计快照](templates/inventory-report.md) 人工管理；结构化关系校验、自动统计和专用管理页面尚未实现。规范中附有当前文件基线及后续实现顺序。
 
+## 喜欢的风格，直接交给 AI 制作
+
+已保存水墨浅色 A/B、月夜深蓝三种参考。可以直接说“用月夜款，大字改成知，做应用图标，先给我看”，或“给产品 X 做水墨封面，先建议布局”。AI 使用 [模板制作与确认流程](docs/TEMPLATE-WORKFLOW.md)，读取参考、准备草稿、检查并展示；你明确满意后才收录。
+
+`python3 scripts/studio.py list` 查看风格；prepare 复制参考并生成建议，review 记录准确候选，accept 保存确认与成品。图像生成仍由 AI 使用当次可用工具完成，脚本不假装自动出图。原 `library.py create` 现在只出草稿；直接 add 必填 `--approval-note`。
+
 ## 已登记产品
 
 - [MacRightClick · 右键助手](docs/entities/products/macrightclick.md)：主用月夜深蓝图标、两张浅色候选及真实引用位置。后续创作先读 [品牌与使用档案](docs/brands/products/macrightclick.md)；盘点与哈希见 [收录快照](docs/inventories/2026-11-16-macrightclick.md)。
@@ -70,7 +76,7 @@ tests/        有实际边界意义的离线测试
 ## 新增一份素材
 
 ```sh
-python3 scripts/library.py add /绝对路径/logo.svg \
+python3 scripts/library.py add --approval-note "填入用户对该文件的实际确认" /绝对路径/logo.svg \
   --id example-logo --name "示例 Logo" --kind logos \
   --tags "品牌,常用" --source unknown --license unknown
 python3 scripts/library.py build

@@ -67,6 +67,45 @@
     "created": {
       "type": "string",
       "format": "date"
+    },
+    "approval": {
+      "type": "object",
+      "description": "确认绑定当前文件哈希；历史记录可无此字段",
+      "required": [
+        "user_confirmation",
+        "reviewed_sha256"
+      ],
+      "properties": {
+        "user_confirmation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "task": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "string"
+        },
+        "tool": {
+          "type": "string"
+        },
+        "template": {
+          "type": "string"
+        },
+        "reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "approved_at": {
+          "type": "string"
+        }
+      }
     }
   }
 }

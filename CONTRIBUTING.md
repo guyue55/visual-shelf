@@ -1,5 +1,9 @@
 # 新增与创建素材
 
+## 满意后再收录
+
+新创作遵循 [模板与确认流程](docs/TEMPLATE-WORKFLOW.md)：草稿 → review → 向用户展示准确版本 → 明确满意并准许 → accept。以下 add 示例只适用于用户已确认的文件；不得填假确认。create 现在只写 .drafts 草稿，不直接入库。
+
 ## 先确定归属与版本
 
 涉及不同项目/产品时，先读 [素材管理规范](docs/ASSET-MANAGEMENT.md)，确认主要归属、素材家族、变体、修订和真实使用方。首次实体使用 [登记卡模板](templates/entity-record.md)；优先复用已有文件。归属未知如实记录，不自动算作 shared。
@@ -13,7 +17,7 @@
 3. 使用命令登记（不覆盖既有文件）：
 
 ```sh
-python3 scripts/library.py add /绝对路径/my-logo.svg \
+python3 scripts/library.py add --approval-note "填入用户对该文件的实际确认" /绝对路径/my-logo.svg \
   --id my-logo --name "我的 Logo" --kind logos \
   --tags "品牌,常用,项目名" \
   --source "https://example.com/brand" --license unknown \
@@ -37,6 +41,8 @@ python3 scripts/library.py create \
   --subtitle 'LAUNCH NOTES' --author "你的名字" \
   --description "项目发布封面，参数化模板生成"
 ```
+
+`create` 生成的 template.svg 可用 studio review 登记，用户确认后 accept。仅 build 不会把草稿加入预览。
 
 `create` 支持 `covers`（1600×900）、`legends`（640×240）、`icons`（64×64 完成标记）。这是轻量模板生成器。其他图形在 Figma/Inkscape 等工具创建后用 `add` 导入；不把模板生成描述成 AI 图像生成。长标题请检查实际显示，必要时手动调整字号或换行。
 

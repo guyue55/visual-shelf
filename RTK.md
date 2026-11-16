@@ -76,11 +76,15 @@ python3 -m unittest discover -s tests -v
 
 完整参数和示例见 [CONTRIBUTING.md](CONTRIBUTING.md)，创作需求见 [templates/creation-brief.md](templates/creation-brief.md)。
 
-- `add` 导入文件，`create` 创建 SVG 模板；两者登记后均需 build 才更新预览。
+- `create` 只生成 .drafts 下的 SVG 草稿；add 直接收录已确认文件，必填 --approval-note。新创作优先按 studio prepare/review/accept 执行，正式收录后 restart 更新预览。
 - `create` 当前支持 covers、legends、icons；不提供品牌 Logo 或 AI 模型生成。
 - 文件与 `catalog/` 为可维护源，`dist/catalog.json` 为生成索引。
 - Schema 供编辑器参考；运行时实际准入规则以 `scripts/library.py` 为准。
 - 位图仅检查签名和大小；SVG 是受限白名单，不能宣称通用清洗或完整图像解码验证。
+
+## 模板与确认收录
+
+运行 `python3 scripts/studio.py list`、`prepare --help`、`review --help`、`accept --help`。完整流程见 [docs/TEMPLATE-WORKFLOW.md](docs/TEMPLATE-WORKFLOW.md)。模板索引位于 templates/visual/styles.json，未批准文件位于忽略提交的 .drafts/；不得以自动校验通过代替用户满意确认。
 
 ## AI 辅助创作
 
