@@ -1,0 +1,111 @@
+[
+  {
+    "id": "shared-guyue-background-moonlit-blue-v01-png",
+    "name": "古月 · 月夜深蓝 · 无字底图",
+    "kind": "icons",
+    "path": "assets/icons/shared/guyue-ink-backgrounds/template-background/shared-guyue-background-moonlit-blue-v01-png.png",
+    "tags": [
+      "owner:shared",
+      "family:guyue-ink-background",
+      "variant:moonlit-blue",
+      "revision:v01",
+      "status:ready",
+      "用户已确认",
+      "app-icon",
+      "古风",
+      "月夜",
+      "无字底图",
+      "制作模板"
+    ],
+    "source": "original",
+    "license": "unknown",
+    "author": "unknown",
+    "created": "2026-11-16",
+    "description": "1254×1254 RGBA；用户确认底图 C。来自 MacRightClick 月夜参考，经内置 image_gen 去字去章与补绘，具体后端模型及逐图许可 unknown；月亮人物山水保留，云雾为重绘。供固定字体和古月章分层合成，不替换 MacRightClick 原图。",
+    "sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+    "organization": {
+      "owner": "shared",
+      "series": "guyue-ink-backgrounds",
+      "component": "template-background",
+      "functions": [
+        "分层创作"
+      ],
+      "platforms": [
+        "通用"
+      ]
+    },
+    "approval": {
+      "user_confirmation": "用户本轮明确：之前几轮需要我确认才能收录到都满意，你正常收录（A、C 满意、A、B 的效果满意）；本项为底图 C（月夜深蓝）。",
+      "reviewed_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+      "task": "template-moonlit-blue",
+      "checks": "已目视：大字与印章已移除，月夜人物山水保留；中央云雾为重绘，透明边缘及小尺寸仍需用户验收",
+      "tool": "image_gen builtin; backend model unknown",
+      "template": "moonlit-blue",
+      "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+      "approved_at": "2026-11-16T08:38:16.122211+00:00"
+    }
+  },
+  {
+    "id": "shared-guyue-yue-rounded-moonlit-v02-png",
+    "name": "古月 · 阅 · 圆角月夜",
+    "kind": "logos",
+    "path": "assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-rounded-moonlit-v02-png.png",
+    "tags": [
+      "owner:shared",
+      "family:guyue-yue-logo",
+      "variant:rounded-moonlit",
+      "revision:v02",
+      "status:ready",
+      "用户已确认",
+      "logo",
+      "古风",
+      "阅",
+      "古月章",
+      "圆角方形",
+      "固定字体"
+    ],
+    "source": "original",
+    "license": "unknown",
+    "author": "unknown",
+    "created": "2026-11-16",
+    "description": "1024×1024 RGBA；阅字与古月章采用固定 MaShanZheng-Regular 真字形轮廓，已获用户确认。使用已确认月夜深蓝无字底图；圆角透明外缘。传统 ICNS 与多场景衍生见 packages/yue-surface-kit-v01；不等于现代 Apple .icon，不替换原项目。底图权利 unknown。",
+    "sha256": "fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5",
+    "organization": {
+      "owner": "shared",
+      "series": "guyue-yue-logos",
+      "component": "personal-identity",
+      "functions": [
+        "个人识别"
+      ],
+      "platforms": [
+        "通用"
+      ]
+    },
+    "approval": {
+      "user_confirmation": "用户本轮明确：A、B 的效果满意，正常收录；本项为 Logo B：阅字圆角月夜 v02。",
+      "reviewed_sha256": "fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5",
+      "task": "yue-rounded-v02",
+      "checks": "阅/古/月使用真实固定字体轮廓；圆角透明角与字形印章边界已检查，128px已目视；传统ICNS已打包但未验收Dock/现代Icon Composer，待用户确认",
+      "tool": "macOS CoreText/CoreGraphics; pinned MaShanZheng-Regular",
+      "template": "moonlit-blue",
+      "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+      "approved_at": "2026-11-16T08:38:16.281088+00:00",
+      "render": {
+        "profile": "rounded-logo",
+        "width": 1024,
+        "height": 1024,
+        "text": "阅",
+        "font_postscript": "MaShanZheng-Regular",
+        "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+        "background_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+        "foreground_sha256": "1c31314b390fb242e3383d88d5129aab2102a2daf317552763fae89acc46b9fb",
+        "seal": "古月",
+        "theme": "dark",
+        "layout_columns": 1,
+        "layout_rows": 1,
+        "color_space": "sRGB",
+        "os_version": "Version 15.6.1 (Build 24G90)"
+      }
+    }
+  }
+]

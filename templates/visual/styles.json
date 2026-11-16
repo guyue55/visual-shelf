@@ -3,10 +3,14 @@
     "name": "水墨浅色 A",
     "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
     "direction": "纸色、墨色书法与山水，人物位于左下，主体靠近画布边缘",
-    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认",
+    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认；2026-11-16 用户进一步明确确认底图 A/C 和阅字示例 A/B，准许准确候选收录，新增设计仍需确认。",
     "default_seal": "古月",
     "font": "MaShanZheng-Regular",
-    "profile_index": "templates/visual/profiles.json"
+    "profile_index": "templates/visual/profiles.json",
+    "approved_background": "shared-guyue-background-ink-light-a-v01-png",
+    "accepted_examples": [
+      "shared-guyue-yue-circle-light-v02-png"
+    ]
   },
   "ink-light-b": {
     "name": "水墨浅色 B",
@@ -21,9 +25,16 @@
     "name": "月夜深蓝",
     "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
     "direction": "深蓝月夜、米白主字、山水与右下人物，月亮在左上",
-    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认",
+    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认；2026-11-16 用户进一步明确确认底图 A/C 和阅字示例 A/B，准许准确候选收录，新增设计仍需确认。",
     "default_seal": "古月",
     "font": "MaShanZheng-Regular",
-    "profile_index": "templates/visual/profiles.json"
+    "profile_index": "templates/visual/profiles.json",
+    "approved_background": "shared-guyue-background-moonlit-blue-v01-png",
+    "accepted_examples": [
+      "shared-guyue-yue-rounded-moonlit-v02-png"
+    ],
+    "delivery_packages": [
+      "yue-surface-kit-v01"
+    ]
   }
 }

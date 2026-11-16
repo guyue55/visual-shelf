@@ -30,6 +30,8 @@
 <dialog id="detail" aria-labelledby="detail-title"><div class="dialog-head"><span>ASSET / 素材详情</span><button data-close aria-label="关闭详情">✕</button></div><div id="detail-content"></div></dialog>
 <dialog id="guide" aria-labelledby="guide-title"><div class="dialog-head"><span>CREATE · REVIEW · COLLECT</span><button data-close aria-label="关闭新增说明">✕</button></div><h2 id="guide-title">一句需求，接着创作。</h2><p>可以告诉 AI：“给产品 X 做一套月夜古风图标，主字‘阅’，带古月章，包括浏览器标签，先给我看。”</p><ol class="steps"><li><strong>找到起点</strong><span>读取项目 / 产品、系列、固定字体与平台模板，复用已经确认的偏好。</span></li><li><strong>制作与预览</strong><span>草稿保存在本地 .drafts；按圆形、封面、浏览器标签等场景分别排版。</span></li><li><strong>确认后归档</strong><span>你确认满意，才收录准确版本，并补齐归属、系列、组件、功能与标签。</span></li></ol><h3>本地命令入口</h3><pre>python3 scripts/studio.py prepare --help
 python3 scripts/studio.py review --help
-python3 scripts/studio.py accept --help</pre><p class="guide-note">这是一座静态素材馆，网页负责浏览和取用。本地脚本负责制作、确认与更新；GitHub Pages 上也不需要运行 Python 服务。草稿不会被构建到站点。</p></dialog>
+python3 scripts/studio.py accept --help</pre><h3>确认后，按需交付</h3><p>已确认的图标、图例和封面可以导出原文件接入包，整套作品可以选择 Web、macOS、Android 等场景。包内带来源、确认、使用入口与校验信息；AI 只补问缺失的目标环境，不重复询问同一文件是否满意。</p><pre>python3 scripts/packages.py list
+python3 scripts/packages.py export --help
+python3 scripts/packages.py asset --help</pre><p class="guide-note">这是一座静态素材馆，网页负责浏览和取用。本地脚本负责制作、确认与更新；GitHub Pages 上也不需要运行 Python 服务。草稿不会被构建到站点。</p></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 </body></html>

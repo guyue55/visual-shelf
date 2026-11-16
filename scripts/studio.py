@@ -40,12 +40,25 @@ def prepare(args):
     check_file(file)
     reference_file = 'reference' + file.suffix.lower()
     shutil.copyfile(file, directory / reference_file)
+    background = None
+    if style.get('approved_background'):
+        background = read_json(metadata_path(ROOT, style['approved_background']))
+        if not background.get('approval'):
+            raise ValueError('模板底图必须有正式确认记录')
+        background_file = ROOT / background['path']
+        if check_file(background_file) != background['sha256'] or background['approval'].get('reviewed_sha256') != background['sha256']:
+            raise ValueError('模板底图哈希变化')
+        shutil.copyfile(background_file, directory / 'background.png')
     profile = getattr(args, 'profile', None) or {'web':'web','cover':'cover','logo':'circle-logo','app-icon':'square-master','favicon':'favicon','apple-touch':'apple-touch','pwa':'pwa-maskable','android-icon':'android-adaptive','share-card':'og-image'}[args.purpose]
     platform = getattr(args, 'platform', 'unspecified')
     seal = 'none' if getattr(args, 'no_seal', False) else '古月'
     task = dict(job=args.job, style=args.style, purpose=args.purpose, text=args.text,
                 owner=args.owner, instructions=args.instructions, reference=style['reference'],
                 profile=profile, platform=platform, seal=seal, font='MaShanZheng-Regular',
+                approved_background=background['id'] if background else None,
+                background_sha256=background['sha256'] if background else None,
+                accepted_examples=style.get('accepted_examples', []),
+                delivery_packages=style.get('delivery_packages', []),
                 reference_file=reference_file, reference_sha256=digest(file), state='prepared', created=datetime.now(timezone.utc).isoformat())
     save(directory / 'task.json', task)
     sizes = {'web':'横幅构图；未指定尺寸时先以 1600×600 探索，布局需重新设计，不拉伸圆角图标',
@@ -65,8 +78,10 @@ def prepare(args):
 - 固定字体：MaShanZheng-Regular；印章：{seal}。正文按真实字体轮廓排版，禁止模型编造字形或静默换字体。
 - 准确主文案：{args.text or 'unknown；若涉及准确字标需补充'}。
 - 主要归属：{args.owner}。它与参考图来源产品不是同一概念，不自动署名 MacRightClick。
+- 已确认样例：{", ".join(style.get("accepted_examples", [])) or "无"}；可直接复用的交付包：{", ".join(style.get("delivery_packages", [])) or "无"}。先查已确认资源，再决定是否需要新制作。
 - 本次附加要求：{args.instructions or '无'}。
 - 实际参考：{reference_file}；source asset id：{style['reference']}。
+- 已确认无字底图：{background['id'] if background else '无；如需清理背景按实际任务制作'}；{('已复制为 background.png，可直接用于固定字体合成，不必再次去字去章' if background else '没有可复用底图时才进行背景编辑')}。
 
 ## 执行要求
 

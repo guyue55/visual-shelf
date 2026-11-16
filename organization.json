@@ -45,6 +45,20 @@
       "owner": "shared",
       "description": "用于流程说明的状态示例，按实际项目继续细化。",
       "accent": "sand"
+    },
+    {
+      "id": "guyue-ink-backgrounds",
+      "name": "古月 · 古风无字底图",
+      "owner": "shared",
+      "description": "已确认的水墨浅色 A 与月夜深蓝无字底图，供固定字体、古月章分层制作。",
+      "accent": "sage"
+    },
+    {
+      "id": "guyue-yue-logos",
+      "name": "古月 · 阅字标",
+      "owner": "shared",
+      "description": "用户已确认的阅字圆形浅色与圆角月夜 Logo，固定马善政字体及古月章。",
+      "accent": "night"
     }
   ],
   "components": [
@@ -63,6 +77,14 @@
     {
       "id": "workflow",
       "name": "流程状态"
+    },
+    {
+      "id": "template-background",
+      "name": "模板底图"
+    },
+    {
+      "id": "personal-identity",
+      "name": "个人字标"
     }
   ]
 }

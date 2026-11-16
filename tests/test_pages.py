@@ -24,7 +24,7 @@ class PagesTests(unittest.TestCase):
             public=root/'hosting';public.mkdir();shutil.move(root/'dist',public/'visual-shelf')
             artifact=public/'visual-shelf'
             self.assertTrue((artifact/'.nojekyll').exists())
-            for name in ('.drafts','scripts','resources','catalog'):self.assertFalse((artifact/name).exists())
+            for name in ('.drafts','.exports','packages','scripts','resources','catalog'):self.assertFalse((artifact/name).exists())
             class Handler(http.server.SimpleHTTPRequestHandler):
                 def log_message(self,*args):pass
             server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(public)))

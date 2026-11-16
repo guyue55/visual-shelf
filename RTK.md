@@ -116,3 +116,16 @@ python3 -m unittest discover -s tests -v
 - 发布方式见 [docs/PUBLISHING.md](docs/PUBLISHING.md)，以实际远端配置和工作流执行结果为准。
 - [docs/RESEARCH.md](docs/RESEARCH.md) 是选型背景；[docs/VERIFICATION.md](docs/VERIFICATION.md) 是初始化时的历史验证，不代表此后改动已通过。
 - 本手册仅适用于本仓库，不引入其他项目的运行、磁盘迁移或部署约定。
+
+## 确认后交付包
+
+完整规则见 [交付规范](docs/DELIVERY-PACKAGES.md)。已确认套件在 packages/，打包副本与 ZIP 在忽略提交的 .exports/，不进入 Pages。
+
+```sh
+python3 scripts/packages.py list
+python3 scripts/packages.py verify packages/yue-surface-kit-v01
+python3 scripts/packages.py export --id yue-surface-kit-v01 --surface web --output .exports/yue-web-new
+python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v02-png --output .exports/yue-circle-new
+```
+
+archive/export/asset 均拒绝覆盖；正式包只接受明确确认的套件及素材来源。收件人读 README.md / AGENTS.md / package.json 后运行包内 VERIFY.py，即可按相对入口接入。原文件打包不重新确认，新增文案和适配重新出草稿。

@@ -27,6 +27,7 @@
 | 页面与交互 | `site/index.html`、`site/app.js`、`site/style.css` |
 | 设计取舍、来源调研 | `docs/RESEARCH.md` |
 | GitHub 与发布 | `.github/workflows/`、`docs/PUBLISHING.md` |
+| 确认后交付、单素材包与场景子包 | `docs/DELIVERY-PACKAGES.md`、`scripts/packages.py`、`packages/<id>/README.md` |
 | 浏览器标签、PWA、触屏、分享图与全套模板 | `docs/SCENE-TEMPLATES.md`、`scripts/export-kit.py` |
 | 古风偏好、古月印章、固定字体、形状与平台格式 | `docs/PERSONAL-STYLE.md`、`docs/PLATFORM-PROFILES.md`、`templates/visual/profiles.json` |
 | 模板制作、修改文案与确认收录 | `docs/TEMPLATE-WORKFLOW.md`、`templates/visual/styles.json`、`scripts/studio.py` |
@@ -51,6 +52,7 @@
 - 不同项目/产品的素材按 `docs/ASSET-MANAGEMENT.md` 管理：先查实体与家族，区分主要归属和使用方，用标签与登记卡关联；不复制同一文件，不猜测归属。新 id 遵循用途、变体、修订、格式约定，旧路径保持稳定。
 - 已实现归属/系列/组件引用校验与构建统计；登记卡补充品牌和使用记录，不替代 organization.json 与 catalog 元数据。统计仍需说明范围与未知项。
 - 创作默认使用 `scripts/studio.py prepare/review/accept`，遵循 `docs/TEMPLATE-WORKFLOW.md`。新图先放 .drafts，AI 检查后展示实际候选；用户明确满意且允许收录后才 accept，不得自行编造确认。文件改变后原确认失效。
+- 用户已明确确认的准确文件正常收录，不重复审批。确认合用后若未提及交付，可简短询问是否需要原文件包或 Web/macOS/Android 等场景包；已指定包或用途则直接导出。已确认字节原样打包不重新索要效果确认，新设计/文案/形状仍需确认。按 docs/DELIVERY-PACKAGES.md 保存 AI 接入说明、来源、许可、确认与哈希；正式包在 packages，临时 ZIP 在 .exports，二者不自动发布到 Pages。
 - library.py create 仅生成草稿；add 仅用于用户已确认的准确文件，必填真实 --approval-note。禁止通过低层函数或手写 catalog 绕过确认。
 - 已被引用的文件路径保持稳定；新增变体使用不同 id，以标签关联。修改内容后同步核对元数据和 SHA-256。
 - 来源、许可、作者分别核实。集合仓库的开源许可不能直接推断为单个品牌的商标使用许可；不擅自替库主人选择全库开放许可。

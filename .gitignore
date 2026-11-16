@@ -14,3 +14,6 @@ node_modules/
 
 # Unapproved image work never enters the published catalog
 .drafts/
+
+# Portable delivery copies and ZIPs; approved source packages live in packages/
+.exports/

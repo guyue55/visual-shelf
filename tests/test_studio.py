@@ -39,6 +39,21 @@ class StudioTests(unittest.TestCase):
         self.assertEqual((task['seal'],task['font'],task['profile']),('古月','MaShanZheng-Regular','cover'))
         self.assertEqual((self.root/'.drafts/test-job/reference.svg').read_bytes(),self.source.read_bytes())
 
+    def test_prepare_reuses_only_confirmed_background(self):
+        import base64
+        background=self.root/'background.png'
+        background.write_bytes(base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aC1kAAAAASUVORK5CYII='))
+        item=add(background,'approved-background','底图','icons',['底图'],'original','unknown','unknown','fixture',root=self.root)
+        item['approval']={'user_confirmation':'测试夹具确认','reviewed_sha256':item['sha256']}
+        (self.root/'catalog/approved-background.json').write_text(json.dumps(item))
+        path=self.root/'templates/visual/styles.json';styles=json.loads(path.read_text());styles['moonlit-blue']['approved_background']='approved-background';path.write_text(json.dumps(styles))
+        args=argparse.Namespace(job='reused',style='moonlit-blue',purpose='cover',text='阅',owner='shared',instructions='')
+        studio.prepare(args)
+        self.assertEqual((self.root/'.drafts/reused/background.png').read_bytes(),background.read_bytes())
+        task=json.loads((self.root/'.drafts/reused/task.json').read_text());self.assertEqual(task['background_sha256'],item['sha256'])
+        item['approval']['reviewed_sha256']='0'*64;(self.root/'catalog/approved-background.json').write_text(json.dumps(item));args.job='changed'
+        with self.assertRaises(ValueError):studio.prepare(args)
+
     def test_accept_before_review_rejected(self):
         with self.assertRaises(ValueError): studio.accept(self.args())
 

@@ -36,7 +36,7 @@
 | 图例 | assets/legends/ | 架构图节点、状态、流程图图例 |
 | 封面 | assets/covers/ | 项目、文档、文章封面 |
 
-Logo 分类已收录 MacRightClick 的 3 张应用图标，主用与候选通过标签及登记卡区分；其余分类含 8 份小体积 SVG 示例。所有示例保守标为 `LicenseRef-All-Rights-Reserved`，作者为 `unknown`，等待库主人决定署名和开放许可。
+已收录 15 份正式素材：MacRightClick 的 3 张原图、8 份初始化 SVG，以及用户本轮确认的 2 份古风无字底图和 2 份“阅”Logo。另有 1 套已确认多场景交付包，包内文件不重复计作单素材。所有示例保守标为 `LicenseRef-All-Rights-Reserved`，作者为 `unknown`，等待库主人决定署名和开放许可。
 
 ```text
 assets/       可直接引用的素材文件
@@ -46,7 +46,8 @@ site/         中文预览页源文件
 scripts/      导入、创建、校验、构建与预览服务管理工具
 catalog.json  构建后位于 dist/，用于页面和其他工具读取
 schemas/      元数据 JSON Schema（供编辑器使用）
-templates/    创作需求和信息采集模板
+templates/    创作需求、AI 交付入口和信息采集模板
+packages/     已确认的完整交付包（不自动构建到 Pages）
 docs/         调研、设计取舍、发布与后续计划
 tests/        有实际边界意义的离线测试
 ```
@@ -74,7 +75,7 @@ tests/        有实际边界意义的离线测试
 
 个人作品默认古风并带“古月”署名章，正文与章使用固定真实字体，不由图像模型编造文字。支持圆形、圆角方形、方形母版、封面/web 排版及 PWA 安全区配置；macOS 传统 ICNS 与现代 Icon Composer 路线分开处理。见 [个人风格与字数排版](docs/PERSONAL-STYLE.md)、[形状与平台规范](docs/PLATFORM-PROFILES.md)。
 
-原生渲染命令 `./scripts/render-logo.sh --help`，当前需 macOS/Swift；传统图标打包命令 `./scripts/export-macos.sh 输入.png 新目录`。所有示例仍走草稿确认，不自动入库。字体文件及 OFL 许可位于 resources/fonts/mashanzheng。
+原生渲染命令 `./scripts/render-logo.sh --help`，当前需 macOS/Swift；传统图标打包命令 `./scripts/export-macos.sh 输入.png 新目录`。新示例仍走草稿确认；已确认的“阅”圆形浅色和圆角月夜 v02 已正式入库。字体文件及 OFL 许可位于 resources/fonts/mashanzheng。
 
 ## 常用场景模板套件
 
@@ -126,3 +127,9 @@ python3 scripts/library.py build
 ## 许可
 
 目前没有为整个项目指定统一开放许可。代码、原创素材的许可由库主人后续决定；第三方素材始终遵守各自的版权、许可与商标要求。`unknown` 表示未核实，不表示可自由商用。详见 [RIGHTS.md](RIGHTS.md)。
+
+## 已确认作品与按需交付
+
+底图 A/C、阅字 Logo A/B 和原 185 文件套件已依据用户明确确认收录。详情见 [确认与交付记录](docs/creation-runs/2026-11-16-approved-guyue-assets.md)。浅色 B 瑕疵底图仍待修。
+
+需要使用时可以说：“把这份图例打个 AI 接入包”，或“导出阅的 Web / macOS 包”。AI 先复用已确认文件，不重复问是否满意；目标缺失时只补问必要的用途。每包包含来源、确认、入口、哈希、README/AGENTS 与独立校验；整套还包含原背景、固定字体/OFL 和原生渲染器。命令和文件位置见 [交付包规范](docs/DELIVERY-PACKAGES.md)。

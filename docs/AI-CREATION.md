@@ -113,3 +113,7 @@
 5. 新会话只给实体和用途，AI 可找到正确档案、参考和制作流程；必要文件缺失时如实说明。
 
 统计制作记录时可汇总任务数、候选数、修改轮次、首次沟通后的重复品牌提问次数、用户接受的成品数，以及有真实账单证据的费用。探索候选不计入成品库文件数，也不把“未反馈”当成“已接受”。
+
+## 确认后的素材与交付包
+
+先查 styles.json 的 approved_background/accepted_examples/delivery_packages；有已确认底图时 prepare 直接复制，不重复生成。packages.py 已实现原文件与场景子包导出，包内有 source-assets.json、README/AGENTS、manifest 和 VERIFY.py；这不是在线模型调用或完整自动品牌上下文服务。按 [交付规范](DELIVERY-PACKAGES.md) 在确认合用后按需询问场景并输出。

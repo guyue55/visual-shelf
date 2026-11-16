@@ -64,3 +64,7 @@ AI 接入真实项目时还需确认 base path、manifest 的部署位置、名�
 - [web.dev：manifest 图标](https://web.dev/articles/add-manifest)：Chromium 的 192/512 图标与 maskable 指定；不把图标文件本身称为完整 PWA。
 - [Apple Safari Web Content 归档文档](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)：apple-touch-icon 与 180 尺寸示例；该文档是历史归档，实际 Safari 版本需验证。
 - Android、Apple 现代路线及 W3C maskable 依据沿用平台规范中已核对的一手链接。
+
+## 确认后的正式交付（2026-11-16 更新）
+
+上述草稿生成规则继续适用于新设计。原“阅”185 文件套件已获本轮用户明确效果确认，正式保存在 packages/yue-surface-kit-v01，补全资料后共 203 文件。通过 packages.py 可导出 all 或 web/logo/cover/macos/android 子包，无需为原样打包再次确认。详见 [交付规范](DELIVERY-PACKAGES.md)。单个已确认图例、图标也可用 packages.py asset 输出带来源和校验的原文件包；未实际生成的平台格式不能凭空标为已适配。

@@ -34,3 +34,5 @@ CI 不会发布，Pages 也不在 push 时自动发布。首次线上部署仍�
 ## 构建产物与子路径
 
 这是纯静态站点；Python 只在本地或 CI 构建时运行。必须发布 dist/（包含 index.html、app.js、catalog-model.js、style.css、catalog.json、organization.json、assets/、.nojekyll），不能把 site/ 直接作为完整站点。目录关系和统计来自源文件构建，不依赖在线数据库。query 筛选和 hash 详情分享不要求服务端路由重写。草稿、源字体及工具脚本不进入站点。详见 [调研和实现边界](HIERARCHY-AND-PAGES.md)。
+
+正式交付工程包位于 packages/，导出副本位于 .exports/；默认都不进入 dist，不随 Pages 自动公开。需要包下载时另行选择 GitHub Release 或其他分发位置并核对真实授权，本地归档不等于已上传。

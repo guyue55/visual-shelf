@@ -1,0 +1,46 @@
+{
+  "id": "shared-guyue-background-moonlit-blue-v01-png",
+  "name": "古月 · 月夜深蓝 · 无字底图",
+  "kind": "icons",
+  "path": "assets/icons/shared/guyue-ink-backgrounds/template-background/shared-guyue-background-moonlit-blue-v01-png.png",
+  "tags": [
+    "owner:shared",
+    "family:guyue-ink-background",
+    "variant:moonlit-blue",
+    "revision:v01",
+    "status:ready",
+    "用户已确认",
+    "app-icon",
+    "古风",
+    "月夜",
+    "无字底图",
+    "制作模板"
+  ],
+  "source": "original",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "1254×1254 RGBA；用户确认底图 C。来自 MacRightClick 月夜参考，经内置 image_gen 去字去章与补绘，具体后端模型及逐图许可 unknown；月亮人物山水保留，云雾为重绘。供固定字体和古月章分层合成，不替换 MacRightClick 原图。",
+  "sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+  "organization": {
+    "owner": "shared",
+    "series": "guyue-ink-backgrounds",
+    "component": "template-background",
+    "functions": [
+      "分层创作"
+    ],
+    "platforms": [
+      "通用"
+    ]
+  },
+  "approval": {
+    "user_confirmation": "用户本轮明确：之前几轮需要我确认才能收录到都满意，你正常收录（A、C 满意、A、B 的效果满意）；本项为底图 C（月夜深蓝）。",
+    "reviewed_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+    "task": "template-moonlit-blue",
+    "checks": "已目视：大字与印章已移除，月夜人物山水保留；中央云雾为重绘，透明边缘及小尺寸仍需用户验收",
+    "tool": "image_gen builtin; backend model unknown",
+    "template": "moonlit-blue",
+    "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+    "approved_at": "2026-11-16T08:38:16.122211+00:00"
+  }
+}

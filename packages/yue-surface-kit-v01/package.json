@@ -1,0 +1,1063 @@
+{
+  "version": 1,
+  "id": "yue-surface-kit-v01",
+  "name": "古月 · 阅 · 多场景交付套件 v01",
+  "state": "approved",
+  "created": "2026-11-16T08:41:27.736993+00:00",
+  "text": "阅",
+  "theme": "dark",
+  "font": "MaShanZheng-Regular",
+  "default_seal": "古月",
+  "surfaces": [
+    "web",
+    "logo",
+    "cover",
+    "macos",
+    "android"
+  ],
+  "entrypoints": {
+    "web": [
+      "payload/favicon.ico",
+      "payload/favicon.svg",
+      "payload/apple-touch-icon.png",
+      "payload/site.webmanifest",
+      "payload/head-snippet.html"
+    ],
+    "logo": [
+      "payload/circle-logo/logo.png",
+      "payload/rounded-logo/logo.png",
+      "payload/square-master/logo.png"
+    ],
+    "cover": [
+      "payload/cover/logo.png",
+      "payload/web/logo.png",
+      "payload/og-image.png"
+    ],
+    "macos": [
+      "payload/macos-legacy/AppIcon.icns",
+      "payload/macos-legacy/AppIcon.iconset",
+      "payload/macos-legacy/AppIcon.png"
+    ],
+    "android": [
+      "payload/android-res/mipmap-anydpi-v26/ic_launcher.xml",
+      "payload/android-res/drawable-mdpi"
+    ]
+  },
+  "source_assets": [
+    "shared-guyue-background-moonlit-blue-v01-png",
+    "shared-guyue-yue-rounded-moonlit-v02-png"
+  ],
+  "background_asset": "shared-guyue-background-moonlit-blue-v01-png",
+  "approval": {
+    "user_confirmation": "用户本轮明确：生成的一套 185 个文件的草稿包效果也可以；要求及时更新文档，完善包内信息便于 AI 直接使用。确认原有整套文件效果；无章款继续作为备选，未授权替换默认古月章。",
+    "approved_at": "2026-11-16T08:41:27.737555+00:00",
+    "original_file_count": 185,
+    "original_kit_sha256": "ae6a5e2bd1890da65a43464173e6315c1f146ebbfa1792e0dd62eeb1a720c3be",
+    "original_files": {
+      "maskable-192.png": "bfbc89f9c290bfea98be5da1b4675ab88b6ee5dae3a5d3a0495658c0cb04539c",
+      "favicon-48.png": "a67e33b888489c7e9f08671409b848e26bf34bb74b90ef73c4e5c074ce288355",
+      "preview.html": "c4e794ee9b1cd318025aaa12d96288376818de39a4be2e1227c6370c41bc2bf8",
+      "favicon.ico": "68ad1eec76ba363bce9d1f58a1687c91049ff70c9db78d6eca7ea0a795306042",
+      "apple-touch-icon.png": "3e911702e733ec33a89944dbfe766b25616aab492ee3a112541bd9bb9c74a72c",
+      "favicon-16.png": "0ef081730337c47fb2c95258cd292f3ea11eb7b42dc9451a9d30d11a11ace344",
+      "icon-192.png": "b1797e0ba86c28b45ea039971d90a36d9b8abb11ee2ba5d463b74f1e4c21cba9",
+      "og-image.png": "e7b4214eb26dbb5e69be7ef1f12f1b6b3f58fd62339fe44ce5b981ef81700d6e",
+      "head-snippet.html": "4943b75c6ceb42c0550b2669027a4d33b142902eb3696c65a404e056c700cfc2",
+      "site.webmanifest": "453f107f26f4834f542b06a834815b7ab56369d7d48759f4fc8f05af91bc1e2a",
+      "maskable-512.png": "9fa020fcfc333afce5d3e4d9299a622d3d760b7337a1a4f53dd415803865973e",
+      "favicon-32.png": "abf34f0d237b6eb04b885196587c82101ca0629329ef9fc0a9c9ee5f5de0619e",
+      "favicon.svg": "eaed33caa19aacd2c6caf0ce0c2fdfa1689f9d6b536fda3afc1d8050bdb568bb",
+      "icon-512.png": "617ccf3548a350adc144705f0b05cef0dea1dd048510eda59eb1c3529c862638",
+      "favicon-simple-option/preview-256.png": "e40af20c68503cb97a7684d1635920307ebefdece0d8d747d202377a8023988f",
+      "favicon-simple-option/preview-64.png": "8a62f6617ce2afb8a9c63db2a6a879995cf035d5d312d3f21ae09607943ff56f",
+      "favicon-simple-option/favicon.ico": "650e932a31679f37308fb09b2bd4daa0273285715e314556ca3bf9638bf06801",
+      "favicon-simple-option/background-layer.png": "4add94300a13b1cd7d252b59a0023292ab75fb8cbc8ea9fcc12d602dca36ee0a",
+      "favicon-simple-option/foreground-layer.png": "9a094f91bf8e1396ae6a7ecf7c728a0d3f225f54d6b220868f99faa077eb0607",
+      "favicon-simple-option/preview-48.png": "a02d563f49f47419f474770d31f925cfe702b463832e01e428c8564f91c136f8",
+      "favicon-simple-option/render.json": "a95f0c9c485390935733c24664930ccfadca15d62d5b55ef41106cdc92a5d65d",
+      "favicon-simple-option/preview-16.png": "c504b20ecc8d3b2c7dd1b8d554a799f6e05413348b699aceac451c88d5eaf75f",
+      "favicon-simple-option/preview-192.png": "f85d46a3ebe39f557f44ac2c582911a3bf4cd8bfc4e7962db32295d9e3587baf",
+      "favicon-simple-option/preview-32.png": "31c1f9cc09c11a348143bb7f222829beb6c013a19b6f5680eb008865cd358a83",
+      "favicon-simple-option/logo.png": "e40af20c68503cb97a7684d1635920307ebefdece0d8d747d202377a8023988f",
+      "favicon-simple-option/foreground.svg": "22f828411fe2ec627982539dfd13d56a43d7d4c3bae6849109823ced23c38b79",
+      "favicon-simple-option/preview-128.png": "ead3b171545ad381271ecf56fedefbea9cf0f37f8ff59d4b9e6345d7930c3114",
+      "favicon-simple-option/preview-512.png": "794e26df66ff8d26c3b76def2d47af20b520c569169547d31e7813143274949b",
+      "favicon-simple-option/favicon.svg": "6adf5f6063966cfd222753cc277156960d5402206faca3465d21cd624aa1c1e4",
+      "og-image/preview-256.png": "d9d90d7954a923c8ad27688e46c47481a2f9eb2302d570833d4716bee1d4d4ec",
+      "og-image/preview-64.png": "59030a28620b9707f6f0f2678ef410ae61380b847332c4fe034792175ef665d3",
+      "og-image/background-layer.png": "86f91f3d3013703719f585040e0fef2a3f3363a90c59d4589acfad876ab8b57c",
+      "og-image/foreground-layer.png": "91736c80e5f9745097948771284c9166a10834b70033568d688be2684a80c19a",
+      "og-image/preview-48.png": "14229f233dccd5a0c06200db093cfbc4c8e58f7e11da4fa9eb40326da895b344",
+      "og-image/render.json": "94f2f91f847882e81d601352b3785ddaa9ddf5e128dcad100fbb6749c0096a01",
+      "og-image/preview-16.png": "a394929f3f8b79a6e8805a09bae8d2aa576e4837e599761fca7acf4311050ebd",
+      "og-image/preview-192.png": "df442bb7f729ddb1bddf498b4b710e2fb7313afbe54c9bbfe6c2eef44b7cb520",
+      "og-image/preview-32.png": "eca3c984218bfa00b21cca45b583547fa586f666c795d3f14481a5d8e3b4bb29",
+      "og-image/logo.png": "e7b4214eb26dbb5e69be7ef1f12f1b6b3f58fd62339fe44ce5b981ef81700d6e",
+      "og-image/foreground.svg": "9018e8a6c2110bebe9af01fcaa2b78d418590cf767151cc529315ddaa2e2b452",
+      "og-image/preview-128.png": "a4412222589584e6a9f2e38af03e0264c3844d22dbc916264cbcaa7897441056",
+      "og-image/preview-512.png": "0df7dc81d352ad4128302ce32cf9bd5ea9c7b6979a8abc03287ae7402b94aadb",
+      "android-adaptive/preview-256.png": "94545f26683639a76fdd25d95a6a515429c40e69dcbca9313f5441d1ab70d5f8",
+      "android-adaptive/preview-64.png": "0bd8c2ab9173a83858bc7ff3a9f19c451074039a87016e07d2af558fd26b75c0",
+      "android-adaptive/background-layer.png": "470c946c4d188ee0f08e039cb61aa0a647bc9e1fe993fbfac7f1ba0696bca98b",
+      "android-adaptive/foreground-layer.png": "db283f6c75f9597254c4985619862ede39628c4253ee0de4740f37d3c1618ae8",
+      "android-adaptive/preview-48.png": "4cdcf90d515cfb6f385cc0e2d3b6b5a17c359b890c5fcf6a80c4a5bb06a50c62",
+      "android-adaptive/render.json": "071a6f5e461534d17a59762f8db92fced0f2748b9a2b60041bddfb831cc9f751",
+      "android-adaptive/preview-16.png": "335ec3d4d8c206400659d7e3ca4d13e1f080f49a4b2b256e75b3a95345249072",
+      "android-adaptive/preview-192.png": "d32ea436f57f6a0ae72b50ed23c1bbc35e9afc3620e00e93424dac900f3906a3",
+      "android-adaptive/preview-32.png": "df6b52827efdbf50d77d85e6f3b7367675d8a6bec8df30b1a490ae88ab2a530a",
+      "android-adaptive/logo.png": "1cf3256d9611b1985e6da91cd9f361c91039b0e203b9341fb3d05d923adc559d",
+      "android-adaptive/foreground.svg": "aa7ffc583188b0ee8e253a0e5d40e0a3cd3c617f5cdf28071ca9d12a72ea617d",
+      "android-adaptive/preview-128.png": "8963293639e573755c972ba66ee742b31fbbd28978b539e6ac87237a8ffa0c5c",
+      "android-adaptive/preview-512.png": "e108b52324e717643a4bdde39c95a4cea3521064232e44f8f904f5e511688f7d",
+      "web/preview-256.png": "1556cd00f9661da677c6437860108a30204626278c13ade8c70bfe74527fc285",
+      "web/preview-64.png": "6f4a7bb9f5750c8ea2f403807d084a3f56eae5954373071396e976e2efb0fdae",
+      "web/background-layer.png": "0f37c8a047dcd76baa53365fc621b87ecbbf5308151f5de7f264db886a7de38c",
+      "web/foreground-layer.png": "fd56f0eaa31af933036f1c650cb6655e7cf71b409a8cb6c61f153990c13e24b4",
+      "web/preview-48.png": "596730a9c47e1c68208c79a323673a1637088352286f07edfbff81ef37e07c9c",
+      "web/render.json": "cbdc4be41729ca6a7e27a6317f7c17bfc19d40ce1c8e1e062b9364419ef6077e",
+      "web/preview-16.png": "390279d333e2ff14642ec8987b26ac2306a74d9342b07d2e785fd1a9f491c2e8",
+      "web/preview-192.png": "fc17b319098d54b4a470f7e963eb98a1f120df454bc406fb972b26d81b67f8ac",
+      "web/preview-32.png": "b52bd17a752a9528ce7d280479a725f2770c39d5061ce80619114b0c3f2cd50f",
+      "web/logo.png": "b178b4843d259893d5cb522923c4b531d912c10529ba14ad4b8aef5b16df9367",
+      "web/foreground.svg": "2b24420d7ff74e5f50830cb78f9e514aab7bda60860221d026586d63487adc74",
+      "web/preview-128.png": "4e13223320f46425c1df441d16dae95ac15111ea59f6fb1be2a7a40b1fa3bac7",
+      "web/preview-512.png": "b8c5f5e7bea832a3f68e3233d3612cb2f0efeb0464304f5dd990d9013ea3a236",
+      "favicon/preview-256.png": "b560b9d3b51d35b880af3243a20a365b14a2950bb2e5e8fffc744524faf02219",
+      "favicon/preview-64.png": "5447e727ab81860d00182256ccf0ce1aeb91065fa41052e74906acad5d0f9ab0",
+      "favicon/favicon.ico": "68ad1eec76ba363bce9d1f58a1687c91049ff70c9db78d6eca7ea0a795306042",
+      "favicon/background-layer.png": "4add94300a13b1cd7d252b59a0023292ab75fb8cbc8ea9fcc12d602dca36ee0a",
+      "favicon/foreground-layer.png": "dcd4c50f47d7959759a7ec000f0360fef881d48f50e1419ea146db6bfc23c957",
+      "favicon/preview-48.png": "a67e33b888489c7e9f08671409b848e26bf34bb74b90ef73c4e5c074ce288355",
+      "favicon/render.json": "eb3dc50745ad8bf3c44bd5c9875f12f1407c09b6869a0cd27ecb067e10662d19",
+      "favicon/preview-16.png": "0ef081730337c47fb2c95258cd292f3ea11eb7b42dc9451a9d30d11a11ace344",
+      "favicon/preview-192.png": "310a4b8ec97c4d823cc23c23f08787ba6c571414b8c54d200d50ed163895dfb6",
+      "favicon/preview-32.png": "abf34f0d237b6eb04b885196587c82101ca0629329ef9fc0a9c9ee5f5de0619e",
+      "favicon/logo.png": "b560b9d3b51d35b880af3243a20a365b14a2950bb2e5e8fffc744524faf02219",
+      "favicon/foreground.svg": "c8a4c2bacdac3e6a15028bba07ab32379c5d05fc9bea30057fc5fdc2cb73c1a8",
+      "favicon/preview-128.png": "482b88bec42a88fb7e0aa04b89f1c86718444eb13c7ed0b9cb301743a6179129",
+      "favicon/preview-512.png": "8d1299617243ac27daa909a3be3f897f92a6a58ddf15cbb9336f3e9687fac508",
+      "favicon/favicon.svg": "eaed33caa19aacd2c6caf0ce0c2fdfa1689f9d6b536fda3afc1d8050bdb568bb",
+      "apple-touch/preview-256.png": "b8e1e47a8155385d478c082031b5da5d900a8aff598f084ec3d155b527b635aa",
+      "apple-touch/preview-64.png": "109e982e8e827e6c46bbc773e6caec940846309c30f652f69f9ee4c37e9da571",
+      "apple-touch/background-layer.png": "15548012b282a2640e5119edb0e0ba89b5ef66425fcedf01f4b9af572732d002",
+      "apple-touch/foreground-layer.png": "c555667bfdb1d6e1ba010141d014d033f59ebe4f7942f039a4c95c9df00df5bc",
+      "apple-touch/preview-48.png": "955067082599219eda2fa808f48cef6316b7d3f3093eb0cef1313d421836959e",
+      "apple-touch/render.json": "25fa864f2b7df4e6896bd1844bb9c1f978d57bf94979db9f9825c97d7ad17822",
+      "apple-touch/preview-16.png": "0415decbc9ff64a02802d69defd9cfd0e28e5f48a59ba7f1a46539d7e9cf19a3",
+      "apple-touch/preview-192.png": "76e1a5f88ff2ff18cf54871e98497dfa3dcdfbe95cde86c23e103f717427cf19",
+      "apple-touch/preview-32.png": "43f0f8f396db9c13209bf61a7c02d566c70e6ceebec2411afc366e23b2969faa",
+      "apple-touch/logo.png": "3e911702e733ec33a89944dbfe766b25616aab492ee3a112541bd9bb9c74a72c",
+      "apple-touch/foreground.svg": "9f61710927f18bf040ccc71a89ba0c1974446b62b09559098ddb4b028963c7c3",
+      "apple-touch/preview-128.png": "9ca71882e22bcb9d2d119d6ea2c0147bf2f748cc26d1df8a4c31bcf637c80d53",
+      "apple-touch/preview-512.png": "1b856b00725589d58bb79733aa8c7d80798fcd1ec558c98cdf2b1fe94b2e8a97",
+      "circle-logo/preview-256.png": "26d7eca89bfa57edd35b82bb52cc87034da751cb327e063d8820c87dc1392598",
+      "circle-logo/preview-64.png": "0a48c8bcaac3fbdfe2b8b4c090fcf03aac13c4e67e810734d201c79f041a9773",
+      "circle-logo/background-layer.png": "0e3bfa5819395fcef1b19a73c3c320ce29ba58b0f93e1301609f7584411edb77",
+      "circle-logo/foreground-layer.png": "4ff02539e5e1d5b7a33dc9ea1d5ea6f5f04ae6831bc0c0710c3ddfe3044f77b7",
+      "circle-logo/preview-48.png": "2af9199dcd091015b38b58f960e0f9ecdc3527778168f14c0c338ed16a714058",
+      "circle-logo/render.json": "e49f456acbcd958246ab0c156d6918366045c3e707160df3057eb9c22565f927",
+      "circle-logo/preview-16.png": "c7e98d81c8e6aa86cd9d9365f8ecd6d780bc2971b5e9677dff894efcb5ab181e",
+      "circle-logo/preview-192.png": "7101859d156e71a9386813ba634a06021a561172dea1453b16c1c9018ea86f07",
+      "circle-logo/preview-32.png": "6bc8bf01d3850a2c176291d3b11c7e4fd6ae5e09288fc8851dbb09bdad95303c",
+      "circle-logo/logo.png": "178a2641878b637c3a57f6c5e887184e35b87fb8d0bd0bc668f078caa2ee0ce4",
+      "circle-logo/foreground.svg": "1c31314b390fb242e3383d88d5129aab2102a2daf317552763fae89acc46b9fb",
+      "circle-logo/preview-128.png": "7c7563b4238dedc0606c1acbb7a4c6c474d3e4f1d59990fbb8c5970bc9185aab",
+      "circle-logo/preview-512.png": "83c7a3d19bf6a839be206766ab123d54b498accf242e411810b75b6b6db9d6ec",
+      "square-master/preview-256.png": "a5dbbd784e6ec7ec968d3d63afbeafc0113a8456619fec4629f9a21dd19b6a9f",
+      "square-master/preview-64.png": "b43e9846a7a89461f07751be727ebcac09ebbfbd393b5d43fd812e2dbe0114af",
+      "square-master/background-layer.png": "42f4a8a4ba8f818f8e48502eb3bd3a3562f4f020e3f27bd7e97bc3a351e190b9",
+      "square-master/foreground-layer.png": "4ff02539e5e1d5b7a33dc9ea1d5ea6f5f04ae6831bc0c0710c3ddfe3044f77b7",
+      "square-master/preview-48.png": "035e2d2ada885cd735549456cee2857719c3f6629d1f756a11f02f6a7fe21bb6",
+      "square-master/render.json": "5b375c49dc88e749536a6767ef1eb9a4891425d176750391411b458c7b582cf2",
+      "square-master/preview-16.png": "a33a193a9a86be466829ac4eedc1fb30a4019668b8fb80e48f52a6cde5fd629b",
+      "square-master/preview-192.png": "b1797e0ba86c28b45ea039971d90a36d9b8abb11ee2ba5d463b74f1e4c21cba9",
+      "square-master/preview-32.png": "d325e6dfda4652c952c316d687821f41769cbb69c45a7a8f9ad098ee177f1698",
+      "square-master/logo.png": "58920f8ad029044bcd4279238e169943d87cd64d5a2da6c20b970f7a8503010c",
+      "square-master/foreground.svg": "1c31314b390fb242e3383d88d5129aab2102a2daf317552763fae89acc46b9fb",
+      "square-master/preview-128.png": "14a8a4dff59f9fb67a2e82f7b867aa3cf22c8fcd73bdd1ec2329f77755ae6b87",
+      "square-master/preview-512.png": "617ccf3548a350adc144705f0b05cef0dea1dd048510eda59eb1c3529c862638",
+      "rounded-logo/preview-256.png": "ab203217dcb4e39e6823775ebac3cdc93b782ed8c45bffae73981af41cf28bf1",
+      "rounded-logo/preview-64.png": "709815c3bba0481fc7ceabb06a1d36405a6ce56ac01f362447f5f9ce453da38d",
+      "rounded-logo/background-layer.png": "852ea58fd40cfb25cf2b45832d749770e03e773c7ed2b37e4a4655d8b7d5e03e",
+      "rounded-logo/foreground-layer.png": "4ff02539e5e1d5b7a33dc9ea1d5ea6f5f04ae6831bc0c0710c3ddfe3044f77b7",
+      "rounded-logo/preview-48.png": "dda5a28aabfc7d04ed21a4d750030e33a362b9202e03073e0874e515ecf52939",
+      "rounded-logo/render.json": "e852e615ac6f06ec91198fe21ea398bbba333d8ed1f42ffc796586f8075efb6d",
+      "rounded-logo/preview-16.png": "3d46089af4e9f8d043b9011dc9e556117066940047afd6bad10cc46fca2a25c5",
+      "rounded-logo/preview-192.png": "296d4b00b1ee40fd2bb6e8df71867767b8904264d3266cb16b0f8d5a8fc28a53",
+      "rounded-logo/preview-32.png": "64d1eb69fea8168da0db6a82491d6bb7a63a920b17dd7a10aafb98af1b569213",
+      "rounded-logo/logo.png": "fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5",
+      "rounded-logo/foreground.svg": "1c31314b390fb242e3383d88d5129aab2102a2daf317552763fae89acc46b9fb",
+      "rounded-logo/preview-128.png": "d2013085d221d17dda6539b4badd7458f237f08410812b38f1a2a94e0a387571",
+      "rounded-logo/preview-512.png": "65b6599b1d37524f28b52f2946a585d68ca5cdd3f0487de4300324821a3c94a7",
+      "pwa-maskable/preview-256.png": "a95b4bcd1208801d733a22d192a5412dfbe8e5ffc10234d732f7536594a86ff9",
+      "pwa-maskable/preview-64.png": "053e02709f248fd1e2cd428a11492fa90fb684fe4308c678e4bfe1a9551a43b4",
+      "pwa-maskable/background-layer.png": "42f4a8a4ba8f818f8e48502eb3bd3a3562f4f020e3f27bd7e97bc3a351e190b9",
+      "pwa-maskable/foreground-layer.png": "9496c17a38e87afe5bd1958af1b86538b7d73e62b0144e5a6d1f17be20b1868c",
+      "pwa-maskable/preview-48.png": "62082360260d392a031442890dc54b0af4d2a0279fd90f0ef789a9e8fcd4dd9f",
+      "pwa-maskable/render.json": "4cc0f27429394ee9cc0c72fbe719c594734098c0cb0854d497beeb184d45e8bf",
+      "pwa-maskable/preview-16.png": "fe0b67905986467322cc57e0c4c430069d3b1a133e7ab97e91751d039dddf14a",
+      "pwa-maskable/preview-192.png": "bfbc89f9c290bfea98be5da1b4675ab88b6ee5dae3a5d3a0495658c0cb04539c",
+      "pwa-maskable/preview-32.png": "8ff37f9d5a05686343db8ced9f5b16fcd6230dbc83a874006dc4a067dd236c52",
+      "pwa-maskable/logo.png": "9ac92595d258572bbb37c6ff6e7ca490e6ce86fd4fbab3b29f1148665b0a5055",
+      "pwa-maskable/foreground.svg": "88091e1ff397f274b4e39530f43207142604143ceeb50e169de92ec6ad8226cb",
+      "pwa-maskable/preview-128.png": "3298c2cfdc1f798c2a4e99f074e9bdd8e4f2022f9ddde1a50d3a10b04d7a6f18",
+      "pwa-maskable/preview-512.png": "9fa020fcfc333afce5d3e4d9299a622d3d760b7337a1a4f53dd415803865973e",
+      "macos-legacy/export.json": "1b027a5f8b1155e9831883af67373200dc735e035bb3e89291f7ea2514da9504",
+      "macos-legacy/AppIcon.icns": "43db53c04e2b6ba89ec382a47bc232842c867a4e012cc1761a25978089a6040a",
+      "macos-legacy/AppIcon.png": "fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5",
+      "cover/preview-256.png": "540d781d1ce98e8c9078789c4f0a11f4152dcf8af9fcc079089807c8cf93e90b",
+      "cover/preview-64.png": "d0a5f41feed05c553b595669c3c00c880e01d4cbb27e233ecd89d5b37949348e",
+      "cover/background-layer.png": "fc8bbe1bf7588927c126737412e6e1c5a7e76bceee9f3a23a38c5d69fe32486e",
+      "cover/foreground-layer.png": "9fa4d0c7a29671ab70037abddf9f24f29c93ab0048d08f49eb1d7ae264692c21",
+      "cover/preview-48.png": "090612f3e071f1115ee7f12773d5c8fe2d20032f7b153e9d31faf9ea574738b7",
+      "cover/render.json": "f475a9d77d42d05cce032a1ec635ce3bb4e6613584beb1fe11eaa6815cabcf0b",
+      "cover/preview-16.png": "82e2d6a210bfa289415c20a9f3233ec37059fa92145140b028a18a8d98ac540f",
+      "cover/preview-192.png": "5ce7a62ecd6f96ef4962c7b3d9d746bdd8117deb1e8129acad579bf414c1a4b1",
+      "cover/preview-32.png": "04ffe165d321d0306d7a562a2f82780d8160396afb4db76fad92e3d43ccf1296",
+      "cover/logo.png": "a7b7d28fe8da8aa05168e53994bdfbee96e9400ea5fe5cf8417a265f49843b8b",
+      "cover/foreground.svg": "373c6fbb0b213ab61b4335559a04189d78a9443e624dbc4187c9632bb661806b",
+      "cover/preview-128.png": "99bfc4f62c2b632ea0676ea155d33f2ecb013806fac90daf700aa614a1e1d665",
+      "cover/preview-512.png": "73cdd3b15080e11e936c79de16bbe9c4abef338fe6c71bcb379c5de89a215311",
+      "macos-legacy/AppIcon.iconset/icon_32x32@2x.png": "080b5b4fae486da100133f2af5bc050a60fd3c7b72c72fc241a50abb240d76c0",
+      "macos-legacy/AppIcon.iconset/icon_128x128.png": "033a87b4f7b9783d0d030f2a67508f9fca8afe764b3b3f605dad32d39038a580",
+      "macos-legacy/AppIcon.iconset/icon_256x256@2x.png": "6c22310bd68f26f6d98868511269988af986ee3df19057cc029ceab6e4e2964e",
+      "macos-legacy/AppIcon.iconset/icon_32x32.png": "c31d15f605bac8c5f9c6fa9e3d8d5ecbd418d06fbb671b1225ac556c3883e8da",
+      "macos-legacy/AppIcon.iconset/icon_512x512.png": "6c22310bd68f26f6d98868511269988af986ee3df19057cc029ceab6e4e2964e",
+      "macos-legacy/AppIcon.iconset/icon_16x16.png": "d5f78b2ad30961060ac251794c17760ba3699192dbfbfac48c62da1eb2741d45",
+      "macos-legacy/AppIcon.iconset/icon_16x16@2x.png": "c31d15f605bac8c5f9c6fa9e3d8d5ecbd418d06fbb671b1225ac556c3883e8da",
+      "macos-legacy/AppIcon.iconset/icon_128x128@2x.png": "6eeaf190c9af9cb77f61bd7ed939cc6755d1bfcadfa381c9ad6a2d12d0fad80f",
+      "macos-legacy/AppIcon.iconset/icon_512x512@2x.png": "fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5",
+      "macos-legacy/AppIcon.iconset/icon_256x256.png": "6eeaf190c9af9cb77f61bd7ed939cc6755d1bfcadfa381c9ad6a2d12d0fad80f",
+      "android-res/drawable-xhdpi/ic_launcher_foreground.png": "d14ba7419000c7661474341e8d7dda032d65d91ae9d0c0d45a75b2b0a7ee39de",
+      "android-res/drawable-xhdpi/ic_launcher_background.png": "670288b17da07c0d650585f018d25ab44f93f71e722eb47ab48757baa351c733",
+      "android-res/drawable-xxhdpi/ic_launcher_foreground.png": "4e1f6d3de2d93133030347ea5ca7a59de0176a8b38032143222c93d623094685",
+      "android-res/drawable-xxhdpi/ic_launcher_background.png": "604492f178c2cea7988d4e06a1ef9def584ce842075b50b552dc89c811f57638",
+      "android-res/drawable-hdpi/ic_launcher_foreground.png": "0f9a163082075eff1ae23129e0c32f0e91e3d6ac3587174bc14a9992ad5dfdf7",
+      "android-res/drawable-hdpi/ic_launcher_background.png": "0bfd7a2ae496fedc0c0bf865aa1d58b3d97fdcf60bae3a070f4158795c8718fe",
+      "android-res/drawable-mdpi/ic_launcher_foreground.png": "e6ce947b93dd6b3b60988bca7184106882547d854f14eba7b86a42f82b8d0875",
+      "android-res/drawable-mdpi/ic_launcher_background.png": "bcc148ec0e2ea009ff2bb2c255cd63018a2d85d3bb3b91fb88475145cca98b6a",
+      "android-res/drawable-xxxhdpi/ic_launcher_foreground.png": "2fc17e27a1deca5ea5e8442c440ea632859d5bcc35a49864b19090c28c5ca5be",
+      "android-res/drawable-xxxhdpi/ic_launcher_background.png": "405c364bf1fb4a767145ec574cd30af33f0f8fbfa545baeca44e4d20b714a51f",
+      "android-res/mipmap-anydpi-v26/ic_launcher.xml": "31fb3ad24560d35e11b2b2172ff66cbb3ef1e7eff1719642b1cb8af8dd494fbe"
+    }
+  },
+  "limitations": [
+    "manifest 只提供图标信息，不含 Service Worker 或完整安装配置",
+    "Android XML/密度资源未在设备安装验证，无 monochrome 自动资源",
+    "现代 Apple .icon 仍需 Icon Composer",
+    "OG 绝对 URL 占位符需接入时替换",
+    "认可效果不等于设备安装/云端部署验收",
+    "无章 favicon 仍为备选，默认保留古月章"
+  ],
+  "files": {
+    "AGENTS.md": {
+      "sha256": "c00876050ddd86d039c264bb3697ccaa3682d06fa40a775dd80b35a08bf46ac9",
+      "bytes": 762
+    },
+    "README.md": {
+      "sha256": "a59144351da4ca06c9034739f8c62557342d65963de00e3485fdc9310dd85652",
+      "bytes": 4122
+    },
+    "VERIFY.py": {
+      "sha256": "1b3e3413a1475af1485f870770d639b4cba5c02fbdf8212befc61026666d80bf",
+      "bytes": 2007
+    },
+    "index.html": {
+      "sha256": "51015fd09b78ccac48a1f6be2fbe1d9aa8b76b5e1f2793503a7441a2d3c29d61",
+      "bytes": 2087
+    },
+    "payload/android-adaptive/background-layer.png": {
+      "sha256": "470c946c4d188ee0f08e039cb61aa0a647bc9e1fe993fbfac7f1ba0696bca98b",
+      "bytes": 1888547
+    },
+    "payload/android-adaptive/foreground-layer.png": {
+      "sha256": "db283f6c75f9597254c4985619862ede39628c4253ee0de4740f37d3c1618ae8",
+      "bytes": 48265
+    },
+    "payload/android-adaptive/foreground.svg": {
+      "sha256": "aa7ffc583188b0ee8e253a0e5d40e0a3cd3c617f5cdf28071ca9d12a72ea617d",
+      "bytes": 25629
+    },
+    "payload/android-adaptive/logo.png": {
+      "sha256": "1cf3256d9611b1985e6da91cd9f361c91039b0e203b9341fb3d05d923adc559d",
+      "bytes": 1871625
+    },
+    "payload/android-adaptive/preview-128.png": {
+      "sha256": "8963293639e573755c972ba66ee742b31fbbd28978b539e6ac87237a8ffa0c5c",
+      "bytes": 32821
+    },
+    "payload/android-adaptive/preview-16.png": {
+      "sha256": "335ec3d4d8c206400659d7e3ca4d13e1f080f49a4b2b256e75b3a95345249072",
+      "bytes": 918
+    },
+    "payload/android-adaptive/preview-192.png": {
+      "sha256": "d32ea436f57f6a0ae72b50ed23c1bbc35e9afc3620e00e93424dac900f3906a3",
+      "bytes": 69328
+    },
+    "payload/android-adaptive/preview-256.png": {
+      "sha256": "94545f26683639a76fdd25d95a6a515429c40e69dcbca9313f5441d1ab70d5f8",
+      "bytes": 118231
+    },
+    "payload/android-adaptive/preview-32.png": {
+      "sha256": "df6b52827efdbf50d77d85e6f3b7367675d8a6bec8df30b1a490ae88ab2a530a",
+      "bytes": 2790
+    },
+    "payload/android-adaptive/preview-48.png": {
+      "sha256": "4cdcf90d515cfb6f385cc0e2d3b6b5a17c359b890c5fcf6a80c4a5bb06a50c62",
+      "bytes": 5649
+    },
+    "payload/android-adaptive/preview-512.png": {
+      "sha256": "e108b52324e717643a4bdde39c95a4cea3521064232e44f8f904f5e511688f7d",
+      "bytes": 442480
+    },
+    "payload/android-adaptive/preview-64.png": {
+      "sha256": "0bd8c2ab9173a83858bc7ff3a9f19c451074039a87016e07d2af558fd26b75c0",
+      "bytes": 9384
+    },
+    "payload/android-adaptive/render.json": {
+      "sha256": "071a6f5e461534d17a59762f8db92fced0f2748b9a2b60041bddfb831cc9f751",
+      "bytes": 26947
+    },
+    "payload/android-res/drawable-hdpi/ic_launcher_background.png": {
+      "sha256": "0bfd7a2ae496fedc0c0bf865aa1d58b3d97fdcf60bae3a070f4158795c8718fe",
+      "bytes": 49338
+    },
+    "payload/android-res/drawable-hdpi/ic_launcher_foreground.png": {
+      "sha256": "0f9a163082075eff1ae23129e0c32f0e91e3d6ac3587174bc14a9992ad5dfdf7",
+      "bytes": 5585
+    },
+    "payload/android-res/drawable-mdpi/ic_launcher_background.png": {
+      "sha256": "bcc148ec0e2ea009ff2bb2c255cd63018a2d85d3bb3b91fb88475145cca98b6a",
+      "bytes": 23558
+    },
+    "payload/android-res/drawable-mdpi/ic_launcher_foreground.png": {
+      "sha256": "e6ce947b93dd6b3b60988bca7184106882547d854f14eba7b86a42f82b8d0875",
+      "bytes": 3465
+    },
+    "payload/android-res/drawable-xhdpi/ic_launcher_background.png": {
+      "sha256": "670288b17da07c0d650585f018d25ab44f93f71e722eb47ab48757baa351c733",
+      "bytes": 84103
+    },
+    "payload/android-res/drawable-xhdpi/ic_launcher_foreground.png": {
+      "sha256": "d14ba7419000c7661474341e8d7dda032d65d91ae9d0c0d45a75b2b0a7ee39de",
+      "bytes": 8010
+    },
+    "payload/android-res/drawable-xxhdpi/ic_launcher_background.png": {
+      "sha256": "604492f178c2cea7988d4e06a1ef9def584ce842075b50b552dc89c811f57638",
+      "bytes": 181256
+    },
+    "payload/android-res/drawable-xxhdpi/ic_launcher_foreground.png": {
+      "sha256": "4e1f6d3de2d93133030347ea5ca7a59de0176a8b38032143222c93d623094685",
+      "bytes": 12846
+    },
+    "payload/android-res/drawable-xxxhdpi/ic_launcher_background.png": {
+      "sha256": "405c364bf1fb4a767145ec574cd30af33f0f8fbfa545baeca44e4d20b714a51f",
+      "bytes": 315341
+    },
+    "payload/android-res/drawable-xxxhdpi/ic_launcher_foreground.png": {
+      "sha256": "2fc17e27a1deca5ea5e8442c440ea632859d5bcc35a49864b19090c28c5ca5be",
+      "bytes": 18499
+    },
+    "payload/android-res/mipmap-anydpi-v26/ic_launcher.xml": {
+      "sha256": "31fb3ad24560d35e11b2b2172ff66cbb3ef1e7eff1719642b1cb8af8dd494fbe",
+      "bytes": 267
+    },
+    "payload/apple-touch/background-layer.png": {
+      "sha256": "15548012b282a2640e5119edb0e0ba89b5ef66425fcedf01f4b9af572732d002",
+      "bytes": 59435
+    },
+    "payload/apple-touch/foreground-layer.png": {
+      "sha256": "c555667bfdb1d6e1ba010141d014d033f59ebe4f7942f039a4c95c9df00df5bc",
+      "bytes": 6460
+    },
+    "payload/apple-touch/foreground.svg": {
+      "sha256": "9f61710927f18bf040ccc71a89ba0c1974446b62b09559098ddb4b028963c7c3",
+      "bytes": 25985
+    },
+    "payload/apple-touch/logo.png": {
+      "sha256": "3e911702e733ec33a89944dbfe766b25616aab492ee3a112541bd9bb9c74a72c",
+      "bytes": 60585
+    },
+    "payload/apple-touch/preview-128.png": {
+      "sha256": "9ca71882e22bcb9d2d119d6ea2c0147bf2f748cc26d1df8a4c31bcf637c80d53",
+      "bytes": 33604
+    },
+    "payload/apple-touch/preview-16.png": {
+      "sha256": "0415decbc9ff64a02802d69defd9cfd0e28e5f48a59ba7f1a46539d7e9cf19a3",
+      "bytes": 942
+    },
+    "payload/apple-touch/preview-192.png": {
+      "sha256": "76e1a5f88ff2ff18cf54871e98497dfa3dcdfbe95cde86c23e103f717427cf19",
+      "bytes": 69074
+    },
+    "payload/apple-touch/preview-256.png": {
+      "sha256": "b8e1e47a8155385d478c082031b5da5d900a8aff598f084ec3d155b527b635aa",
+      "bytes": 109407
+    },
+    "payload/apple-touch/preview-32.png": {
+      "sha256": "43f0f8f396db9c13209bf61a7c02d566c70e6ceebec2411afc366e23b2969faa",
+      "bytes": 2884
+    },
+    "payload/apple-touch/preview-48.png": {
+      "sha256": "955067082599219eda2fa808f48cef6316b7d3f3093eb0cef1313d421836959e",
+      "bytes": 5815
+    },
+    "payload/apple-touch/preview-512.png": {
+      "sha256": "1b856b00725589d58bb79733aa8c7d80798fcd1ec558c98cdf2b1fe94b2e8a97",
+      "bytes": 320634
+    },
+    "payload/apple-touch/preview-64.png": {
+      "sha256": "109e982e8e827e6c46bbc773e6caec940846309c30f652f69f9ee4c37e9da571",
+      "bytes": 9744
+    },
+    "payload/apple-touch/render.json": {
+      "sha256": "25fa864f2b7df4e6896bd1844bb9c1f978d57bf94979db9f9825c97d7ad17822",
+      "bytes": 27259
+    },
+    "payload/apple-touch-icon.png": {
+      "sha256": "3e911702e733ec33a89944dbfe766b25616aab492ee3a112541bd9bb9c74a72c",
+      "bytes": 60585
+    },
+    "payload/circle-logo/background-layer.png": {
+      "sha256": "0e3bfa5819395fcef1b19a73c3c320ce29ba58b0f93e1301609f7584411edb77",
+      "bytes": 1295375
+    },
+    "payload/circle-logo/foreground-layer.png": {
+      "sha256": "4ff02539e5e1d5b7a33dc9ea1d5ea6f5f04ae6831bc0c0710c3ddfe3044f77b7",
+      "bytes": 55879
+    },
+    "payload/circle-logo/foreground.svg": {
+      "sha256": "1c31314b390fb242e3383d88d5129aab2102a2daf317552763fae89acc46b9fb",
+      "bytes": 25737
+    },
+    "payload/circle-logo/logo.png": {
+      "sha256": "178a2641878b637c3a57f6c5e887184e35b87fb8d0bd0bc668f078caa2ee0ce4",
+      "bytes": 1248951
+    },
+    "payload/circle-logo/preview-128.png": {
+      "sha256": "7c7563b4238dedc0606c1acbb7a4c6c474d3e4f1d59990fbb8c5970bc9185aab",
+      "bytes": 28026
+    },
+    "payload/circle-logo/preview-16.png": {
+      "sha256": "c7e98d81c8e6aa86cd9d9365f8ecd6d780bc2971b5e9677dff894efcb5ab181e",
+      "bytes": 945
+    },
+    "payload/circle-logo/preview-192.png": {
+      "sha256": "7101859d156e71a9386813ba634a06021a561172dea1453b16c1c9018ea86f07",
+      "bytes": 56469
+    },
+    "payload/circle-logo/preview-256.png": {
+      "sha256": "26d7eca89bfa57edd35b82bb52cc87034da751cb327e063d8820c87dc1392598",
+      "bytes": 94076
+    },
+    "payload/circle-logo/preview-32.png": {
+      "sha256": "6bc8bf01d3850a2c176291d3b11c7e4fd6ae5e09288fc8851dbb09bdad95303c",
+      "bytes": 2652
+    },
+    "payload/circle-logo/preview-48.png": {
+      "sha256": "2af9199dcd091015b38b58f960e0f9ecdc3527778168f14c0c338ed16a714058",
+      "bytes": 5233
+    },
+    "payload/circle-logo/preview-512.png": {
+      "sha256": "83c7a3d19bf6a839be206766ab123d54b498accf242e411810b75b6b6db9d6ec",
+      "bytes": 336783
+    },
+    "payload/circle-logo/preview-64.png": {
+      "sha256": "0a48c8bcaac3fbdfe2b8b4c090fcf03aac13c4e67e810734d201c79f041a9773",
+      "bytes": 8462
+    },
+    "payload/circle-logo/render.json": {
+      "sha256": "e49f456acbcd958246ab0c156d6918366045c3e707160df3057eb9c22565f927",
+      "bytes": 27007
+    },
+    "payload/cover/background-layer.png": {
+      "sha256": "fc8bbe1bf7588927c126737412e6e1c5a7e76bceee9f3a23a38c5d69fe32486e",
+      "bytes": 2209101
+    },
+    "payload/cover/foreground-layer.png": {
+      "sha256": "9fa4d0c7a29671ab70037abddf9f24f29c93ab0048d08f49eb1d7ae264692c21",
+      "bytes": 60153
+    },
+    "payload/cover/foreground.svg": {
+      "sha256": "373c6fbb0b213ab61b4335559a04189d78a9443e624dbc4187c9632bb661806b",
+      "bytes": 26008
+    },
+    "payload/cover/logo.png": {
+      "sha256": "a7b7d28fe8da8aa05168e53994bdfbee96e9400ea5fe5cf8417a265f49843b8b",
+      "bytes": 2172836
+    },
+    "payload/cover/preview-128.png": {
+      "sha256": "99bfc4f62c2b632ea0676ea155d33f2ecb013806fac90daf700aa614a1e1d665",
+      "bytes": 19267
+    },
+    "payload/cover/preview-16.png": {
+      "sha256": "82e2d6a210bfa289415c20a9f3233ec37059fa92145140b028a18a8d98ac540f",
+      "bytes": 613
+    },
+    "payload/cover/preview-192.png": {
+      "sha256": "5ce7a62ecd6f96ef4962c7b3d9d746bdd8117deb1e8129acad579bf414c1a4b1",
+      "bytes": 40134
+    },
+    "payload/cover/preview-256.png": {
+      "sha256": "540d781d1ce98e8c9078789c4f0a11f4152dcf8af9fcc079089807c8cf93e90b",
+      "bytes": 68135
+    },
+    "payload/cover/preview-32.png": {
+      "sha256": "04ffe165d321d0306d7a562a2f82780d8160396afb4db76fad92e3d43ccf1296",
+      "bytes": 1681
+    },
+    "payload/cover/preview-48.png": {
+      "sha256": "090612f3e071f1115ee7f12773d5c8fe2d20032f7b153e9d31faf9ea574738b7",
+      "bytes": 3350
+    },
+    "payload/cover/preview-512.png": {
+      "sha256": "73cdd3b15080e11e936c79de16bbe9c4abef338fe6c71bcb379c5de89a215311",
+      "bytes": 253742
+    },
+    "payload/cover/preview-64.png": {
+      "sha256": "d0a5f41feed05c553b595669c3c00c880e01d4cbb27e233ecd89d5b37949348e",
+      "bytes": 5557
+    },
+    "payload/cover/render.json": {
+      "sha256": "f475a9d77d42d05cce032a1ec635ce3bb4e6613584beb1fe11eaa6815cabcf0b",
+      "bytes": 27263
+    },
+    "payload/favicon/background-layer.png": {
+      "sha256": "4add94300a13b1cd7d252b59a0023292ab75fb8cbc8ea9fcc12d602dca36ee0a",
+      "bytes": 1769
+    },
+    "payload/favicon/favicon.ico": {
+      "sha256": "68ad1eec76ba363bce9d1f58a1687c91049ff70c9db78d6eca7ea0a795306042",
+      "bytes": 4980
+    },
+    "payload/favicon/favicon.svg": {
+      "sha256": "eaed33caa19aacd2c6caf0ce0c2fdfa1689f9d6b536fda3afc1d8050bdb568bb",
+      "bytes": 26291
+    },
+    "payload/favicon/foreground-layer.png": {
+      "sha256": "dcd4c50f47d7959759a7ec000f0360fef881d48f50e1419ea146db6bfc23c957",
+      "bytes": 13942
+    },
+    "payload/favicon/foreground.svg": {
+      "sha256": "c8a4c2bacdac3e6a15028bba07ab32379c5d05fc9bea30057fc5fdc2cb73c1a8",
+      "bytes": 26244
+    },
+    "payload/favicon/logo.png": {
+      "sha256": "b560b9d3b51d35b880af3243a20a365b14a2950bb2e5e8fffc744524faf02219",
+      "bytes": 12685
+    },
+    "payload/favicon/preview-128.png": {
+      "sha256": "482b88bec42a88fb7e0aa04b89f1c86718444eb13c7ed0b9cb301743a6179129",
+      "bytes": 9074
+    },
+    "payload/favicon/preview-16.png": {
+      "sha256": "0ef081730337c47fb2c95258cd292f3ea11eb7b42dc9451a9d30d11a11ace344",
+      "bytes": 692
+    },
+    "payload/favicon/preview-192.png": {
+      "sha256": "310a4b8ec97c4d823cc23c23f08787ba6c571414b8c54d200d50ed163895dfb6",
+      "bytes": 14524
+    },
+    "payload/favicon/preview-256.png": {
+      "sha256": "b560b9d3b51d35b880af3243a20a365b14a2950bb2e5e8fffc744524faf02219",
+      "bytes": 12685
+    },
+    "payload/favicon/preview-32.png": {
+      "sha256": "abf34f0d237b6eb04b885196587c82101ca0629329ef9fc0a9c9ee5f5de0619e",
+      "bytes": 1597
+    },
+    "payload/favicon/preview-48.png": {
+      "sha256": "a67e33b888489c7e9f08671409b848e26bf34bb74b90ef73c4e5c074ce288355",
+      "bytes": 2637
+    },
+    "payload/favicon/preview-512.png": {
+      "sha256": "8d1299617243ac27daa909a3be3f897f92a6a58ddf15cbb9336f3e9687fac508",
+      "bytes": 50093
+    },
+    "payload/favicon/preview-64.png": {
+      "sha256": "5447e727ab81860d00182256ccf0ce1aeb91065fa41052e74906acad5d0f9ab0",
+      "bytes": 3825
+    },
+    "payload/favicon/render.json": {
+      "sha256": "eb3dc50745ad8bf3c44bd5c9875f12f1407c09b6869a0cd27ecb067e10662d19",
+      "bytes": 27501
+    },
+    "payload/favicon-16.png": {
+      "sha256": "0ef081730337c47fb2c95258cd292f3ea11eb7b42dc9451a9d30d11a11ace344",
+      "bytes": 692
+    },
+    "payload/favicon-32.png": {
+      "sha256": "abf34f0d237b6eb04b885196587c82101ca0629329ef9fc0a9c9ee5f5de0619e",
+      "bytes": 1597
+    },
+    "payload/favicon-48.png": {
+      "sha256": "a67e33b888489c7e9f08671409b848e26bf34bb74b90ef73c4e5c074ce288355",
+      "bytes": 2637
+    },
+    "payload/favicon-simple-option/background-layer.png": {
+      "sha256": "4add94300a13b1cd7d252b59a0023292ab75fb8cbc8ea9fcc12d602dca36ee0a",
+      "bytes": 1769
+    },
+    "payload/favicon-simple-option/favicon.ico": {
+      "sha256": "650e932a31679f37308fb09b2bd4daa0273285715e314556ca3bf9638bf06801",
+      "bytes": 4616
+    },
+    "payload/favicon-simple-option/favicon.svg": {
+      "sha256": "6adf5f6063966cfd222753cc277156960d5402206faca3465d21cd624aa1c1e4",
+      "bytes": 11953
+    },
+    "payload/favicon-simple-option/foreground-layer.png": {
+      "sha256": "9a094f91bf8e1396ae6a7ecf7c728a0d3f225f54d6b220868f99faa077eb0607",
+      "bytes": 12294
+    },
+    "payload/favicon-simple-option/foreground.svg": {
+      "sha256": "22f828411fe2ec627982539dfd13d56a43d7d4c3bae6849109823ced23c38b79",
+      "bytes": 11906
+    },
+    "payload/favicon-simple-option/logo.png": {
+      "sha256": "e40af20c68503cb97a7684d1635920307ebefdece0d8d747d202377a8023988f",
+      "bytes": 11322
+    },
+    "payload/favicon-simple-option/preview-128.png": {
+      "sha256": "ead3b171545ad381271ecf56fedefbea9cf0f37f8ff59d4b9e6345d7930c3114",
+      "bytes": 8127
+    },
+    "payload/favicon-simple-option/preview-16.png": {
+      "sha256": "c504b20ecc8d3b2c7dd1b8d554a799f6e05413348b699aceac451c88d5eaf75f",
+      "bytes": 643
+    },
+    "payload/favicon-simple-option/preview-192.png": {
+      "sha256": "f85d46a3ebe39f557f44ac2c582911a3bf4cd8bfc4e7962db32295d9e3587baf",
+      "bytes": 12951
+    },
+    "payload/favicon-simple-option/preview-256.png": {
+      "sha256": "e40af20c68503cb97a7684d1635920307ebefdece0d8d747d202377a8023988f",
+      "bytes": 11322
+    },
+    "payload/favicon-simple-option/preview-32.png": {
+      "sha256": "31c1f9cc09c11a348143bb7f222829beb6c013a19b6f5680eb008865cd358a83",
+      "bytes": 1475
+    },
+    "payload/favicon-simple-option/preview-48.png": {
+      "sha256": "a02d563f49f47419f474770d31f925cfe702b463832e01e428c8564f91c136f8",
+      "bytes": 2444
+    },
+    "payload/favicon-simple-option/preview-512.png": {
+      "sha256": "794e26df66ff8d26c3b76def2d47af20b520c569169547d31e7813143274949b",
+      "bytes": 45101
+    },
+    "payload/favicon-simple-option/preview-64.png": {
+      "sha256": "8a62f6617ce2afb8a9c63db2a6a879995cf035d5d312d3f21ae09607943ff56f",
+      "bytes": 3470
+    },
+    "payload/favicon-simple-option/render.json": {
+      "sha256": "a95f0c9c485390935733c24664930ccfadca15d62d5b55ef41106cdc92a5d65d",
+      "bytes": 12950
+    },
+    "payload/favicon.ico": {
+      "sha256": "68ad1eec76ba363bce9d1f58a1687c91049ff70c9db78d6eca7ea0a795306042",
+      "bytes": 4980
+    },
+    "payload/favicon.svg": {
+      "sha256": "eaed33caa19aacd2c6caf0ce0c2fdfa1689f9d6b536fda3afc1d8050bdb568bb",
+      "bytes": 26291
+    },
+    "payload/head-snippet.html": {
+      "sha256": "4943b75c6ceb42c0550b2669027a4d33b142902eb3696c65a404e056c700cfc2",
+      "bytes": 487
+    },
+    "payload/icon-192.png": {
+      "sha256": "b1797e0ba86c28b45ea039971d90a36d9b8abb11ee2ba5d463b74f1e4c21cba9",
+      "bytes": 69653
+    },
+    "payload/icon-512.png": {
+      "sha256": "617ccf3548a350adc144705f0b05cef0dea1dd048510eda59eb1c3529c862638",
+      "bytes": 436977
+    },
+    "payload/kit.json": {
+      "sha256": "ae6a5e2bd1890da65a43464173e6315c1f146ebbfa1792e0dd62eeb1a720c3be",
+      "bytes": 19959
+    },
+    "payload/macos-legacy/AppIcon.icns": {
+      "sha256": "43db53c04e2b6ba89ec382a47bc232842c867a4e012cc1761a25978089a6040a",
+      "bytes": 2395303
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_128x128.png": {
+      "sha256": "033a87b4f7b9783d0d030f2a67508f9fca8afe764b3b3f605dad32d39038a580",
+      "bytes": 30427
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_128x128@2x.png": {
+      "sha256": "6eeaf190c9af9cb77f61bd7ed939cc6755d1bfcadfa381c9ad6a2d12d0fad80f",
+      "bytes": 103408
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_16x16.png": {
+      "sha256": "d5f78b2ad30961060ac251794c17760ba3699192dbfbfac48c62da1eb2741d45",
+      "bytes": 1426
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_16x16@2x.png": {
+      "sha256": "c31d15f605bac8c5f9c6fa9e3d8d5ecbd418d06fbb671b1225ac556c3883e8da",
+      "bytes": 3293
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_256x256.png": {
+      "sha256": "6eeaf190c9af9cb77f61bd7ed939cc6755d1bfcadfa381c9ad6a2d12d0fad80f",
+      "bytes": 103408
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_256x256@2x.png": {
+      "sha256": "6c22310bd68f26f6d98868511269988af986ee3df19057cc029ceab6e4e2964e",
+      "bytes": 373819
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_32x32.png": {
+      "sha256": "c31d15f605bac8c5f9c6fa9e3d8d5ecbd418d06fbb671b1225ac556c3883e8da",
+      "bytes": 3293
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_32x32@2x.png": {
+      "sha256": "080b5b4fae486da100133f2af5bc050a60fd3c7b72c72fc241a50abb240d76c0",
+      "bytes": 9260
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_512x512.png": {
+      "sha256": "6c22310bd68f26f6d98868511269988af986ee3df19057cc029ceab6e4e2964e",
+      "bytes": 373819
+    },
+    "payload/macos-legacy/AppIcon.iconset/icon_512x512@2x.png": {
+      "sha256": "fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5",
+      "bytes": 1397300
+    },
+    "payload/macos-legacy/AppIcon.png": {
+      "sha256": "fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5",
+      "bytes": 1397300
+    },
+    "payload/macos-legacy/export.json": {
+      "sha256": "1b027a5f8b1155e9831883af67373200dc735e035bb3e89291f7ea2514da9504",
+      "bytes": 358
+    },
+    "payload/maskable-192.png": {
+      "sha256": "bfbc89f9c290bfea98be5da1b4675ab88b6ee5dae3a5d3a0495658c0cb04539c",
+      "bytes": 69722
+    },
+    "payload/maskable-512.png": {
+      "sha256": "9fa020fcfc333afce5d3e4d9299a622d3d760b7337a1a4f53dd415803865973e",
+      "bytes": 440235
+    },
+    "payload/og-image/background-layer.png": {
+      "sha256": "86f91f3d3013703719f585040e0fef2a3f3363a90c59d4589acfad876ab8b57c",
+      "bytes": 1242167
+    },
+    "payload/og-image/foreground-layer.png": {
+      "sha256": "91736c80e5f9745097948771284c9166a10834b70033568d688be2684a80c19a",
+      "bytes": 38458
+    },
+    "payload/og-image/foreground.svg": {
+      "sha256": "9018e8a6c2110bebe9af01fcaa2b78d418590cf767151cc529315ddaa2e2b452",
+      "bytes": 26157
+    },
+    "payload/og-image/logo.png": {
+      "sha256": "e7b4214eb26dbb5e69be7ef1f12f1b6b3f58fd62339fe44ce5b981ef81700d6e",
+      "bytes": 1232561
+    },
+    "payload/og-image/preview-128.png": {
+      "sha256": "a4412222589584e6a9f2e38af03e0264c3844d22dbc916264cbcaa7897441056",
+      "bytes": 17757
+    },
+    "payload/og-image/preview-16.png": {
+      "sha256": "a394929f3f8b79a6e8805a09bae8d2aa576e4837e599761fca7acf4311050ebd",
+      "bytes": 560
+    },
+    "payload/og-image/preview-192.png": {
+      "sha256": "df442bb7f729ddb1bddf498b4b710e2fb7313afbe54c9bbfe6c2eef44b7cb520",
+      "bytes": 37048
+    },
+    "payload/og-image/preview-256.png": {
+      "sha256": "d9d90d7954a923c8ad27688e46c47481a2f9eb2302d570833d4716bee1d4d4ec",
+      "bytes": 63292
+    },
+    "payload/og-image/preview-32.png": {
+      "sha256": "eca3c984218bfa00b21cca45b583547fa586f666c795d3f14481a5d8e3b4bb29",
+      "bytes": 1498
+    },
+    "payload/og-image/preview-48.png": {
+      "sha256": "14229f233dccd5a0c06200db093cfbc4c8e58f7e11da4fa9eb40326da895b344",
+      "bytes": 3101
+    },
+    "payload/og-image/preview-512.png": {
+      "sha256": "0df7dc81d352ad4128302ce32cf9bd5ea9c7b6979a8abc03287ae7402b94aadb",
+      "bytes": 236136
+    },
+    "payload/og-image/preview-64.png": {
+      "sha256": "59030a28620b9707f6f0f2678ef410ae61380b847332c4fe034792175ef665d3",
+      "bytes": 5069
+    },
+    "payload/og-image/render.json": {
+      "sha256": "94f2f91f847882e81d601352b3785ddaa9ddf5e128dcad100fbb6749c0096a01",
+      "bytes": 27428
+    },
+    "payload/og-image.png": {
+      "sha256": "e7b4214eb26dbb5e69be7ef1f12f1b6b3f58fd62339fe44ce5b981ef81700d6e",
+      "bytes": 1232561
+    },
+    "payload/preview.html": {
+      "sha256": "c4e794ee9b1cd318025aaa12d96288376818de39a4be2e1227c6370c41bc2bf8",
+      "bytes": 1994
+    },
+    "payload/pwa-maskable/background-layer.png": {
+      "sha256": "42f4a8a4ba8f818f8e48502eb3bd3a3562f4f020e3f27bd7e97bc3a351e190b9",
+      "bytes": 1700946
+    },
+    "payload/pwa-maskable/foreground-layer.png": {
+      "sha256": "9496c17a38e87afe5bd1958af1b86538b7d73e62b0144e5a6d1f17be20b1868c",
+      "bytes": 50793
+    },
+    "payload/pwa-maskable/foreground.svg": {
+      "sha256": "88091e1ff397f274b4e39530f43207142604143ceeb50e169de92ec6ad8226cb",
+      "bytes": 25748
+    },
+    "payload/pwa-maskable/logo.png": {
+      "sha256": "9ac92595d258572bbb37c6ff6e7ca490e6ce86fd4fbab3b29f1148665b0a5055",
+      "bytes": 1669018
+    },
+    "payload/pwa-maskable/preview-128.png": {
+      "sha256": "3298c2cfdc1f798c2a4e99f074e9bdd8e4f2022f9ddde1a50d3a10b04d7a6f18",
+      "bytes": 33299
+    },
+    "payload/pwa-maskable/preview-16.png": {
+      "sha256": "fe0b67905986467322cc57e0c4c430069d3b1a133e7ab97e91751d039dddf14a",
+      "bytes": 932
+    },
+    "payload/pwa-maskable/preview-192.png": {
+      "sha256": "bfbc89f9c290bfea98be5da1b4675ab88b6ee5dae3a5d3a0495658c0cb04539c",
+      "bytes": 69722
+    },
+    "payload/pwa-maskable/preview-256.png": {
+      "sha256": "a95b4bcd1208801d733a22d192a5412dfbe8e5ffc10234d732f7536594a86ff9",
+      "bytes": 118600
+    },
+    "payload/pwa-maskable/preview-32.png": {
+      "sha256": "8ff37f9d5a05686343db8ced9f5b16fcd6230dbc83a874006dc4a067dd236c52",
+      "bytes": 2831
+    },
+    "payload/pwa-maskable/preview-48.png": {
+      "sha256": "62082360260d392a031442890dc54b0af4d2a0279fd90f0ef789a9e8fcd4dd9f",
+      "bytes": 5694
+    },
+    "payload/pwa-maskable/preview-512.png": {
+      "sha256": "9fa020fcfc333afce5d3e4d9299a622d3d760b7337a1a4f53dd415803865973e",
+      "bytes": 440235
+    },
+    "payload/pwa-maskable/preview-64.png": {
+      "sha256": "053e02709f248fd1e2cd428a11492fa90fb684fe4308c678e4bfe1a9551a43b4",
+      "bytes": 9556
+    },
+    "payload/pwa-maskable/render.json": {
+      "sha256": "4cc0f27429394ee9cc0c72fbe719c594734098c0cb0854d497beeb184d45e8bf",
+      "bytes": 27052
+    },
+    "payload/rounded-logo/background-layer.png": {
+      "sha256": "852ea58fd40cfb25cf2b45832d749770e03e773c7ed2b37e4a4655d8b7d5e03e",
+      "bytes": 1450835
+    },
+    "payload/rounded-logo/foreground-layer.png": {
+      "sha256": "4ff02539e5e1d5b7a33dc9ea1d5ea6f5f04ae6831bc0c0710c3ddfe3044f77b7",
+      "bytes": 55879
+    },
+    "payload/rounded-logo/foreground.svg": {
+      "sha256": "1c31314b390fb242e3383d88d5129aab2102a2daf317552763fae89acc46b9fb",
+      "bytes": 25737
+    },
+    "payload/rounded-logo/logo.png": {
+      "sha256": "fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5",
+      "bytes": 1397300
+    },
+    "payload/rounded-logo/preview-128.png": {
+      "sha256": "d2013085d221d17dda6539b4badd7458f237f08410812b38f1a2a94e0a387571",
+      "bytes": 29907
+    },
+    "payload/rounded-logo/preview-16.png": {
+      "sha256": "3d46089af4e9f8d043b9011dc9e556117066940047afd6bad10cc46fca2a25c5",
+      "bytes": 906
+    },
+    "payload/rounded-logo/preview-192.png": {
+      "sha256": "296d4b00b1ee40fd2bb6e8df71867767b8904264d3266cb16b0f8d5a8fc28a53",
+      "bytes": 61426
+    },
+    "payload/rounded-logo/preview-256.png": {
+      "sha256": "ab203217dcb4e39e6823775ebac3cdc93b782ed8c45bffae73981af41cf28bf1",
+      "bytes": 102888
+    },
+    "payload/rounded-logo/preview-32.png": {
+      "sha256": "64d1eb69fea8168da0db6a82491d6bb7a63a920b17dd7a10aafb98af1b569213",
+      "bytes": 2773
+    },
+    "payload/rounded-logo/preview-48.png": {
+      "sha256": "dda5a28aabfc7d04ed21a4d750030e33a362b9202e03073e0874e515ecf52939",
+      "bytes": 5365
+    },
+    "payload/rounded-logo/preview-512.png": {
+      "sha256": "65b6599b1d37524f28b52f2946a585d68ca5cdd3f0487de4300324821a3c94a7",
+      "bytes": 373299
+    },
+    "payload/rounded-logo/preview-64.png": {
+      "sha256": "709815c3bba0481fc7ceabb06a1d36405a6ce56ac01f362447f5f9ce453da38d",
+      "bytes": 8740
+    },
+    "payload/rounded-logo/render.json": {
+      "sha256": "e852e615ac6f06ec91198fe21ea398bbba333d8ed1f42ffc796586f8075efb6d",
+      "bytes": 27008
+    },
+    "payload/site.webmanifest": {
+      "sha256": "453f107f26f4834f542b06a834815b7ab56369d7d48759f4fc8f05af91bc1e2a",
+      "bytes": 560
+    },
+    "payload/square-master/background-layer.png": {
+      "sha256": "42f4a8a4ba8f818f8e48502eb3bd3a3562f4f020e3f27bd7e97bc3a351e190b9",
+      "bytes": 1700946
+    },
+    "payload/square-master/foreground-layer.png": {
+      "sha256": "4ff02539e5e1d5b7a33dc9ea1d5ea6f5f04ae6831bc0c0710c3ddfe3044f77b7",
+      "bytes": 55879
+    },
+    "payload/square-master/foreground.svg": {
+      "sha256": "1c31314b390fb242e3383d88d5129aab2102a2daf317552763fae89acc46b9fb",
+      "bytes": 25737
+    },
+    "payload/square-master/logo.png": {
+      "sha256": "58920f8ad029044bcd4279238e169943d87cd64d5a2da6c20b970f7a8503010c",
+      "bytes": 1649123
+    },
+    "payload/square-master/preview-128.png": {
+      "sha256": "14a8a4dff59f9fb67a2e82f7b867aa3cf22c8fcd73bdd1ec2329f77755ae6b87",
+      "bytes": 33485
+    },
+    "payload/square-master/preview-16.png": {
+      "sha256": "a33a193a9a86be466829ac4eedc1fb30a4019668b8fb80e48f52a6cde5fd629b",
+      "bytes": 939
+    },
+    "payload/square-master/preview-192.png": {
+      "sha256": "b1797e0ba86c28b45ea039971d90a36d9b8abb11ee2ba5d463b74f1e4c21cba9",
+      "bytes": 69653
+    },
+    "payload/square-master/preview-256.png": {
+      "sha256": "a5dbbd784e6ec7ec968d3d63afbeafc0113a8456619fec4629f9a21dd19b6a9f",
+      "bytes": 118088
+    },
+    "payload/square-master/preview-32.png": {
+      "sha256": "d325e6dfda4652c952c316d687821f41769cbb69c45a7a8f9ad098ee177f1698",
+      "bytes": 2881
+    },
+    "payload/square-master/preview-48.png": {
+      "sha256": "035e2d2ada885cd735549456cee2857719c3f6629d1f756a11f02f6a7fe21bb6",
+      "bytes": 5806
+    },
+    "payload/square-master/preview-512.png": {
+      "sha256": "617ccf3548a350adc144705f0b05cef0dea1dd048510eda59eb1c3529c862638",
+      "bytes": 436977
+    },
+    "payload/square-master/preview-64.png": {
+      "sha256": "b43e9846a7a89461f07751be727ebcac09ebbfbd393b5d43fd812e2dbe0114af",
+      "bytes": 9624
+    },
+    "payload/square-master/render.json": {
+      "sha256": "5b375c49dc88e749536a6767ef1eb9a4891425d176750391411b458c7b582cf2",
+      "bytes": 27013
+    },
+    "payload/web/background-layer.png": {
+      "sha256": "0f37c8a047dcd76baa53365fc621b87ecbbf5308151f5de7f264db886a7de38c",
+      "bytes": 1446643
+    },
+    "payload/web/foreground-layer.png": {
+      "sha256": "fd56f0eaa31af933036f1c650cb6655e7cf71b409a8cb6c61f153990c13e24b4",
+      "bytes": 40835
+    },
+    "payload/web/foreground.svg": {
+      "sha256": "2b24420d7ff74e5f50830cb78f9e514aab7bda60860221d026586d63487adc74",
+      "bytes": 26152
+    },
+    "payload/web/logo.png": {
+      "sha256": "b178b4843d259893d5cb522923c4b531d912c10529ba14ad4b8aef5b16df9367",
+      "bytes": 1437495
+    },
+    "payload/web/preview-128.png": {
+      "sha256": "4e13223320f46425c1df441d16dae95ac15111ea59f6fb1be2a7a40b1fa3bac7",
+      "bytes": 12499
+    },
+    "payload/web/preview-16.png": {
+      "sha256": "390279d333e2ff14642ec8987b26ac2306a74d9342b07d2e785fd1a9f491c2e8",
+      "bytes": 448
+    },
+    "payload/web/preview-192.png": {
+      "sha256": "fc17b319098d54b4a470f7e963eb98a1f120df454bc406fb972b26d81b67f8ac",
+      "bytes": 26041
+    },
+    "payload/web/preview-256.png": {
+      "sha256": "1556cd00f9661da677c6437860108a30204626278c13ade8c70bfe74527fc285",
+      "bytes": 44278
+    },
+    "payload/web/preview-32.png": {
+      "sha256": "b52bd17a752a9528ce7d280479a725f2770c39d5061ce80619114b0c3f2cd50f",
+      "bytes": 1138
+    },
+    "payload/web/preview-48.png": {
+      "sha256": "596730a9c47e1c68208c79a323673a1637088352286f07edfbff81ef37e07c9c",
+      "bytes": 2199
+    },
+    "payload/web/preview-512.png": {
+      "sha256": "b8c5f5e7bea832a3f68e3233d3612cb2f0efeb0464304f5dd990d9013ea3a236",
+      "bytes": 166025
+    },
+    "payload/web/preview-64.png": {
+      "sha256": "6f4a7bb9f5750c8ea2f403807d084a3f56eae5954373071396e976e2efb0fdae",
+      "bytes": 3584
+    },
+    "payload/web/render.json": {
+      "sha256": "cbdc4be41729ca6a7e27a6317f7c17bfc19d40ce1c8e1e062b9364419ef6077e",
+      "bytes": 27394
+    },
+    "source/PERSONAL-STYLE.md": {
+      "sha256": "801b145be8c248a1f0c5a3cc068397d5bb0681a376993dd89ddd2892f582e6e4",
+      "bytes": 3920
+    },
+    "source/PLATFORM-PROFILES.md": {
+      "sha256": "f075ca9e37588e3aaf338546a3c9ee70ad930229374efa74da6fca8fbd3c65fc",
+      "bytes": 5584
+    },
+    "source/SCENE-TEMPLATES.md": {
+      "sha256": "a6ca3a180bfe9e2149debb38440f6ef0263fd9811980d9926b49abf72b14b069",
+      "bytes": 5391
+    },
+    "source/background.png": {
+      "sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+      "bytes": 2521128
+    },
+    "source/resources/fonts/mashanzheng/METADATA.pb": {
+      "sha256": "7e21912b6659b58694f0b999e69ad5a95da12fdc453565059727a2467e525f84",
+      "bytes": 844
+    },
+    "source/resources/fonts/mashanzheng/MaShanZheng-Regular.ttf": {
+      "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "bytes": 5857936
+    },
+    "source/resources/fonts/mashanzheng/OFL.txt": {
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08",
+      "bytes": 4397
+    },
+    "source/resources/fonts/mashanzheng/README.md": {
+      "sha256": "83e6ad49d9e24a46dedd65f7a184e05d65fa87c09c0b563c11db01fd43afb855",
+      "bytes": 766
+    },
+    "source/resources/fonts/mashanzheng/provenance.json": {
+      "sha256": "34869bb846714296a35061efef173bd21f6f48f7611c9a07eb4b9fbd54bbfc7d",
+      "bytes": 314
+    },
+    "source/scripts/render-logo.sh": {
+      "sha256": "604c9b2a31eda7fa64d4e2ff30af027a1cd24f563e8df9732c0f12249b29e0af",
+      "bytes": 1497
+    },
+    "source/scripts/render_logo.swift": {
+      "sha256": "6e2220023b4a2d39d14c14f603fd0cca7930ee1f66a0704b4b94663720bfb0ac",
+      "bytes": 13689
+    },
+    "source-assets.json": {
+      "sha256": "c74c36c27d75f468fdf10ea64546bb6179a926518a8501a654e22bd42606a32b",
+      "bytes": 4671
+    }
+  },
+  "inventory_sha256": "11780d475b5640ff4c2abe82887356df2bddc7d71b21fc56d4e64812b8c871ba"
+}

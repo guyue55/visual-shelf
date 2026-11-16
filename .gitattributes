@@ -11,3 +11,6 @@
 *.icns binary
 # Preserve the upstream font license verbatim, including its trailing blank.
 resources/fonts/mashanzheng/OFL.txt whitespace=-blank-at-eol
+
+# Preserve upstream OFL whitespace in self-contained approved delivery sources.
+packages/**/source/resources/fonts/mashanzheng/OFL.txt whitespace=-blank-at-eol

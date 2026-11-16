@@ -68,3 +68,13 @@
 - [系列页完整截图](evidence/2026-11-16-series.jpg) 为实际页面；不是素材收录授权证据。
 - 受管预览 restart/status 健康，地址 http://127.0.0.1:4174/ 。git diff --check 通过。
 - 未执行远端 CI、真实 GitHub Pages 部署或其他浏览器兼容矩阵；没有新作品获准收录，也没有改变既有草稿状态。网页仍仅浏览/取用，本地文件协议负责制作和写入。
+
+## 2026-11-16：用户确认收录与 AI 交付包
+
+- 根据本轮明确指令，底图 A/C 与阅字 Logo A/B v02 通过 studio accept 正式收录；四个 SHA-256 与原 awaiting-user 候选完全一致。原 11 份文件保持不变，现在 validate/build 为 15 份，6 个系列、6 类组件。
+- 原 185 文件套件清单逐项核对后归档为 packages/yue-surface-kit-v01；含原 kit.json 与新增接入/复现资料，共 203 文件。原始 185 文件未改写，单素材与整包分开统计。
+- 正式包、完整/Web 子包与单素材示范包的独立 VERIFY.py 均通过；包校验覆盖额外/缺失/变更文件、符号链接、清单完整性。导出拒绝覆盖和输出越界，未确认素材不能冒充已确认交付。
+- 本机用正式包内 source/background.png、固定字体和 render-logo.sh 离线复现阅字圆角月夜，PNG SHA-256 = fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5，与原确认文件一致，不依赖原草稿目录。
+- 全量 Python 56 项通过；Node 筛选测试 4 项通过；两份 JS 语法、validate/build、git diff --check 通过。新增测试包含归档边界、单素材和场景 ZIP、确认底图复用。
+- 浏览器实际验证两份 Logo 与两份底图系列、正式详情路径/哈希、图片加载及新增“确认后按需交付”说明；[正式收录页面截图](evidence/2026-11-16-approved-guyue-assets.jpg)。受管预览健康，http://127.0.0.1:4174/ 。
+- 未执行 GitHub push、Pages 发布或目标工程安装。许可未知项仍如实保留；浅色 B 瑕疵底图没有混用 Logo B 的确认。旧创建记录已标明历史状态与本轮后续确认。

@@ -1,0 +1,46 @@
+{
+  "id": "shared-guyue-background-ink-light-a-v01-png",
+  "name": "古月 · 水墨浅色 A · 无字底图",
+  "kind": "icons",
+  "path": "assets/icons/shared/guyue-ink-backgrounds/template-background/shared-guyue-background-ink-light-a-v01-png.png",
+  "tags": [
+    "owner:shared",
+    "family:guyue-ink-background",
+    "variant:ink-light-a",
+    "revision:v01",
+    "status:ready",
+    "用户已确认",
+    "app-icon",
+    "古风",
+    "水墨",
+    "无字底图",
+    "制作模板"
+  ],
+  "source": "original",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "1254×1254 RGBA；用户确认底图 A。来自 MacRightClick 浅色 A 参考，经内置 image_gen 去字去章与补绘，具体后端模型及逐图许可 unknown；保持原图比例，供固定马善政字形与古月章合成，不是新产品的官方标识。生成式补绘存在细节差异。",
+  "sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+  "organization": {
+    "owner": "shared",
+    "series": "guyue-ink-backgrounds",
+    "component": "template-background",
+    "functions": [
+      "分层创作"
+    ],
+    "platforms": [
+      "通用"
+    ]
+  },
+  "approval": {
+    "user_confirmation": "用户本轮明确：之前几轮需要我确认才能收录到都满意，你正常收录（A、C 满意、A、B 的效果满意）；本项为底图 A。",
+    "reviewed_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+    "task": "template-ink-light-a",
+    "checks": "已目视：大字与印章已移除，人物山水保留；生成式补绘存在细节差异，透明边缘及小尺寸仍需用户验收，不保证像素级不变",
+    "tool": "image_gen builtin; backend model unknown",
+    "template": "ink-light-a",
+    "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+    "approved_at": "2026-11-16T08:38:16.000686+00:00"
+  }
+}
