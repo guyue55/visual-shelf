@@ -47,6 +47,10 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 - Schema 供编辑器参考；运行时实际准入规则以 `scripts/library.py` 为准。
 - 位图仅检查签名和大小；SVG 是受限白名单，不能宣称通用清洗或完整图像解码验证。
 
+## 项目与产品管理
+
+归属、命名、版本和统计口径见 [docs/ASSET-MANAGEMENT.md](docs/ASSET-MANAGEMENT.md)。当前通过现有 tags 和 Markdown 登记卡执行人工管理；没有实体专属 CLI 参数、关系校验或自动统计命令。素材元数据仍以 catalog 为准，统计快照应注明依据与缺口。
+
 ## 发布与历史记录
 
 - 发布方式见 [docs/PUBLISHING.md](docs/PUBLISHING.md)，以实际远端配置和工作流执行结果为准。

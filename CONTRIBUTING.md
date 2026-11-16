@@ -1,5 +1,11 @@
 # 新增与创建素材
 
+## 先确定归属与版本
+
+涉及不同项目/产品时，先读 [素材管理规范](docs/ASSET-MANAGEMENT.md)，确认主要归属、素材家族、变体、修订和真实使用方。首次实体使用 [登记卡模板](templates/entity-record.md)；优先复用已有文件。归属未知如实记录，不自动算作 shared。
+
+新素材采用该规范的 id 与标签约定；下文简短命令仅演示工具参数，不代表已完成项目登记。当前工具没有 `--project`、`--product` 或自动统计参数，关联由现有 `--tags` 和登记卡维护。校验器尚不会检查管理标签和实体关系。
+
 ## 导入
 
 1. 先找品牌官网、上游项目或自己的设计源文件，确认来源和允许的用途。
@@ -18,7 +24,7 @@ python3 scripts/library.py build
 
 上面的 example.com 是命令占位符，换成真实来源。确实没有来源证据时填 `unknown`。元数据中的 `source` 可为 URL、`original` 或 `unknown`。`license` 可用 SPDX 标识，也可用 `LicenseRef-*`，但标识本身不是授权证据；有许可全文时放入 `licenses/` 并在 description 中说明。`author` 默认 unknown。
 
-每个文件单独登记；同一品牌的单色/彩色、深色/浅色版本使用不同 id，例如 `my-logo-color`、`my-logo-white`，以相同标签关联。当前没有多文件资产组模型。
+每个文件单独登记；同一品牌的单色/彩色、深色/浅色版本使用不同 id，例如 `my-logo-color`、`my-logo-white`，以相同标签关联。当前没有程序支持的多文件资产组模型；家族、变体和跨项目使用的人工管理方式见 [素材管理规范](docs/ASSET-MANAGEMENT.md)。
 
 ## 创建
 
@@ -36,7 +42,7 @@ AI 生成素材的提示词、模型、日期和参考素材，可参考 `templa
 
 ## 修改与引用
 
-- 修改文件后，核对来源、许可和版本；用 `python3 -c 'import hashlib; from pathlib import Path; print(hashlib.sha256(Path("assets/icons/check-tile.svg").read_bytes()).hexdigest())'` 得到新哈希，人工更新对应 JSON 的 `sha256`，再校验、构建。
+- 已被使用的素材发生可见变化时，按管理规范新增修订与文件，保留旧引用；原路径修改限未被使用的草稿或明确无需新修订的维护。修改文件后，核对来源、许可和版本；用 `python3 -c 'import hashlib; from pathlib import Path; print(hashlib.sha256(Path("assets/icons/check-tile.svg").read_bytes()).hexdigest())'` 得到新哈希，人工更新对应 JSON 的 `sha256`，再校验、构建。
 - 预览页支持复制完整链接、Markdown、仓库路径和 SVG；本机预览复制出的完整链接是 localhost，只适用于本机。对外引用须先发布，或使用已发布仓库固定 commit/tag 的文件地址。
 - 不重命名已被使用的素材路径。需要变体时新增文件；删除前检查引用。
 - SVG 校验器采用受限元素/属性白名单，不支持脚本、CSS/style、动画、foreignObject、外部资源或文本实体声明。它会拒绝部分正常但复杂的 SVG；用设计工具导出简化版本。没有自动修改导入文件。
@@ -51,5 +57,7 @@ python3 scripts/library.py build
 node --check site/app.js
 git diff --check
 ```
+
+涉及项目/产品或版本关系时，同时核对管理标签、登记卡、推荐 asset id 和使用位置；集中整理或交付前按 [统计模板](templates/inventory-report.md) 生成快照。状态标签不会隐藏网页素材，不能作为保密控制。
 
 在浏览器检查透明区域、深浅背景、移动端、搜索、下载和许可信息。CI 负责离线校验与构建，Pages 需手动发布。不要提交 dist/。

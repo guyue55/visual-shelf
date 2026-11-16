@@ -20,6 +20,7 @@
 
 | 任务 | 优先入口 |
 | --- | --- |
+| 项目/产品归属、命名、版本、统计 | `docs/ASSET-MANAGEMENT.md`、`templates/entity-record.md`、`templates/inventory-report.md` |
 | 新增、修改、创建素材 | `CONTRIBUTING.md`、`RIGHTS.md`、相关 `catalog/*.json` |
 | 导入、校验、构建工具 | `scripts/library.py`、`tests/test_library.py`、`schemas/asset.schema.json` |
 | 页面与交互 | `site/index.html`、`site/app.js`、`site/style.css` |
@@ -42,6 +43,8 @@
 
 - 每个素材一个 `catalog/<id>.json`；路径为 `assets/<kind>/<slug>.<ext>`。id 与文件名采用英文小写短横线。
 - 分类固定为 `logos`、`icons`、`legends`、`covers`；中文名与标签用于检索。具体字段与格式以实际校验器为准。
+- 不同项目/产品的素材按 `docs/ASSET-MANAGEMENT.md` 管理：先查实体与家族，区分主要归属和使用方，用标签与登记卡关联；不复制同一文件，不猜测归属。新 id 遵循用途、变体、修订、格式约定，旧路径保持稳定。
+- 当前没有结构化实体校验或自动统计命令；统计需记录依据、范围与未知项，不将管理规范描述为已实现能力。登记卡和快照不替代 catalog 的文件元数据。
 - 优先使用 `scripts/library.py add/create`，避免绕过元数据、哈希及去重校验。
 - 已被引用的文件路径保持稳定；新增变体使用不同 id，以标签关联。修改内容后同步核对元数据和 SHA-256。
 - 来源、许可、作者分别核实。集合仓库的开源许可不能直接推断为单个品牌的商标使用许可；不擅自替库主人选择全库开放许可。
