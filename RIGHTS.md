@@ -9,3 +9,7 @@
 - AI 生成内容应保留生成过程和参考来源，按实际证据说明权利情况。
 
 准备公开本仓库时，先完成对代码许可、原创署名和第三方素材的选择与核对。
+
+## MacRightClick 收录
+
+2026-11-16 原样收录用户指定的 3 张应用图标。源仓库声明 Apache-2.0，图像独立作者、生成记录及逐图许可未单独确认，因此 catalog 的 author/license 暂为 unknown；不将应用代码许可直接扩展成品牌使用授权。来源与用途证据见 [品牌档案](docs/brands/products/macrightclick.md) 与 [收录快照](docs/inventories/2026-11-16-macrightclick.md)。未改变本库的全局许可。

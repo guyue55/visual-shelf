@@ -2,7 +2,7 @@
 
 一个放得下 Logo、图标、图例和封面的个人视觉素材库。为日常文档、方案、项目 README 和网页收藏常用素材，也保存自己创建的视觉内容。
 
-**文件可直接使用，来源可以追溯，新增有统一入口。** 当前已完成本地 Git 初始化、8 份原创 SVG 示例、中文素材预览、导入/模板创建命令、离线校验和 GitHub 工作流。尚未创建远端仓库或发布网站。
+**文件可直接使用，来源可以追溯，新增有统一入口。** 当前已完成本地 Git 初始化、8 份原创 SVG 示例与 MacRightClick 产品图标、中文素材预览、导入/模板创建命令、离线校验和 GitHub 工作流。尚未创建远端仓库或发布网站。
 
 ## 立即使用
 
@@ -36,7 +36,7 @@
 | 图例 | assets/legends/ | 架构图节点、状态、流程图图例 |
 | 封面 | assets/covers/ | 项目、文档、文章封面 |
 
-目前 Logo 分类为空，避免把未经选择的第三方标识当作你的收藏。其余分类含 8 份小体积 SVG 示例。所有示例保守标为 `LicenseRef-All-Rights-Reserved`，作者为 `unknown`，等待库主人决定署名和开放许可。
+Logo 分类已收录 MacRightClick 的 3 张应用图标，主用与候选通过标签及登记卡区分；其余分类含 8 份小体积 SVG 示例。所有示例保守标为 `LicenseRef-All-Rights-Reserved`，作者为 `unknown`，等待库主人决定署名和开放许可。
 
 ```text
 assets/       可直接引用的素材文件
@@ -62,6 +62,10 @@ tests/        有实际边界意义的离线测试
 - 统一文件数、家族数、项目/产品数、存储、权利缺口和复用的统计口径。
 
 目前可通过标签、[实体登记卡](templates/entity-record.md) 和 [统计快照](templates/inventory-report.md) 人工管理；结构化关系校验、自动统计和专用管理页面尚未实现。规范中附有当前文件基线及后续实现顺序。
+
+## 已登记产品
+
+- [MacRightClick · 右键助手](docs/entities/products/macrightclick.md)：主用月夜深蓝图标、两张浅色候选及真实引用位置。后续创作先读 [品牌与使用档案](docs/brands/products/macrightclick.md)；盘点与哈希见 [收录快照](docs/inventories/2026-11-16-macrightclick.md)。
 
 ## 新增一份素材
 

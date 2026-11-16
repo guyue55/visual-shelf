@@ -1,0 +1,23 @@
+{
+  "id": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+  "name": "MacRightClick · 月夜深蓝 · 当前主用",
+  "kind": "logos",
+  "path": "assets/logos/product-macrightclick-app-icon-moonlit-blue-q96-v01-png.png",
+  "tags": [
+    "owner:product:macrightclick",
+    "family:macrightclick-app-icon",
+    "variant:moonlit-blue-q96",
+    "revision:v01",
+    "status:ready",
+    "product:macrightclick",
+    "应用图标",
+    "macOS",
+    "右键助手"
+  ],
+  "source": "https://github.com/guyue55/MacRightClick/blob/552effdd3054abcd74dd6dc30e213cd33838da6c/img/app-icons-q96/img-3-appicon-q96.png",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "1024×1024 RGBA PNG，原样收录自 img/app-icons-q96/img-3-appicon-q96.png。与 Resources/AppIcon.png SHA-256 相同，当前应用及 README 使用。来源仓库声明 Apache-2.0，图像创作者、生成模型及逐图授权未单独确认，许可暂记 unknown；v01 为本库首次登记修订。参见 docs/brands/products/macrightclick.md。",
+  "sha256": "edd55002dca93b97c645e260191757c9a71b007d2458c7a23ff0bc2180562e57"
+}

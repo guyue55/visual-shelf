@@ -138,7 +138,7 @@ python3 scripts/library.py add /绝对路径/logo.svg \
 
 快照记录生成日期、统计所依据的提交与未提交变更、样本范围及未知项。每次涉及实体/版本/使用关系的变更重新核对相关登记卡；集中整理或交付前做全库快照。普通文案修改无需生成统计。
 
-### 当前基线（2026-11-16 核对）
+### 初始化历史基线（2026-11-16，首次收录前）
 
 - catalog 文件记录 8 份：logos 0、icons 3、legends 2、covers 3；格式全部 SVG。
 - catalog 对应原文件共 3,643 bytes；不含构建产物等其他文件。
@@ -147,6 +147,8 @@ python3 scripts/library.py add /绝对路径/logo.svg \
 - 尚无实体登记卡和使用记录。已登记项目/产品数为 0；真实使用数量未知，不能用“没有记录”断言从未使用。
 
 该段仅为本次文档规划时的快照。后续统计应重新读取真实文件，不在多份文档重复维护数字。
+
+当前新增产品的收录情况见 [MacRightClick 快照](inventories/2026-11-16-macrightclick.md) 和 [产品登记卡](entities/products/macrightclick.md)；上方初始化数字不包含后续收录。
 
 ## 8. 后续实现顺序与验收
 

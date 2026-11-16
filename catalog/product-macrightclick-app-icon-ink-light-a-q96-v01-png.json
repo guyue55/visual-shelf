@@ -1,0 +1,23 @@
+{
+  "id": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+  "name": "MacRightClick · 水墨浅色 A · 候选",
+  "kind": "logos",
+  "path": "assets/logos/product-macrightclick-app-icon-ink-light-a-q96-v01-png.png",
+  "tags": [
+    "owner:product:macrightclick",
+    "family:macrightclick-app-icon",
+    "variant:ink-light-a-q96",
+    "revision:v01",
+    "status:draft",
+    "product:macrightclick",
+    "应用图标",
+    "macOS",
+    "右键助手"
+  ],
+  "source": "https://github.com/guyue55/MacRightClick/blob/552effdd3054abcd74dd6dc30e213cd33838da6c/img/app-icons-q96/img-1-appicon-q96.png",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "1024×1024 RGBA PNG，原样收录自 img/app-icons-q96/img-1-appicon-q96.png。来源 README 标注的应用图标候选，不自动替换当前主用款。来源仓库声明 Apache-2.0，图像创作者、生成模型及逐图授权未单独确认，许可暂记 unknown；v01 为本库首次登记修订。参见 docs/brands/products/macrightclick.md。",
+  "sha256": "412ac308bc31dd5ae4aae944f979ff6290c9160077a651640825512c270ac8ef"
+}

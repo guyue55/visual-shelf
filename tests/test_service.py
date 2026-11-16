@@ -45,7 +45,7 @@ class ServiceTests(unittest.TestCase):
         self.assertEqual(json.loads(state.read_text())['pid'], first['pid'])
         self.run_service('status')
         with urllib.request.urlopen(f'http://127.0.0.1:{port}/catalog.json', timeout=2) as response:
-            self.assertEqual(len(json.load(response)), 8)
+            self.assertEqual(len(json.load(response)), len(list((self.root / 'catalog').glob('*.json'))))
         self.run_service('restart')
         second = json.loads(state.read_text())
         self.assertEqual(second['port'], port)
