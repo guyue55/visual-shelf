@@ -47,6 +47,10 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 - Schema 供编辑器参考；运行时实际准入规则以 `scripts/library.py` 为准。
 - 位图仅检查签名和大小；SVG 是受限白名单，不能宣称通用清洗或完整图像解码验证。
 
+## AI 辅助创作
+
+读取 [docs/AI-CREATION.md](docs/AI-CREATION.md) 与 [docs/CREATION-RECIPES.md](docs/CREATION-RECIPES.md)，再定位实体品牌档案。当前是 AI 可遵循的文件协议，没有自动上下文导出或生成 API 命令；不要虚构 CLI 参数。
+
 ## 项目与产品管理
 
 归属、命名、版本和统计口径见 [docs/ASSET-MANAGEMENT.md](docs/ASSET-MANAGEMENT.md)。当前通过现有 tags 和 Markdown 登记卡执行人工管理；没有实体专属 CLI 参数、关系校验或自动统计命令。素材元数据仍以 catalog 为准，统计快照应注明依据与缺口。

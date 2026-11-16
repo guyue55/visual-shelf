@@ -12,6 +12,7 @@
 - 官方来源或仓库：unknown
 - 实体状态：active / archived / unknown
 - 负责人：unknown
+- 品牌档案路径（创建时参考 templates/brand-profile.md）：unknown
 - 最近核对日期：
 
 ## 项目与产品关系

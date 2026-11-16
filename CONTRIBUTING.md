@@ -28,6 +28,8 @@ python3 scripts/library.py build
 
 ## 创建
 
+重复制作同一项目/产品的素材时，按 [AI 辅助创作协议](docs/AI-CREATION.md) 先复用品牌档案与场景流程，再记录本次变化；不要每次重新索要配色、字体和参考。下方命令只是仓库内置的模板路线，其他创作工具按实际能力调用并留存制作记录。
+
 ```sh
 python3 scripts/library.py create \
   --id launch-cover --name "发布手记" --kind covers \

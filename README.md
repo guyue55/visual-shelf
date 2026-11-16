@@ -64,6 +64,16 @@ python3 scripts/library.py build
 
 创建封面、图例和完成标记，见 [CONTRIBUTING.md](CONTRIBUTING.md)。批量搬运上游整库、网页在线上传、AI 出图和自动转换格式均未接入。
 
+## 让 AI 持续辅助制作
+
+除了保存成品，也保存可复用的制作上下文。按 [AI 辅助创作协议](docs/AI-CREATION.md)，首次为实体建立 [品牌档案](templates/brand-profile.md)，记录已确认的配色、字体、参考、固定元素和否决项；后续只提供本次主题与变化。AI 先读已有档案，再按 [Logo、封面、图例制作流程](docs/CREATION-RECIPES.md) 执行，减少重复沟通。
+
+例如：
+
+> 给产品 X 做一张“新版本发布”封面，沿用已确认品牌和系列版式，标题为“……”。
+
+档案、场景流程和 [制作记录模板](templates/creation-run.md) 已就绪，可供能读仓库的 AI 使用；自动上下文导出、模型调用与创作界面尚未实现。内置 `create` 仍是有限 SVG 模板生成，不等同于 AI 图像生成。
+
 ## 放到 GitHub
 
 建议仓库名 `visual-shelf`；也可以用其他英文名称，站点资源使用相对路径，兼容项目子目录。远端公开性和仓库归属由你决定，具体步骤见 [发布指南](docs/PUBLISHING.md)。
