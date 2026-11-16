@@ -1,38 +1,48 @@
 # GitHub 与 Pages 发布
 
-本地仓库默认分支为 main，建议远端命名 `visual-shelf`。当前没有远端地址，不提供虚构的线上链接。
+更新：2026-11-17。用户已明确授权用gh在guyue55下创建、管理、推送并部署。
 
-## 建立远端
+- 公开仓库：[guyue55/visual-shelf](https://github.com/guyue55/visual-shelf)
+- 线上素材馆：[https://guyue55.github.io/visual-shelf/](https://guyue55.github.io/visual-shelf/)
+- 默认分支main，origin为 `git@github.com:guyue55/visual-shelf.git`，本地main跟踪origin/main。
+- Pages的build_type=workflow，已启用HTTPS强制；仓库Homepage链接及icons/logos/github-pages/visual-assets主题已设置。
 
-先确定仓库归属、公开/私有、原创素材署名与代码许可。在 GitHub 创建空仓库（不添加 README/License），再使用真实地址：
+这是公开源仓库，源文件、packages与retired的已提交内容可通过GitHub访问。Pages仅发布dist里的页面、索引与正式素材，不发布工程包、字体源、工具或停用台账。.drafts/.exports/.runtime/dist为本地忽略目录，未推送为源文件。不额外为代码或素材选择开源许可证；公开访问不自动授予开放许可，沿用RIGHTS逐项说明。
+
+## 后续推送与发布
+
+先按AGENTS/RTK完成任务相关检查，再提交和推送。CI在push/PR时运行；Pages保持手动触发，不因本次发布改为自动部署。
 
 ```sh
-git remote add origin https://github.com/YOUR_ACCOUNT/visual-shelf.git
-git push -u origin main
+git status --short --branch
+git push origin main
+gh run list --repo guyue55/visual-shelf --limit 5
+
+# 确认CI通过后手动发布main
+gh workflow run pages.yml --repo guyue55/visual-shelf --ref main
+gh run list --repo guyue55/visual-shelf --workflow pages.yml --limit 3
+# 替换成真实run id
+gh run watch <RUN_ID> --repo guyue55/visual-shelf --exit-status
+
+# 读取真实Pages配置
+gh api repos/guyue55/visual-shelf/pages --jq '{html_url:.html_url,build_type:.build_type,https_enforced:.https_enforced}'
 ```
 
-`YOUR_ACCOUNT` 是占位符。若尚未提交，先按 RTK.md 完成本地检查后提交。不要把凭据写入仓库。项目自身尚未选择统一开源许可。
+核对workflow的headSha与准备发布的提交一致，等待部署job成功；不能以“已触发”代替“已上线”。网站需要更新后再做HTTP和浏览器检查，不能只看Actions绿灯。
 
-## 发布预览
+## 构建与权限
 
-1. 在 GitHub 仓库 Settings → Pages 将 Source 设置为 GitHub Actions。
-2. 打开 Actions → Publish Pages (manual) → Run workflow，选择 main。
-3. 从部署结果获取真实网站地址，验证 `/仓库名/` 子路径、所有素材、搜索与下载。
-4. 将已验证的在线地址补到 README；在正式页面中复制的素材链接才可供其他人访问。
+Python标准库构建dist，运行时只是HTML/CSS/JS/JSON和素材。站点使用相对资源路径、query筛选和hash详情，兼容/visual-shelf/子路径，不依赖服务端路由。构建为JS/CSS添加内容哈希；索引fetch no-store，防止旧索引混用。
 
-本项目配好 `configure-pages@v5`、`upload-pages-artifact@v4`、`deploy-pages@v4`。参见 [GitHub 官方自定义 Pages 工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。站点不使用根绝对路径，可部署到任意子目录。GitHub 免费方案公共仓库支持 Pages，私有仓库可用性取决于方案，见 [Pages 文档](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits)。不要假设私有源码意味着站点本身有访问控制。
+当前工作流使用checkout@v6、setup-python@v6、configure-pages@v5、upload-pages-artifact@v4和deploy-pages@v4。构建job读取源码并跑测试，部署job具有pages:write/id-token:write，在github-pages环境发布dist。用户授权本次发布不意味着后续任意任务都可擅自推送；按当次任务授权判断。
 
-CI 不会发布，Pages 也不在 push 时自动发布。首次线上部署仍需实际验证，工作流文件存在不代表云端已执行成功。
+参考：[GitHub Pages自定义工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)、[Pages REST API](https://docs.github.com/en/rest/pages/pages)、[gh repo create](https://cli.github.com/manual/gh_repo_create)。本次执行证据见 [发布验收](deployments/2026-11-17-github-pages.md)。
 
-## 稳定引用
+## 线上验收与引用
 
-- 仓库内文档使用相对路径，例如 `![完成](assets/icons/check-tile.svg)`。
-- 外部项目可下载到自身项目，或引用固定 commit/tag 的远端素材。
-- Pages 地址随部署更新，适合希望跟随更新的使用场景；不要当成固定版本归档。
-- 发布前根据 RIGHTS.md 核对逐项许可；unknown 素材可用于自己评估，不自动表示具备公开再分发权。
+1. 首页、两份JSON、带版本查询串的JS/CSS及全部正式素材能访问，素材SHA与catalog一致。
+2. 浏览器检查系列进入、筛选、v04详情与修订、图片实际加载；链接须包含/visual-shelf/，不能指向本机127.0.0.1。
+3. 刷新详情仍为当前版本；旧版本已不在当前索引，不能从历史记录取旧图。
+4. Pages地址跟随部署更新；需要固定版本时使用commit/tag的仓库原文件链接，或保存到消费项目并记录SHA。
 
-## 构建产物与子路径
-
-这是纯静态站点；Python 只在本地或 CI 构建时运行。必须发布 dist/（包含 index.html、app.js、catalog-model.js、style.css、catalog.json、organization.json、assets/、.nojekyll），不能把 site/ 直接作为完整站点。目录关系和统计来自源文件构建，不依赖在线数据库。query 筛选和 hash 详情分享不要求服务端路由重写。草稿、源字体及工具脚本不进入站点。详见 [调研和实现边界](HIERARCHY-AND-PAGES.md)。
-
-正式交付工程包位于 packages/，导出副本位于 .exports/；默认都不进入 dist，不随 Pages 自动公开。需要包下载时另行选择 GitHub Release 或其他分发位置并核对真实授权，本地归档不等于已上传。
+平台安装、Icon Composer、Android monochrome和素材逐项权利不会因为Pages部署成功而自动完成。交付包如需独立Release下载，应另按明确需求发布，不从站点部署推断自动上传ZIP。

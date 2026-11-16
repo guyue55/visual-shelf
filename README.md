@@ -2,7 +2,7 @@
 
 一个放得下 Logo、图标、图例和封面的个人视觉素材库。为日常文档、方案、项目 README 和网页收藏常用素材，也保存自己创建的视觉内容。
 
-**文件可直接使用，来源可以追溯，新增有统一入口。** 当前已完成本地 Git 初始化、8 份原创 SVG 示例与 MacRightClick 产品图标、中文素材预览、导入/模板创建命令、离线校验和 GitHub 工作流。尚未创建远端仓库或发布网站。
+**文件可直接使用，来源可以追溯，新增有统一入口。** 已托管到 [guyue55/visual-shelf](https://github.com/guyue55/visual-shelf)，并部署到 [GitHub Pages 在线素材馆](https://guyue55.github.io/visual-shelf/)。当前15份正式素材、6个系列，含已确认阅字v04与可复用交付套件。
 
 ## 立即使用
 
@@ -63,7 +63,7 @@ tests/        有实际边界意义的离线测试
 - 页面按目录浏览，也可交叉筛选；统计从正式目录构建，不计未确认草稿。
 - 新系列先登记，新增用 `add --owner ... --series ... --component ... --function ... --platform ...`；收录仍需真实确认。
 
-**可以部署到 GitHub Pages。** 构建后的 `dist/` 是纯静态站点，Python 只用于本地操作和构建；现有发布工作流保持手动触发，尚未创建远端或执行部署。参见 [发布步骤](docs/PUBLISHING.md)。
+**可以部署到 GitHub Pages。** 构建后的 `dist/` 是纯静态站点，Python 只用于本地操作和构建；已实际部署到 [线上素材馆](https://guyue55.github.io/visual-shelf/)，发布工作流继续保持手动触发，push只自动执行CI。参见 [发布步骤](docs/PUBLISHING.md)。
 
 ## 喜欢的风格，直接交给 AI 制作
 
@@ -108,7 +108,7 @@ python3 scripts/library.py build
 
 ## 放到 GitHub
 
-建议仓库名 `visual-shelf`；也可以用其他英文名称，站点资源使用相对路径，兼容项目子目录。远端公开性和仓库归属由你决定，具体步骤见 [发布指南](docs/PUBLISHING.md)。
+当前公开仓库为 [guyue55/visual-shelf](https://github.com/guyue55/visual-shelf)，Pages地址为 [guyue55.github.io/visual-shelf](https://guyue55.github.io/visual-shelf/)。源站使用相对资源路径；后续推送、手动部署与验证见 [发布指南](docs/PUBLISHING.md)。
 
 - `ci.yml`：push/PR 时测试、验证、构建。
 - `pages.yml`：仅手动触发的 Pages 发布；需要先在 GitHub 设置 Pages 来源为 GitHub Actions。

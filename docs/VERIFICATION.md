@@ -107,3 +107,10 @@
 - 发现并修复浏览器缓存旧索引：本地响应no-store、索引fetch no-store、JS/CSS构建内容哈希查询串。浏览器再次刷新、详情修订号/路径/SHA、图片加载、实际下载均确认为v04；下载文件哈希一致后清理测试副本。当前截图见 [正式v04页面](evidence/2026-11-16-v04-final-library.jpg)。
 - Python全量69项通过，最后提示文案修改另做studio相关回归；Node4项、两份JS语法、validate15、build、git diff --check通过。受管预览健康http://127.0.0.1:4174/。
 - 未push、发布Pages或安装到目标设备；现代.icon、Android monochrome、实际平台缓存/安装、OG真实域名仍由消费项目完成。当前制作规范、归档门槛、机器清单和失败经验见 [视觉QA](VISUAL-QA.md) 与 [最终交付记录](creation-runs/2026-11-16-v04-final-delivery.md)。
+
+## 2026-11-17：GitHub与Pages真实发布
+
+- 根据用户明确授权，gh创建公开仓库guyue55/visual-shelf并推送main，origin与跟踪关系已配置；Page使用Actions工作流，HTTPS开启，Homepage设置为真实站点。
+- 云端CI43848596772和Pages43848703310均成功；CI报告69项Python测试，其中Ubuntu跳过9项macOS原生测试。没有将本机69项全部通过偷换为云端原生验证。
+- 真实HTTPS首页与JS/CSS/两份JSON成功；全部15线上素材SHA匹配、6系列统计匹配。浏览器实际验证系列进入、v04详情、正确仓库子路径和图片加载，保存真实线上截图。证据与来源提交见 [发布验收](deployments/2026-11-17-github-pages.md)。
+- 本次只公开源仓库与Pages站点，未另建Release上传ZIP；逐图许可、原生平台设备验收范围保持原记录。
