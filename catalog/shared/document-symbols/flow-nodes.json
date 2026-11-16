@@ -13,5 +13,17 @@
   "author": "unknown",
   "created": "2026-11-16",
   "description": "项目初始化时创建的几何 SVG 示例。",
-  "sha256": "a53e24a8c8d13f3d893084b7ba9fe2f57aa41a167cec31ae1df81667d70ed5c7"
+  "sha256": "a53e24a8c8d13f3d893084b7ba9fe2f57aa41a167cec31ae1df81667d70ed5c7",
+  "organization": {
+    "owner": "shared",
+    "series": "document-symbols",
+    "component": "document-tools",
+    "functions": [
+      "流程连接"
+    ],
+    "platforms": [
+      "文档",
+      "Web"
+    ]
+  }
 }

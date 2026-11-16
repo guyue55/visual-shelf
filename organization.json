@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "owners": [
+    {
+      "id": "product:macrightclick",
+      "name": "MacRightClick",
+      "description": "右键助手 · 产品识别素材"
+    },
+    {
+      "id": "shared",
+      "name": "共享素材",
+      "description": "本库初始化示例，可作为文档与方案的制作起点"
+    },
+    {
+      "id": "unknown",
+      "name": "待整理",
+      "description": "尚未确认归属的素材"
+    }
+  ],
+  "series": [
+    {
+      "id": "macrightclick-app-icon",
+      "name": "MacRightClick 应用图标",
+      "owner": "product:macrightclick",
+      "description": "水墨浅色与月夜深蓝，保留主用款和候选的原始记录。",
+      "accent": "night"
+    },
+    {
+      "id": "editorial-covers",
+      "name": "手记与文档封面",
+      "owner": "shared",
+      "description": "项目手记、探索指南与设计档案的 16:9 封面示例。",
+      "accent": "clay"
+    },
+    {
+      "id": "document-symbols",
+      "name": "文档功能符号",
+      "owner": "shared",
+      "description": "归档、流程与完成标记，适合方案及界面说明。",
+      "accent": "sage"
+    },
+    {
+      "id": "workflow-status",
+      "name": "流程与状态图例",
+      "owner": "shared",
+      "description": "用于流程说明的状态示例，按实际项目继续细化。",
+      "accent": "sand"
+    }
+  ],
+  "components": [
+    {
+      "id": "app-identity",
+      "name": "应用标识"
+    },
+    {
+      "id": "document-cover",
+      "name": "文档封面"
+    },
+    {
+      "id": "document-tools",
+      "name": "文档工具"
+    },
+    {
+      "id": "workflow",
+      "name": "流程状态"
+    }
+  ]
+}

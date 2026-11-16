@@ -19,5 +19,18 @@
   "author": "unknown",
   "created": "2026-11-16",
   "description": "1024×1024 RGBA PNG，原样收录自 img/app-icons-q96/img-2-appicon-q96.png。来源 README 标注的应用图标候选，不自动替换当前主用款。来源仓库声明 Apache-2.0，图像创作者、生成模型及逐图授权未单独确认，许可暂记 unknown；v01 为本库首次登记修订。参见 docs/brands/products/macrightclick.md。",
-  "sha256": "b2c0a629af3dbad2dff081514f84c14207d7191d704f2ff8e663fca238497604"
+  "sha256": "b2c0a629af3dbad2dff081514f84c14207d7191d704f2ff8e663fca238497604",
+  "organization": {
+    "owner": "product:macrightclick",
+    "series": "macrightclick-app-icon",
+    "component": "app-identity",
+    "functions": [
+      "产品识别",
+      "应用启动"
+    ],
+    "platforms": [
+      "macOS",
+      "文档"
+    ]
+  }
 }

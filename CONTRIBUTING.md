@@ -73,3 +73,14 @@ git diff --check
 使用 `./scripts/service.sh start` 启动，`restart` 更新预览，`stop` 停止；状态和排查见 [RTK.md](RTK.md)。
 
 在浏览器检查透明区域、深浅背景、移动端、搜索、下载和许可信息。CI 负责离线校验与构建，Pages 需手动发布。不要提交 dist/。
+
+## 按归属与系列收录
+
+先在 organization.json 登记 owner、series、component。查看 [分层管理规范](docs/HIERARCHY-AND-PAGES.md)。在原 add 命令增加：
+
+```sh
+  --owner product:macrightclick --series macrightclick-app-icon \
+  --component app-identity --function 产品识别 --function 应用启动 --platform macOS
+```
+
+该片段须接在完整 add 命令后。只有实际确认的文件才能 add（必填 --approval-note）；studio accept 同样支持这些分组参数。未知归属不能凭文件名猜测；尚未明确时留在草稿并提示补充。新增默认建立分组目录，旧文件不搬动。检索元数据用递归查找，不再假定 catalog 根目录有全部 JSON。create 的 --folder 不适用（尚未正式入库）；其结构化参数仅作为草稿建议保存。

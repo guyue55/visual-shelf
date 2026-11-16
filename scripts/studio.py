@@ -8,7 +8,7 @@ from pathlib import Path
 import shutil
 import sys
 from datetime import datetime, timezone
-from library import ROOT, SLUG, add, check_file, read_json, write_json
+from library import ROOT, SLUG, add, check_file, read_json, write_json, metadata_path
 
 
 def digest(path):
@@ -33,7 +33,7 @@ def save(path, data):
 def prepare(args):
     styles = read_json(ROOT / 'templates' / 'visual' / 'styles.json')
     style = styles[args.style]
-    reference = read_json(ROOT / 'catalog' / (style['reference'] + '.json'))
+    reference = read_json(metadata_path(ROOT, style['reference']))
     directory = job_dir(args.job)
     directory.mkdir(parents=True, exist_ok=False)
     file = ROOT / reference['path']
@@ -139,12 +139,17 @@ def accept(args):
     if task.get('render'):
         note['render'] = task['render']
     kind = task.get('kind') or ('covers' if task['purpose'] in ('web','cover','share-card') else 'logos')
+    org = None
+    if any(getattr(args, key, None) for key in ('series','component','function','platform')):
+        org = dict(owner=args.owner, series=args.series, component=args.component, functions=getattr(args,'function',[]), platforms=getattr(args,'platform',[]))
+    elif task.get('proposed_organization'):
+        org = dict(task['proposed_organization'], owner=args.owner)
     item = add(candidate, args.id, args.name, kind,
                [f'owner:{args.owner}', f'family:{args.family}', f'variant:{args.variant}',
                 f'revision:{args.revision}', 'status:ready', '用户已确认', task['purpose'], *args.tags.split(',')],
-               'original', args.license, args.author, args.description, root=ROOT)
+               'original', args.license, args.author, args.description, root=ROOT, organization=org)
     item['approval'] = note
-    save(ROOT / 'catalog' / (args.id + '.json'), item)
+    save(metadata_path(ROOT, args.id), item)
     task.update(state='accepted', asset_id=args.id, approval=note)
     save(directory / 'task.json', task)
     print(f'ACCEPTED：{args.id}；请同步实体卡、品牌决策与制作记录，然后 restart 更新预览')
@@ -171,6 +176,8 @@ def main():
     for key in ('job','sha256','approval','id','name','owner','family','variant','revision','description'):
         p.add_argument('--'+key, required=True)
     p.add_argument('--tags', default='常用'); p.add_argument('--license', default='unknown'); p.add_argument('--author', default='unknown')
+    p.add_argument('--series'); p.add_argument('--component')
+    p.add_argument('--function', action='append', default=[]); p.add_argument('--platform', action='append', default=[])
     args = parser.parse_args()
     if args.command == 'list':
         for key, style in read_json(ROOT / 'templates' / 'visual' / 'styles.json').items():

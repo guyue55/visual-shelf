@@ -13,5 +13,16 @@
   "author": "unknown",
   "created": "2026-11-16",
   "description": "可编辑的状态图例示例，适用于方案和流程图。",
-  "sha256": "e571fb6dbbd962db755a11cbc86ff51ddab8d973238b7e6d90abb50ef49acd62"
+  "sha256": "e571fb6dbbd962db755a11cbc86ff51ddab8d973238b7e6d90abb50ef49acd62",
+  "organization": {
+    "owner": "shared",
+    "series": "workflow-status",
+    "component": "workflow",
+    "functions": [
+      "状态说明"
+    ],
+    "platforms": [
+      "文档"
+    ]
+  }
 }

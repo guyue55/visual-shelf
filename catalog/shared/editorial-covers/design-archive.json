@@ -13,5 +13,17 @@
   "author": "unknown",
   "created": "2026-11-16",
   "description": "参数化 SVG 封面模板示例，非品牌官方素材。中文显示取决于使用环境字体。",
-  "sha256": "fafac28ed22204b309ae3638ad7fdff74de6e4c30f777ac1be3fe6552b94faa2"
+  "sha256": "fafac28ed22204b309ae3638ad7fdff74de6e4c30f777ac1be3fe6552b94faa2",
+  "organization": {
+    "owner": "shared",
+    "series": "editorial-covers",
+    "component": "document-cover",
+    "functions": [
+      "内容封面"
+    ],
+    "platforms": [
+      "文档",
+      "Web"
+    ]
+  }
 }

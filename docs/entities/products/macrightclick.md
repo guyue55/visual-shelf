@@ -43,3 +43,7 @@
 - 原图更新时比较哈希、核对变体，新增本库修订并更新推荐项及使用记录；不覆盖旧快照。
 - 封面、字标、单色矢量标记、favicon 尚未登记；需要时按品牌档案创作，不把现有 PNG 冒充矢量。
 - 图像生成工具、提示词、生成时间、字体来源及逐图许可待补充，不能从水墨风格或印章推断。
+
+## 结构化目录（2026-11-16）
+
+主归属 product:macrightclick、系列 macrightclick-app-icon、组件 app-identity 已在根 organization.json 登记。三份元数据位于 catalog/products/macrightclick/app-icon/；素材原 URL 与哈希保持不变。页面可按 macOS、产品识别、应用启动及状态筛选。

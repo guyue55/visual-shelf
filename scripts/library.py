@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 from datetime import date
 from pathlib import Path
 from xml.sax.saxutils import escape
+from organization import registry, validate_organization, public_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 KINDS = ('logos', 'icons', 'legends', 'covers')
@@ -27,6 +28,15 @@ def read_json(path):
 
 def write_json(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+
+def metadata_path(root, slug):
+    if not SLUG.fullmatch(slug):
+        raise ValueError('id 使用英文小写短横线')
+    matches = list((root / 'catalog').rglob(slug + '.json'))
+    if len(matches) != 1:
+        raise ValueError(f'素材 {slug} 元数据不存在或不唯一')
+    return matches[0]
 
 
 def check_svg(data):
@@ -73,7 +83,11 @@ def check_file(path):
 
 def validate(root=ROOT):
     records, ids, paths, hashes = [], set(), set(), set()
-    for meta in sorted((root / 'catalog').glob('*.json')):
+    groups = registry(root)
+    for entry in (root / 'catalog').rglob('*'):
+        if entry.is_symlink():
+            raise ValueError('catalog 禁止符号链接')
+    for meta in sorted((root / 'catalog').rglob('*.json')):
         if meta.is_symlink():
             raise ValueError('元数据禁止符号链接')
         item = read_json(meta)
@@ -92,11 +106,13 @@ def validate(root=ROOT):
         date.fromisoformat(item['created'])
         if not isinstance(item['tags'], list) or not item['tags'] or not all(isinstance(t, str) and t.strip() for t in item['tags']):
             raise ValueError('tags 须为非空字符串数组')
+        if 'organization' in item:
+            validate_organization(item['organization'], groups)
         if not isinstance(item['path'], str):
             raise ValueError('素材路径必须为字符串')
         rel = Path(item['path'])
-        if rel.is_absolute() or len(rel.parts) != 3 or rel.parts[:2] != ('assets', item['kind']) or '..' in rel.parts or not SLUG.fullmatch(rel.stem):
-            raise ValueError('素材路径须为 assets/<分类>/<kebab-case>.<格式>')
+        if rel.is_absolute() or not 3 <= len(rel.parts) <= 8 or rel.parts[:2] != ('assets', item['kind']) or '..' in rel.parts or not SLUG.fullmatch(rel.stem) or not all(SLUG.fullmatch(p) for p in rel.parts[2:-1]):
+            raise ValueError('素材路径须为 assets/<分类>/[分组目录/]<kebab-case>.<格式>')
         path = root / rel
         if not path.resolve().is_relative_to((root / 'assets').resolve()):
             raise ValueError('路径越界')
@@ -119,29 +135,49 @@ def validate(root=ROOT):
     return records
 
 
-def add(file, slug, name, kind, tags, source, license_name, author, description, root=ROOT):
+def add(file, slug, name, kind, tags, source, license_name, author, description, root=ROOT, organization=None, folder=None):
     if not SLUG.fullmatch(slug) or kind not in KINDS:
         raise ValueError('id 使用英文小写短横线；kind 使用 logos/icons/legends/covers')
     records = validate(root)
     digest = check_file(file)
-    dest = root / 'assets' / kind / (slug + file.suffix.lower())
-    meta = root / 'catalog' / (slug + '.json')
-    if dest.exists() or meta.exists() or any(x['sha256'] == digest for x in records):
+    if organization is not None:
+        validate_organization(organization, registry(root))
+        if folder is None:
+            owner = organization['owner']
+            prefix = owner.replace('product:', 'products/').replace('project:', 'projects/')
+            folder = prefix + '/' + (organization.get('series') or 'general')
+            if organization.get('component'):
+                folder += '/' + organization['component']
+    group = Path(folder) if folder else Path()
+    if group.is_absolute() or any(not SLUG.fullmatch(p) for p in group.parts) or len(group.parts) > 5:
+        raise ValueError('分组目录使用小写英文短横线，最多五层，禁止越界')
+    dest = root / 'assets' / kind / group / (slug + file.suffix.lower())
+    meta = root / 'catalog' / group / (slug + '.json')
+    if not dest.resolve().is_relative_to((root/'assets').resolve()) or not meta.resolve().is_relative_to((root/'catalog').resolve()):
+        raise ValueError('分组路径越界')
+    if dest.exists() or meta.exists() or any(x['sha256'] == digest or x['id'] == slug for x in records):
         raise ValueError('id、路径或内容已存在，拒绝覆盖')
     item = dict(id=slug, name=name, kind=kind, path=dest.relative_to(root).as_posix(), tags=tags,
                 source=source, license=license_name, author=author, created=date.today().isoformat(),
                 description=description, sha256=digest)
+    if organization is not None:
+        item['organization'] = organization
     # Validate all metadata in isolation before making any repository change.
     import tempfile
     with tempfile.TemporaryDirectory() as tmp:
         candidate = Path(tmp)
         (candidate / 'catalog').mkdir()
-        target = candidate / 'assets' / kind
+        if (root/'organization.json').exists():
+            shutil.copyfile(root/'organization.json',candidate/'organization.json')
+        target = candidate / 'assets' / kind / group
         target.mkdir(parents=True)
         shutil.copyfile(file, target / dest.name)
-        write_json(candidate / 'catalog' / meta.name, item)
+        candidate_meta = candidate / 'catalog' / group / meta.name
+        candidate_meta.parent.mkdir(parents=True, exist_ok=True)
+        write_json(candidate_meta, item)
         validate(candidate)
     dest.parent.mkdir(parents=True, exist_ok=True)
+    meta.parent.mkdir(parents=True, exist_ok=True)
     with dest.open('xb') as stream:
         stream.write(file.read_bytes())
     try:
@@ -175,6 +211,7 @@ def build(root=ROOT):
     shutil.copytree(root / 'site', out)
     shutil.copytree(root / 'assets', out / 'assets')
     write_json(out / 'catalog.json', records)
+    write_json(out / 'organization.json', public_registry(root, records))
     (out / '.nojekyll').touch()
     print(f'构建完成：{len(records)} 项 → dist/')
 
@@ -199,6 +236,12 @@ def main():
         p.add_argument('--tags', required=True, help='逗号分隔，中英文均可')
         p.add_argument('--author', default='unknown')
         p.add_argument('--description', default='unknown')
+        p.add_argument('--owner', help='organization.json 中已登记的归属')
+        p.add_argument('--series')
+        p.add_argument('--component')
+        p.add_argument('--function', action='append', default=[])
+        p.add_argument('--platform', action='append', default=[])
+        p.add_argument('--folder', help='可选本地分组目录；已有 URL 不会自动迁移')
         if command == 'add':
             p.add_argument('--approval-note', required=True, help='用户对当前文件/版本的实际收录确认；AI 不得代签')
     args = parser.parse_args()
@@ -211,21 +254,31 @@ def main():
             if args.command == 'create':
                 if not SLUG.fullmatch(args.id):
                     raise ValueError('id 使用英文小写短横线')
+                if args.folder:
+                    raise ValueError('create 只生成草稿，不接受 --folder；正式收录时自动确定目录')
+                org = dict(owner=args.owner, series=args.series, component=args.component, functions=args.function, platforms=args.platform) if args.owner else None
+                if not args.owner and (args.series or args.component or args.function or args.platform):
+                    raise ValueError('设置结构化信息时须指定 --owner')
+                if org:
+                    validate_organization(org, registry(ROOT))
                 svg = create_svg(args.kind, args.name, args.color, args.subtitle)
                 check_svg(svg.encode())
                 directory = ROOT / '.drafts' / args.id
                 directory.mkdir(parents=True, exist_ok=False)
                 (directory / 'template.svg').write_text(svg, encoding='utf-8')
                 write_json(directory / 'task.json', dict(job=args.id, style='parameterized',
-                    purpose=args.kind, kind=args.kind, text=args.name, owner='unknown',
+                    purpose=args.kind, kind=args.kind, text=args.name, owner=args.owner or 'unknown', proposed_organization=org,
                     reference=None, reference_sha256=None, state='prepared'))
                 print(f'草稿已创建：{directory / "template.svg"}；尚未收录。用 studio.py review 后展示给用户确认。')
                 return
             if not args.approval_note.strip():
                 raise ValueError('必须记录用户的实际收录确认')
-            item = add(args.file, args.id, args.name, args.kind, [x.strip() for x in args.tags.split(',') if x.strip()], args.source, args.license, args.author, args.description)
+            org = dict(owner=args.owner, series=args.series, component=args.component, functions=args.function, platforms=args.platform) if args.owner else None
+            if not args.owner and (args.series or args.component or args.function or args.platform):
+                raise ValueError('设置系列/组件等结构化信息时须指定 --owner')
+            item = add(args.file, args.id, args.name, args.kind, [x.strip() for x in args.tags.split(',') if x.strip()], args.source, args.license, args.author, args.description, organization=org, folder=args.folder)
             item['approval'] = dict(user_confirmation=args.approval_note, reviewed_sha256=item['sha256'])
-            write_json(ROOT / 'catalog' / (args.id + '.json'), item)
+            write_json(metadata_path(ROOT, args.id), item)
             print(f'已登记 {item["id"]}；运行 build 更新预览')
     except (ValueError, OSError, KeyError, TypeError, ET.ParseError) as exc:
         parser.exit(1, f'失败：{exc}\n')

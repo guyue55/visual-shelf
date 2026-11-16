@@ -15,4 +15,6 @@ jobs:
       - run: python scripts/library.py validate
       - run: python scripts/library.py build
       - run: node --check site/app.js
+      - run: node --check site/catalog-model.js
+      - run: node --test tests/catalog-model.test.cjs
       - run: git diff --check

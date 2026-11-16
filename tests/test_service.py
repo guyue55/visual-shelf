@@ -24,6 +24,7 @@ class ServiceTests(unittest.TestCase):
         self.root = Path(self.tmp.name)
         for name in ('scripts', 'site', 'catalog', 'assets'):
             shutil.copytree(ROOT / name, self.root / name, ignore=shutil.ignore_patterns('__pycache__'))
+        shutil.copyfile(ROOT/'organization.json', self.root/'organization.json')
         self.command = ['bash', str(self.root / 'scripts' / 'service.sh')]
 
     def run_service(self, *args, expected=0):
@@ -45,7 +46,7 @@ class ServiceTests(unittest.TestCase):
         self.assertEqual(json.loads(state.read_text())['pid'], first['pid'])
         self.run_service('status')
         with urllib.request.urlopen(f'http://127.0.0.1:{port}/catalog.json', timeout=2) as response:
-            self.assertEqual(len(json.load(response)), len(list((self.root / 'catalog').glob('*.json'))))
+            self.assertEqual(len(json.load(response)), len(list((self.root / 'catalog').rglob('*.json'))))
         self.run_service('restart')
         second = json.loads(state.read_text())
         self.assertEqual(second['port'], port)

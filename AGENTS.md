@@ -46,10 +46,10 @@
 
 ## 4. 素材约定
 
-- 每个素材一个 `catalog/<id>.json`；路径为 `assets/<kind>/<slug>.<ext>`。id 与文件名采用英文小写短横线。
+- 每个素材一个 `catalog/**/<id>.json`；新增默认 `assets/<kind>/<归属>/<系列>/<组件>/<slug>.<ext>`，已有扁平素材路径保持稳定。分层依据 `organization.json` 与逐图 `organization`，见 `docs/HIERARCHY-AND-PAGES.md`。id 与文件名采用英文小写短横线。
 - 分类固定为 `logos`、`icons`、`legends`、`covers`；中文名与标签用于检索。具体字段与格式以实际校验器为准。
 - 不同项目/产品的素材按 `docs/ASSET-MANAGEMENT.md` 管理：先查实体与家族，区分主要归属和使用方，用标签与登记卡关联；不复制同一文件，不猜测归属。新 id 遵循用途、变体、修订、格式约定，旧路径保持稳定。
-- 当前没有结构化实体校验或自动统计命令；统计需记录依据、范围与未知项，不将管理规范描述为已实现能力。登记卡和快照不替代 catalog 的文件元数据。
+- 已实现归属/系列/组件引用校验与构建统计；登记卡补充品牌和使用记录，不替代 organization.json 与 catalog 元数据。统计仍需说明范围与未知项。
 - 创作默认使用 `scripts/studio.py prepare/review/accept`，遵循 `docs/TEMPLATE-WORKFLOW.md`。新图先放 .drafts，AI 检查后展示实际候选；用户明确满意且允许收录后才 accept，不得自行编造确认。文件改变后原确认失效。
 - library.py create 仅生成草稿；add 仅用于用户已确认的准确文件，必填真实 --approval-note。禁止通过低层函数或手写 catalog 绕过确认。
 - 已被引用的文件路径保持稳定；新增变体使用不同 id，以标签关联。修改内容后同步核对元数据和 SHA-256。

@@ -23,6 +23,8 @@ python3 scripts/library.py build
 
 # 前端语法和差异格式
 node --check site/app.js
+node --check site/catalog-model.js
+node --test tests/catalog-model.test.cjs
 git diff --check
 ```
 
@@ -107,7 +109,7 @@ python3 -m unittest discover -s tests -v
 
 ## 项目与产品管理
 
-归属、命名、版本和统计口径见 [docs/ASSET-MANAGEMENT.md](docs/ASSET-MANAGEMENT.md)。当前通过现有 tags 和 Markdown 登记卡执行人工管理；没有实体专属 CLI 参数、关系校验或自动统计命令。素材元数据仍以 catalog 为准，统计快照应注明依据与缺口。
+归属、命名、版本和统计口径见 [docs/ASSET-MANAGEMENT.md](docs/ASSET-MANAGEMENT.md)。已实现 organization.json 登记、递归 catalog、owner/series/component 关系校验和构建统计。add 与 studio accept 支持 --owner、--series、--component、重复 --function / --platform；create 可保存建议分组到草稿，accept 时验证后使用。详情见 [分层管理](docs/HIERARCHY-AND-PAGES.md)。
 
 ## 发布与历史记录
 

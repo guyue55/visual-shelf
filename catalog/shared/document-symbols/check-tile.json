@@ -13,5 +13,17 @@
   "author": "unknown",
   "created": "2026-11-16",
   "description": "原创参数化完成标记示例。",
-  "sha256": "6ff7b9907c20362d3a0d8df07893749c179505b770458bdb7fc19bf0159fdabd"
+  "sha256": "6ff7b9907c20362d3a0d8df07893749c179505b770458bdb7fc19bf0159fdabd",
+  "organization": {
+    "owner": "shared",
+    "series": "document-symbols",
+    "component": "document-tools",
+    "functions": [
+      "完成反馈"
+    ],
+    "platforms": [
+      "文档",
+      "Web"
+    ]
+  }
 }

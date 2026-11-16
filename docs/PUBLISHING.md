@@ -30,3 +30,7 @@ CI 不会发布，Pages 也不在 push 时自动发布。首次线上部署仍�
 - 外部项目可下载到自身项目，或引用固定 commit/tag 的远端素材。
 - Pages 地址随部署更新，适合希望跟随更新的使用场景；不要当成固定版本归档。
 - 发布前根据 RIGHTS.md 核对逐项许可；unknown 素材可用于自己评估，不自动表示具备公开再分发权。
+
+## 构建产物与子路径
+
+这是纯静态站点；Python 只在本地或 CI 构建时运行。必须发布 dist/（包含 index.html、app.js、catalog-model.js、style.css、catalog.json、organization.json、assets/、.nojekyll），不能把 site/ 直接作为完整站点。目录关系和统计来自源文件构建，不依赖在线数据库。query 筛选和 hash 详情分享不要求服务端路由重写。草稿、源字体及工具脚本不进入站点。详见 [调研和实现边界](HIERARCHY-AND-PAGES.md)。
