@@ -26,16 +26,51 @@ node --check site/app.js
 git diff --check
 ```
 
-## 本地预览
+## 本地预览：统一管理入口
+
+macOS / Linux、Bash、Python 3.11+。从任意目录都可用脚本绝对路径运行；在仓库根目录使用：
 
 ```sh
-python3 scripts/library.py build
-python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
+./scripts/service.sh start          # 构建并后台启动；重复执行不会多开
+./scripts/service.sh status         # 检查进程归属与 HTTP 健康状态
+./scripts/service.sh logs           # 最近 80 行服务日志
+./scripts/service.sh restart        # 停止后重新构建并启动，沿用受管端口
+./scripts/service.sh stop           # 只停止本脚本管理的进程；重复停止安全
+./scripts/service.sh --help
 ```
 
-打开 http://127.0.0.1:4173/ 。该命令会持续运行，结束预览时用 Ctrl+C 停止自己启动的服务；不终止不属于当前任务的进程。若端口被占用可换空闲端口。修改源文件后重新 build 并刷新页面。
+默认地址 http://127.0.0.1:4173/ ，以脚本实际输出为准。默认仅监听本机；后台进程可在终端退出后继续运行，不是开机自启或自动故障恢复服务。
+
+```sh
+./scripts/service.sh start --port 4174
+./scripts/service.sh restart --port 4175
+```
+
+- 可选 `VISUAL_SHELF_PYTHON=/绝对路径/python3` 指定解释器；不要用环境变量拼接附加命令参数。
+- 启动成功必须同时通过进程归属与 HTTP 检查，不以 PID 文件存在作为成功证据。
+- 已运行时再次 start 不重建；修改代码/素材后使用 restart，再刷新浏览器。原有 library.py build 仍可独立使用。
+- `.runtime/service.json` 保存受管 PID、端口和每次启动标识；`.runtime/service.log` 追加日志；`.runtime/service.lock` 为内核锁。运行文件均忽略提交，不要手动复制状态到其他仓库。
+- 管理命令通过内核锁串行互斥；遇到并发会立即报错，完成后再重试。锁文件存在不代表仍被锁定，不需要删除锁文件。
+- 退出码：0 为操作成功或服务健康；status 返回 1 为未运行/不健康；管理错误返回 2。stop 在已停止时返回 0；logs 无日志时返回 0。
+- 状态中的进程已退出或 PID 被复用时，stop 只清理过期记录，不向其他进程发信号。损坏的 JSON 状态会报错，先人工核对进程和日志，不能据此直接 kill。
+- 端口占用时明确报错，不自动抢占或偷偷换端口；指定空闲端口再启动。status 仅报告受管服务，不负责列出全部端口服务。
+- stop 使用 TERM 并等待；超时会保留状态并报错，不自动强杀。restart 会先停旧服务，构建/新启动失败时服务可能保持停止；检查日志和构建错误后重新 start，不承诺无停机更新。
+- 日志当前不自动轮转，需要时在服务停止后归档；不要把大量日志提交仓库。
 
 浏览器按改动检查搜索、分类、空态、详情、复制、下载、深浅背景和窄屏布局；新增素材需实际查看。
+
+### AI 操作顺序
+
+先运行 status。需要启动用 start；需要更新已有预览用 restart；用户要求停止用 stop。根据退出码和日志诊断，完成后再次 status 并报告实际 URL。不要使用 `pkill -f`、按端口强杀或绕过脚本创建第二个常驻预览；旧的手动 http.server 不会自动纳入脚本管理。
+
+## 服务脚本验证
+
+```sh
+bash -n scripts/service.sh
+python3 -m unittest discover -s tests -v
+```
+
+服务测试在临时副本、空闲端口运行，覆盖启动/重复启动/HTTP/重启/停止、其他进程占端口、过期 PID、损坏状态、并发互斥和构建失败；测试不会接管日常预览服务。
 
 ## 新增与创建
 

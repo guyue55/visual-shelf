@@ -23,6 +23,7 @@
 | 项目/产品归属、命名、版本、统计 | `docs/ASSET-MANAGEMENT.md`、`templates/entity-record.md`、`templates/inventory-report.md` |
 | 新增、修改、创建素材 | `CONTRIBUTING.md`、`RIGHTS.md`、相关 `catalog/*.json` |
 | 导入、校验、构建工具 | `scripts/library.py`、`tests/test_library.py`、`schemas/asset.schema.json` |
+| 启动、停止、重启、状态和日志 | `RTK.md`、`scripts/service.sh`、`scripts/service.py`、`tests/test_service.py` |
 | 页面与交互 | `site/index.html`、`site/app.js`、`site/style.css` |
 | 设计取舍、来源调研 | `docs/RESEARCH.md` |
 | GitHub 与发布 | `.github/workflows/`、`docs/PUBLISHING.md` |
@@ -78,6 +79,7 @@
 - 提交前检查 `git status --short` 和实际差异，只纳入本任务文件；提交说明使用 `type(scope): 中文说明`。
 - 不从“本地初始化/修改”推断用户要求创建远端、push、发布、授权第三方服务或变更公开范围。已有明确授权时继续执行，不重复请求。
 - Pages 当前为手动触发；不要未经任务授权改为自动发布。
+- 本地常驻预览统一使用 `scripts/service.sh start/stop/restart/status/logs`；操作前后核对 status 与实际 URL，更新预览用 restart。不要按端口强杀、模糊匹配进程或擅自接管旧的手动服务。
 - 不把构建成功描述为已部署，不把配置文件存在描述为云端验证成功。
 
 ## 7. 完成与交接

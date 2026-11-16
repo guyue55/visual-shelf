@@ -62,4 +62,6 @@ git diff --check
 
 涉及项目/产品或版本关系时，同时核对管理标签、登记卡、推荐 asset id 和使用位置；集中整理或交付前按 [统计模板](templates/inventory-report.md) 生成快照。状态标签不会隐藏网页素材，不能作为保密控制。
 
+使用 `./scripts/service.sh start` 启动，`restart` 更新预览，`stop` 停止；状态和排查见 [RTK.md](RTK.md)。
+
 在浏览器检查透明区域、深浅背景、移动端、搜索、下载和许可信息。CI 负责离线校验与构建，Pages 需手动发布。不要提交 dist/。

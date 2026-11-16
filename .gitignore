@@ -8,3 +8,6 @@ __pycache__/
 !.env.example
 node_modules/
 .playwright/
+
+# Local preview state and logs
+.runtime/

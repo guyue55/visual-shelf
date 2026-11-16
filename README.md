@@ -9,11 +9,21 @@
 需要 Python 3.11+；浏览器使用现代 Chrome、Edge、Firefox 或 Safari。没有第三方运行依赖。
 
 ```sh
-python3 scripts/library.py build
-python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
+./scripts/service.sh start
+./scripts/service.sh status
 ```
 
-打开 [本地预览](http://127.0.0.1:4173)。支持中英文名称/标签搜索、分类、排序、深浅背景预览、详情、下载、复制链接/Markdown/仓库路径/SVG。按 `/` 聚焦搜索，`Esc` 关闭弹窗。
+打开 [本地预览](http://127.0.0.1:4173)，以启动输出的实际端口为准。
+
+```sh
+./scripts/service.sh stop       # 停止
+./scripts/service.sh restart    # 重新构建并重启
+./scripts/service.sh logs       # 查看日志
+```
+
+脚本适用于 macOS/Linux，支持 `start --port 4174` 指定端口；端口冲突会报错，不会停止其他服务。状态和日志存于忽略提交的 `.runtime/`。完整行为、退出码与排查步骤见 [RTK.md](RTK.md)。
+
+预览支持中英文名称/标签搜索、分类、排序、深浅背景预览、详情、下载、复制链接/Markdown/仓库路径/SVG。按 `/` 聚焦搜索，`Esc` 关闭弹窗。
 
 网页用于浏览和取用；新增与创建通过本地命令完成。双击 HTML 无法加载索引，请通过 HTTP 服务打开。静态站点不需要账户、数据库或服务端 API。
 
@@ -32,7 +42,7 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 assets/       可直接引用的素材文件
 catalog/      每份素材独立 JSON，含来源、许可、标签与 SHA-256
 site/         中文预览页源文件
-scripts/      导入、创建、校验、构建工具
+scripts/      导入、创建、校验、构建与预览服务管理工具
 catalog.json  构建后位于 dist/，用于页面和其他工具读取
 schemas/      元数据 JSON Schema（供编辑器使用）
 templates/    创作需求和信息采集模板
