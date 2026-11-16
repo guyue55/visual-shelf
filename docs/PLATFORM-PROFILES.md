@@ -14,10 +14,12 @@
 | cover / web | 1600×900 / 1600×600 为项目探索值，重新安排背景/标题与署名，具体平台尺寸另核对 | 原生文字重排与背景等比 cover；复杂构图仍需图像或设计工具调整 |
 | pwa-maskable | 满幅、尽量不透明，关键字与章在中心半径 40% 的安全圆内 | 原生母版渲染并检查字形安全区；192/512 等实际清单按接入项目生成，不冒称 W3C 强制尺寸 |
 | macos-legacy-icns | 已适配的 1024 PNG → 完整 10 槽 iconset → ICNS | export-macos.sh 可打包；须核对目标应用兼容路线 |
-| android-adaptive | 独立 foreground/background，按需 monochrome；108×108 dp 图层、关键标记 66×66 dp 安全区 | 规范与索引，尚无 Android XML/分层自动导出 |
-| favicon | 16/32/48 等按实际网站要求，复杂山水和印章不能保证可读 | 规范，未实现 ICO 自动输出；先建议简化取舍，不擅自删章或换字体 |
+| android-adaptive | 独立 foreground/background，按需 monochrome；108×108 dp 图层、关键标记 66×66 dp 安全区 | 已提供前背景 PNG、五密度和 XML；monochrome 未生成，设备未验收 |
+| favicon | 16/32/48 PNG、多帧 ICO 与 SVG，固定短标记 | 已实现；带章默认与简化备选分开，需用户选择，不自动删章 |
 
 圆形只是形状之一。PWA/Android 所谓“圆形显示”常由系统施加 mask，和导出一个圆形透明 PNG 不是一回事。用户希望带章时应把章放在安全区内，不把它留在四角被系统裁掉。
+
+浏览器标签、触屏/PWA、分享图及全套导出见 [场景模板清单](SCENE-TEMPLATES.md)。
 
 ## Apple：现代路线与传统路线分开
 
@@ -48,4 +50,4 @@ MacRightClick 当前源码则走传统 `Resources/AppIcon.png → sips 多尺寸
 - 自动检查：真实解码尺寸、字体缺字、形状内文字/印章边界、PWA 安全区、alpha 及导出包槽数。
 - 人工检查：文字逐字、小尺寸、浅深背景、人物/主体是否裁切、章是否抢主体、目标环境实际显示。
 - 用户确认：只针对展示的准确版本；通过自动检查不等于用户满意，不自动 accept。
-- 本轮渲染与 ICNS 在 macOS 实测；未验证的 Android/现代 `.icon`/ICO 不作为已交付功能。
+- 本轮渲染与 ICNS 在 macOS 实测；Android 分层/ICO 已能实际生成但仍需目标环境验收；现代 `.icon` 仍不是本脚本已实现的输出。

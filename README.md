@@ -75,6 +75,10 @@ tests/        有实际边界意义的离线测试
 
 原生渲染命令 `./scripts/render-logo.sh --help`，当前需 macOS/Swift；传统图标打包命令 `./scripts/export-macos.sh 输入.png 新目录`。所有示例仍走草稿确认，不自动入库。字体文件及 OFL 许可位于 resources/fonts/mashanzheng。
 
+## 常用场景模板套件
+
+浏览器标签（SVG/PNG/多帧 ICO）、Apple Touch Icon、PWA any/maskable、分享图、web/封面、圆形/圆角 Logo、传统 macOS 图标包及 Android 分层资源均有模板入口。用 `python3 scripts/export-kit.py --help` 生成本地草稿套件；包括实际尺寸预览、接入片段和哈希清单，未批准不会替换站点或自动入库。完整能力与限制见 [场景模板清单](docs/SCENE-TEMPLATES.md)。
+
 ## 已登记产品
 
 - [MacRightClick · 右键助手](docs/entities/products/macrightclick.md)：主用月夜深蓝图标、两张浅色候选及真实引用位置。后续创作先读 [品牌与使用档案](docs/brands/products/macrightclick.md)；盘点与哈希见 [收录快照](docs/inventories/2026-11-16-macrightclick.md)。

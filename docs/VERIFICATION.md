@@ -49,3 +49,10 @@
 - 传统 macOS 1024 PNG → 10 槽 iconset → ICNS 实际打包成功，记录文件头与哈希。与现代 Apple `.icon` 分层路线分别说明；后者、Android 分层和 ICO 仍未实现自动导出。
 - 全量 33 项测试通过（含 6 项 macOS 原生渲染/导出测试）。macOS 原生测试验证字体 pin/缺字拒绝、1/2/3/4/6 字排版、形状内字形、alpha、PWA 安全圆与拒绝覆盖；Linux 会明确跳过此类原生测试。
 - 尚未完成用户视觉验收、Dock/Launchpad 或设备安装验收；已生成缩略图不等于小尺寸章文全部可辨。
+
+## 2026-11-16：浏览器标签与常用场景套件
+
+- 实际生成 185 文件草稿包，涵盖标签 SVG/PNG/ICO、Apple Touch、PWA、分享图、web/封面、Android 前背景/密度/XML 和传统 macOS ICNS。
+- 全量 37 项测试通过；实际套件另检查 ICO 帧偏移、manifest 引用/尺寸、Android 密度和字形安全区；系统识别 ICO 格式。
+- 浏览器工具拒绝 file:// 预览，本轮未进行该 HTML 或实际 favicon 接入验收；通过本地图像查看完成 32px 标签及分享图目视检查。
+- 全部仍是 .drafts，未入库、未修改站点图标、未部署。具体文件与限制见本轮 creation-runs 记录。

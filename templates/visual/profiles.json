@@ -1,11 +1,133 @@
 {
-  "circle-logo": {"canvas": [1024,1024], "mask": "circle", "use": "圆形个人 Logo / 头像", "safe_content": "主字和古月印章在圆内；背景允许裁切", "renderer": true},
-  "rounded-logo": {"canvas": [1024,1024], "mask": "rounded-square", "use": "通用圆角 Logo / 传统 macOS 位图候选", "warning": "不能直接当作现代 Icon Composer 图层", "renderer": true},
-  "square-master": {"canvas": [1024,1024], "mask": "none", "use": "无预裁切方形母版 / 现代 Apple 位图起点", "warning": "不是已完成的分层 Icon Composer 文件", "renderer": true},
-  "cover": {"canvas": [1600,900], "mask": "none", "use": "16:9 封面，实际平台另核对", "renderer": true},
-  "web": {"canvas": [1600,600], "mask": "none", "use": "web 横幅，内容按横向版式重排", "renderer": true},
-  "pwa-maskable": {"canvas": [1024,1024], "mask": "system", "use": "不透明满幅母版，关键元素在半径 40% 安全圆内", "renderer": true},
-  "macos-legacy-icns": {"input": [1024,1024], "format": "PNG + 10-slot iconset + ICNS", "exporter": "scripts/export-macos.sh", "warning": "与新 Icon Composer 路线分开，目标应用验证后才能交付"},
-  "android-adaptive": {"layers": ["foreground","background","monochrome-if-needed"], "layer_dp": [108,108], "safe_zone_dp": [66,66], "renderer": false, "warning": "有规范模板，尚无自动分层资源导出"},
-  "favicon": {"suggested_px": [16,32,48], "renderer": false, "warning": "需简化字标，古月在小尺寸不可读；先建议取舍，不自动更换字体或删印章"}
+  "circle-logo": {
+    "canvas": [
+      1024,
+      1024
+    ],
+    "mask": "circle",
+    "use": "圆形个人 Logo / 头像",
+    "safe_content": "主字和古月印章在圆内；背景允许裁切",
+    "renderer": true
+  },
+  "rounded-logo": {
+    "canvas": [
+      1024,
+      1024
+    ],
+    "mask": "rounded-square",
+    "use": "通用圆角 Logo / 传统 macOS 位图候选",
+    "warning": "不能直接当作现代 Icon Composer 图层",
+    "renderer": true
+  },
+  "square-master": {
+    "canvas": [
+      1024,
+      1024
+    ],
+    "mask": "none",
+    "use": "无预裁切方形母版 / 现代 Apple 位图起点",
+    "warning": "不是已完成的分层 Icon Composer 文件",
+    "renderer": true
+  },
+  "cover": {
+    "canvas": [
+      1600,
+      900
+    ],
+    "mask": "none",
+    "use": "16:9 封面，实际平台另核对",
+    "renderer": true
+  },
+  "web": {
+    "canvas": [
+      1600,
+      600
+    ],
+    "mask": "none",
+    "use": "web 横幅，内容按横向版式重排",
+    "renderer": true
+  },
+  "pwa-maskable": {
+    "canvas": [
+      1024,
+      1024
+    ],
+    "mask": "system",
+    "use": "不透明满幅母版，关键元素在半径 40% 安全圆内",
+    "renderer": true
+  },
+  "macos-legacy-icns": {
+    "input": [
+      1024,
+      1024
+    ],
+    "format": "PNG + 10-slot iconset + ICNS",
+    "exporter": "scripts/export-macos.sh",
+    "warning": "与新 Icon Composer 路线分开，目标应用验证后才能交付"
+  },
+  "android-adaptive": {
+    "layers": [
+      "foreground",
+      "background",
+      "monochrome-if-needed"
+    ],
+    "layer_dp": [
+      108,
+      108
+    ],
+    "safe_zone_dp": [
+      66,
+      66
+    ],
+    "renderer": true,
+    "warning": "已提供前背景和 v26 XML；未生成 monochrome，未在设备安装验证",
+    "master_px": [
+      1080,
+      1080
+    ],
+    "exporter": "scripts/export-kit.py",
+    "density_png_px": [
+      108,
+      162,
+      216,
+      324,
+      432
+    ]
+  },
+  "favicon": {
+    "canvas": [
+      256,
+      256
+    ],
+    "export_px": [
+      16,
+      32,
+      48
+    ],
+    "formats": [
+      "SVG",
+      "PNG",
+      "ICO"
+    ],
+    "renderer": true,
+    "exporter": "scripts/export-kit.py",
+    "warning": "默认带章，简化备选不自动启用；最多两字，需真实像素验收"
+  },
+  "apple-touch": {
+    "canvas": [
+      180,
+      180
+    ],
+    "mask": "none",
+    "renderer": true,
+    "warning": "满幅不透明，实际 Safari 添加主屏幕仍需验收"
+  },
+  "og-image": {
+    "canvas": [
+      1200,
+      630
+    ],
+    "renderer": true,
+    "warning": "项目分享预设；OG 使用真实绝对 URL，平台裁切另核对"
+  }
 }

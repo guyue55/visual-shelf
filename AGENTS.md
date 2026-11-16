@@ -27,6 +27,7 @@
 | 页面与交互 | `site/index.html`、`site/app.js`、`site/style.css` |
 | 设计取舍、来源调研 | `docs/RESEARCH.md` |
 | GitHub 与发布 | `.github/workflows/`、`docs/PUBLISHING.md` |
+| 浏览器标签、PWA、触屏、分享图与全套模板 | `docs/SCENE-TEMPLATES.md`、`scripts/export-kit.py` |
 | 古风偏好、古月印章、固定字体、形状与平台格式 | `docs/PERSONAL-STYLE.md`、`docs/PLATFORM-PROFILES.md`、`templates/visual/profiles.json` |
 | 模板制作、修改文案与确认收录 | `docs/TEMPLATE-WORKFLOW.md`、`templates/visual/styles.json`、`scripts/studio.py` |
 | AI 辅助制作、复用品牌与参考 | `docs/AI-CREATION.md`、`docs/CREATION-RECIPES.md`、实体链接的品牌档案 |

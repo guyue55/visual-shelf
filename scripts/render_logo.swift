@@ -9,7 +9,7 @@ func fail(_ message: String) -> Never {
 }
 let argv = Array(CommandLine.arguments.dropFirst())
 if argv.contains("--help") || argv.isEmpty {
-    print("render-logo.sh --background FILE --font FILE --text 阅 --profile circle-logo|rounded-logo|square-master|cover|web|pwa-maskable --theme light|dark --output DIR [--no-seal]")
+    print("render-logo.sh --background FILE --font FILE --text 阅 --profile circle-logo|rounded-logo|square-master|cover|web|pwa-maskable|favicon|apple-touch|og-image|android-adaptive --theme light|dark --output DIR [--no-seal]")
     exit(0)
 }
 var options: [String:String] = [:]
@@ -25,8 +25,9 @@ let text = options["text"]!
 let characters = Array(text)
 guard (1...12).contains(characters.count), !text.contains(where: { $0.isWhitespace }) else { fail("正文支持 1～12 个非空白字符，长标题请先明确断行方案") }
 let profile = options["profile"]!
-let allowed = ["circle-logo","rounded-logo","square-master","cover","web","pwa-maskable"]
+let allowed = ["circle-logo","rounded-logo","square-master","cover","web","pwa-maskable","favicon","apple-touch","og-image","android-adaptive"]
 guard allowed.contains(profile), ["light","dark"].contains(options["theme"]!) else { fail("未知 profile 或 theme") }
+if profile == "favicon" && characters.count > 2 { fail("标签图标最多两字；请先明确短标记，不能把长标题缩成字墙") }
 let fm = FileManager.default
 let output = URL(fileURLWithPath: options["output"]!, isDirectory:true)
 guard !fm.fileExists(atPath:output.path) else { fail("输出目录已存在，拒绝覆盖") }
@@ -47,8 +48,8 @@ func glyphPath(_ string: String) -> CGPath {
 for char in characters { _ = glyphPath(String(char)) }
 _ = glyphPath("古"); _ = glyphPath("月")
 guard let imageSource = CGImageSourceCreateWithURL(URL(fileURLWithPath:options["background"]!) as CFURL,nil), let background = CGImageSourceCreateImageAtIndex(imageSource,0,nil) else { fail("背景无法解码") }
-let width = profile == "cover" || profile == "web" ? 1600 : 1024
-let height = profile == "cover" ? 900 : (profile == "web" ? 600 : 1024)
+let width = profile == "cover" || profile == "web" ? 1600 : (profile == "og-image" ? 1200 : (profile == "apple-touch" ? 180 : (profile == "favicon" ? 256 : (profile == "android-adaptive" ? 1080 : 1024))))
+let height = profile == "cover" ? 900 : (profile == "web" ? 600 : (profile == "og-image" ? 630 : width))
 let w = CGFloat(width), h = CGFloat(height)
 let colorSpace = CGColorSpace(name: CGColorSpace.sRGB)!
 guard let context = CGContext(data:nil,width:width,height:height,bitsPerComponent:8,bytesPerRow:width*4,space:colorSpace,bitmapInfo:CGImageAlphaInfo.premultipliedLast.rawValue) else { fail("无法创建画布") }
@@ -67,9 +68,11 @@ context.addPath(outline); context.clip()
 context.setFillColor(color(dark ? "102334" : "EAE2D2")); context.fill(CGRect(x:0,y:0,width:w,height:h))
 let scale = max(w/CGFloat(background.width),h/CGFloat(background.height))
 let bw = CGFloat(background.width)*scale, bh = CGFloat(background.height)*scale
-context.draw(background,in:CGRect(x:(w-bw)/2,y:(h-bh)/2,width:bw,height:bh))
+if profile != "favicon" { context.draw(background,in:CGRect(x:(w-bw)/2,y:(h-bh)/2,width:bw,height:bh)) }
+let backgroundLayer = context.makeImage()!
 // Glyph paths, never synthesized lettering, fit uniformly into measured cells.
 var glyphRecords: [[String:Any]] = []
+var placedPaths: [CGPath] = []
 func svgPath(_ path:CGPath) -> String {
     var parts:[String]=[]
     path.applyWithBlock { element in
@@ -93,6 +96,7 @@ func drawGlyph(_ value:String, _ cell:CGRect, _ fill:CGColor, _ role:String) {
     var matrix = CGAffineTransform(a:s,b:0,c:0,d:s,tx:x-b.minX*s,ty:y-b.minY*s)
     let placed = p.copy(using:&matrix)!
     context.setFillColor(fill); context.addPath(placed); context.fillPath()
+    placedPaths.append(placed)
     let bounds = placed.boundingBoxOfPath
     glyphRecords.append(["text":value,"role":role,"x":bounds.minX,"y":bounds.minY,"width":bounds.width,"height":bounds.height,"svg_path":svgPath(placed)])
 }
@@ -107,6 +111,8 @@ else if characters.count <= 9 { cols=3; rows=(characters.count+2)/3 }
 else { cols=4; rows=3 }
 var box: CGRect
 if landscape { box=CGRect(x:w*0.18,y:h*0.30,width:w*0.64,height:h*0.48) }
+else if profile == "favicon" { box=CGRect(x:w*0.12,y:h*0.14,width:w*(options["no-seal"] == nil ? 0.62:0.76),height:h*0.72) }
+else if profile == "android-adaptive" { box=CGRect(x:w*0.32,y:h*0.38,width:w*0.36,height:h*0.32) }
 else if profile == "pwa-maskable" { box=CGRect(x:w*0.28,y:h*0.34,width:w*0.44,height:h*0.40) }
 else if characters.count == 1 { box=CGRect(x:w*0.285,y:h*0.32,width:w*0.46,height:h*0.47) }
 else { box=CGRect(x:w*0.25,y:h*0.34,width:w*0.49,height:h*0.44) }
@@ -120,6 +126,8 @@ for (index,char) in characters.enumerated() {
 }
 let stamp: CGRect
 if landscape { stamp=CGRect(x:w*0.84,y:h*0.31,width:h*0.09,height:h*0.19) }
+else if profile == "favicon" { stamp=CGRect(x:w*0.79,y:h*0.25,width:w*0.10,height:h*0.25) }
+else if profile == "android-adaptive" { stamp=CGRect(x:w*0.66,y:h*0.40,width:w*0.05,height:h*0.12) }
 else if profile == "pwa-maskable" { stamp=CGRect(x:w*0.69,y:h*0.36,width:w*0.065,height:h*0.14) }
 else { stamp=CGRect(x:w*0.77,y:h*0.35,width:w*0.075,height:h*0.17) }
 if options["no-seal"] == nil {
@@ -137,6 +145,17 @@ func writePNG(_ image:CGImage,_ url:URL) {
     if !CGImageDestinationFinalize(destination) { fail("PNG 保存失败") }
 }
 writePNG(final,output.appendingPathComponent("logo.png"))
+writePNG(backgroundLayer,output.appendingPathComponent("background-layer.png"))
+let foregroundContext=CGContext(data:nil,width:width,height:height,bitsPerComponent:8,bytesPerRow:width*4,space:colorSpace,bitmapInfo:CGImageAlphaInfo.premultipliedLast.rawValue)!
+for (index,path) in placedPaths.enumerated() {
+    foregroundContext.setFillColor((glyphRecords[index]["role"] as! String)=="main" ? ink:stampColor)
+    foregroundContext.addPath(path); foregroundContext.fillPath()
+}
+if options["no-seal"] == nil {
+    foregroundContext.setStrokeColor(stampColor);foregroundContext.setLineWidth(w*0.003)
+    foregroundContext.addPath(CGPath(roundedRect:stamp,cornerWidth:w*0.007,cornerHeight:w*0.007,transform:nil));foregroundContext.strokePath()
+}
+writePNG(foregroundContext.makeImage()!,output.appendingPathComponent("foreground-layer.png"))
 var svg="<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 \(width) \(height)\"><g transform=\"translate(0 \(height)) scale(1 -1)\">"
 for rec in glyphRecords {
     let hex=(rec["role"] as! String)=="main" ? (dark ? "F1E2BE":"211F1B") : (dark ? "CF6650":"A63A30")
@@ -147,7 +166,7 @@ if options["no-seal"] == nil {
 }
 svg += "</g></svg>"
 try svg.write(to:output.appendingPathComponent("foreground.svg"),atomically:true,encoding:.utf8)
-for size in [32,64,128,256] {
+for size in [16,32,48,64,128,192,256,512] {
     let ph=Int(CGFloat(size)*h/w)
     let c=CGContext(data:nil,width:size,height:ph,bitsPerComponent:8,bytesPerRow:size*4,space:colorSpace,bitmapInfo:CGImageAlphaInfo.premultipliedLast.rawValue)!
     c.interpolationQuality = .high; c.draw(final,in:CGRect(x:0,y:0,width:size,height:ph))
@@ -171,6 +190,14 @@ if profile == "pwa-maskable" {
     }
     record["maskable_glyph_safe_zone_passed"]=valid
     if !valid { fail("文字超出 PWA safe zone，不可交付") }
+}
+if profile == "android-adaptive" {
+    let safe=glyphRecords.allSatisfy { rec in
+        let x=rec["x"] as! CGFloat,y=rec["y"] as! CGFloat,gw=rec["width"] as! CGFloat,gh=rec["height"] as! CGFloat
+        return [CGPoint(x:x,y:y),CGPoint(x:x+gw,y:y),CGPoint(x:x,y:y+gh),CGPoint(x:x+gw,y:y+gh)].allSatisfy { hypot($0.x-w/2,$0.y-h/2)<=w*33/108 }
+    }
+    record["android_glyph_safe_zone_passed"]=safe
+    if !safe { fail("关键元素超出 Android 安全圆") }
 }
 let recordData=try JSONSerialization.data(withJSONObject:record,options:[.prettyPrinted,.sortedKeys])
 try recordData.write(to:output.appendingPathComponent("render.json"))

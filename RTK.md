@@ -97,6 +97,10 @@ python3 -m unittest discover -s tests -v
 
 渲染仅适用于 macOS/Swift，使用固定字体轮廓，默认古月章；`--no-seal` 仅在用户明确要求时使用。每次输出到新目录，不覆盖已展示候选。支持配置见 [平台规范](docs/PLATFORM-PROFILES.md)，个人偏好与字数规则见 [个人规范](docs/PERSONAL-STYLE.md)。原生字体/alpha/布局测试在 macOS 运行，Linux 自动跳过；ICNS 输出不能代替目标环境视觉验收。
 
+## 常用场景整套导出
+
+`python3 scripts/export-kit.py --help` 提供浏览器标签、触屏/PWA、分享图、Android 前背景和传统 macOS 等草稿导出。当前依赖 macOS/Swift/sips/iconutil。详情见 [docs/SCENE-TEMPLATES.md](docs/SCENE-TEMPLATES.md)。输出只允许 .drafts 下的新目录；不得把草稿接入当前站点冒充已批准。
+
 ## AI 辅助创作
 
 读取 [docs/AI-CREATION.md](docs/AI-CREATION.md) 与 [docs/CREATION-RECIPES.md](docs/CREATION-RECIPES.md)，再定位实体品牌档案。当前是 AI 可遵循的文件协议，没有自动上下文导出或生成 API 命令；不要虚构 CLI 参数。

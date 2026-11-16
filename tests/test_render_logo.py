@@ -54,3 +54,14 @@ class RenderTests(unittest.TestCase):
         self.assertEqual(len(list((output/'AppIcon.iconset').glob('*.png'))),10)
         repeated=subprocess.run([str(ROOT/'scripts/export-macos.sh'),str(source),str(output)],capture_output=True,timeout=45)
         self.assertNotEqual(repeated.returncode,0)
+
+    def test_browser_and_android_profiles(self):
+        for profile,dimensions in [('favicon',(256,256)),('apple-touch',(180,180)),('og-image',(1200,630)),('android-adaptive',(1080,1080))]:
+            output=self.render('阅',profile=profile,name=profile)
+            data=json.loads((output/'render.json').read_text())
+            self.assertEqual((data['width'],data['height']),dimensions)
+            self.assertTrue((output/'foreground-layer.png').exists())
+            self.assertTrue((output/'background-layer.png').exists())
+            if profile=='android-adaptive':
+                self.assertTrue(data['android_glyph_safe_zone_passed'])
+        self.render('古月阅',profile='favicon',name='too-long-tab',expected=1)

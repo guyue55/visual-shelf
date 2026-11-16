@@ -40,7 +40,7 @@ def prepare(args):
     check_file(file)
     reference_file = 'reference' + file.suffix.lower()
     shutil.copyfile(file, directory / reference_file)
-    profile = getattr(args, 'profile', None) or {'web':'web','cover':'cover','logo':'circle-logo','app-icon':'square-master'}[args.purpose]
+    profile = getattr(args, 'profile', None) or {'web':'web','cover':'cover','logo':'circle-logo','app-icon':'square-master','favicon':'favicon','apple-touch':'apple-touch','pwa':'pwa-maskable','android-icon':'android-adaptive','share-card':'og-image'}[args.purpose]
     platform = getattr(args, 'platform', 'unspecified')
     seal = 'none' if getattr(args, 'no_seal', False) else '古月'
     task = dict(job=args.job, style=args.style, purpose=args.purpose, text=args.text,
@@ -51,7 +51,12 @@ def prepare(args):
     sizes = {'web':'横幅构图；未指定尺寸时先以 1600×600 探索，布局需重新设计，不拉伸圆角图标',
              'cover':'16:9，1600×900 探索；真实平台尺寸另核对，保留标题安全区域',
              'logo':'以 1:1 探索；保留识别主体，复杂纹理可建议简化，位图不冒充矢量',
-             'app-icon':'1:1，1024×1024 起点；先确定目标平台与现代分层/传统位图路线，不默认预裁圆角'}
+             'app-icon':'1:1，1024×1024 起点；先确定目标平台与现代分层/传统位图路线，不默认预裁圆角',
+             'favicon':'16/32/48 实际尺寸检查，固定字体，默认带章并另给简化备选；SVG/PNG/ICO 分别验证',
+             'apple-touch':'180×180 满幅图标起点，实际 Safari 设备效果另验收',
+             'pwa':'192/512 any 与 maskable 分开，关键内容在安全区内',
+             'android-icon':'前景/背景分层与按密度输出，关键内容适配 108dp 中央 66dp',
+             'share-card':'1200×630 项目分享预设，接入平台另核对，OG URL 需真实绝对地址'}
     prompt = f'''# 制作任务 {args.job}
 
 - 已确认喜欢的风格：{style['name']}；{style['direction']}。
@@ -133,7 +138,7 @@ def accept(args):
                 reference=task['reference'], approved_at=datetime.now(timezone.utc).isoformat())
     if task.get('render'):
         note['render'] = task['render']
-    kind = task.get('kind') or ('covers' if task['purpose'] in ('web','cover') else 'logos')
+    kind = task.get('kind') or ('covers' if task['purpose'] in ('web','cover','share-card') else 'logos')
     item = add(candidate, args.id, args.name, kind,
                [f'owner:{args.owner}', f'family:{args.family}', f'variant:{args.variant}',
                 f'revision:{args.revision}', 'status:ready', '用户已确认', task['purpose'], *args.tags.split(',')],
@@ -152,11 +157,11 @@ def main():
     p = sub.add_parser('prepare')
     p.add_argument('--job', required=True)
     p.add_argument('--style', choices=['ink-light-a','ink-light-b','moonlit-blue'], required=True)
-    p.add_argument('--purpose', choices=['web','cover','logo','app-icon'], required=True)
+    p.add_argument('--purpose', choices=['web','cover','logo','app-icon','favicon','apple-touch','pwa','android-icon','share-card'], required=True)
     p.add_argument('--text', default='')
     p.add_argument('--owner', default='unknown')
     p.add_argument('--instructions', default='')
-    p.add_argument('--profile', choices=['circle-logo','rounded-logo','square-master','cover','web','pwa-maskable','macos-legacy-icns','android-adaptive','favicon'])
+    p.add_argument('--profile', choices=['circle-logo','rounded-logo','square-master','cover','web','pwa-maskable','macos-legacy-icns','android-adaptive','favicon','apple-touch','og-image'])
     p.add_argument('--platform', default='unspecified', help='例如 generic/macOS/PWA/Android；未指定时正式导出前补充')
     p.add_argument('--no-seal', action='store_true', help='仅在用户明确要求无印章时使用')
     p = sub.add_parser('review')
