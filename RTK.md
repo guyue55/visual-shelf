@@ -1,26 +1,54 @@
-# 我的图标 · Repository Task Kit
+# 我的图标 · 运行手册
 
-## 项目定位
+通用 AI 协作规则见 [AGENTS.md](AGENTS.md)。本文件只维护运行命令和实现边界。
 
-个人视觉素材库，管理 logos、icons、legends、covers。仓库文件是唯一事实来源，静态网站是生成的消费入口。
+## 环境与验证
 
-## 开发入口
+在仓库根目录运行。需要 Python 3.11+；JS 语法检查需要 Node.js。运行与构建无需安装第三方依赖。
 
-- Python 3.11+ 标准库；前端原生 HTML/CSS/JS；没有必须安装的依赖。
-- `python3 scripts/library.py validate`：元数据、哈希、路径、重复内容、SVG 静态子集校验。
-- `python3 -m unittest discover -s tests -v`：导入与构建边界测试。
-- `python3 scripts/library.py build`：输出到 `dist/`。
-- `python3 -m http.server 4173 --bind 127.0.0.1 --directory dist`：本地预览。
-- `node --check site/app.js` 和 `git diff --check`：提交前检查。
+```sh
+# 查看命令帮助
+python3 scripts/library.py --help
+python3 scripts/library.py add --help
+python3 scripts/library.py create --help
 
-## 维护约定
+# 素材、元数据、哈希、重复内容及 SVG 静态子集
+python3 scripts/library.py validate
 
-- 先读 README、CONTRIBUTING、docs/RESEARCH.md；核对真实素材和元数据。
-- 每个素材一个 `catalog/<id>.json`；文件路径稳定，使用英文小写短横线。
-- 来源、许可、作者不确定时用 `unknown`；不把集合许可推断为品牌商标许可。
-- 示例素材为初始化时生成的参数化 SVG，不冒充真实品牌 Logo。
-- 原始设计工程和大文件不混入分发目录；单文件最大 5 MiB。
-- 不盲目优化品牌路径；不内联导入的 SVG。SVG 使用明确的静态白名单，复杂内容需人工清理。
-- 未获得明确授权，不创建远端仓库、不 push、不发布；Pages 工作流只允许手动触发。
-- 只修改当前任务相关文件，保留他人改动。中文提交说明，例如 `feat(library): 初始化个人视觉素材库`。
-- 不要将别的仓库的 RTK.md 当作本项目规则。上层磁盘迁移手册只在实际执行迁移时适用。
+# 工具行为与边界测试
+python3 -m unittest discover -s tests -v
+
+# 生成网站和目录；只替换 dist/
+python3 scripts/library.py build
+
+# 前端语法和差异格式
+node --check site/app.js
+git diff --check
+```
+
+## 本地预览
+
+```sh
+python3 scripts/library.py build
+python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
+```
+
+打开 http://127.0.0.1:4173/ 。该命令会持续运行，结束预览时用 Ctrl+C 停止自己启动的服务；不终止不属于当前任务的进程。若端口被占用可换空闲端口。修改源文件后重新 build 并刷新页面。
+
+浏览器按改动检查搜索、分类、空态、详情、复制、下载、深浅背景和窄屏布局；新增素材需实际查看。
+
+## 新增与创建
+
+完整参数和示例见 [CONTRIBUTING.md](CONTRIBUTING.md)，创作需求见 [templates/creation-brief.md](templates/creation-brief.md)。
+
+- `add` 导入文件，`create` 创建 SVG 模板；两者登记后均需 build 才更新预览。
+- `create` 当前支持 covers、legends、icons；不提供品牌 Logo 或 AI 模型生成。
+- 文件与 `catalog/` 为可维护源，`dist/catalog.json` 为生成索引。
+- Schema 供编辑器参考；运行时实际准入规则以 `scripts/library.py` 为准。
+- 位图仅检查签名和大小；SVG 是受限白名单，不能宣称通用清洗或完整图像解码验证。
+
+## 发布与历史记录
+
+- 发布方式见 [docs/PUBLISHING.md](docs/PUBLISHING.md)，以实际远端配置和工作流执行结果为准。
+- [docs/RESEARCH.md](docs/RESEARCH.md) 是选型背景；[docs/VERIFICATION.md](docs/VERIFICATION.md) 是初始化时的历史验证，不代表此后改动已通过。
+- 本手册仅适用于本仓库，不引入其他项目的运行、磁盘迁移或部署约定。

@@ -61,6 +61,16 @@ python3 scripts/library.py build
 - `pages.yml`：仅手动触发的 Pages 发布；需要先在 GitHub 设置 Pages 来源为 GitHub Actions。
 - 本地构建无需网络，第三方 CDN 不参与页面运行。
 
+## 使用 AI 维护
+
+将仓库交给 AI 助手时，让它先读取 [AGENTS.md](AGENTS.md)。这里集中维护项目结构、工作流程、素材规范、验证与交接要求；[RTK.md](RTK.md) 提供实际命令。[CLAUDE.md](CLAUDE.md) 是轻量入口，引用同一份规则。
+
+不同工具自动加载项目说明的方式可能不同，本项目不保证所有工具自动识别；手动指定读取 `AGENTS.md` 即可，无需安装专属插件。可直接使用以下开场指令：
+
+> 请先读取 AGENTS.md 和 RTK.md，检查当前工作区，再完成以下任务：……。按改动范围验证，并说明完成内容与未验证项。
+
+跨会话继续时可使用 [任务交接模板](templates/task-handoff.md)。添加其他工具入口时只引用 `AGENTS.md`，避免复制出多套规则。
+
 ## 许可
 
 目前没有为整个项目指定统一开放许可。代码、原创素材的许可由库主人后续决定；第三方素材始终遵守各自的版权、许可与商标要求。`unknown` 表示未核实，不表示可自由商用。详见 [RIGHTS.md](RIGHTS.md)。
