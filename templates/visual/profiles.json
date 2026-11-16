@@ -7,7 +7,8 @@
     "mask": "circle",
     "use": "圆形个人 Logo / 头像",
     "safe_content": "主字和古月印章在圆内；背景允许裁切",
-    "renderer": true
+    "renderer": true,
+    "main_alignment": "layout_version=2：正文实际轮廓联合边界居中于画布；印章独立定位，不计入正文中心；误差≤0.5px"
   },
   "rounded-logo": {
     "canvas": [
@@ -17,7 +18,8 @@
     "mask": "rounded-square",
     "use": "通用圆角 Logo / 传统 macOS 位图候选",
     "warning": "不能直接当作现代 Icon Composer 图层",
-    "renderer": true
+    "renderer": true,
+    "main_alignment": "layout_version=2：正文实际轮廓联合边界居中于画布；印章独立定位，不计入正文中心；误差≤0.5px"
   },
   "square-master": {
     "canvas": [
@@ -27,7 +29,8 @@
     "mask": "none",
     "use": "无预裁切方形母版 / 现代 Apple 位图起点",
     "warning": "不是已完成的分层 Icon Composer 文件",
-    "renderer": true
+    "renderer": true,
+    "main_alignment": "layout_version=2：正文实际轮廓联合边界居中于画布；印章独立定位，不计入正文中心；误差≤0.5px"
   },
   "cover": {
     "canvas": [
@@ -120,7 +123,8 @@
     ],
     "mask": "none",
     "renderer": true,
-    "warning": "满幅不透明，实际 Safari 添加主屏幕仍需验收"
+    "warning": "满幅不透明，实际 Safari 添加主屏幕仍需验收",
+    "main_alignment": "layout_version=2：正文实际轮廓联合边界居中于画布；印章独立定位，不计入正文中心；误差≤0.5px"
   },
   "og-image": {
     "canvas": [

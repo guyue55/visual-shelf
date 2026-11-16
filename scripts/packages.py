@@ -168,6 +168,8 @@ def archive(args, root=ROOT):
         raise ValueError('背景须包含在已确认来源中')
     for profile in kit['profiles']:
         render=read_json(source/profile/'render.json')
+        if render.get('layout_version',0) < 2 or not render.get('main_center_check_passed'):
+            raise ValueError('归档需使用 layout_version=2 重新生成并确认；旧布局不能作为新包收录')
         if render['background_sha256'] != bg['sha256']:
             raise ValueError('套件渲染背景与来源不一致')
     target.parent.mkdir(exist_ok=True)
@@ -184,7 +186,7 @@ def archive(args, root=ROOT):
         write_json(staging/'source-assets.json',assets)
         data={'version':1,'id':args.id,'name':args.name,'state':'approved','created':stamp(),
               'text':kit['text'],'theme':read_json(source/'rounded-logo/render.json')['theme'],
-              'font':kit['font'],'default_seal':kit['default_seal'],'surfaces':list(SURFACES),
+              'font':kit['font'],'default_seal':kit['default_seal'],'layout_version':2,'surfaces':list(SURFACES),
               'entrypoints':{key:['payload/'+x for x in value] for key,value in ENTRYPOINTS.items()},
               'source_assets':args.asset,'background_asset':args.background_asset,
               'approval':{'user_confirmation':args.approval,'approved_at':stamp(),'original_file_count':len(original),
@@ -200,7 +202,21 @@ def selected_payload(name, surfaces):
     return any(name.startswith(PREFIXES[s]) or (s=='web' and name in WEB_ROOT) or (s=='cover' and name=='og-image.png') for s in surfaces)
 
 
+def advisory(root, section, identifier):
+    path=root/'packages/advisories.json'
+    if not path.exists():
+        return None
+    return read_json(path).get(section,{}).get(identifier)
+
+
+def require_exportable(root, section, identifier):
+    notice=advisory(root,section,identifier)
+    if notice and notice.get('block_export'):
+        raise ValueError(f"该版本有待修正问题，暂停新导出：{notice['reason']}；见 {notice['record']}")
+
+
 def export(args, root=ROOT):
+    require_exportable(root,'packages',args.id)
     source=package_dir(root,args.id);data=verifier(root)(source)
     if data['state']!='approved':
         raise ValueError('只能导出已确认交付包')
@@ -231,6 +247,7 @@ def export(args, root=ROOT):
 
 def asset(args, root=ROOT):
     """Deliver an approved single file without inventing platform variants."""
+    require_exportable(root,'assets',args.id)
     records={x['id']:x for x in validate(root)}
     item=records[args.id]
     if not item.get('approval'):
@@ -275,7 +292,7 @@ def main():
             data=verifier(ROOT)(args.directory);print(f"VERIFIED：{data['id']}；{len(data['files'])} 个文件")
         elif args.command=='list':
             for path in sorted((ROOT/'packages').glob('*/package.json')):
-                data=verifier(ROOT)(path.parent);print(data['id'],data['state'],data['name'],','.join(data['surfaces']))
+                data=verifier(ROOT)(path.parent);print(data['id'],data['state'],data['name'],','.join(data['surfaces']), '暂停新导出：'+advisory(ROOT,'packages',data['id'])['reason'] if advisory(ROOT,'packages',data['id']) else '')
         else:globals()[args.command](args)
     except (ValueError,OSError,KeyError,TypeError) as exc:parser.exit(1,f'失败：{exc}\n')
 

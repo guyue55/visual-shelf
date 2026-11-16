@@ -26,6 +26,20 @@ class RenderTests(unittest.TestCase):
         self.assertTrue(data['all_glyph_bounds_inside_shape'])
         self.assertEqual(data['alpha_bottom_left'],0)
         self.assertEqual(data['alpha_center'],255)
+    def test_main_outline_center_is_canvas_center_and_seal_independent(self):
+        for profile,text,no_seal in [('circle-logo','阅',False),('rounded-logo','阅',False),('square-master','古月阅',False),('circle-logo','古月',True)]:
+            output=self.render(text,profile=profile,name=profile+str(no_seal),extra=('--no-seal',) if no_seal else ())
+            data=json.loads((output/'render.json').read_text())
+            self.assertEqual(data['layout_version'],2)
+            self.assertEqual(data['main_center_policy'],'canvas-center')
+            glyphs=[x for x in data['glyphs'] if x['role']=='main']
+            center_x=(min(x['x'] for x in glyphs)+max(x['x']+x['width'] for x in glyphs))/2
+            center_y=(min(x['y'] for x in glyphs)+max(x['y']+x['height'] for x in glyphs))/2
+            self.assertAlmostEqual(center_x,data['width']/2,delta=0.5)
+            self.assertAlmostEqual(center_y,data['height']/2,delta=0.5)
+            self.assertTrue(data['main_center_check_passed'])
+            self.assertTrue(data['all_glyph_bounds_inside_shape'])
+
     def test_multichar_layout_and_bounds(self):
         for text,cols,rows in [('古月',2,1),('古月阅',2,2),('古月读书',2,2),('古月读书手记',3,2)]:
             output=self.render(text,name='n'+str(len(text)))

@@ -51,3 +51,7 @@ MacRightClick 当前源码则走传统 `Resources/AppIcon.png → sips 多尺寸
 - 人工检查：文字逐字、小尺寸、浅深背景、人物/主体是否裁切、章是否抢主体、目标环境实际显示。
 - 用户确认：只针对展示的准确版本；通过自动检查不等于用户满意，不自动 accept。
 - 本轮渲染与 ICNS 在 macOS 实测；Android 分层/ICO 已能实际生成但仍需目标环境验收；现代 `.icon` 仍不是本脚本已实现的输出。
+
+## 正文居中检查
+
+通用 Logo/方形母版/Apple Touch 采用 layout_version=2 的正文轮廓联合边界居中；印章独立定位。favicon、maskable/adaptive 与横向构图采用各自标题区，必须记录预期中心和通过结果，并与安全区检查同时执行。几何中心不自动代表书法光学满意，最终仍展示实际尺寸。旧阅字 v02 的偏移及修正规则见 [复核记录](creation-runs/2026-11-16-yue-centering-correction.md)。

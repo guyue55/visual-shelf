@@ -133,3 +133,7 @@ python3 scripts/library.py build
 底图 A/C、阅字 Logo A/B 和原 185 文件套件已依据用户明确确认收录。详情见 [确认与交付记录](docs/creation-runs/2026-11-16-approved-guyue-assets.md)。浅色 B 瑕疵底图仍待修。
 
 需要使用时可以说：“把这份图例打个 AI 接入包”，或“导出阅的 Web / macOS 包”。AI 先复用已确认文件，不重复问是否满意；目标缺失时只补问必要的用途。每包包含来源、确认、入口、哈希、README/AGENTS 与独立校验；整套还包含原背景、固定字体/OFL 和原生渲染器。命令和文件位置见 [交付包规范](docs/DELIVERY-PACKAGES.md)。
+
+## 阅字居中复核
+
+用户提出居中疑问后，确认旧 v02 主字偏右/偏上，已修正通用渲染规则并生成 v03 候选待核查。两份旧字标标为已替代，旧交付包暂停新导出，原字节和确认留档；未将修正版擅自收录。见 [修正证据与候选](docs/creation-runs/2026-11-16-yue-centering-correction.md)。

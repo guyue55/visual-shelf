@@ -129,3 +129,7 @@ python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v02-png --o
 ```
 
 archive/export/asset 均拒绝覆盖；正式包只接受明确确认的套件及素材来源。收件人读 README.md / AGENTS.md / package.json 后运行包内 VERIFY.py，即可按相对入口接入。原文件打包不重新确认，新增文案和适配重新出草稿。
+
+## 居中复核
+
+新渲染使用 layout_version=2，核对 main_center_policy、main_center_expected/actual、main_canvas_offset 和 main_center_check_passed，并实际查看图片。旧阅字 v02/套件有 advisories，packages.py list 会显示，export/asset 会拒绝新导出；不是文件损坏，勿删除或重写旧清单。修正版候选在 .drafts/yue-circle-v03-centered、.drafts/yue-rounded-v03-centered，待用户核查后另行 accept 和导出新版本。

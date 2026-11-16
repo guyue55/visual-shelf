@@ -59,6 +59,7 @@ def prepare(args):
                 background_sha256=background['sha256'] if background else None,
                 accepted_examples=style.get('accepted_examples', []),
                 delivery_packages=style.get('delivery_packages', []),
+                layout_notice=style.get('layout_notice'),
                 reference_file=reference_file, reference_sha256=digest(file), state='prepared', created=datetime.now(timezone.utc).isoformat())
     save(directory / 'task.json', task)
     sizes = {'web':'横幅构图；未指定尺寸时先以 1600×600 探索，布局需重新设计，不拉伸圆角图标',
@@ -79,6 +80,7 @@ def prepare(args):
 - 准确主文案：{args.text or 'unknown；若涉及准确字标需补充'}。
 - 主要归属：{args.owner}。它与参考图来源产品不是同一概念，不自动署名 MacRightClick。
 - 已确认样例：{", ".join(style.get("accepted_examples", [])) or "无"}；可直接复用的交付包：{", ".join(style.get("delivery_packages", [])) or "无"}。先查已确认资源，再决定是否需要新制作。
+- 排版复核提示：{style.get("layout_notice") or "无已登记问题；仍需核对主字轮廓和目标中心"}。
 - 本次附加要求：{args.instructions or '无'}。
 - 实际参考：{reference_file}；source asset id：{style['reference']}。
 - 已确认无字底图：{background['id'] if background else '无；如需清理背景按实际任务制作'}；{('已复制为 background.png，可直接用于固定字体合成，不必再次去字去章' if background else '没有可复用底图时才进行背景编辑')}。
@@ -123,7 +125,9 @@ def review(args):
             raise ValueError('渲染记录与当前 PNG 不符，请重新渲染或更新记录后再 review')
         keys = ('profile', 'width', 'height', 'text', 'font_postscript', 'font_sha256',
                 'background_sha256', 'foreground_sha256', 'seal', 'theme',
-                'layout_columns', 'layout_rows', 'color_space', 'os_version')
+                'layout_columns', 'layout_rows', 'color_space', 'os_version', 'layout_version',
+                'main_center_policy', 'coordinate_system', 'main_bounds', 'main_center_actual',
+                'main_center_expected', 'main_canvas_offset', 'main_center_check_passed')
         task['render'] = {key: recipe[key] for key in keys if key in recipe}
     task.pop('approval', None)
     save(directory / 'task.json', task)

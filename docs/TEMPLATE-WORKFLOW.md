@@ -83,3 +83,7 @@ AI 先检查准确大字、原文字/印章残影、主体比例、背景拼接�
 ## 确认与交付更新
 
 本轮用户明确准许底图 A/C、阅字 Logo A/B 与原 185 文件套件收录，见 [准确文件记录](creation-runs/2026-11-16-approved-guyue-assets.md)。同一文件不重复索要确认；确认合用后可以简短询问是否需要交付包。明确需要则按 [交付规范](DELIVERY-PACKAGES.md) 输出，包内包含 AI 接入入口和独立哈希校验。新文案与新适配仍重新展示。
+
+## 居中复核补充
+
+已确认样例也可能发现排版问题。旧阅字 v02 已量测出偏右/偏上，v03 待核查；prepare 会携带 layout_notice，不能将历史批准视为对新版排版的批准。正文与印章分开测量，检查新 render.json 的 main_center_*，几何通过后仍展示准确图像。细节见 [修正记录](creation-runs/2026-11-16-yue-centering-correction.md)。

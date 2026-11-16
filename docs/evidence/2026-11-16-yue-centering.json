@@ -1,0 +1,47 @@
+{
+  "coordinate_system": "CoreGraphics y up; image_y=height-y_up",
+  "results": [
+    {
+      "profile": "circle-logo",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "old_main_center": {
+        "x": 527.3600000000001,
+        "y_up": 568.32
+      },
+      "new_main_center": {
+        "x": 512.0,
+        "y_up": 512.0
+      },
+      "old_png_sha256": "cfb2b0aabe4881ae0ac7589df7a2d3f56d4c0499ee81982f7a2f5c5b55740abe",
+      "new_png_sha256": "9eb85c670d98e2a50b0df9888f259ccacfc9ca1332d2c4a92c309542531c8d74",
+      "font_and_background_unchanged": true,
+      "seal_glyphs_unchanged": true,
+      "main_glyph_size_unchanged": true,
+      "state": "awaiting-user"
+    },
+    {
+      "profile": "rounded-logo",
+      "canvas": [
+        1024,
+        1024
+      ],
+      "old_main_center": {
+        "x": 527.3600000000001,
+        "y_up": 568.32
+      },
+      "new_main_center": {
+        "x": 512.0,
+        "y_up": 512.0
+      },
+      "old_png_sha256": "fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5",
+      "new_png_sha256": "c02f964fbacac4c9bc40a3e68a56834402f66134cfa4d045980593f6f40e87cd",
+      "font_and_background_unchanged": true,
+      "seal_glyphs_unchanged": true,
+      "main_glyph_size_unchanged": true,
+      "state": "awaiting-user"
+    }
+  ]
+}

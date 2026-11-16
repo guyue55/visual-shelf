@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "packages": {
+    "yue-surface-kit-v01": {
+      "block_export": true,
+      "reason": "旧版主字偏右约15.36px、偏上56.32px；v03居中候选待用户复核",
+      "record": "docs/creation-runs/2026-11-16-yue-centering-correction.md"
+    }
+  },
+  "assets": {
+    "shared-guyue-yue-circle-light-v02-png": {
+      "block_export": true,
+      "reason": "旧版主字偏右约15.36px、偏上56.32px；v03居中候选待用户复核",
+      "record": "docs/creation-runs/2026-11-16-yue-centering-correction.md"
+    },
+    "shared-guyue-yue-rounded-moonlit-v02-png": {
+      "block_export": true,
+      "reason": "旧版主字偏右约15.36px、偏上56.32px；v03居中候选待用户复核",
+      "record": "docs/creation-runs/2026-11-16-yue-centering-correction.md"
+    }
+  }
+}

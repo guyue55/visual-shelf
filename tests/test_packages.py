@@ -71,6 +71,16 @@ class PackageTests(unittest.TestCase):
         self.make_asset(False)
         with self.assertRaises(ValueError):packages.asset(argparse.Namespace(id='sample',output=self.root/'.exports/icon'),self.root)
 
+    def test_known_layout_issue_blocks_package_and_asset_reexport(self):
+        notice={'block_export':True,'reason':'正文未居中','record':'docs/centering.md'}
+        packages.write_json(self.root/'packages/advisories.json',{'packages':{'test-kit':notice},'assets':{'sample':notice}})
+        with self.assertRaisesRegex(ValueError,'暂停新导出'):
+            packages.export(argparse.Namespace(id='test-kit',surface=['all'],output=self.root/'.exports/blocked'),self.root)
+        with self.assertRaisesRegex(ValueError,'暂停新导出'):
+            packages.asset(argparse.Namespace(id='sample',output=self.root/'.exports/blocked'),self.root)
+        packages.verifier(self.root)(self.folder)  # Historical bytes remain verifiable.
+        self.assertFalse((self.root/'.exports/blocked').exists())
+
     def test_archive_rejects_changed_files_extra_files_and_escape(self):
         source=self.root/'.drafts/bad';source.mkdir(parents=True)
         file=source/'logo.png';file.write_bytes(b'fixture')
@@ -83,6 +93,16 @@ class PackageTests(unittest.TestCase):
         kit['files']={'logo.png':packages.sha(file)};packages.write_json(source/'kit.json',kit);(source/'extra').write_text('extra')
         with self.assertRaisesRegex(ValueError,'未登记文件'):packages.archive(args,self.root)
         self.assertFalse((self.root/'packages/new-kit').exists())
+
+    def test_new_archive_rejects_unchecked_legacy_layout(self):
+        item=self.make_asset(True)
+        source=self.root/'.drafts/legacy';(source/'rounded-logo').mkdir(parents=True)
+        render=source/'rounded-logo/render.json'
+        packages.write_json(render,{'background_sha256':item['sha256'],'layout_version':1})
+        packages.write_json(source/'kit.json',{'profiles':['rounded-logo'],'files':{'rounded-logo/render.json':packages.sha(render)}})
+        args=argparse.Namespace(id='legacy-rearchive',name='测试包',source=source,approval='测试夹具确认',asset=['sample'],background_asset='sample')
+        with self.assertRaisesRegex(ValueError,'layout_version=2'):packages.archive(args,self.root)
+        self.assertFalse((self.root/'packages/legacy-rearchive').exists())
 
     def test_manifest_path_escape_is_rejected(self):
         outside=self.root/'outside';outside.write_text('x')

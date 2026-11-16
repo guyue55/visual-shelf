@@ -95,7 +95,7 @@ func drawGlyph(_ value:String, _ cell:CGRect, _ fill:CGColor, _ role:String) {
     let x = cell.midX-b.width*s/2, y = cell.midY-b.height*s/2
     var matrix = CGAffineTransform(a:s,b:0,c:0,d:s,tx:x-b.minX*s,ty:y-b.minY*s)
     let placed = p.copy(using:&matrix)!
-    context.setFillColor(fill); context.addPath(placed); context.fillPath()
+    if role != "main" { context.setFillColor(fill); context.addPath(placed); context.fillPath() }
     placedPaths.append(placed)
     let bounds = placed.boundingBoxOfPath
     glyphRecords.append(["text":value,"role":role,"x":bounds.minX,"y":bounds.minY,"width":bounds.width,"height":bounds.height,"svg_path":svgPath(placed)])
@@ -114,8 +114,8 @@ if landscape { box=CGRect(x:w*0.18,y:h*0.30,width:w*0.64,height:h*0.48) }
 else if profile == "favicon" { box=CGRect(x:w*0.12,y:h*0.14,width:w*(options["no-seal"] == nil ? 0.62:0.76),height:h*0.72) }
 else if profile == "android-adaptive" { box=CGRect(x:w*0.32,y:h*0.38,width:w*0.36,height:h*0.32) }
 else if profile == "pwa-maskable" { box=CGRect(x:w*0.28,y:h*0.34,width:w*0.44,height:h*0.40) }
-else if characters.count == 1 { box=CGRect(x:w*0.285,y:h*0.32,width:w*0.46,height:h*0.47) }
-else { box=CGRect(x:w*0.25,y:h*0.34,width:w*0.49,height:h*0.44) }
+else if characters.count == 1 { box=CGRect(x:w*0.27,y:h*0.265,width:w*0.46,height:h*0.47) }
+else { box=CGRect(x:w*0.255,y:h*0.28,width:w*0.49,height:h*0.44) }
 for (index,char) in characters.enumerated() {
     let col=index%cols, row=index/cols
     let cellWidth=box.width/CGFloat(cols), cellHeight=box.height/CGFloat(rows)
@@ -124,6 +124,23 @@ for (index,char) in characters.enumerated() {
     let cell=CGRect(x:box.minX+rowOffset+CGFloat(col)*cellWidth+cellWidth*0.04,y:box.maxY-CGFloat(row+1)*cellHeight+cellHeight*0.04,width:cellWidth*0.92,height:cellHeight*0.92)
     drawGlyph(String(char),cell,ink,"main")
 }
+// Align the measured MAIN outline union, not font metrics, seal, or background.
+// Different character widths can make the union asymmetric even in equal cells.
+let rawMainBounds = placedPaths.reduce(CGRect.null) { $0.union($1.boundingBoxOfPath) }
+let mainTranslation = CGVector(dx:box.midX-rawMainBounds.midX,dy:box.midY-rawMainBounds.midY)
+for index in placedPaths.indices {
+    var transform = CGAffineTransform(translationX:mainTranslation.dx,y:mainTranslation.dy)
+    let path = placedPaths[index].copy(using:&transform)!
+    placedPaths[index] = path
+    let bounds = path.boundingBoxOfPath
+    glyphRecords[index]["x"] = bounds.minX; glyphRecords[index]["y"] = bounds.minY
+    glyphRecords[index]["svg_path"] = svgPath(path)
+    context.setFillColor(ink); context.addPath(path); context.fillPath()
+}
+let mainBounds = placedPaths.reduce(CGRect.null) { $0.union($1.boundingBoxOfPath) }
+let mainCenterPassed = abs(mainBounds.midX-box.midX)<=0.5 && abs(mainBounds.midY-box.midY)<=0.5
+if !mainCenterPassed { fail("正文轮廓未对齐预期中心") }
+let mainCenterPolicy = !landscape && !["favicon","pwa-maskable","android-adaptive"].contains(profile) ? "canvas-center" : "profile-title-area"
 let stamp: CGRect
 if landscape { stamp=CGRect(x:w*0.84,y:h*0.31,width:h*0.09,height:h*0.19) }
 else if profile == "favicon" { stamp=CGRect(x:w*0.79,y:h*0.25,width:w*0.10,height:h*0.25) }
@@ -173,6 +190,14 @@ for size in [16,32,48,64,128,192,256,512] {
     writePNG(c.makeImage()!,output.appendingPathComponent("preview-\(size).png"))
 }
 var record: [String:Any] = ["profile":profile,"width":width,"height":height,"text":text,"font_postscript":postScriptName,"font_file":fontURL.path,"seal":options["no-seal"] == nil ? "古月" : "none","layout_columns":cols,"layout_rows":rows,"glyphs":glyphRecords,"color_space":"sRGB","background":options["background"]!,"theme":options["theme"]!,"state":"draft"]
+record["layout_version"] = 2
+record["main_center_policy"] = mainCenterPolicy
+record["coordinate_system"] = "CoreGraphics bottom-left; image_y = height - y"
+record["main_bounds"] = ["x":mainBounds.minX,"y":mainBounds.minY,"width":mainBounds.width,"height":mainBounds.height]
+record["main_center_actual"] = ["x":mainBounds.midX,"y":mainBounds.midY]
+record["main_center_expected"] = ["x":box.midX,"y":box.midY]
+record["main_canvas_offset"] = ["dx":mainBounds.midX-w/2,"dy_y_up":mainBounds.midY-h/2]
+record["main_center_check_passed"] = mainCenterPassed
 record["os_version"] = ProcessInfo.processInfo.operatingSystemVersionString
 record["all_glyph_bounds_inside_shape"] = glyphRecords.allSatisfy { rec in
     let x=rec["x"] as! CGFloat, y=rec["y"] as! CGFloat, gw=rec["width"] as! CGFloat, gh=rec["height"] as! CGFloat

@@ -10,7 +10,8 @@
     "approved_background": "shared-guyue-background-ink-light-a-v01-png",
     "accepted_examples": [
       "shared-guyue-yue-circle-light-v02-png"
-    ]
+    ],
+    "layout_notice": "旧阅字v02示例居中存在偏移，保留历史，不作为新排版基线；新渲染使用layout_version=2，v03修正候选待核查。已确认无字底图不受影响。"
   },
   "ink-light-b": {
     "name": "水墨浅色 B",
@@ -35,6 +36,7 @@
     ],
     "delivery_packages": [
       "yue-surface-kit-v01"
-    ]
+    ],
+    "layout_notice": "旧阅字v02示例居中存在偏移，保留历史，不作为新排版基线；新渲染使用layout_version=2，v03修正候选待核查。已确认无字底图不受影响。"
   }
 }

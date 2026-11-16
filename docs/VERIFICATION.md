@@ -78,3 +78,13 @@
 - 全量 Python 56 项通过；Node 筛选测试 4 项通过；两份 JS 语法、validate/build、git diff --check 通过。新增测试包含归档边界、单素材和场景 ZIP、确认底图复用。
 - 浏览器实际验证两份 Logo 与两份底图系列、正式详情路径/哈希、图片加载及新增“确认后按需交付”说明；[正式收录页面截图](evidence/2026-11-16-approved-guyue-assets.jpg)。受管预览健康，http://127.0.0.1:4174/ 。
 - 未执行 GitHub push、Pages 发布或目标工程安装。许可未知项仍如实保留；浅色 B 瑕疵底图没有混用 Logo B 的确认。旧创建记录已标明历史状态与本轮后续确认。
+
+## 2026-11-16：阅字居中修正待核查
+
+- 量测两份 v02 主字中心均为 (527.36,568.32)，画布中心 (512,512)，CoreGraphics y 向上；确认偏右15.36px、偏上56.32px。
+- v03 圆形/圆角候选中心均为 (512,512)；已逐项比对字体/背景哈希、主字宽高、古月章字形和坐标，均与旧版一致。实际查看 1024 原图及 128px 预览。准确哈希与测量见 [修正记录](creation-runs/2026-11-16-yue-centering-correction.md) 和 [数据](evidence/2026-11-16-yue-centering.json)。
+- 两候选 studio review=awaiting-user；没有 accept，没有新增正式图片或覆盖旧图。旧两图 deprecated、旧包 advisories 暂停新导出；无字底图确认保持有效。
+- 本机全量 Python 59 项通过，含真实 macOS/Swift 单字/多字/有章/无章居中与原平台安全区回归；Node 4 项、JS 语法、validate 15、build、git diff --check 通过。
+- 实际调用旧包 export 和旧图 asset 均在输出前被明确拒绝；旧包独立 verify 仍通过，历史字节未改写。新 archive 拒绝旧布局的测试通过。
+- 受管预览 restart/status 健康，仍为 http://127.0.0.1:4174/；网站只更新旧版状态与提示，不展示尚未确认候选。
+- 尚待用户核查 v03 的光学观感；新整套尚未生成/批准，未 push、发布或修改 MacRightClick 工程。
