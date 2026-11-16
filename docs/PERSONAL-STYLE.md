@@ -1,6 +1,6 @@
 # 古月 · 个人视觉默认规范
 
-更新：2026-11-16。依据用户本次明确指令，适用于本素材库后续个人作品；这是当前偏好入口，不代表所有产品品牌都要被覆盖。
+更新：2026-11-17。依据用户本次明确指令，适用于本素材库后续个人作品；这是当前偏好入口，不代表所有产品品牌都要被覆盖。
 
 ## 已确认偏好
 
@@ -57,3 +57,9 @@
 favicon/PWA/Android/封面/横幅保持各自profile标题区和安全区，不套用通用章位。render.json记录layout_version=2、main_center_*、main_bounds、main_canvas_offset、seal_placement、seal_bounds和seal_frame_inside_shape。核对工程检查后，仍检查真实图、留白、人物、透明边缘和小尺寸。
 
 详细维度、经验和失败处理见 [视觉QA规范](VISUAL-QA.md)。旧阅字v02/v03和旧套件已按用户要求退出可用目录；追溯见retired记录及Git，不能从历史文档路径取旧图继续用。最终收录与清理见 [交付记录](creation-runs/2026-11-16-v04-final-delivery.md)。
+
+## 印章字形偏好补充（2026-11-17）
+
+用户明确认为 **MacRightClick 水墨浅色 B** 的“古月”章字体最顺眼。后续章样式优先参照 `product-macrightclick-app-icon-ink-light-b-q96-v01-png`；准确来源为 `img/app-icons-q96/img-2-appicon-q96.png`。这张原PNG的确切字体名/独立章源仍为unknown，不用马善政或猜测字体冒充原章。
+
+当前v04实际使用马善政章，既有成品确认继续有效；本次偏好只确定比较基准，尚未制作/确认可替换的独立章。后续须将正文与章字形分开管理，主文字体继续固定；新章先展示对照、确认准确文件后再更新模板和交付。实图比对、证据及后续门槛见 [印章与包体积复核](creation-runs/2026-11-17-seal-reference-and-package-size.md)。

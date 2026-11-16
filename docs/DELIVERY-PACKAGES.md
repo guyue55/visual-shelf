@@ -65,3 +65,9 @@ python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v04-png --o
 先export-kit.py在.drafts新目录生成，实际看图并取得相应确认/重导授权，再packages.py archive。必须提供已确认asset/background id、真实--approval与--visual-review-note。每场景布局版本≥2、正文目标中心、字体/背景、章位/完整章框、实际尺寸与封装检查均须通过；不能换id重收旧布局。
 
 依据 [视觉QA规范](VISUAL-QA.md) 覆盖十二个维度，使用passed/failed/not-verified/not-applicable记录；未知来源、许可、模型不能补造。确认完整交付后再清理旧稿，清理指纹与替代记录见retired。旧id仍由advisories阻止导出并指向新版本。
+
+## 体积与按需交付（2026-11-17）
+
+完整包是可复现归档，当前211文件约54.80MiB，ZIP约51.84MiB。按SHA识别完全同字节的多余副本约10.82MiB，其中既有可优化的背景副本，也有平台固定入口/槽名；不直接删文件破坏校验和接入。详见 [实测和取舍](creation-runs/2026-11-17-seal-reference-and-package-size.md)。
+
+日常优先单素材asset包（现有圆形ZIP约1.26MiB）或指定surface子包；明确全平台/离线修改需求再发all。Web子包约26.98MiB，当前仍包含完整source，是可复现开发包，并非最轻运行包。未来可分“只接入/可编辑”模式，但当前CLI尚未实现，不虚构参数。字体/底图/渲染器不应成为每次仅安装图标的必带项；平台必要槽位、密度、来源、确认和校验不可随意去除。
