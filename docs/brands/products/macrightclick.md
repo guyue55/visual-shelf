@@ -49,3 +49,7 @@
 ## 2026-11-16：用户确认视觉偏好与制作流程
 
 用户明确表示喜欢上述几类图标，希望复制为 web、封面、Logo 等模板，允许修改大字或由 AI 提建议；新成品须其确认满意无误才收录。三方向已记录于 templates/visual/styles.json，执行 [模板流程](../../TEMPLATE-WORKFLOW.md)。此偏好可用于新任务的风格候选，具体实体已有品牌约定仍优先。允许制作衍生稿不意味着替换 MacRightClick 当前应用图标。
+
+## 2026-11-16：古月署名与固定字体补充
+
+用户明确“古月”是专属名称，后续个人作品默认保留该印章，偏好古风。新文案走固定真实字体与字数排版，见 [PERSONAL-STYLE.md](../../PERSONAL-STYLE.md)；形状及平台格式见 [PLATFORM-PROFILES.md](../../PLATFORM-PROFILES.md)。这不改变原项目 PNG 字形，也不宣称新选 Ma Shan Zheng 就是原图字体。此前无章底图只是分层素材，不作为默认去章规则。

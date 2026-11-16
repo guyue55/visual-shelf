@@ -8,7 +8,7 @@
 - `.drafts/<job>/reference.png`：制作时复制的原图，避免覆盖原件。
 - `.drafts/<job>/prompt.md` 和 `task.json`：本次需求、用途建议、参考信息与工作状态。
 - 本次去字/去印章底图也是候选，仍需用户确认；目前不冒充已经可编辑的大字或字体图层。
-- PNG 的书法字与背景已经合成；局部修改应使用图像编辑工具，复杂字形可重建。准确标题适合单独排版，原印章“古月”不自动迁移为其他产品署名。
+- PNG 的书法字与背景已经合成；局部修改应使用图像编辑工具，复杂字形可重建。准确标题适合单独排版，用户已明确“古月”为个人专属名称，个人作品默认带章；先做无字/无章底图仅为分层步骤，最终按 [个人规范](PERSONAL-STYLE.md) 合成固定字体署名。
 
 原有 MacRightClick 主用款保持原样。本次认可的是视觉方向，不意味着所有新产品必须沿用“右”字、月亮或人物，也不意味着任何衍生稿都自动被接受。
 
@@ -33,13 +33,18 @@ AI 读取资料后，根据目标给出简短建议并推进草稿；不每次�
 
 以上尺寸是项目预设，不是所有平台官方标准。不同用途分别建任务/变体，不把一张图盲目缩放交差。AI 可建议两种布局，但有明确要求时直接按要求推进，不反复要求选方案。
 
+## 形状与字体
+
+新任务默认古月印章，主文案采用固定 MaShanZheng-Regular 真字形；支持圆形、圆角方形、未裁方形、横幅/封面及 PWA 安全区配置。完整使用见 [个人规范](PERSONAL-STYLE.md) 和 [平台规范](PLATFORM-PROFILES.md)。古风是默认方向，不覆盖已有产品明确的品牌规则。
+
 ## 实际命令
 
 ```sh
 python3 scripts/studio.py list
 python3 scripts/studio.py prepare --job knowledge-app-v01 \
   --style moonlit-blue --purpose app-icon --text '知' \
-  --owner product:knowledge --instructions '保留月夜氛围，去除古月印章'
+  --owner product:knowledge --profile circle-logo --platform generic \
+  --instructions '保留月夜氛围，默认带古月章，固定字体排版'
 ```
 
 prepare 仅复制参考并生成制作建议，**不会自动调用模型或生成新图**。AI 应先查看 reference，使用当次可用图像工具实际编辑，输出放到该任务目录。图像编辑沿用宿主 imagegen 能力，不私自安装或收费接入其他工具。

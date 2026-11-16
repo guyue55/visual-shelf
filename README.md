@@ -69,6 +69,12 @@ tests/        有实际边界意义的离线测试
 
 `python3 scripts/studio.py list` 查看风格；prepare 复制参考并生成建议，review 记录准确候选，accept 保存确认与成品。图像生成仍由 AI 使用当次可用工具完成，脚本不假装自动出图。原 `library.py create` 现在只出草稿；直接 add 必填 `--approval-note`。
 
+## 形状、字体与平台导出
+
+个人作品默认古风并带“古月”署名章，正文与章使用固定真实字体，不由图像模型编造文字。支持圆形、圆角方形、方形母版、封面/web 排版及 PWA 安全区配置；macOS 传统 ICNS 与现代 Icon Composer 路线分开处理。见 [个人风格与字数排版](docs/PERSONAL-STYLE.md)、[形状与平台规范](docs/PLATFORM-PROFILES.md)。
+
+原生渲染命令 `./scripts/render-logo.sh --help`，当前需 macOS/Swift；传统图标打包命令 `./scripts/export-macos.sh 输入.png 新目录`。所有示例仍走草稿确认，不自动入库。字体文件及 OFL 许可位于 resources/fonts/mashanzheng。
+
 ## 已登记产品
 
 - [MacRightClick · 右键助手](docs/entities/products/macrightclick.md)：主用月夜深蓝图标、两张浅色候选及真实引用位置。后续创作先读 [品牌与使用档案](docs/brands/products/macrightclick.md)；盘点与哈希见 [收录快照](docs/inventories/2026-11-16-macrightclick.md)。

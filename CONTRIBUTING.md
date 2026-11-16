@@ -32,6 +32,8 @@ python3 scripts/library.py build
 
 ## 创建
 
+个人作品默认带古月章，字体与字数排版见 [个人规范](docs/PERSONAL-STYLE.md)；形状与不同平台格式见 [平台规范](docs/PLATFORM-PROFILES.md)。使用固定字体渲染时先制作无字底图，再运行 render-logo.sh；背景无需让模型重新画文字。
+
 重复制作同一项目/产品的素材时，按 [AI 辅助创作协议](docs/AI-CREATION.md) 先复用品牌档案与场景流程，再记录本次变化；不要每次重新索要配色、字体和参考。下方命令只是仓库内置的模板路线，其他创作工具按实际能力调用并留存制作记录。
 
 ```sh

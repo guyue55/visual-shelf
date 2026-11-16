@@ -35,6 +35,8 @@ class StudioTests(unittest.TestCase):
 
     def test_prepare_only_creates_private_copy(self):
         self.assertEqual(len(list((self.root/'catalog').glob('*.json'))),1)
+        task=json.loads((self.root/'.drafts/test-job/task.json').read_text())
+        self.assertEqual((task['seal'],task['font'],task['profile']),('古月','MaShanZheng-Regular','cover'))
         self.assertEqual((self.root/'.drafts/test-job/reference.svg').read_bytes(),self.source.read_bytes())
 
     def test_accept_before_review_rejected(self):

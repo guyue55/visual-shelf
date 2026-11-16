@@ -3,18 +3,27 @@
     "name": "水墨浅色 A",
     "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
     "direction": "纸色、墨色书法与山水，人物位于左下，主体靠近画布边缘",
-    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认"
+    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认",
+    "default_seal": "古月",
+    "font": "MaShanZheng-Regular",
+    "profile_index": "templates/visual/profiles.json"
   },
   "ink-light-b": {
     "name": "水墨浅色 B",
     "reference": "product-macrightclick-app-icon-ink-light-b-q96-v01-png",
     "direction": "纸色水墨、较明显的图标边缘留白，人物位于左下",
-    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认"
+    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认",
+    "default_seal": "古月",
+    "font": "MaShanZheng-Regular",
+    "profile_index": "templates/visual/profiles.json"
   },
   "moonlit-blue": {
     "name": "月夜深蓝",
     "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
     "direction": "深蓝月夜、米白主字、山水与右下人物，月亮在左上",
-    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认"
+    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认",
+    "default_seal": "古月",
+    "font": "MaShanZheng-Regular",
+    "profile_index": "templates/visual/profiles.json"
   }
 }

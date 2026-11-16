@@ -86,6 +86,17 @@ python3 -m unittest discover -s tests -v
 
 运行 `python3 scripts/studio.py list`、`prepare --help`、`review --help`、`accept --help`。完整流程见 [docs/TEMPLATE-WORKFLOW.md](docs/TEMPLATE-WORKFLOW.md)。模板索引位于 templates/visual/styles.json，未批准文件位于忽略提交的 .drafts/；不得以自动校验通过代替用户满意确认。
 
+## 固定字体渲染与平台导出
+
+```sh
+./scripts/render-logo.sh --help
+./scripts/render-logo.sh --background /绝对路径/无字底图.png \
+  --text 阅 --profile circle-logo --theme light --output .drafts/<任务>/render
+./scripts/export-macos.sh .drafts/<任务>/render/logo.png .drafts/<任务>/macos-legacy
+```
+
+渲染仅适用于 macOS/Swift，使用固定字体轮廓，默认古月章；`--no-seal` 仅在用户明确要求时使用。每次输出到新目录，不覆盖已展示候选。支持配置见 [平台规范](docs/PLATFORM-PROFILES.md)，个人偏好与字数规则见 [个人规范](docs/PERSONAL-STYLE.md)。原生字体/alpha/布局测试在 macOS 运行，Linux 自动跳过；ICNS 输出不能代替目标环境视觉验收。
+
 ## AI 辅助创作
 
 读取 [docs/AI-CREATION.md](docs/AI-CREATION.md) 与 [docs/CREATION-RECIPES.md](docs/CREATION-RECIPES.md)，再定位实体品牌档案。当前是 AI 可遵循的文件协议，没有自动上下文导出或生成 API 命令；不要虚构 CLI 参数。

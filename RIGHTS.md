@@ -13,3 +13,7 @@
 ## MacRightClick 收录
 
 2026-11-16 原样收录用户指定的 3 张应用图标。源仓库声明 Apache-2.0，图像独立作者、生成记录及逐图许可未单独确认，因此 catalog 的 author/license 暂为 unknown；不将应用代码许可直接扩展成品牌使用授权。来源与用途证据见 [品牌档案](docs/brands/products/macrightclick.md) 与 [收录快照](docs/inventories/2026-11-16-macrightclick.md)。未改变本库的全局许可。
+
+## 固定字体与个人印章
+
+Ma Shan Zheng 字体文件以其上游 OFL-1.1 许可随库保存，字体版权、完整许可及固定来源见 [字体说明](resources/fonts/mashanzheng/README.md)。未修改字体，字体许可不自动覆盖背景或成品整图。用户已明确“古月”为个人专属名称，个人作品默认带章，操作约定见 [个人风格规范](docs/PERSONAL-STYLE.md)。

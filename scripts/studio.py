@@ -40,18 +40,24 @@ def prepare(args):
     check_file(file)
     reference_file = 'reference' + file.suffix.lower()
     shutil.copyfile(file, directory / reference_file)
+    profile = getattr(args, 'profile', None) or {'web':'web','cover':'cover','logo':'circle-logo','app-icon':'square-master'}[args.purpose]
+    platform = getattr(args, 'platform', 'unspecified')
+    seal = 'none' if getattr(args, 'no_seal', False) else '古月'
     task = dict(job=args.job, style=args.style, purpose=args.purpose, text=args.text,
                 owner=args.owner, instructions=args.instructions, reference=style['reference'],
+                profile=profile, platform=platform, seal=seal, font='MaShanZheng-Regular',
                 reference_file=reference_file, reference_sha256=digest(file), state='prepared', created=datetime.now(timezone.utc).isoformat())
     save(directory / 'task.json', task)
     sizes = {'web':'横幅构图；未指定尺寸时先以 1600×600 探索，布局需重新设计，不拉伸圆角图标',
              'cover':'16:9，1600×900 探索；真实平台尺寸另核对，保留标题安全区域',
              'logo':'以 1:1 探索；保留识别主体，复杂纹理可建议简化，位图不冒充矢量',
-             'app-icon':'1:1，1024×1024 探索；保留透明圆角，检查缩小后的辨识度'}
+             'app-icon':'1:1，1024×1024 起点；先确定目标平台与现代分层/传统位图路线，不默认预裁圆角'}
     prompt = f'''# 制作任务 {args.job}
 
 - 已确认喜欢的风格：{style['name']}；{style['direction']}。
 - 本次用途：{args.purpose}；{sizes[args.purpose]}。
+- 形状配置：{profile}；目标环境：{platform}。实际安全区与导出要求见 docs/PLATFORM-PROFILES.md。
+- 固定字体：MaShanZheng-Regular；印章：{seal}。正文按真实字体轮廓排版，禁止模型编造字形或静默换字体。
 - 准确主文案：{args.text or 'unknown；若涉及准确字标需补充'}。
 - 主要归属：{args.owner}。它与参考图来源产品不是同一概念，不自动署名 MacRightClick。
 - 本次附加要求：{args.instructions or '无'}。
@@ -59,7 +65,7 @@ def prepare(args):
 
 ## 执行要求
 
-先查看参考，再使用当前可用图像编辑工具处理。原图文字已栅格化；换大字需局部重绘或重建字形，不直接覆盖旧字造成残影。图形与标题可分层排版，精确中文逐字核对。古月印章不自动迁移到新项目，默认移除或按明确要求替换。保留用户指定不变项。
+先查看参考；背景若需修改使用当前可用图像编辑工具处理。原图文字已栅格化，应使用无字底图再用固定字体轮廓合成，不直接覆盖旧字造成残影。图形与标题分层排版，精确中文逐字核对。古月是用户专属名称，个人作品默认保留古月印章；只有用户明确要求或目标品牌冲突时提出取舍，不能擅自移除。形状变更需同时适配主体、文字和印章的位置，不只是裁切。
 
 如果任务是介绍 MacRightClick 且未要求改 Logo，原标识保持原样；若明确要求换字或跨产品创作，本任务制作衍生稿，不替换原项目图标。web/封面需要重构横向版式，不能靠拉伸源图实现。
 
@@ -89,6 +95,16 @@ def review(args):
         shutil.copyfile(original, target)
     task.update(state='awaiting-user', candidate=target.name, candidate_sha256=digest(target),
                 checks=args.checks, tool=args.tool)
+    recipe_file = original.parent / 'render.json'
+    task.pop('render', None)
+    if original.name == 'logo.png' and recipe_file.is_file():
+        recipe = read_json(recipe_file)
+        if recipe.get('png_sha256') != digest(original):
+            raise ValueError('渲染记录与当前 PNG 不符，请重新渲染或更新记录后再 review')
+        keys = ('profile', 'width', 'height', 'text', 'font_postscript', 'font_sha256',
+                'background_sha256', 'foreground_sha256', 'seal', 'theme',
+                'layout_columns', 'layout_rows', 'color_space', 'os_version')
+        task['render'] = {key: recipe[key] for key in keys if key in recipe}
     task.pop('approval', None)
     save(directory / 'task.json', task)
     print(f'AWAITING_USER：{target}\nSHA256={task["candidate_sha256"]}\n需展示此文件并等待用户确认；更改文件后必须重新 review')
@@ -115,6 +131,8 @@ def accept(args):
     note = dict(user_confirmation=args.approval, reviewed_sha256=args.sha256, task=args.job,
                 checks=task['checks'], tool=task['tool'], template=task['style'],
                 reference=task['reference'], approved_at=datetime.now(timezone.utc).isoformat())
+    if task.get('render'):
+        note['render'] = task['render']
     kind = task.get('kind') or ('covers' if task['purpose'] in ('web','cover') else 'logos')
     item = add(candidate, args.id, args.name, kind,
                [f'owner:{args.owner}', f'family:{args.family}', f'variant:{args.variant}',
@@ -138,6 +156,9 @@ def main():
     p.add_argument('--text', default='')
     p.add_argument('--owner', default='unknown')
     p.add_argument('--instructions', default='')
+    p.add_argument('--profile', choices=['circle-logo','rounded-logo','square-master','cover','web','pwa-maskable','macos-legacy-icns','android-adaptive','favicon'])
+    p.add_argument('--platform', default='unspecified', help='例如 generic/macOS/PWA/Android；未指定时正式导出前补充')
+    p.add_argument('--no-seal', action='store_true', help='仅在用户明确要求无印章时使用')
     p = sub.add_parser('review')
     p.add_argument('--job', required=True); p.add_argument('--file', type=Path, required=True)
     p.add_argument('--checks', required=True); p.add_argument('--tool', default='unknown')
