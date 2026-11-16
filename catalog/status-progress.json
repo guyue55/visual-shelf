@@ -1,0 +1,17 @@
+{
+  "id": "status-progress",
+  "name": "状态 · 进行中",
+  "kind": "legends",
+  "path": "assets/legends/status-progress.svg",
+  "tags": [
+    "图例",
+    "状态",
+    "流程图"
+  ],
+  "source": "original",
+  "license": "LicenseRef-All-Rights-Reserved",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "可编辑的状态图例示例，适用于方案和流程图。",
+  "sha256": "e571fb6dbbd962db755a11cbc86ff51ddab8d973238b7e6d90abb50ef49acd62"
+}

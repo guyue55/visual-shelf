@@ -1,0 +1,17 @@
+{
+  "id": "project-notes",
+  "name": "项目手记",
+  "kind": "covers",
+  "path": "assets/covers/project-notes.svg",
+  "tags": [
+    "封面",
+    "16:9",
+    "模板"
+  ],
+  "source": "original",
+  "license": "LicenseRef-All-Rights-Reserved",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "参数化 SVG 封面模板示例，非品牌官方素材。中文显示取决于使用环境字体。",
+  "sha256": "ec6bbfe132808ff9eff97fea41919e43bf142b2cccf92ef0c62f3cc7a6df9f84"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "field-guide",
+  "name": "探索指南",
+  "kind": "covers",
+  "path": "assets/covers/field-guide.svg",
+  "tags": [
+    "封面",
+    "16:9",
+    "模板"
+  ],
+  "source": "original",
+  "license": "LicenseRef-All-Rights-Reserved",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "参数化 SVG 封面模板示例，非品牌官方素材。中文显示取决于使用环境字体。",
+  "sha256": "9e9e3c8ea6034f88c6e9a4300ef23c13372bea53bcc2a9b0fd650b5444624193"
+}

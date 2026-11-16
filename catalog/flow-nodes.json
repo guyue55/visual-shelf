@@ -1,0 +1,17 @@
+{
+  "id": "flow-nodes",
+  "name": "流程节点",
+  "kind": "icons",
+  "path": "assets/icons/flow-nodes.svg",
+  "tags": [
+    "图标",
+    "文档",
+    "线框"
+  ],
+  "source": "original",
+  "license": "LicenseRef-All-Rights-Reserved",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "项目初始化时创建的几何 SVG 示例。",
+  "sha256": "a53e24a8c8d13f3d893084b7ba9fe2f57aa41a167cec31ae1df81667d70ed5c7"
+}

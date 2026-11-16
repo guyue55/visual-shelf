@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="我的个人视觉素材库：收藏 Logo、图标、图例与封面。"><title>我的图标 · Visual Shelf</title><link rel="stylesheet" href="style.css"><script src="app.js" defer></script></head>
+<body>
+<header><a class="brand" href="./"><span class="mark">▧</span> 我的图标 <small>VISUAL SHELF</small></a><button id="help" class="quiet">＋ 新增素材</button></header>
+<main>
+<section class="intro"><div><p class="eyebrow">A PERSONAL ARCHIVE / 001</p><h1>灵感归档，<br><em>随时取用。</em></h1><p class="lede">把常用的标识、图例和封面，放在一个找得到的地方。<br>认真收藏，也持续创造。</p></div><div class="index-card"><span>COLLECTION INDEX</span><strong id="total">—</strong><p>份素材，正在积累</p><div class="swatches"><i></i><i></i><i></i><i></i></div><small>LOCAL FIRST · BUILT TO REUSE</small></div></section>
+<section class="workspace" aria-label="素材浏览"><div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索名称、标签、用途…" aria-label="搜索素材"><kbd>/</kbd></label><label class="sort">排序 <select id="sort"><option value="name">名称</option><option value="newest">最近新增</option></select></label></div>
+<div class="filter-row"><nav id="filters" aria-label="素材分类"><button data-kind="all" aria-pressed="true">全部素材</button><button data-kind="logos" aria-pressed="false">Logo</button><button data-kind="icons" aria-pressed="false">图标</button><button data-kind="legends" aria-pressed="false">图例</button><button data-kind="covers" aria-pressed="false">封面</button></nav><button id="background" class="quiet" aria-pressed="false">◐ 深色底预览</button></div>
+<div class="result-line"><span id="count" role="status">正在读取素材…</span><span>SELECT / PREVIEW / REUSE</span></div><div id="grid" class="grid"></div><p id="empty" hidden>暂时没有匹配的素材。试试其他关键词，或者新增第一份收藏。</p></section>
+<footer><span>我的图标 / A shelf for visual things.</span><span>来源与许可随素材保存 · 不明确的信息标为 unknown</span></footer>
+</main>
+<dialog id="detail"><div class="dialog-head"><span>ASSET DETAILS</span><button data-close aria-label="关闭详情">✕</button></div><div id="detail-content"></div></dialog>
+<dialog id="guide"><div class="dialog-head"><span>ADD TO YOUR SHELF</span><button data-close aria-label="关闭新增说明">✕</button></div><h2>给收藏添一点新东西</h2><p>在本地项目运行以下命令，登记文件后重新构建。网页用于浏览，不直接修改仓库。</p><h3>导入已有素材</h3><pre>python3 scripts/library.py add /路径/logo.svg \
+  --id my-logo --name "我的 Logo" --kind logos \
+  --tags "品牌,常用" --source unknown --license unknown</pre><h3>创建一张封面</h3><pre>python3 scripts/library.py create \
+  --id project-cover --name "项目手记" --kind covers \
+  --tags "项目,封面" --author "你的名字"</pre><p>然后运行 <code>python3 scripts/library.py build</code>，刷新预览。详细流程见仓库 CONTRIBUTING.md。</p></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+</body></html>

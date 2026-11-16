@@ -1,0 +1,24 @@
+name: 新增或创建素材
+description: 记录收藏或创作需求
+title: "[素材] "
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 分类
+      options: [Logo, 图标, 图例, 封面]
+    validations:
+      required: true
+  - type: textarea
+    id: brief
+    attributes:
+      label: 素材名称、用途与规格
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: 来源、许可、品牌规范或参考素材
+      description: 不确定的信息请填 unknown
+    validations:
+      required: true

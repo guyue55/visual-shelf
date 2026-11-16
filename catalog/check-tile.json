@@ -1,0 +1,17 @@
+{
+  "id": "check-tile",
+  "name": "完成标记",
+  "kind": "icons",
+  "path": "assets/icons/check-tile.svg",
+  "tags": [
+    "状态",
+    "完成",
+    "界面"
+  ],
+  "source": "original",
+  "license": "LicenseRef-All-Rights-Reserved",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "原创参数化完成标记示例。",
+  "sha256": "6ff7b9907c20362d3a0d8df07893749c179505b770458bdb7fc19bf0159fdabd"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "status-ready",
+  "name": "状态 · 已完成",
+  "kind": "legends",
+  "path": "assets/legends/status-ready.svg",
+  "tags": [
+    "图例",
+    "状态",
+    "流程图"
+  ],
+  "source": "original",
+  "license": "LicenseRef-All-Rights-Reserved",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "可编辑的状态图例示例，适用于方案和流程图。",
+  "sha256": "81a3b0d95a854b1295af7ad2305df2f0aa79749758f51adaddbbd6fddf719528"
+}
