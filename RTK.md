@@ -133,3 +133,5 @@ archive/export/asset 均拒绝覆盖；正式包只接受明确确认的套件�
 ## 居中复核
 
 新渲染使用 layout_version=2，核对 main_center_policy、main_center_expected/actual、main_canvas_offset 和 main_center_check_passed，并实际查看图片。旧阅字 v02/套件有 advisories，packages.py list 会显示，export/asset 会拒绝新导出；不是文件损坏，勿删除或重写旧清单。修正版候选在 .drafts/yue-circle-v03-centered、.drafts/yue-rounded-v03-centered，待用户核查后另行 accept 和导出新版本。
+
+印章可选对照：`--seal-placement right-lower`，当前仅通用 Logo/方形母版/Apple Touch 支持；默认仍 profile-default。该选项为以原“右”图标落款关系提出的 v04 候选，待用户核查，不代替平台安全区布局。检查 seal_bounds、seal_frame_inside_shape 并实际预览，不能只确认字形没裁切。

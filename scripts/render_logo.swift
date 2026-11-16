@@ -9,7 +9,7 @@ func fail(_ message: String) -> Never {
 }
 let argv = Array(CommandLine.arguments.dropFirst())
 if argv.contains("--help") || argv.isEmpty {
-    print("render-logo.sh --background FILE --font FILE --text 阅 --profile circle-logo|rounded-logo|square-master|cover|web|pwa-maskable|favicon|apple-touch|og-image|android-adaptive --theme light|dark --output DIR [--no-seal]")
+    print("render-logo.sh --background FILE --font FILE --text 阅 --profile circle-logo|rounded-logo|square-master|cover|web|pwa-maskable|favicon|apple-touch|og-image|android-adaptive --theme light|dark --output DIR [--no-seal] [--seal-placement profile-default|right-lower]")
     exit(0)
 }
 var options: [String:String] = [:]
@@ -28,6 +28,9 @@ let profile = options["profile"]!
 let allowed = ["circle-logo","rounded-logo","square-master","cover","web","pwa-maskable","favicon","apple-touch","og-image","android-adaptive"]
 guard allowed.contains(profile), ["light","dark"].contains(options["theme"]!) else { fail("未知 profile 或 theme") }
 if profile == "favicon" && characters.count > 2 { fail("标签图标最多两字；请先明确短标记，不能把长标题缩成字墙") }
+let sealPlacement = options["seal-placement"] ?? "profile-default"
+guard ["profile-default","right-lower"].contains(sealPlacement) else { fail("未知印章位置") }
+if sealPlacement == "right-lower" && !["circle-logo","rounded-logo","square-master","apple-touch"].contains(profile) { fail("right-lower 仅适用于通用 Logo/方形母版/触屏图标；其他场景继续按安全区布局") }
 let fm = FileManager.default
 let output = URL(fileURLWithPath: options["output"]!, isDirectory:true)
 guard !fm.fileExists(atPath:output.path) else { fail("输出目录已存在，拒绝覆盖") }
@@ -142,11 +145,19 @@ let mainCenterPassed = abs(mainBounds.midX-box.midX)<=0.5 && abs(mainBounds.midY
 if !mainCenterPassed { fail("正文轮廓未对齐预期中心") }
 let mainCenterPolicy = !landscape && !["favicon","pwa-maskable","android-adaptive"].contains(profile) ? "canvas-center" : "profile-title-area"
 let stamp: CGRect
-if landscape { stamp=CGRect(x:w*0.84,y:h*0.31,width:h*0.09,height:h*0.19) }
+if sealPlacement == "right-lower" {
+    // Reference: MacRightClick's original 右 icon, not the older 阅 drafts.
+    // A circle needs more inset than a rounded square at the lower-right edge.
+    stamp=CGRect(x:w*(profile == "circle-logo" ? 0.825:0.85),y:h*0.275,width:w*0.065,height:h*0.145)
+}
+else if landscape { stamp=CGRect(x:w*0.84,y:h*0.31,width:h*0.09,height:h*0.19) }
 else if profile == "favicon" { stamp=CGRect(x:w*0.79,y:h*0.25,width:w*0.10,height:h*0.25) }
 else if profile == "android-adaptive" { stamp=CGRect(x:w*0.66,y:h*0.40,width:w*0.05,height:h*0.12) }
 else if profile == "pwa-maskable" { stamp=CGRect(x:w*0.69,y:h*0.36,width:w*0.065,height:h*0.14) }
 else { stamp=CGRect(x:w*0.77,y:h*0.35,width:w*0.075,height:h*0.17) }
+let strokeBounds = stamp.insetBy(dx:-w*0.0015,dy:-w*0.0015)
+let sealFrameInsideShape = [CGPoint(x:strokeBounds.minX,y:strokeBounds.minY),CGPoint(x:strokeBounds.maxX,y:strokeBounds.minY),CGPoint(x:strokeBounds.minX,y:strokeBounds.maxY),CGPoint(x:strokeBounds.maxX,y:strokeBounds.maxY)].allSatisfy { outline.contains($0) }
+if options["no-seal"] == nil && !sealFrameInsideShape { fail("印章边框超出形状安全边界") }
 if options["no-seal"] == nil {
     context.setStrokeColor(stampColor); context.setLineWidth(w*0.003)
     context.addPath(CGPath(roundedRect:stamp,cornerWidth:w*0.007,cornerHeight:w*0.007,transform:nil)); context.strokePath()
@@ -191,6 +202,9 @@ for size in [16,32,48,64,128,192,256,512] {
 }
 var record: [String:Any] = ["profile":profile,"width":width,"height":height,"text":text,"font_postscript":postScriptName,"font_file":fontURL.path,"seal":options["no-seal"] == nil ? "古月" : "none","layout_columns":cols,"layout_rows":rows,"glyphs":glyphRecords,"color_space":"sRGB","background":options["background"]!,"theme":options["theme"]!,"state":"draft"]
 record["layout_version"] = 2
+record["seal_placement"] = sealPlacement
+record["seal_bounds"] = ["x":stamp.minX,"y":stamp.minY,"width":stamp.width,"height":stamp.height]
+record["seal_frame_inside_shape"] = options["no-seal"] != nil || sealFrameInsideShape
 record["main_center_policy"] = mainCenterPolicy
 record["coordinate_system"] = "CoreGraphics bottom-left; image_y = height - y"
 record["main_bounds"] = ["x":mainBounds.minX,"y":mainBounds.minY,"width":mainBounds.width,"height":mainBounds.height]

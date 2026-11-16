@@ -127,7 +127,8 @@ def review(args):
                 'background_sha256', 'foreground_sha256', 'seal', 'theme',
                 'layout_columns', 'layout_rows', 'color_space', 'os_version', 'layout_version',
                 'main_center_policy', 'coordinate_system', 'main_bounds', 'main_center_actual',
-                'main_center_expected', 'main_canvas_offset', 'main_center_check_passed')
+                'main_center_expected', 'main_canvas_offset', 'main_center_check_passed',
+                'seal_placement', 'seal_bounds', 'seal_frame_inside_shape')
         task['render'] = {key: recipe[key] for key in keys if key in recipe}
     task.pop('approval', None)
     save(directory / 'task.json', task)

@@ -1,0 +1,42 @@
+{
+  "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+  "reference_note": "用户明确说之前指原右字图标，不是旧阅字；原PNG印章位置为目视参考，不冒充精确提取的矢量坐标",
+  "results": [
+    {
+      "profile": "circle-logo",
+      "main_center_unchanged": {
+        "x": 512,
+        "y": 512
+      },
+      "main_outline_identical_to_v03": true,
+      "font_and_background_unchanged": true,
+      "new_seal_bounds": {
+        "height": 148.48,
+        "width": 66.56,
+        "x": 844.8,
+        "y": 281.6
+      },
+      "seal_frame_inside_shape": true,
+      "candidate_sha256": "ae52f8e3773261fd1e4ec3bf56d6471f3ca705170d43f9331b3cf38528f16b56",
+      "state": "awaiting-user"
+    },
+    {
+      "profile": "rounded-logo",
+      "main_center_unchanged": {
+        "x": 512,
+        "y": 512
+      },
+      "main_outline_identical_to_v03": true,
+      "font_and_background_unchanged": true,
+      "new_seal_bounds": {
+        "height": 148.48,
+        "width": 66.56,
+        "x": 870.4,
+        "y": 281.6
+      },
+      "seal_frame_inside_shape": true,
+      "candidate_sha256": "fc207509de42b75ac6c4005366b1ebcedb14c3c549ad71579e7376cce02babfa",
+      "state": "awaiting-user"
+    }
+  ]
+}

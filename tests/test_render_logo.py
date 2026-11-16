@@ -40,6 +40,18 @@ class RenderTests(unittest.TestCase):
             self.assertTrue(data['main_center_check_passed'])
             self.assertTrue(data['all_glyph_bounds_inside_shape'])
 
+    def test_right_lower_seal_uses_reference_relationship_without_moving_main(self):
+        for profile in ('circle-logo','rounded-logo'):
+            base=self.render('阅',profile=profile,name=profile+'-base')
+            proposed=self.render('阅',profile=profile,name=profile+'-seal',extra=('--seal-placement','right-lower'))
+            before=json.loads((base/'render.json').read_text());after=json.loads((proposed/'render.json').read_text())
+            self.assertEqual([g for g in before['glyphs'] if g['role']=='main'],[g for g in after['glyphs'] if g['role']=='main'])
+            old=[g for g in before['glyphs'] if g['role']=='seal'];new=[g for g in after['glyphs'] if g['role']=='seal']
+            self.assertTrue(all(b['x']>a['x'] and b['y']<a['y'] and b['height']<a['height'] for a,b in zip(old,new)))
+            self.assertTrue(after['seal_frame_inside_shape']);self.assertTrue(after['all_glyph_bounds_inside_shape'])
+            self.assertEqual(after['seal_placement'],'right-lower')
+        self.render('阅',profile='favicon',name='bad-seal',extra=('--seal-placement','right-lower'),expected=1)
+
     def test_multichar_layout_and_bounds(self):
         for text,cols,rows in [('古月',2,1),('古月阅',2,2),('古月读书',2,2),('古月读书手记',3,2)]:
             output=self.render(text,name='n'+str(len(text)))

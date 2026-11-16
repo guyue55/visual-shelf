@@ -55,3 +55,7 @@
 印章独立定位，不把“正文+章”的总边界当成正文中心；也不以山水和月亮的视觉重量替代正文测量。favicon、PWA、Android 与横幅有各自标题/安全区，分别记录 profile-title-area，不能把它们误称为画布中心。几何通过后仍以实际图、透明/深浅背景及目标尺寸核查视觉观感；书法光学微调只有明确记录后采用。
 
 新 render.json 记录 layout_version=2、main_bounds、main_center_policy/expected/actual、main_canvas_offset、main_center_check_passed 与坐标方向；单字、多字及有/无章均有回归。旧版素材/套件不覆盖，暂停新导出，新候选待用户核查。详情见 [居中修正记录](creation-runs/2026-11-16-yue-centering-correction.md)。
+
+## 印章参照复核（待确定的选项）
+
+用户本轮明确“之前”指原 MacRightClick 主用“右”图标；它的较小右下落款关系是本次比较基准，不能错用旧阅字解释。已生成 right-lower 可选候选：正文居中不动，章向右下并略缩小，圆形额外内收。推荐此方向，但尚未成为已确认的全局默认。见 [印章复核](creation-runs/2026-11-16-yue-seal-reference.md)。主字居中已经认可，不重复询问；最终章位确定后按已有授权收录并处理旧错误。
