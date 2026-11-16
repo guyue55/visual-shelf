@@ -44,18 +44,16 @@
 - 背景、文字、印章保持分层思路；需要无字背景时才使用图像编辑工具清理。当前导出 PNG、真实轮廓 foreground.svg、预览和 render.json。
 - 所有输出继续放在 .drafts；字体和个人规则可以进入仓库，未批准的新图不能自动入正式 catalog。
 
-## 已确认基线（2026-11-16）
+## 当前已确认基线（2026-11-16）
 
-本轮用户明确确认底图 A/C 和两份阅字 v02，并准许收录，固定马善政字体与古月章的实际效果因此已有认可样例。模板索引记录正式背景和示例 id，后续优先复用；不再重复去字去章或重新问字体。整套交付沿用带章默认，无章 favicon 继续为可选备份。原文件打包无需重复效果确认，规则见 [交付规范](DELIVERY-PACKAGES.md)。
+最终阅字v04已经用户明确确认：正文实际轮廓居中，古月小章右下落款；圆形额外内收。样例 id 为 shared-guyue-yue-circle-light-v04-png 与 shared-guyue-yue-rounded-moonlit-v04-png；模板索引仅引用它们。无字底图A/C继续复用，不重新去字去章。默认字体已获实际效果认可。
 
-## 居中复核与版本规则（2026-11-16）
+## 居中与落款执行规则
 
-旧阅字 v02 的正文框中心为画布 (51.5%,55.5%)，CoreGraphics 的 y 向上，因此实际偏右、偏上，并非字形幻觉。已修正通用 Logo 默认：正文实际轮廓的联合边界中心对齐画布 (50%,50%)，容差 0.5px；字号、字体、背景与章不因这次定位修正而变化。多字按联合边界整体平移，不能只保证每个格子看似居中。
+正文联合边界对齐通用画布中心(50%,50%)，容差≤0.5px；多字按整个联合边界平移，不只检查单格。字体、主字、印章与背景分开核查；印章不加入正文中心测量，主字移动后章与主字的关系仍须重新检查。
 
-印章独立定位，不把“正文+章”的总边界当成正文中心；也不以山水和月亮的视觉重量替代正文测量。favicon、PWA、Android 与横幅有各自标题/安全区，分别记录 profile-title-area，不能把它们误称为画布中心。几何通过后仍以实际图、透明/深浅背景及目标尺寸核查视觉观感；书法光学微调只有明确记录后采用。
+通用circle-logo/rounded-logo/square-master/apple-touch默认right-lower：圆角章框x85%、y27.5%、宽6.5%、高14.5%；圆形x82.5%，其余同（CoreGraphics y向上）。小章居于右下，完整章框含描边要留在形状内。profile-default仅用于其他平台的专门安全区布局或明确的旧版复现，不能作为新通用Logo默认。
 
-新 render.json 记录 layout_version=2、main_bounds、main_center_policy/expected/actual、main_canvas_offset、main_center_check_passed 与坐标方向；单字、多字及有/无章均有回归。旧版素材/套件不覆盖，暂停新导出，新候选待用户核查。详情见 [居中修正记录](creation-runs/2026-11-16-yue-centering-correction.md)。
+favicon/PWA/Android/封面/横幅保持各自profile标题区和安全区，不套用通用章位。render.json记录layout_version=2、main_center_*、main_bounds、main_canvas_offset、seal_placement、seal_bounds和seal_frame_inside_shape。核对工程检查后，仍检查真实图、留白、人物、透明边缘和小尺寸。
 
-## 印章参照复核（待确定的选项）
-
-用户本轮明确“之前”指原 MacRightClick 主用“右”图标；它的较小右下落款关系是本次比较基准，不能错用旧阅字解释。已生成 right-lower 可选候选：正文居中不动，章向右下并略缩小，圆形额外内收。推荐此方向，但尚未成为已确认的全局默认。见 [印章复核](creation-runs/2026-11-16-yue-seal-reference.md)。主字居中已经认可，不重复询问；最终章位确定后按已有授权收录并处理旧错误。
+详细维度、经验和失败处理见 [视觉QA规范](VISUAL-QA.md)。旧阅字v02/v03和旧套件已按用户要求退出可用目录；追溯见retired记录及Git，不能从历史文档路径取旧图继续用。最终收录与清理见 [交付记录](creation-runs/2026-11-16-v04-final-delivery.md)。

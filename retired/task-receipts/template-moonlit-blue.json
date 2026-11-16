@@ -1,0 +1,28 @@
+{
+  "job": "template-moonlit-blue",
+  "style": "moonlit-blue",
+  "purpose": "app-icon",
+  "text": "",
+  "owner": "unknown",
+  "instructions": "制作无大字无印章底图草稿，先预览，不入库",
+  "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+  "reference_sha256": "edd55002dca93b97c645e260191757c9a71b007d2458c7a23ff0bc2180562e57",
+  "state": "accepted",
+  "created": "2026-11-16T06:11:20.124526+00:00",
+  "candidate": "candidate.png",
+  "candidate_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+  "checks": "已目视：大字与印章已移除，月夜人物山水保留；中央云雾为重绘，透明边缘及小尺寸仍需用户验收",
+  "tool": "image_gen builtin; backend model unknown",
+  "kind": "icons",
+  "asset_id": "shared-guyue-background-moonlit-blue-v01-png",
+  "approval": {
+    "user_confirmation": "用户本轮明确：之前几轮需要我确认才能收录到都满意，你正常收录（A、C 满意、A、B 的效果满意）；本项为底图 C（月夜深蓝）。",
+    "reviewed_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+    "task": "template-moonlit-blue",
+    "checks": "已目视：大字与印章已移除，月夜人物山水保留；中央云雾为重绘，透明边缘及小尺寸仍需用户验收",
+    "tool": "image_gen builtin; backend model unknown",
+    "template": "moonlit-blue",
+    "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+    "approved_at": "2026-11-16T08:38:16.122211+00:00"
+  }
+}

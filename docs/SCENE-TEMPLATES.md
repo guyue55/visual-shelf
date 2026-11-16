@@ -26,7 +26,7 @@
 python3 scripts/export-kit.py \
   --background /绝对路径/无字底图.png \
   --text 阅 --name '古月 · 阅' --theme dark \
-  --output .drafts/yue-surface-kit-v01
+  --output .drafts/my-new-kit
 ```
 
 需要 macOS、Swift、Python 3.11+、sips/iconutil；使用仓库固定字体。只输出到 .drafts 下的新目录，不覆盖、不写 assets/catalog/site、不部署。后台图像不由该脚本重新生成：它负责已备背景的排版与场景导出；复杂构图仍须 AI/设计工具调整。
@@ -65,6 +65,8 @@ AI 接入真实项目时还需确认 base path、manifest 的部署位置、名�
 - [Apple Safari Web Content 归档文档](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)：apple-touch-icon 与 180 尺寸示例；该文档是历史归档，实际 Safari 版本需验证。
 - Android、Apple 现代路线及 W3C maskable 依据沿用平台规范中已核对的一手链接。
 
-## 确认后的正式交付（2026-11-16 更新）
+## 当前正式交付（2026-11-16）
 
-上述草稿生成规则继续适用于新设计。原“阅”185 文件套件已获本轮用户明确效果确认，正式保存在 packages/yue-surface-kit-v01，补全资料后共 203 文件。通过 packages.py 可导出 all 或 web/logo/cover/macos/android 子包，无需为原样打包再次确认。详见 [交付规范](DELIVERY-PACKAGES.md)。单个已确认图例、图标也可用 packages.py asset 输出带来源和校验的原文件包；未实际生成的平台格式不能凭空标为已适配。
+用户确认阅字最终v04并授权重导整套，当前包为 packages/yue-surface-kit-v02；源输出仍含185个场景文件，附加资料不混入此原始数量。采用正文居中、通用Logo右下小章，其他平台维持各自安全区规则。整套归档强制通过 scripts/visual_qa.py，交付含quality-review.json与视觉检查清单。
+
+旧v01和错误草稿/导出已清理，旧id有阻止导出的替代提示，不要使用历史文档里的旧路径。详见 [交付规范](DELIVERY-PACKAGES.md) 和 [视觉QA](VISUAL-QA.md)。

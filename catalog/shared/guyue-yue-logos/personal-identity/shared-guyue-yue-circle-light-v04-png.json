@@ -1,0 +1,95 @@
+{
+  "id": "shared-guyue-yue-circle-light-v04-png",
+  "name": "古月 · 阅 · 圆形水墨",
+  "kind": "logos",
+  "path": "assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-circle-light-v04-png.png",
+  "tags": [
+    "owner:shared",
+    "family:guyue-yue-logo",
+    "variant:circle-light",
+    "revision:v04",
+    "status:ready",
+    "用户已确认",
+    "logo",
+    "古风",
+    "阅",
+    "古月章",
+    "圆形",
+    "固定字体",
+    "右下落款",
+    "已校验居中"
+  ],
+  "source": "original",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-16",
+  "description": "用户确认最终v04：主字轮廓中心512,512；固定MaShanZheng-Regular字体，古月小章右下落款，圆形额外内收。来源为已确认水墨浅色A无字底图；图像为位图，逐图许可unknown。取代错误旧阅字，制作前读docs/VISUAL-QA.md。",
+  "sha256": "ae52f8e3773261fd1e4ec3bf56d6471f3ca705170d43f9331b3cf38528f16b56",
+  "organization": {
+    "owner": "shared",
+    "series": "guyue-yue-logos",
+    "component": "personal-identity",
+    "functions": [
+      "个人识别"
+    ],
+    "platforms": [
+      "通用"
+    ]
+  },
+  "approval": {
+    "user_confirmation": "用户2026-11-16明确：更合适，确认无误正式收录，错误素材草稿导出包处理好，更新模板和文档并重导修正整套包；本项为圆形水墨v04右下印章。",
+    "reviewed_sha256": "ae52f8e3773261fd1e4ec3bf56d6471f3ca705170d43f9331b3cf38528f16b56",
+    "task": "yue-circle-v04-right-lower-seal",
+    "checks": "比较基准明确为 MacRightClick 原右字图标；保留已认可阅字居中，仅印章向右下并缩小；圆形额外内收，印章边框和字形在形状内；1024已目视，待用户复核印章关系",
+    "tool": "macOS CoreText/CoreGraphics; pinned font; right-lower seal proposal",
+    "template": "ink-light-a",
+    "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+    "approved_at": "2026-11-16T09:38:39.955173+00:00",
+    "render": {
+      "profile": "circle-logo",
+      "width": 1024,
+      "height": 1024,
+      "text": "阅",
+      "font_postscript": "MaShanZheng-Regular",
+      "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "background_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+      "foreground_sha256": "990d5a6617363e85ec675c888a3d88eaddd8ee84d9b92ddaa34ff5ccdfd050fa",
+      "seal": "古月",
+      "theme": "light",
+      "layout_columns": 1,
+      "layout_rows": 1,
+      "color_space": "sRGB",
+      "os_version": "Version 15.6.1 (Build 24G90)",
+      "layout_version": 2,
+      "main_center_policy": "canvas-center",
+      "coordinate_system": "CoreGraphics bottom-left; image_y = height - y",
+      "main_bounds": {
+        "height": 442.77760000000006,
+        "width": 341.5772531573988,
+        "x": 341.21137342130066,
+        "y": 290.6112
+      },
+      "main_center_actual": {
+        "x": 512,
+        "y": 512
+      },
+      "main_center_expected": {
+        "x": 512,
+        "y": 512
+      },
+      "main_canvas_offset": {
+        "dx": 0,
+        "dy_y_up": 0
+      },
+      "main_center_check_passed": true,
+      "seal_placement": "right-lower",
+      "seal_bounds": {
+        "height": 148.48,
+        "width": 66.56,
+        "x": 844.8,
+        "y": 281.6
+      },
+      "seal_frame_inside_shape": true
+    }
+  }
+}

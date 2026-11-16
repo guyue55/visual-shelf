@@ -54,6 +54,13 @@ class StudioTests(unittest.TestCase):
         item['approval']['reviewed_sha256']='0'*64;(self.root/'catalog/approved-background.json').write_text(json.dumps(item));args.job='changed'
         with self.assertRaises(ValueError):studio.prepare(args)
 
+    def test_prepare_resolves_seal_placement_for_target_platform(self):
+        for purpose,expected in [('logo','right-lower'),('pwa','profile-default')]:
+            args=argparse.Namespace(job='seal-'+purpose,style='moonlit-blue',purpose=purpose,text='阅',owner='shared',instructions='')
+            studio.prepare(args)
+            task=json.loads((self.root/f'.drafts/seal-{purpose}/task.json').read_text())
+            self.assertEqual(task['seal_placement'],expected)
+
     def test_accept_before_review_rejected(self):
         with self.assertRaises(ValueError): studio.accept(self.args())
 

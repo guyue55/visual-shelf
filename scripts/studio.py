@@ -52,6 +52,7 @@ def prepare(args):
     profile = getattr(args, 'profile', None) or {'web':'web','cover':'cover','logo':'circle-logo','app-icon':'square-master','favicon':'favicon','apple-touch':'apple-touch','pwa':'pwa-maskable','android-icon':'android-adaptive','share-card':'og-image'}[args.purpose]
     platform = getattr(args, 'platform', 'unspecified')
     seal = 'none' if getattr(args, 'no_seal', False) else '古月'
+    seal_placement = style.get('seal_placement', 'right-lower') if profile in ('circle-logo','rounded-logo','square-master','apple-touch') else 'profile-default'
     task = dict(job=args.job, style=args.style, purpose=args.purpose, text=args.text,
                 owner=args.owner, instructions=args.instructions, reference=style['reference'],
                 profile=profile, platform=platform, seal=seal, font='MaShanZheng-Regular',
@@ -60,6 +61,8 @@ def prepare(args):
                 accepted_examples=style.get('accepted_examples', []),
                 delivery_packages=style.get('delivery_packages', []),
                 layout_notice=style.get('layout_notice'),
+                seal_placement=seal_placement,
+                seal_reference=style.get('seal_reference'),
                 reference_file=reference_file, reference_sha256=digest(file), state='prepared', created=datetime.now(timezone.utc).isoformat())
     save(directory / 'task.json', task)
     sizes = {'web':'横幅构图；未指定尺寸时先以 1600×600 探索，布局需重新设计，不拉伸圆角图标',
@@ -80,6 +83,7 @@ def prepare(args):
 - 准确主文案：{args.text or 'unknown；若涉及准确字标需补充'}。
 - 主要归属：{args.owner}。它与参考图来源产品不是同一概念，不自动署名 MacRightClick。
 - 已确认样例：{", ".join(style.get("accepted_examples", [])) or "无"}；可直接复用的交付包：{", ".join(style.get("delivery_packages", [])) or "无"}。先查已确认资源，再决定是否需要新制作。
+- 本场景章位：{seal_placement}；章位比较基准：{style.get("seal_reference", "读取对应品牌档案")}。其他平台按各自安全区，不机械套用。
 - 排版复核提示：{style.get("layout_notice") or "无已登记问题；仍需核对主字轮廓和目标中心"}。
 - 本次附加要求：{args.instructions or '无'}。
 - 实际参考：{reference_file}；source asset id：{style['reference']}。

@@ -1,0 +1,13 @@
+{
+  "job": "yue-circle-v01",
+  "style": "ink-light-a",
+  "purpose": "logo",
+  "text": "阅",
+  "owner": "unknown",
+  "instructions": "用户要求圆形内容适配、古风、默认古月印章；使用固定字体排版，不让模型画字",
+  "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+  "reference_file": "reference.png",
+  "reference_sha256": "412ac308bc31dd5ae4aae944f979ff6290c9160077a651640825512c270ac8ef",
+  "state": "prepared",
+  "created": "2026-11-16T06:54:56.816247+00:00"
+}

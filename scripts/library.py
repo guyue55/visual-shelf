@@ -212,6 +212,14 @@ def build(root=ROOT):
     shutil.copytree(root / 'assets', out / 'assets')
     write_json(out / 'catalog.json', records)
     write_json(out / 'organization.json', public_registry(root, records))
+    index = out / 'index.html'
+    markup = index.read_text(encoding='utf-8')
+    for name in ('app.js','catalog-model.js','style.css'):
+        file = out / name
+        if file.is_file():
+            version = hashlib.sha256(file.read_bytes()).hexdigest()[:12]
+            markup = markup.replace('\"'+name+'\"', '\"'+name+'?v='+version+'\"')
+    index.write_text(markup, encoding='utf-8')
     (out / '.nojekyll').touch()
     print(f'构建完成：{len(records)} 项 → dist/')
 

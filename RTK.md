@@ -117,21 +117,18 @@ python3 -m unittest discover -s tests -v
 - [docs/RESEARCH.md](docs/RESEARCH.md) 是选型背景；[docs/VERIFICATION.md](docs/VERIFICATION.md) 是初始化时的历史验证，不代表此后改动已通过。
 - 本手册仅适用于本仓库，不引入其他项目的运行、磁盘迁移或部署约定。
 
-## 确认后交付包
+## 当前确认、检查与交付
 
-完整规则见 [交付规范](docs/DELIVERY-PACKAGES.md)。已确认套件在 packages/，打包副本与 ZIP 在忽略提交的 .exports/，不进入 Pages。
+已确认范本为阅字v04，当前包yue-surface-kit-v02。旧版图像、草稿、包与ZIP已清理，旧id由advisories提示替代。通用Logo默认右下小章；favicon/PWA/Android/横幅等按各自安全区。
 
 ```sh
 python3 scripts/packages.py list
-python3 scripts/packages.py verify packages/yue-surface-kit-v01
-python3 scripts/packages.py export --id yue-surface-kit-v01 --surface web --output .exports/yue-web-new
-python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v02-png --output .exports/yue-circle-new
+python3 scripts/packages.py verify packages/yue-surface-kit-v02
+python3 scripts/packages.py export --id yue-surface-kit-v02 --surface all --output .exports/yue-all-new
+python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v04-png --output .exports/yue-circle-new
+python3 scripts/visual_qa.py .drafts/<新套件目录>
 ```
 
-archive/export/asset 均拒绝覆盖；正式包只接受明确确认的套件及素材来源。收件人读 README.md / AGENTS.md / package.json 后运行包内 VERIFY.py，即可按相对入口接入。原文件打包不重新确认，新增文案和适配重新出草稿。
+正式整套包带quality-review.json；收件人先python3 VERIFY.py，再python3 source/scripts/visual_qa.py payload。新archive还必须--visual-review-note记录实际看过的图和未验证项，不允许自动编造视觉检查。
 
-## 居中复核
-
-新渲染使用 layout_version=2，核对 main_center_policy、main_center_expected/actual、main_canvas_offset 和 main_center_check_passed，并实际查看图片。旧阅字 v02/套件有 advisories，packages.py list 会显示，export/asset 会拒绝新导出；不是文件损坏，勿删除或重写旧清单。修正版候选在 .drafts/yue-circle-v03-centered、.drafts/yue-rounded-v03-centered，待用户核查后另行 accept 和导出新版本。
-
-印章可选对照：`--seal-placement right-lower`，当前仅通用 Logo/方形母版/Apple Touch 支持；默认仍 profile-default。该选项为以原“右”图标落款关系提出的 v04 候选，待用户核查，不代替平台安全区布局。检查 seal_bounds、seal_frame_inside_shape 并实际预览，不能只确认字形没裁切。
+渲染检查layout_version=2、main_center_expected/actual、main_canvas_offset及seal_bounds/placement/frame_inside_shape；通用主字误差≤0.5px。完整规则见 [视觉QA](docs/VISUAL-QA.md)，包命令与限制见 [交付规范](docs/DELIVERY-PACKAGES.md)。

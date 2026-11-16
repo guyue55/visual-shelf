@@ -20,8 +20,17 @@ class PackageTests(unittest.TestCase):
         for name in ('source/background.png','payload/favicon.ico','payload/site.webmanifest','payload/android-res/icon.png','payload/rounded-logo/logo.png','source-assets.json'):
             p=self.folder/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(name)
         self.data=dict(version=1,id='test-kit',name='测试交付',state='approved',text='阅',theme='dark',surfaces=list(packages.SURFACES),entrypoints={x:[] for x in packages.SURFACES},approval={'user_confirmation':'测试夹具确认'},limitations=[])
+        packages.write_json(self.folder/'quality-review.json',{'passed':True,'scope':'test fixture'})
         packages.documentation(self.folder,self.data,self.root);packages.finish(self.folder,self.data)
     def tearDown(self):self.tmp.cleanup()
+    def test_portable_policy_links_do_not_claim_missing_repo_files_exist(self):
+        note=self.folder/'source/POLICY.md'
+        note.write_text('[有效](background.png) [历史](missing.md) [官方](https://example.com/doc)')
+        packages.portable_source_docs(self.folder)
+        text=note.read_text()
+        self.assertIn('[有效](background.png)',text);self.assertIn('[官方](https://example.com/doc)',text)
+        self.assertNotIn('[历史](missing.md)',text);self.assertIn('原仓库参考：missing.md',text)
+
     def test_exact_inventory_detects_drift_missing_and_extra(self):
         verify=packages.verifier(self.root);verify(self.folder)
         p=self.folder/'payload/favicon.ico';original=p.read_bytes();p.write_bytes(b'changed')
@@ -36,7 +45,7 @@ class PackageTests(unittest.TestCase):
     def test_web_export_has_ai_context_and_excludes_android(self):
         args=argparse.Namespace(id='test-kit',surface=['web'],output=self.root/'.exports/web-kit')
         result=packages.export(args,self.root);packages.verifier(self.root)(result)
-        self.assertTrue((result/'AGENTS.md').exists());self.assertTrue((result/'source/background.png').exists())
+        self.assertTrue((result/'quality-review.json').exists());self.assertNotIn('python3 source/scripts/visual_qa.py payload',(result/'README.md').read_text());self.assertTrue((result/'AGENTS.md').exists());self.assertTrue((result/'source/background.png').exists())
         self.assertTrue((result/'payload/favicon.ico').exists());self.assertFalse((result/'payload/android-res').exists())
         import zipfile
         with zipfile.ZipFile(result.with_suffix('.zip')) as z:
@@ -112,9 +121,10 @@ class PackageTests(unittest.TestCase):
 
 class ApprovedArchiveTests(unittest.TestCase):
     def test_approved_original_bytes_and_reproduction_context(self):
-        folder=ROOT/'packages/yue-surface-kit-v01'
+        folder=ROOT/'packages/yue-surface-kit-v02'
         if not folder.exists():self.skipTest('本测试副本未包含正式交付包')
         data=packages.verifier(ROOT)(folder)
+        self.assertTrue((folder/'quality-review.json').exists())
         self.assertEqual(data['state'],'approved');self.assertEqual(data['approval']['original_file_count'],185)
         for name,digest in data['approval']['original_files'].items():
             self.assertEqual(packages.sha(folder/'payload'/name),digest)

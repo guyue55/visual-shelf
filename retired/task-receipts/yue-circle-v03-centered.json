@@ -1,0 +1,65 @@
+{
+  "job": "yue-circle-v03-centered",
+  "style": "ink-light-a",
+  "purpose": "logo",
+  "text": "阅",
+  "owner": "shared",
+  "instructions": "修正 v02 主字偏右偏上；实际字形联合边界对齐画布中心；字号、底图和古月章沿用，待用户核查",
+  "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+  "profile": "circle-logo",
+  "platform": "generic",
+  "seal": "古月",
+  "font": "MaShanZheng-Regular",
+  "approved_background": "shared-guyue-background-ink-light-a-v01-png",
+  "background_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+  "accepted_examples": [
+    "shared-guyue-yue-circle-light-v02-png"
+  ],
+  "delivery_packages": [],
+  "reference_file": "reference.png",
+  "reference_sha256": "412ac308bc31dd5ae4aae944f979ff6290c9160077a651640825512c270ac8ef",
+  "state": "awaiting-user",
+  "created": "2026-11-16T08:58:38.188664+00:00",
+  "candidate": "candidate.png",
+  "candidate_sha256": "9eb85c670d98e2a50b0df9888f259ccacfc9ca1332d2c4a92c309542531c8d74",
+  "checks": "修正旧版主字偏右15.36px、偏上56.32px；主字轮廓联合边界中心512,512，字体字号不变，背景及古月章未移动；1024原图已目视，待用户核查，未替换旧版",
+  "tool": "macOS CoreText/CoreGraphics; pinned MaShanZheng-Regular; layout_version=2",
+  "render": {
+    "profile": "circle-logo",
+    "width": 1024,
+    "height": 1024,
+    "text": "阅",
+    "font_postscript": "MaShanZheng-Regular",
+    "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+    "background_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+    "foreground_sha256": "4737b74adb4b8fe6752fd76a3db86fca8244050d4e55aeacadd93a89ba4ed480",
+    "seal": "古月",
+    "theme": "light",
+    "layout_columns": 1,
+    "layout_rows": 1,
+    "color_space": "sRGB",
+    "os_version": "Version 15.6.1 (Build 24G90)",
+    "layout_version": 2,
+    "main_center_policy": "canvas-center",
+    "coordinate_system": "CoreGraphics bottom-left; image_y = height - y",
+    "main_bounds": {
+      "height": 442.77760000000006,
+      "width": 341.5772531573988,
+      "x": 341.21137342130066,
+      "y": 290.6112
+    },
+    "main_center_actual": {
+      "x": 512,
+      "y": 512
+    },
+    "main_center_expected": {
+      "x": 512,
+      "y": 512
+    },
+    "main_canvas_offset": {
+      "dx": 0,
+      "dy_y_up": 0
+    },
+    "main_center_check_passed": true
+  }
+}

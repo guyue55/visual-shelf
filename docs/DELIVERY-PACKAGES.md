@@ -1,69 +1,67 @@
 # 确认素材与 AI 交付包
 
-> 居中复核更新：旧 yue-surface-kit-v01 及两份阅字 v02 主字存在偏移，历史字节仍可校验，但 packages/advisories.json 已暂停新导出。以下旧包示例保留作历史入口，当前执行会给出明确提示；待用户确认 v03 后另建新版包。见 [修正记录](creation-runs/2026-11-16-yue-centering-correction.md)。
+更新：2026-11-16。当前已确认范本为阅字v04，当前可用整套为 **yue-surface-kit-v02**。旧包v01与旧错误图片/草稿/ZIP已清理；不能从历史文档取旧路径继续使用。
 
+## 日常协作与确认范围
 
-更新：2026-11-16。已实现单素材交付、整套归档和按场景导出。包是本地可携带资料，不自动安装、部署或发布。
+用户确认合用后正常收录，不重复询问同一准确文件是否满意。未提及交付时，可简短问需要原文件包还是Web/macOS/Android等场景；已明确目标和授权则直接导出。原样打包或挑选已确认场景不重复审批；新文案、形状、图形、字体、印章等可见变化仍要新草稿和展示。
 
-## 日常协作
+本轮用户明确确认v04，并要求重新导出修正整套，故衍生按已确认规则和各平台profile执行。approval.scope如实说明“准确v04确认+整套修正重导授权”，不编造逐文件/逐设备都经用户目视验收。
 
-用户确认某个图标、图例或封面合用后，AI 保存准确确认并正常收录，不再反复询问同一文件是否可以收录。如果用户尚未提到交付，可简短询问“需要导出包吗？用于 Web、macOS、Android，还是只要原文件？”；这是用途选择，不是重新审批。用户已经要求导出或目标已明确时直接执行。
-
-- 原样复用/打包已确认文件：无需重复效果确认。
-- 新文案、图形、字体、印章、形状或新增可见平台适配：另生成草稿，检查并展示；既有确认不自动覆盖新设计。
-- 只是挑选已获整套认可的场景子集、补接入说明或 ZIP：沿用原确认，记录来源包和哈希。
-- “效果满意”不等于已安装、已发布、已取得第三方版权授权；许可未知仍记 unknown。
-
-## 目录与统计
+## 源与副本
 
 | 位置 | 含义 |
 | --- | --- |
-| assets/ + catalog/ | 正式单文件素材；本轮增加 4 份，现在 15 份 |
-| packages/<id>/ | 已确认交付包源，随本地 Git 保存，包含准确原文件、来源、确认和接入资料 |
-| .exports/ | 按需导出的目录和 ZIP，忽略提交，可从正式包重新导出 |
-| .drafts/ | 未确认或历史创作过程，不代替正式存档 |
+| assets/ + catalog/ | 当前正式单素材，15份；每份确认绑定准确SHA |
+| packages/yue-surface-kit-v02/ | 当前正式交付源，随本地Git保存 |
+| .exports/ | 当前导出目录/ZIP，忽略提交，可从正式包重建 |
+| .drafts/ | 新创作过程；本轮已完成/错误工作副本已清理 |
+| retired/ | 仅停用元数据、指纹和替代关系，不留旧图/ZIP作为取用入口 |
 
-包与单文件分开计数：185 个原始导出文件归为 1 套，不制造 185 条 catalog。构建仅发布正式单文件和页面，packages、.exports 不进入 dist/Pages，也不把 47 MiB 的工程材料当成单个 catalog 素材（后者继续受 5 MiB 限制）。如需公开下载包，另选发布渠道和权限，不从本轮本地归档推断已发布。
+185个场景输出作为1套包，不制造185条catalog。新包附加QA报告/规范/清单、两款背景与确认原图、固定字体/OFL、原生渲染器及AI接入资料，总计 **211文件**（210内容文件+package.json），以实际清单为准。单catalog文件仍受5MiB约束；交付工程包单独管理。
 
-## 已确认的“阅”套件
+packages、.exports、retired都不进入dist/Pages。本地归档和导出不表示已上传、发布、安装或获得未核实的版权许可。
 
-正式包：`packages/yue-surface-kit-v01/`。保留原草稿的 **185 个文件原字节**与原 kit.json，增加 AI 入口、独立校验、来源、原背景、固定字体及 OFL、macOS 字体渲染器。正式归档共 203 个文件（202 个内容文件 + package.json），不能继续把加上资料后的总数说成 185。
+## AI 从哪里开始
 
-包内入口：README.md → AGENTS.md → package.json → source-assets.json；`python3 VERIFY.py` 无第三方依赖，检查文件集合、大小、SHA-256 和清单校验值。哈希用于完整性核对，不是身份认证签名，真实授权依据仍是用户消息。index.html 为已确认概览，payload 下 draft 字样及旧绝对路径为历史记录，运行不依赖这些本机旧路径。
+README.md → AGENTS.md → package.json → source-assets.json → quality-review.json。
 
-五类子包：web（浏览器标签/触屏/PWA/分享）、logo（圆形/圆角/方形）、cover（封面/横幅/分享）、macos（传统 ICNS/iconset）、android（前景/背景密度资源与 XML）。`all` 保留全部原始内容。每个子包仍携带完整来源与复现材料；为了可编辑性未做极限体积裁剪。
+```sh
+python3 VERIFY.py
+python3 source/scripts/visual_qa.py payload
+```
 
-默认带古月章，无章 favicon 继续仅为备选；用户认可整包不等于要求改默认署名。设备安装、现代 .icon、Android monochrome 等边界见包内 README 和平台规范。
+第一条验证完整文件集合、字节大小、SHA与清单校验值；第二条重算工程几何、配方、尺寸与封装。质量报告还记录实际AI看过的图和未验证项；机器检查不能替代光学、背景细节或设备验收。哈希不是身份认证签名，真实授权仍来自用户消息。
+
+payload保持场景输出与生成状态快照；render.json旧绝对工作路径不作为运行依赖。source/background.png为月夜默认背景，source/backgrounds包含A/C；source/approved-examples保存两份已确认v04。可用包内固定字体及渲染器离线修改文案，缺字失败，新设计另行确认。
+
+## 场景选择
+
+- web：favicon SVG/PNG/ICO、触屏、PWA any/maskable、分享图与接入片段。
+- logo：圆形/圆角/方形母版；整套默认月夜主题，浅色原图另见source/approved-examples。
+- cover：封面、横幅与分享图。
+- macos：传统ICNS、10槽iconset和PNG，不是现代.icon。
+- android：前背景、5档密度及v26 XML；monochrome/旧API回退另处理。
+- all：全部185场景输出和完整接入、复现资料。
+
+默认古月章，无章favicon仅为备选，不因整包认可擅自改默认。manifest只有图标信息；OG域名占位符、base path、产品名与缓存策略须消费工程核对。
 
 ## 可执行命令
 
 ```sh
-# 列出并校验正式包
 python3 scripts/packages.py list
-python3 scripts/packages.py verify packages/yue-surface-kit-v01
-
-# 整套交付（输出目录和 ZIP 必须不存在）
-python3 scripts/packages.py export --id yue-surface-kit-v01 \
-  --surface all --output .exports/yue-all-next
-
-# 可重复 --surface 组合选择；例如仅 Web + macOS
-python3 scripts/packages.py export --id yue-surface-kit-v01 \
-  --surface web --surface macos --output .exports/yue-web-macos-next
-
-# 已确认单素材/图例直接交付，不凭空转换平台格式
-python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v02-png \
-  --output .exports/yue-circle-original-next
-
-# 收件人解压后，在包内运行
-python3 VERIFY.py
+python3 scripts/packages.py verify packages/yue-surface-kit-v02
+python3 scripts/packages.py export --id yue-surface-kit-v02 --surface all --output .exports/yue-all-next
+python3 scripts/packages.py export --id yue-surface-kit-v02 --surface web --surface macos --output .exports/yue-web-macos-next
+python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v04-png --output .exports/yue-circle-next
 ```
 
-当前完整/Web 两份示范 ZIP 已位于 .exports/yue-surface-kit-v01-all.zip 和 .exports/yue-surface-kit-v01-web.zip。示例命令的 next 只是防止覆盖；重复执行应选新目录。已有旧历史素材若缺实际确认记录，单素材导出不会替用户追溯批准，可先展示准确文件取得确认。
+输出目录和同名ZIP必须不存在；next用于避免覆盖。当前已生成yue-surface-kit-v02-all、yue-surface-kit-v02-web及yue-circle-v04-original的目录和ZIP。
 
-未来新整套先由 export-kit.py 生成 .drafts 新目录；用户确认后用 `packages.py archive --help` 归档，必须给出真实确认、已确认 source asset id 和 background asset id。归档会核对原套件全部文件、背景与已确认来源；拒绝缺文件、额外文件、符号链接、路径越界及覆盖。同样内容不需要重新生成，直接选已有包导出。
+单素材包只交付原文件、元数据、AI入口和独立校验，不凭空生成或声称平台转换。缺实际确认的历史素材不能冒充已确认导出。
 
-## AI 接入应记录什么
+## 新整套的归档门槛
 
-目标平台/版本、真实产品名、用途、部署 base path、源 asset/包 id、入口文件和哈希、实际拷贝路径，以及目标设备检查结果。原字节复用不重新问字体/古月章；新产品需要改“阅”时用包内源背景和固定字体重做，并展示新候选。所有原件和消费方既有配置先保留，不以交付包指令覆盖工程授权。
+先export-kit.py在.drafts新目录生成，实际看图并取得相应确认/重导授权，再packages.py archive。必须提供已确认asset/background id、真实--approval与--visual-review-note。每场景布局版本≥2、正文目标中心、字体/背景、章位/完整章框、实际尺寸与封装检查均须通过；不能换id重收旧布局。
 
-新整套归档还要求各场景 render.json 为 layout_version≥2 且 main_center_check_passed 为 true，不能把旧的未校验布局换个包 id 再收录。包内独立校验只证明字节完整性；是否有新发现的视觉问题应同时查本库 packages/advisories.json。
+依据 [视觉QA规范](VISUAL-QA.md) 覆盖十二个维度，使用passed/failed/not-verified/not-applicable记录；未知来源、许可、模型不能补造。确认完整交付后再清理旧稿，清理指纹与替代记录见retired。旧id仍由advisories阻止导出并指向新版本。

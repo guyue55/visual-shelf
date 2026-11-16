@@ -75,7 +75,7 @@ tests/        有实际边界意义的离线测试
 
 个人作品默认古风并带“古月”署名章，正文与章使用固定真实字体，不由图像模型编造文字。支持圆形、圆角方形、方形母版、封面/web 排版及 PWA 安全区配置；macOS 传统 ICNS 与现代 Icon Composer 路线分开处理。见 [个人风格与字数排版](docs/PERSONAL-STYLE.md)、[形状与平台规范](docs/PLATFORM-PROFILES.md)。
 
-原生渲染命令 `./scripts/render-logo.sh --help`，当前需 macOS/Swift；传统图标打包命令 `./scripts/export-macos.sh 输入.png 新目录`。新示例仍走草稿确认；已确认的“阅”圆形浅色和圆角月夜 v02 已正式入库。字体文件及 OFL 许可位于 resources/fonts/mashanzheng。
+原生渲染命令 `./scripts/render-logo.sh --help`，当前需 macOS/Swift；传统图标打包命令 `./scripts/export-macos.sh 输入.png 新目录`。新示例仍走草稿确认；已确认的“阅”圆形浅色和圆角月夜 v04 已正式入库。字体文件及 OFL 许可位于 resources/fonts/mashanzheng。
 
 ## 常用场景模板套件
 
@@ -128,12 +128,14 @@ python3 scripts/library.py build
 
 目前没有为整个项目指定统一开放许可。代码、原创素材的许可由库主人后续决定；第三方素材始终遵守各自的版权、许可与商标要求。`unknown` 表示未核实，不表示可自由商用。详见 [RIGHTS.md](RIGHTS.md)。
 
-## 已确认作品与按需交付
+## 当前确认与交付基线
 
-底图 A/C、阅字 Logo A/B 和原 185 文件套件已依据用户明确确认收录。详情见 [确认与交付记录](docs/creation-runs/2026-11-16-approved-guyue-assets.md)。浅色 B 瑕疵底图仍待修。
+已正式收录无字底图A/C和阅字最终v04（正文居中、古月小章右下落款）。当前共15份单素材，另有1套修正包 **yue-surface-kit-v02**，包内185个场景输出不重复计入单图。
 
-需要使用时可以说：“把这份图例打个 AI 接入包”，或“导出阅的 Web / macOS 包”。AI 先复用已确认文件，不重复问是否满意；目标缺失时只补问必要的用途。每包包含来源、确认、入口、哈希、README/AGENTS 与独立校验；整套还包含原背景、固定字体/OFL 和原生渲染器。命令和文件位置见 [交付包规范](docs/DELIVERY-PACKAGES.md)。
+旧阅字v02/v03、旧套件v01、碎片底图及相关草稿/导出已按用户要求清理；模板和页面只使用当前版本。retired仅为历史元数据/替代关系，不含可取用的旧图片或ZIP。
 
-## 阅字居中复核
+可以说：“导出阅的Web/macOS包”或“把这个已确认图例打个AI接入包”。AI直接复用当前版本，包内有README/AGENTS、来源、准确确认、独立校验、工程QA报告及离线复现材料。见 [交付规范](docs/DELIVERY-PACKAGES.md)、[最终收录与清理记录](docs/creation-runs/2026-11-16-v04-final-delivery.md)。
 
-用户提出居中疑问后，确认旧 v02 主字偏右/偏上，已修正通用渲染规则并生成 v03 候选待核查。两份旧字标标为已替代，旧交付包暂停新导出，原字节和确认留档；未将修正版擅自收录。见 [修正证据与候选](docs/creation-runs/2026-11-16-yue-centering-correction.md)。
+## 制作经验与检查
+
+每次制作先读 [视觉QA规范](docs/VISUAL-QA.md) 和机器可读清单。覆盖参照、主字几何/光学、印章关系、形状/描边、固定字体、背景、透明、小尺寸、平台、来源、确认与版本管理。scripts/visual_qa.py 独立复算关键坐标；机器通过不代替实图与设备验收。

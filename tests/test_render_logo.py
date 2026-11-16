@@ -22,6 +22,7 @@ class RenderTests(unittest.TestCase):
     def test_fixed_font_and_transparent_shape(self):
         output=self.render('阅'); data=json.loads((output/'render.json').read_text())
         self.assertEqual(data['font_postscript'],'MaShanZheng-Regular')
+        self.assertEqual(data['seal_placement'],'right-lower')
         self.assertEqual([x['text'] for x in data['glyphs']],['阅','古','月'])
         self.assertTrue(data['all_glyph_bounds_inside_shape'])
         self.assertEqual(data['alpha_bottom_left'],0)
@@ -42,7 +43,7 @@ class RenderTests(unittest.TestCase):
 
     def test_right_lower_seal_uses_reference_relationship_without_moving_main(self):
         for profile in ('circle-logo','rounded-logo'):
-            base=self.render('阅',profile=profile,name=profile+'-base')
+            base=self.render('阅',profile=profile,name=profile+'-base',extra=('--seal-placement','profile-default'))
             proposed=self.render('阅',profile=profile,name=profile+'-seal',extra=('--seal-placement','right-lower'))
             before=json.loads((base/'render.json').read_text());after=json.loads((proposed/'render.json').read_text())
             self.assertEqual([g for g in before['glyphs'] if g['role']=='main'],[g for g in after['glyphs'] if g['role']=='main'])

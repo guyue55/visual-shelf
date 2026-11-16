@@ -76,7 +76,7 @@
 - 正式包、完整/Web 子包与单素材示范包的独立 VERIFY.py 均通过；包校验覆盖额外/缺失/变更文件、符号链接、清单完整性。导出拒绝覆盖和输出越界，未确认素材不能冒充已确认交付。
 - 本机用正式包内 source/background.png、固定字体和 render-logo.sh 离线复现阅字圆角月夜，PNG SHA-256 = fd59b0b65e6f03d9cca0ca9244948197cc743ef5bb8da26efb0d2db5439fb7d5，与原确认文件一致，不依赖原草稿目录。
 - 全量 Python 56 项通过；Node 筛选测试 4 项通过；两份 JS 语法、validate/build、git diff --check 通过。新增测试包含归档边界、单素材和场景 ZIP、确认底图复用。
-- 浏览器实际验证两份 Logo 与两份底图系列、正式详情路径/哈希、图片加载及新增“确认后按需交付”说明；[正式收录页面截图](evidence/2026-11-16-approved-guyue-assets.jpg)。受管预览健康，http://127.0.0.1:4174/ 。
+- 浏览器实际验证两份 Logo 与两份底图系列、正式详情路径/哈希、图片加载及新增“确认后按需交付”说明；旧版收录截图已按本轮清理指令移除，当前截图见最终交付记录。受管预览健康，http://127.0.0.1:4174/ 。
 - 未执行 GitHub push、Pages 发布或目标工程安装。许可未知项仍如实保留；浅色 B 瑕疵底图没有混用 Logo B 的确认。旧创建记录已标明历史状态与本轮后续确认。
 
 ## 2026-11-16：阅字居中修正待核查
@@ -95,3 +95,15 @@
 - v04 right-lower 两候选与 v03 正文逐字形路径完全一致，font/background 哈希一致；章向右下、缩小约15%，圆形额外内收。实际查看原右图、v03 和两份 v04，未压人物；章框含描边及字形均在形状内。
 - Python 全量60项通过，新增有实际原生渲染的右下章/主字不动/缩放方向/安全边界与场景限制回归；validate15、build及git diff --check通过。
 - 两 v04 review=awaiting-user，没有 accept、没有切换全局默认。主字居中已获认可，印章关系待复核，最终收录和旧版处理承接用户已有指令，不再次索要同一授权。未发布或修改原 MacRightClick 图标。
+
+## 2026-11-16：v04正式收录与最终整套交付
+
+- 用户明确确认右下小章最终稿并授权收录、清理与重导。两份准确v04 PNG已accept；catalog/模板/页面只引用当前图，现有15素材/6系列不因旧版保留而膨胀。
+- 清理第一阶段21入口1000文件，完成后7入口246文件；业务草稿已无图像，旧阅字、旧包v01、旧ZIP、额外旧包副本、碎片B底图及旧截图均退出工作目录。retired仅元数据和指纹；原MacRightClick来源与A/C底图未误删。
+- 当前整包yue-surface-kit-v02：185场景输出，附来源/QA/复现/AI资料后211文件。整包ZIP211文件约51.8MiB，Web包120文件约27MiB，圆形原文件包6文件约1.3MiB。包及ZIP全部逐项SHA与文件集合核对通过。
+- 新增visual_qa独立复算正文中心、完整章框含描边、重叠/有限坐标、profile章位及安全区，核对文案、字体/背景/前景/PNG配方哈希与真实尺寸、ICO帧、iconset/ICNS、Android密度/XML及manifest。仍明确PNG只读header，背景/光学/实际设备不能被该脚本完全验证。
+- AI实际查看原右字、两份最终v04及整包圆形/圆角/PWA/Android128px、favicon32px和分享图；记录于quality-review.visual_review_note，未编造用户逐设备确认。小章在极小favicon仍很弱，默认带章、无章仅备选。
+- 包内VERIFY、工程QA重算通过；用包内字体、月夜背景和渲染器离线复现的PNG与用户确认fc2075…babfa完全一致。子包也携带父套件质量报告，README按真实目录决定是否提供整套重算命令，避免子包缺结构却被要求执行。
+- 发现并修复浏览器缓存旧索引：本地响应no-store、索引fetch no-store、JS/CSS构建内容哈希查询串。浏览器再次刷新、详情修订号/路径/SHA、图片加载、实际下载均确认为v04；下载文件哈希一致后清理测试副本。当前截图见 [正式v04页面](evidence/2026-11-16-v04-final-library.jpg)。
+- Python全量69项通过，最后提示文案修改另做studio相关回归；Node4项、两份JS语法、validate15、build、git diff --check通过。受管预览健康http://127.0.0.1:4174/。
+- 未push、发布Pages或安装到目标设备；现代.icon、Android monochrome、实际平台缓存/安装、OG真实域名仍由消费项目完成。当前制作规范、归档门槛、机器清单和失败经验见 [视觉QA](VISUAL-QA.md) 与 [最终交付记录](creation-runs/2026-11-16-v04-final-delivery.md)。

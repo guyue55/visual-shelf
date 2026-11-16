@@ -23,8 +23,9 @@ class PagesTests(unittest.TestCase):
             build(root)
             public=root/'hosting';public.mkdir();shutil.move(root/'dist',public/'visual-shelf')
             artifact=public/'visual-shelf'
+            self.assertRegex((artifact/'index.html').read_text(),r'app\.js\?v=[a-f0-9]{12}')
             self.assertTrue((artifact/'.nojekyll').exists())
-            for name in ('.drafts','.exports','packages','scripts','resources','catalog'):self.assertFalse((artifact/name).exists())
+            for name in ('.drafts','.exports','packages','retired','scripts','resources','catalog'):self.assertFalse((artifact/name).exists())
             class Handler(http.server.SimpleHTTPRequestHandler):
                 def log_message(self,*args):pass
             server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(public)))

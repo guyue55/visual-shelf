@@ -6,10 +6,12 @@ import hashlib
 import html
 import importlib.util
 import json
+import re
 from pathlib import Path, PurePosixPath
 import shutil
 import tempfile
 import zipfile
+from visual_qa import audit_kit
 from library import ROOT, SLUG, read_json, validate, write_json
 
 SURFACES = ('web', 'logo', 'cover', 'macos', 'android')
@@ -71,15 +73,31 @@ def finish(folder, data):
     write_json(folder/'package.json', data)
 
 
+def portable_source_docs(folder):
+    """Keep bundled policy snapshots from suggesting missing repo files are local."""
+    for file in (folder/'source').glob('*.md'):
+        text=file.read_text(encoding='utf-8')
+        def link(match):
+            label,target=match.groups()
+            if target.startswith(('https://','http://','#')) or (file.parent/target.split('#')[0]).exists():
+                return match.group(0)
+            return label+'（原仓库参考：'+target+'）'
+        text=re.sub(r'\[([^\]]+)\]\(([^)]+)\)',link,text)
+        banner='> 原仓库规范快照：文中仓库相对命令不等于本包目录。包内真实运行入口以 README.md、AGENTS.md 和 package.json 为准；原仓库历史链接已标明。\n\n'
+        if not text.startswith(banner):text=banner+text
+        file.write_text(text,encoding='utf-8')
+
+
 def documentation(folder, data, root):
     surfaces = data['surfaces']
+    qa_usage = '整套还可运行 `python3 source/scripts/visual_qa.py payload` 重算工程检查。' if (folder/'payload/kit.json').exists() else '本场景子包的 quality-review.json 来自已校验父套件；仅运行 VERIFY.py 核对本包，不对缺少全套结构的子包执行整套审核命令。'
     routes = '\n'.join(f"| {surface} | " + '、'.join(f'`payload/{p}`' for p in ENTRYPOINTS[surface]) + ' |' for surface in surfaces)
     (folder/'README.md').write_text(f'''# {data['name']}
 
 状态：{data['state']}。正文：{data['text']}；默认署名章：古月；固定字体：MaShanZheng-Regular。
 本包是已确认效果的交付材料，未安装到任何项目，也不表示获得了未核实的第三方再分发许可。
 
-先运行 `python3 VERIFY.py`。打开 `index.html` 查看已确认场景；若浏览器不支持本地预览，使用收件项目正常开发服务，不绕过安全提示。原始草稿预览和 render.json 的 draft 字样仅为历史生成状态；当前确认和文件范围以 package.json 为准。
+先运行 `python3 VERIFY.py`。{qa_usage}再读 quality-review.json 和 source/VISUAL-QA.md 的检查范围。打开 `index.html` 查看已确认场景；若浏览器不支持本地预览，使用收件项目正常开发服务，不绕过安全提示。原始草稿预览和 render.json 的 draft 字样仅为历史生成状态；当前确认和文件范围以 package.json 为准。
 
 ## 找到要用的文件
 
@@ -99,6 +117,8 @@ def documentation(folder, data, root):
 6. 在目标浏览器/设备检查实际尺寸、深浅背景、裁切、安全区与缓存；记录实际使用的包 id、文件哈希和路径。效果认可不等于已完成设备验收。
 
 ## 修改文案与复现
+
+source/backgrounds/ 保存两份已确认无字底图，source/approved-examples/ 保存已确认阅字v04原图；默认 background.png 为月夜深蓝。浅色圆形可用对应水墨背景、--profile circle-logo --theme light；不要把整套深蓝circle误标为已确认浅色原图。
 
 在 macOS（Swift/CoreText）运行，例如：
 
@@ -172,6 +192,13 @@ def archive(args, root=ROOT):
             raise ValueError('归档需使用 layout_version=2 重新生成并确认；旧布局不能作为新包收录')
         if render['background_sha256'] != bg['sha256']:
             raise ValueError('套件渲染背景与来源不一致')
+    quality=audit_kit(source, bg['sha256'], read_json(root/'resources/fonts/mashanzheng/provenance.json')['sha256'])
+    if not quality['passed']:
+        raise ValueError('视觉工程检查未通过：'+ '; '.join(quality['errors']))
+    note=getattr(args,'visual_review_note','').strip()
+    if not note:
+        raise ValueError('归档需 --visual-review-note 记录实际看过的图、构图检查和未验证项')
+    quality['visual_review_note']=note
     target.parent.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='.archive-',dir=target.parent) as tmp:
         staging=Path(tmp)/args.id;staging.mkdir()
@@ -179,19 +206,29 @@ def archive(args, root=ROOT):
         (staging/'source/scripts').mkdir(parents=True)
         shutil.copytree(root/'resources/fonts/mashanzheng',staging/'source/resources/fonts/mashanzheng')
         shutil.copyfile(root/bg['path'],staging/'source/background.png')
-        for file in ('render-logo.sh','render_logo.swift'):
+        for file in ('render-logo.sh','render_logo.swift','visual_qa.py'):
             shutil.copy2(root/'scripts'/file,staging/'source/scripts'/file)
         for name in ('PERSONAL-STYLE.md','PLATFORM-PROFILES.md','SCENE-TEMPLATES.md'):
             shutil.copyfile(root/'docs'/name,staging/'source'/name)
+        for item in assets:
+            group='backgrounds' if item.get('organization',{}).get('component')=='template-background' else 'approved-examples'
+            destination=staging/'source'/group/(item['id']+Path(item['path']).suffix)
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(root/item['path'],destination)
         write_json(staging/'source-assets.json',assets)
+        write_json(staging/'quality-review.json',quality)
+        shutil.copyfile(root/'docs/VISUAL-QA.md',staging/'source/VISUAL-QA.md')
+        shutil.copyfile(root/'templates/visual/review-checklist.json',staging/'source/review-checklist.json')
         data={'version':1,'id':args.id,'name':args.name,'state':'approved','created':stamp(),
               'text':kit['text'],'theme':read_json(source/'rounded-logo/render.json')['theme'],
-              'font':kit['font'],'default_seal':kit['default_seal'],'layout_version':2,'surfaces':list(SURFACES),
+              'font':kit['font'],'default_seal':kit['default_seal'],'layout_version':2,'visual_recipe':'centered-main-right-lower-seal-v04','surfaces':list(SURFACES),
               'entrypoints':{key:['payload/'+x for x in value] for key,value in ENTRYPOINTS.items()},
               'source_assets':args.asset,'background_asset':args.background_asset,
               'approval':{'user_confirmation':args.approval,'approved_at':stamp(),'original_file_count':len(original),
-                          'original_kit_sha256':sha(source/'kit.json'),'original_files':original},
+                          'original_kit_sha256':sha(source/'kit.json'),'original_files':original,
+                          'scope':'用户确认准确v04原图并授权重导整套；衍生按已确认规则及平台profile生成，设备效果另验'},
               'limitations':[x for x in kit['limitations'] if x!='全部生成文件需要逐用途视觉确认']+['认可效果不等于设备安装/云端部署验收','无章 favicon 仍为备选，默认保留古月章']}
+        portable_source_docs(staging)
         documentation(staging,data,root);finish(staging,data);verifier(root)(staging)
         staging.rename(target)
     print(f'APPROVED PACKAGE：{target}；原始 {len(original)} 文件 + 原清单、AI 接入资料与离线复现材料')
@@ -230,7 +267,7 @@ def export(args, root=ROOT):
     with tempfile.TemporaryDirectory(prefix='.export-',dir=out.parent) as tmp:
         staging=Path(tmp)/out.name;staging.mkdir()
         for name in data['files']:
-            if name.startswith('source/') or name=='source-assets.json' or (name.startswith('payload/') and ('all' in args.surface or selected_payload(name[8:],surfaces))):
+            if name.startswith('source/') or name in ('source-assets.json','quality-review.json') or (name.startswith('payload/') and ('all' in args.surface or selected_payload(name[8:],surfaces))):
                 dest=staging/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source/name,dest)
         exported={key:value for key,value in data.items() if key not in ('files','inventory_sha256')}
         exported.update(surfaces=surfaces,parent_package=args.id,exported_at=stamp(),entrypoints={s:data['entrypoints'][s] for s in surfaces})
@@ -283,6 +320,7 @@ def main():
     p=sub.add_parser('archive');p.add_argument('--source',type=Path,required=True)
     for key in ('id','name','approval','background-asset'):p.add_argument('--'+key,required=True)
     p.add_argument('--asset',action='append',required=True)
+    p.add_argument('--visual-review-note',required=True)
     p=sub.add_parser('verify');p.add_argument('directory',type=Path)
     p=sub.add_parser('asset');p.add_argument('--id',required=True);p.add_argument('--output',type=Path,required=True)
     p=sub.add_parser('export');p.add_argument('--id',required=True);p.add_argument('--surface',choices=['all',*SURFACES],action='append',required=True);p.add_argument('--output',type=Path,required=True)

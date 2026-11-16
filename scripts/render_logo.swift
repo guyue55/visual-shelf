@@ -28,7 +28,7 @@ let profile = options["profile"]!
 let allowed = ["circle-logo","rounded-logo","square-master","cover","web","pwa-maskable","favicon","apple-touch","og-image","android-adaptive"]
 guard allowed.contains(profile), ["light","dark"].contains(options["theme"]!) else { fail("未知 profile 或 theme") }
 if profile == "favicon" && characters.count > 2 { fail("标签图标最多两字；请先明确短标记，不能把长标题缩成字墙") }
-let sealPlacement = options["seal-placement"] ?? "profile-default"
+let sealPlacement = options["seal-placement"] ?? (["circle-logo","rounded-logo","square-master","apple-touch"].contains(profile) ? "right-lower" : "profile-default")
 guard ["profile-default","right-lower"].contains(sealPlacement) else { fail("未知印章位置") }
 if sealPlacement == "right-lower" && !["circle-logo","rounded-logo","square-master","apple-touch"].contains(profile) { fail("right-lower 仅适用于通用 Logo/方形母版/触屏图标；其他场景继续按安全区布局") }
 let fm = FileManager.default

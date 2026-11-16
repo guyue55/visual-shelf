@@ -1,0 +1,16 @@
+{
+  "job": "template-ink-light-b",
+  "style": "ink-light-b",
+  "purpose": "app-icon",
+  "text": "",
+  "owner": "unknown",
+  "instructions": "制作无大字无印章底图草稿，先预览，不入库",
+  "reference": "product-macrightclick-app-icon-ink-light-b-q96-v01-png",
+  "reference_sha256": "b2c0a629af3dbad2dff081514f84c14207d7191d704f2ff8e663fca238497604",
+  "state": "awaiting-user",
+  "created": "2026-11-16T06:11:19.631294+00:00",
+  "candidate": "candidate.png",
+  "candidate_sha256": "901899aec8134ff050d2cc50c045827c8223cd6280ff34ba4cbdefc8b87cb77c",
+  "checks": "清理第二版已目视：大字和印章移除，但顶部底部透明边缘仍有碎片，不建议收录；保留待修，不视为效果满意",
+  "tool": "image_gen builtin; backend model unknown"
+}

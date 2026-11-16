@@ -1,0 +1,13 @@
+{
+  "job": "yue-rounded-v01",
+  "style": "moonlit-blue",
+  "purpose": "logo",
+  "text": "阅",
+  "owner": "unknown",
+  "instructions": "用户要求圆角方形、古风、默认古月印章；使用固定字体排版，不让模型画字",
+  "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+  "reference_file": "reference.png",
+  "reference_sha256": "edd55002dca93b97c645e260191757c9a71b007d2458c7a23ff0bc2180562e57",
+  "state": "prepared",
+  "created": "2026-11-16T06:54:56.905707+00:00"
+}

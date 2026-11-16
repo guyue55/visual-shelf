@@ -1,0 +1,69 @@
+{
+  "state": "retired-not-for-use",
+  "replacement": "shared-guyue-yue-circle-light-v04-png",
+  "reason": "旧阅字居中偏移；已确认最终v04，用户要求清理错误版本",
+  "historical_record": {
+    "id": "shared-guyue-yue-circle-light-v02-png",
+    "name": "古月 · 阅 · 圆形水墨",
+    "kind": "logos",
+    "path": "assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-circle-light-v02-png.png",
+    "tags": [
+      "owner:shared",
+      "family:guyue-yue-logo",
+      "variant:circle-light",
+      "revision:v02",
+      "用户已确认",
+      "logo",
+      "古风",
+      "阅",
+      "古月章",
+      "圆形",
+      "固定字体",
+      "status:deprecated",
+      "居中待修正"
+    ],
+    "source": "original",
+    "license": "unknown",
+    "author": "unknown",
+    "created": "2026-11-16",
+    "description": "1024×1024 RGBA；阅字与古月章采用固定 MaShanZheng-Regular 真字形轮廓，已获用户确认。使用已确认水墨浅色 A 无字底图；圆形透明外缘，按形状适配正文与印章。背景位图，整图不冒称纯矢量；底图权利 unknown。 居中复核发现：原主字偏右15.36px、偏上56.32px；本文件作为已确认旧版保留，不推荐新使用。v03居中修正版待用户核查。",
+    "sha256": "cfb2b0aabe4881ae0ac7589df7a2d3f56d4c0499ee81982f7a2f5c5b55740abe",
+    "organization": {
+      "owner": "shared",
+      "series": "guyue-yue-logos",
+      "component": "personal-identity",
+      "functions": [
+        "个人识别"
+      ],
+      "platforms": [
+        "通用"
+      ]
+    },
+    "approval": {
+      "user_confirmation": "用户本轮明确：A、B 的效果满意，正常收录；本项为 Logo A：阅字圆形浅色 v02。",
+      "reviewed_sha256": "cfb2b0aabe4881ae0ac7589df7a2d3f56d4c0499ee81982f7a2f5c5b55740abe",
+      "task": "yue-circle-v02",
+      "checks": "阅/古/月使用真实固定字体轮廓；圆形透明角、字形和印章边界已检查，128px已目视；背景细节为位图，待用户确认",
+      "tool": "macOS CoreText/CoreGraphics; pinned MaShanZheng-Regular",
+      "template": "ink-light-a",
+      "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+      "approved_at": "2026-11-16T08:38:16.207855+00:00",
+      "render": {
+        "profile": "circle-logo",
+        "width": 1024,
+        "height": 1024,
+        "text": "阅",
+        "font_postscript": "MaShanZheng-Regular",
+        "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+        "background_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+        "foreground_sha256": "9e5d521cd78591df9111f6e38a651ab659c220a33213a94434fe07b204e63e02",
+        "seal": "古月",
+        "theme": "light",
+        "layout_columns": 1,
+        "layout_rows": 1,
+        "color_space": "sRGB",
+        "os_version": "Version 15.6.1 (Build 24G90)"
+      }
+    }
+  }
+}

@@ -65,7 +65,8 @@ function card(item) {
   const org=M.organization(item),status=M.status(item);const button=el('button',undefined,'asset-card');button.type='button';button.setAttribute('aria-label',`查看 ${item.name}`);
   const preview=el('div',undefined,'preview');preview.dataset.kind=item.kind;
   const img=el('img');img.src=item.path;img.alt=item.name;img.loading='lazy';
-  preview.append(el('span',item.path.split('.').pop().toUpperCase(),'preview-format'),img,el('span','↗','preview-arrow'));
+  const revision=item.tags.find(t=>t.startsWith('revision:'))?.slice(9);
+  preview.append(el('span',item.path.split('.').pop().toUpperCase()+(revision?' · '+revision:''),'preview-format'),img,el('span','↗','preview-arrow'));
   const body=el('div',undefined,'card-info');body.append(el('h4',item.name,'card-title'));
   body.append(el('p',`${nameFor('owners',org.owner,'待整理')} / ${nameFor('components',org.component,'未标注组件')}`,'card-context'));
   const bottom=el('div',undefined,'card-bottom');const tags=M.visibleTags(item);bottom.append(el('span',tags.slice(0,2).map(t=>'#'+t).join('  '),'card-tags'));
@@ -104,7 +105,7 @@ function showDetail(item,updateHash=true) {
   const content=el('div',undefined,'detail-body');const heading=el('h2',item.name);heading.id='detail-title';
   content.append(el('div',`${nameFor('owners',org.owner,'待整理')} / ${nameFor('series',org.series,'未分组')} / ${nameFor('components',org.component,'未标注组件')}`,'detail-breadcrumb'),heading,el('p',item.description));
   const tags=el('div',undefined,'detail-tags');for(const tag of M.visibleTags(item)){const button=el('button','#'+tag);button.addEventListener('click',()=>{closeDetail();state.tag=tag;render();});tags.append(button);}content.append(tags);
-  const values={'分类':kindNames[item.kind],'功能':(org.functions||[]).join(' / ')||'未标注','平台':(org.platforms||[]).join(' / ')||'未标注','状态':statusNames[status],'作者':item.author,'许可':item.license,'新增日期':item.created,'来源':item.source,'文件路径':item.path,'SHA-256':item.sha256};
+  const values={'分类':kindNames[item.kind],'修订':item.tags.find(t=>t.startsWith('revision:'))?.slice(9)||'未标注','功能':(org.functions||[]).join(' / ')||'未标注','平台':(org.platforms||[]).join(' / ')||'未标注','状态':statusNames[status],'作者':item.author,'许可':item.license,'新增日期':item.created,'来源':item.source,'文件路径':item.path,'SHA-256':item.sha256};
   const dl=el('dl');for(const [key,value] of Object.entries(values)){const dd=el('dd');if(key==='来源'&&/^https?:\/\//.test(value)){const a=el('a',value);a.href=value;a.target='_blank';a.rel='noopener noreferrer';dd.append(a);}else dd.textContent=value;dl.append(el('dt',key),dd);}content.append(dl);
   const actions=el('div',undefined,'actions'),url=assetURL(item);const pageURL=new URL(location.href);pageURL.hash=new URLSearchParams({asset:item.id}).toString();
   for(const [text,value] of [['复制链接',url],['复制 Markdown',`![${item.name.replace(/[\[\]\\]/g,'')}](${url})`],['复制仓库路径',item.path],['分享此素材',pageURL.href]]){const button=el('button',text);button.addEventListener('click',()=>copy(value));actions.append(button);}
@@ -129,7 +130,7 @@ for(const id of ['reset','empty-reset'])$('#'+id).addEventListener('click',()=>{
 $('#mobile-nav').addEventListener('click',()=>{const open=document.body.classList.toggle('nav-open');$('#mobile-nav').setAttribute('aria-expanded',String(open));});
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMobile();if(event.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)&&!document.querySelector('dialog[open]')){event.preventDefault();$('#search').focus();}});
 window.addEventListener('popstate',()=>{state=readState();render();});
-async function init(){try{const [assetsResponse,groupsResponse]=await Promise.all([fetch('catalog.json'),fetch('organization.json')]);if(!assetsResponse.ok||!groupsResponse.ok)throw Error();[items,registry]=await Promise.all([assetsResponse.json(),groupsResponse.json()]);state=readState();
+async function init(){try{const [assetsResponse,groupsResponse]=await Promise.all([fetch('catalog.json',{cache:'no-store'}),fetch('organization.json',{cache:'no-store'})]);if(!assetsResponse.ok||!groupsResponse.ok)throw Error();[items,registry]=await Promise.all([assetsResponse.json(),groupsResponse.json()]);state=readState();
 const stats=registry.stats;$('#stat-assets').textContent=stats.assets;$('#stat-series').textContent=stats.series;$('#stat-products').textContent=stats.products+stats.projects;$('#stat-components').textContent=stats.components;$('#nav-total').textContent=stats.assets;$('#nav-series-count').textContent=stats.series;
 const featured=items.find(x=>x.id==='product-macrightclick-app-icon-moonlit-blue-q96-v01-png')||items[0];if(featured){$('#hero-image').src=featured.path;$('#hero-image').alt=featured.name;$('#hero-image').hidden=false;$('#hero-name').textContent=featured.name.replace('MacRightClick · ','');$('#hero-asset').disabled=false;$('#hero-asset').addEventListener('click',()=>showDetail(featured));}
 render();const id=new URLSearchParams(location.hash.slice(1)).get('asset');const selected=items.find(x=>x.id===id);if(selected)showDetail(selected,false);

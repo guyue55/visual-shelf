@@ -1,0 +1,28 @@
+{
+  "job": "template-ink-light-a",
+  "style": "ink-light-a",
+  "purpose": "app-icon",
+  "text": "",
+  "owner": "unknown",
+  "instructions": "制作无大字无印章底图草稿，先预览，不入库",
+  "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+  "reference_sha256": "412ac308bc31dd5ae4aae944f979ff6290c9160077a651640825512c270ac8ef",
+  "state": "accepted",
+  "created": "2026-11-16T06:11:19.111714+00:00",
+  "candidate": "candidate.png",
+  "candidate_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+  "checks": "已目视：大字与印章已移除，人物山水保留；生成式补绘存在细节差异，透明边缘及小尺寸仍需用户验收，不保证像素级不变",
+  "tool": "image_gen builtin; backend model unknown",
+  "kind": "icons",
+  "asset_id": "shared-guyue-background-ink-light-a-v01-png",
+  "approval": {
+    "user_confirmation": "用户本轮明确：之前几轮需要我确认才能收录到都满意，你正常收录（A、C 满意、A、B 的效果满意）；本项为底图 A。",
+    "reviewed_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+    "task": "template-ink-light-a",
+    "checks": "已目视：大字与印章已移除，人物山水保留；生成式补绘存在细节差异，透明边缘及小尺寸仍需用户验收，不保证像素级不变",
+    "tool": "image_gen builtin; backend model unknown",
+    "template": "ink-light-a",
+    "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+    "approved_at": "2026-11-16T08:38:16.000686+00:00"
+  }
+}

@@ -60,6 +60,10 @@ def healthy(state):
 
 def serve(port, token):
     class Handler(http.server.SimpleHTTPRequestHandler):
+        def end_headers(self):
+            self.send_header("Cache-Control", "no-store")
+            super().end_headers()
+
         def do_GET(self):
             if self.path == '/__visual_shelf_health__':
                 data = json.dumps({'token': token}).encode()

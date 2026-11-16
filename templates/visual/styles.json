@@ -3,15 +3,17 @@
     "name": "水墨浅色 A",
     "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
     "direction": "纸色、墨色书法与山水，人物位于左下，主体靠近画布边缘",
-    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认；2026-11-16 用户进一步明确确认底图 A/C 和阅字示例 A/B，准许准确候选收录，新增设计仍需确认。",
+    "preference": "用户明确认可古风方向；2026-11-16确认无字底图A/C、阅字最终v04，并授权更新整套衍生包。新设计仍需实际展示确认。",
     "default_seal": "古月",
     "font": "MaShanZheng-Regular",
     "profile_index": "templates/visual/profiles.json",
     "approved_background": "shared-guyue-background-ink-light-a-v01-png",
     "accepted_examples": [
-      "shared-guyue-yue-circle-light-v02-png"
+      "shared-guyue-yue-circle-light-v04-png"
     ],
-    "layout_notice": "旧阅字v02示例居中存在偏移，保留历史，不作为新排版基线；新渲染使用layout_version=2，v03修正候选待核查。已确认无字底图不受影响。"
+    "layout_notice": "2026-11-16用户已确认v04：主字居中、古月小章右下落款；旧v02/v03不再用于制作或导出。",
+    "seal_reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+    "seal_placement": "right-lower"
   },
   "ink-light-b": {
     "name": "水墨浅色 B",
@@ -20,23 +22,26 @@
     "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认",
     "default_seal": "古月",
     "font": "MaShanZheng-Regular",
-    "profile_index": "templates/visual/profiles.json"
+    "profile_index": "templates/visual/profiles.json",
+    "layout_notice": "仅保留原图风格参考；有碎片的衍生底图已清理，没有可复用已确认无字底图。"
   },
   "moonlit-blue": {
     "name": "月夜深蓝",
     "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
     "direction": "深蓝月夜、米白主字、山水与右下人物，月亮在左上",
-    "preference": "2026-11-16 用户明确表示喜欢这几类视觉，允许复制为制作模板；衍生成品仍须逐份确认；2026-11-16 用户进一步明确确认底图 A/C 和阅字示例 A/B，准许准确候选收录，新增设计仍需确认。",
+    "preference": "用户明确认可古风方向；2026-11-16确认无字底图A/C、阅字最终v04，并授权更新整套衍生包。新设计仍需实际展示确认。",
     "default_seal": "古月",
     "font": "MaShanZheng-Regular",
     "profile_index": "templates/visual/profiles.json",
     "approved_background": "shared-guyue-background-moonlit-blue-v01-png",
     "accepted_examples": [
-      "shared-guyue-yue-rounded-moonlit-v02-png"
+      "shared-guyue-yue-rounded-moonlit-v04-png"
     ],
     "delivery_packages": [
-      "yue-surface-kit-v01"
+      "yue-surface-kit-v02"
     ],
-    "layout_notice": "旧阅字v02示例居中存在偏移，保留历史，不作为新排版基线；新渲染使用layout_version=2，v03修正候选待核查。已确认无字底图不受影响。"
+    "layout_notice": "2026-11-16用户已确认v04：主字居中、古月小章右下落款；旧v02/v03不再用于制作或导出。",
+    "seal_reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+    "seal_placement": "right-lower"
   }
 }

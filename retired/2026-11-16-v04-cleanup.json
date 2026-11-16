@@ -1,0 +1,190 @@
+{
+  "date": "2026-11-16",
+  "authorization": "用户明确：更合适，确认无误正式收录，错误素材草稿导出包都处理好，别混用旧版，重导修正整套",
+  "historical_git_commit": "e54a5f043518611fc1ea55b9991513c8635107f7",
+  "state": "retired-from-working-tree",
+  "replacements": {
+    "shared-guyue-yue-circle-light-v02-png": "shared-guyue-yue-circle-light-v04-png",
+    "shared-guyue-yue-rounded-moonlit-v02-png": "shared-guyue-yue-rounded-moonlit-v04-png"
+  },
+  "replacement_package": "yue-surface-kit-v02",
+  "removed": [
+    {
+      "path": "catalog/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-circle-light-v02-png.json",
+      "files": 1,
+      "bytes": 2631,
+      "tree_sha256": "f384569fe750101d01d826158b797a1de68c02b8e56972163ad8247ccf1fa4c7"
+    },
+    {
+      "path": "assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-circle-light-v02-png.png",
+      "files": 1,
+      "bytes": 1310946,
+      "tree_sha256": "08f4559ff2f35196f77f345e2a53fa8197b835eff9463d43968aff25dc5299f7"
+    },
+    {
+      "path": "catalog/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-rounded-moonlit-v02-png.json",
+      "files": 1,
+      "bytes": 2718,
+      "tree_sha256": "419533fcab132bb660f96de783200c029a4b3a5764eac45421b0fb2f2db38e22"
+    },
+    {
+      "path": "assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-rounded-moonlit-v02-png.png",
+      "files": 1,
+      "bytes": 1397300,
+      "tree_sha256": "26d5f0278ca0a8eadc3218abbe4f0e46dc50d5dfb5588df8a5a18cb84155824f"
+    },
+    {
+      "path": "packages/yue-surface-kit-v01",
+      "files": 203,
+      "bytes": 49453746,
+      "tree_sha256": "99e71592edd63fc5ed7f2498e8712a049019c85ef289f06f2346acaf63d2b99a"
+    },
+    {
+      "path": ".exports/yue-circle-original-v02",
+      "files": 6,
+      "bytes": 1319278,
+      "tree_sha256": "c798818700c24d1fb251113fd5584bb9e2d18ad93df298f7080e36c22c1b7c8b"
+    },
+    {
+      "path": ".exports/yue-circle-original-v02.zip",
+      "files": 1,
+      "bytes": 1314605,
+      "tree_sha256": "a81379bfaba6b05c37f8f28d8e52c94fc3e6b7a67bc6f942f5437acaa6c07469"
+    },
+    {
+      "path": ".exports/yue-surface-kit-v01-all",
+      "files": 203,
+      "bytes": 49453842,
+      "tree_sha256": "04d2aba339d341251ba152bec3ccb83811cc029c0c7074f8655013e647368da9"
+    },
+    {
+      "path": ".exports/yue-surface-kit-v01-all.zip",
+      "files": 1,
+      "bytes": 46712265,
+      "tree_sha256": "bd8e8d597e10173396fb58e500a2b0dd9ff14fde14ba923ffc5e02537c698e83"
+    },
+    {
+      "path": ".exports/yue-surface-kit-v01-web",
+      "files": 112,
+      "bytes": 23127910,
+      "tree_sha256": "38e3f89fda1c7b1ef8311a159ed9214c5cc2b3293411d823e1917019077ca4bd"
+    },
+    {
+      "path": ".exports/yue-surface-kit-v01-web.zip",
+      "files": 1,
+      "bytes": 20640275,
+      "tree_sha256": "3cd8577659320d4fb26183524533ea9615550496d925907c601c4207fc9d990d"
+    },
+    {
+      "path": ".drafts/yue-circle-v01",
+      "files": 9,
+      "bytes": 3099201,
+      "tree_sha256": "42e4e9e6d726fc753f25522f32f6fa21b7267293f29ff59071eb922e85be1559"
+    },
+    {
+      "path": ".drafts/yue-rounded-v01",
+      "files": 9,
+      "bytes": 2912083,
+      "tree_sha256": "3cc9b2b74b1f51853c12e95e7a570cd654340ac50a6f64b0004610cbcbcd12ab"
+    },
+    {
+      "path": ".drafts/yue-circle-v02",
+      "files": 11,
+      "bytes": 4464591,
+      "tree_sha256": "41d2d6ad8cb32a73413a21f074a6c52fb33f798fa2579915fe5a84c6b178d655"
+    },
+    {
+      "path": ".drafts/yue-rounded-v02",
+      "files": 24,
+      "bytes": 10556355,
+      "tree_sha256": "723cf246e7c5ca46bcc2c6abedf6e808e9509ccd5e0fe679bf0e0785af3c11a6"
+    },
+    {
+      "path": ".drafts/yue-circle-v03-centered",
+      "files": 18,
+      "bytes": 9035709,
+      "tree_sha256": "257af5d59f8e96b4be6eb792000b97f50fcdb57c8e067838b78b127953c29380"
+    },
+    {
+      "path": ".drafts/yue-rounded-v03-centered",
+      "files": 18,
+      "bytes": 8824473,
+      "tree_sha256": "8e256927d48b113363239f793f75d8a40d8b1fd08541e4d2eac24a1c4aa93865"
+    },
+    {
+      "path": ".drafts/template-ink-light-b",
+      "files": 6,
+      "bytes": 7599965,
+      "tree_sha256": "2af4084e40a998defc48dcffe25052f39ed10d2f12d1341490f6263ffd10b318"
+    },
+    {
+      "path": ".drafts/yue-surface-kit-v01",
+      "files": 186,
+      "bytes": 40970974,
+      "tree_sha256": "588cc7546241c1db85c58dbe4df6be877e2184f3641b0c7ebe0f7c832e526888"
+    },
+    {
+      "path": ".drafts/yue-surface-kit-v01 2",
+      "files": 187,
+      "bytes": 40977122,
+      "tree_sha256": "2e2c265f081a50f51ded0ea22d9d4e1ae419183b2902882a077e8166af455b14"
+    },
+    {
+      "path": ".drafts/yue-surface-kit-v01.zip",
+      "files": 1,
+      "bytes": 40495351,
+      "tree_sha256": "3a1ead35593775ba9529a1e09b6b257223e6bbc17b5f52232278534b632b8e8c"
+    }
+  ],
+  "completed_workspace_cleanup": [
+    {
+      "path": ".drafts/template-ink-light-a",
+      "files": 5,
+      "bytes": 7143632,
+      "tree_sha256": "5dce9a8877160dcd12d0957359b1abe3be0aaa74d3829b6955e5cdfa04eebe56",
+      "reason": "成品和配方已正式存档，清理工作副本；旧复现图及旧截图已不作当前参考"
+    },
+    {
+      "path": ".drafts/template-moonlit-blue",
+      "files": 5,
+      "bytes": 6412723,
+      "tree_sha256": "6630dc7053b949b84718baebce449c996852a509f86b780d158ddcb10bd1d6f3",
+      "reason": "成品和配方已正式存档，清理工作副本；旧复现图及旧截图已不作当前参考"
+    },
+    {
+      "path": ".drafts/yue-circle-v04-right-lower-seal",
+      "files": 18,
+      "bytes": 9044275,
+      "tree_sha256": "9b308cd29183493fc01703e5666ae39156e2205de21dcfc407efdc24504fa8f6",
+      "reason": "成品和配方已正式存档，清理工作副本；旧复现图及旧截图已不作当前参考"
+    },
+    {
+      "path": ".drafts/yue-rounded-v04-right-lower-seal",
+      "files": 18,
+      "bytes": 8836634,
+      "tree_sha256": "8c9d5e0b7246ff20a3b580b69aeeaafb8b45a102059b55f25329be7d689737a9",
+      "reason": "成品和配方已正式存档，清理工作副本；旧复现图及旧截图已不作当前参考"
+    },
+    {
+      "path": ".drafts/yue-surface-kit-v02",
+      "files": 186,
+      "bytes": 40974515,
+      "tree_sha256": "30132bf8d1f03e91b78500e645e5bb14ab50f78a0360d645d6d2c30bc05fe495",
+      "reason": "成品和配方已正式存档，清理工作副本；旧复现图及旧截图已不作当前参考"
+    },
+    {
+      "path": ".runtime/package-repro-check-v01",
+      "files": 13,
+      "bytes": 3542068,
+      "tree_sha256": "9a5f1710268d28dbf7d2d8e24d5538ba9c146aed0bc35a629400fa56b651e72e",
+      "reason": "成品和配方已正式存档，清理工作副本；旧复现图及旧截图已不作当前参考"
+    },
+    {
+      "path": "docs/evidence/2026-11-16-approved-guyue-assets.jpg",
+      "files": 1,
+      "bytes": 137583,
+      "tree_sha256": "85305fb362e93d5ae8d6bee5cf546ccb30a254e767fd218c393665d05ffb8ca2",
+      "reason": "成品和配方已正式存档，清理工作副本；旧复现图及旧截图已不作当前参考"
+    }
+  ]
+}

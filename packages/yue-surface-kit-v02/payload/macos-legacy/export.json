@@ -1,0 +1,7 @@
+{
+  "route": "macos-legacy-icns",
+  "source_sha256": "fc207509de42b75ac6c4005366b1ebcedb14c3c549ad71579e7376cce02babfa",
+  "icns_sha256": "e8b28d204bc0a9925ffb1c9aedfa3593300b696fe379d047d620d66597fadf4e",
+  "iconset_files": 10,
+  "warning": "传统位图兼容输出；不是 Icon Composer 图层、未验证 Dock/安装效果、未获用户收录确认"
+}
