@@ -44,6 +44,13 @@
       "replacement": "shared-guyue-yue-rounded-moonlit-v06-png",
       "reason": "已由固定浅色B章及朱红方案v06替代，禁止旧章混用",
       "record": "docs/creation-runs/2026-11-17-v06-final-delivery.md"
+    },
+    "product-stillwave-jing-logo-circle-minimal-v01-png": {
+      "block_export": true,
+      "state": "superseded-not-removed",
+      "replacement": "product-stillwave-jing-logo-circle-calligraphy-v02-png",
+      "reason": "v01 主字用系统 PingFang SC，未遵守项目固定真实字体规范；用户 2026-11-17 选择书法体后由 v02(固定 MaShanZheng-Regular)替代为主推。文件保留仅为历史追溯，禁止作为新导出/主推入口，勿混用。",
+      "record": "docs/creation-runs/2026-11-17-stillwave-calligraphy-logo.md"
     }
   }
 }

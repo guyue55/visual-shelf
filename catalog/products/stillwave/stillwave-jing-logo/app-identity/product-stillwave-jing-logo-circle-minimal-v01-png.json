@@ -1,0 +1,58 @@
+{
+  "id": "product-stillwave-jing-logo-circle-minimal-v01-png",
+  "name": "静澜 Stillwave · 静 · 极简青灰圆形",
+  "kind": "logos",
+  "path": "assets/logos/products/stillwave/stillwave-jing-logo/app-identity/product-stillwave-jing-logo-circle-minimal-v01-png.png",
+  "tags": [
+    "owner:product:stillwave",
+    "family:stillwave-jing-logo",
+    "variant:circle-minimal",
+    "revision:v01",
+    "status:superseded",
+    "superseded-by:product-stillwave-jing-logo-circle-calligraphy-v02-png",
+    "已替代-非主推",
+    "用户已确认",
+    "网站图标/品牌标识（贴合站点极简设计语言，非个人古风作品）",
+    "静澜",
+    "stillwave",
+    "静",
+    "网站图标",
+    "极简",
+    "青灰",
+    "苹方",
+    "涟漪",
+    "站点配色",
+    "breath-ring",
+    "真实字形轮廓",
+    "已校验居中",
+    "不带印章"
+  ],
+  "source": "original",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-17",
+  "description": "【历史修订·已被 v02 替代，非主推】本版主字用系统 PingFang SC，未遵守项目固定真实字体规范；用户 2026-11-17 选择书法体后，由 product-stillwave-jing-logo-circle-calligraphy-v02-png（固定 MaShanZheng-Regular）替代为主推。文件保留仅供历史追溯，新导出勿用。原说明：为静澜 Stillwave 助眠冥想网站制作的极简「静」字标识，贴合站点深色青灰极简设计语言。系统 PingFang SC 真实字形轮廓(CoreText提取,非模型画字)+青灰涟漪同心环(呼应站名「澜」与 breath-ring 呼吸环)；配色严格取自站点 tokens.css(#0e1418/#7fa8a0/#e6edea)；真实字形轮廓中心与目标零误差；圆形版涟漪完整落在圆内为主推。刻意不带古月章——产品标识非个人古风作品。与同家族 rounded-moonlit 是两套视觉体系：本版贴合站点、古风版为个人作品方向。",
+  "sha256": "874c9c462371d3adf94c22e48db1b19926549f432c81ee8f05c62816dfebf27c",
+  "organization": {
+    "owner": "product:stillwave",
+    "series": "stillwave-jing-logo",
+    "component": "app-identity",
+    "functions": [
+      "品牌识别",
+      "网站图标"
+    ],
+    "platforms": [
+      "Web"
+    ]
+  },
+  "approval": {
+    "user_confirmation": "满意（用户2026-11-17对展示的极简青灰「静」字圆形候选图明确确认，允许正式收录。圆形为主推，圆角为备选）",
+    "reviewed_sha256": "874c9c462371d3adf94c22e48db1b19926549f432c81ee8f05c62816dfebf27c",
+    "task": "stillwave-minimal-v01",
+    "checks": "逐字核对=静(系统PingFangSC-Regular真实轮廓,glyphsOK=true,CoreText提取非模型画字);配色=严格取自站点tokens.css(#0e1418底/#7fa8a0青灰涟漪/#e6edea米白字);几何=真实字形轮廓中心(512.00,527.36)与目标涟漪中心零误差,x精确居中,y光学略下移(breath-ring视觉重心),非控制点反推;构图=圆形版涟漪完整落在圆内无贴边,更贴合站点breath-ring意象,定为主推;印章=刻意不带古月章(产品标识非个人古风作品);小尺寸=16/32/48/128/180/256齐全,实看48px静字清晰涟漪不成噪点;实图=已看1024圆角/圆形大图与48px,圆形更干净;未验证=真实设备渲染、浏览器深浅底叠加、站点是否接入(站点刻意空favicon为A6零404验收,不擅自改站点仓库)、用户主观满意待确认",
+    "tool": "scripts/.drafts/stillwave-minimal-v01/render.swift (Swift 6.3.3 CoreText 取系统 PingFang SC 真实字形轮廓 + CoreGraphics 绘制；非图像生成模型画字)",
+    "template": "custom-minimal-site-tokens",
+    "reference": "https://guyue55.github.io/stillwave/styles/tokens.css",
+    "approved_at": "2026-11-17T14:19:07.252057+00:00"
+  }
+}

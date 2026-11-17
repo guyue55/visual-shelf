@@ -1,0 +1,19 @@
+<!-- 静澜 Stillwave · 极简青灰「静」字图标接入片段 -->
+<!-- 来源：packages/stillwave-web-icon-kit-v01/，主图 product-stillwave-jing-logo-circle-minimal-v01-png -->
+<!-- 完整说明与前置条件见同目录 AGENTS.md §3。接入属产品侧改版，须先获用户授权。 -->
+<!--
+  接入要点（经站点 QA 源码复核）：
+  1. 站点 index.html 第 9 行现为 <link rel="icon" href="data:,">，是为 A6 零404 刻意留空。
+  2. 图标放站点根目录即可；ST-01 不查多余文件，ST-30 的 published 不含根目录，
+     故通常无需改 qa/test_static_contracts.py 的 EXPECTED_FILES 或 len==15（已更正旧版过度保守的说法）。
+  3. 所有本地引用必须以 ./ 开头（ST-02），不要写 / 绝对路径。
+  4. 站点当前无 manifest；PWA 图标要生效需另建 site.webmanifest。
+  5. 接入后必须实跑 PYTHONPATH= python3 qa/run_all.py（需 playwright）确认零404/零error；
+     若 BR-29 因真实图标请求变红，属产品侧 QA 口径决策，需与用户确认后再改用例。
+-->
+<link rel="icon" href="./favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="./stillwave-jing-circle.svg" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
+<!-- PWA：站点当前无 manifest，下列仅在建立 site.webmanifest 后按需启用 -->
+<!-- <link rel="manifest" href="./site.webmanifest"> -->
+<!-- 可选：16px 辨识度优先时，用 optional/ 的涟漪符号版替换对应尺寸（需先获选择确认） -->

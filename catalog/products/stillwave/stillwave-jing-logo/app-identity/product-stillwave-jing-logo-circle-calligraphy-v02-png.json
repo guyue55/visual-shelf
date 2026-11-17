@@ -1,0 +1,60 @@
+{
+  "id": "product-stillwave-jing-logo-circle-calligraphy-v02-png",
+  "name": "静澜 Stillwave · 静 · 极简青灰书法体圆形",
+  "kind": "logos",
+  "path": "assets/logos/products/stillwave/stillwave-jing-logo/app-identity/product-stillwave-jing-logo-circle-calligraphy-v02-png.png",
+  "tags": [
+    "owner:product:stillwave",
+    "family:stillwave-jing-logo",
+    "variant:circle-calligraphy",
+    "revision:v02",
+    "status:ready",
+    "用户已确认",
+    "logo",
+    "静澜",
+    "stillwave",
+    "静",
+    "网站图标",
+    "极简",
+    "青灰",
+    "固定字体",
+    "马善政",
+    "书法体",
+    "涟漪",
+    "站点配色",
+    "breath-ring",
+    "真实字形轮廓",
+    "已校验居中",
+    "不带印章",
+    "字体合规",
+    "主推修订"
+  ],
+  "source": "original",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-17",
+  "description": "为静澜 Stillwave 助眠冥想网站制作的极简「静」字标识 v02，字体合规主推修订。配色严格取自站点 tokens.css(#0e1418/#7fa8a0/#e6edea)+青灰涟漪同心环(呼应「澜」与 breath-ring)，圆形版涟漪完整落在圆内。主字改用项目固定 MaShanZheng-Regular 书法体真实轮廓(从固定 TTF 加载、SHA 6d2546bb 与 provenance 一致、PS 名硬校验、缺字报错)，修复 v01 用系统 PingFang SC 未遵守固定字体规范的问题；真实轮廓中心(512.00,527.36)与目标零误差。刻意不带古月章——产品标识非个人古风作品，章规则不适用。同家族 rounded-moonlit 为古风个人作品方向。v01(circle-minimal)因字体不合规退为历史修订，不再主推。",
+  "sha256": "7b69ae5cc3a47c0853f2b285ad1c814cd4993a0fd532e3cb4c178377937b1456",
+  "organization": {
+    "owner": "product:stillwave",
+    "series": "stillwave-jing-logo",
+    "component": "app-identity",
+    "functions": [
+      "品牌识别",
+      "网站图标"
+    ],
+    "platforms": [
+      "Web"
+    ]
+  },
+  "approval": {
+    "user_confirmation": "用书法体的（用户2026-11-17在对照三联图实看后明确选择书法体版本，作为静澜站点「静」字标识主推修订，替换此前用系统苹方的 v01）",
+    "reviewed_sha256": "7b69ae5cc3a47c0853f2b285ad1c814cd4993a0fd532e3cb4c178377937b1456",
+    "task": "stillwave-mashanzheng-v02",
+    "checks": "逐字核对=静(固定MaShanZheng-Regular真实轮廓,从固定TTF加载,PS名硬校验,glyphsOK,非模型画字,非系统fallback);字体合规=回归PERSONAL-STYLE.md固定字体规范,修复v01用系统苹方的违规;配色=严格取自站点tokens.css(#0e1418底/#7fa8a0青灰涟漪/#e6edea米白字);几何=真实字形轮廓中心(512.00,527.36)与目标涟漪中心零误差,x精确居中,y光学略下移;印章=不带古月章(产品标识非个人作品,章规则不适用);构图=圆形涟漪完整落在圆内无贴边;小尺寸=48px静字仍可辨未糊;字形对照=三联图实看确认本候选为书法体(笔锋/粗细变化/连带牵丝),旧v01为规整黑体;用户选择=2026-11-17明确要求用书法体的;未验证=真实设备渲染、浏览器深浅底叠加、站点接入(站点刻意空favicon为A6零404验收,不擅自改站点)",
+    "tool": ".drafts/stillwave-mashanzheng-v02/render.swift (Swift 6.3.3 CoreText 从固定 MaShanZheng-Regular.ttf 取真实字形轮廓 + CoreGraphics 绘制；字体 SHA 6d2546bb 与 provenance 一致，PS 名硬校验，缺字报错，非系统字体、非图像模型画字)",
+    "template": "custom-minimal-site-tokens-fixedfont",
+    "reference": "https://guyue55.github.io/stillwave/styles/tokens.css",
+    "approved_at": "2026-11-17T15:11:32.291156+00:00"
+  }
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 静澜 Stillwave · 极简青灰「静」字标识（PingFang 真实字形 + 青灰涟漪，非模型画字）shape=square safe=true -->
+  <rect width=512.0 height=512.0 fill="#0e1418"/>
+  <circle cx="256.00" cy="248.32" r="123.49" fill="none" stroke="#7fa8a0" stroke-opacity="0.72" stroke-width="6.14"/><circle cx="256.00" cy="248.32" r="149.30" fill="none" stroke="#7fa8a0" stroke-opacity="0.42" stroke-width="4.61"/><circle cx="256.00" cy="248.32" r="172.52" fill="none" stroke="#7fa8a0" stroke-opacity="0.22" stroke-width="3.07"/>
+  <circle cx="256.00" cy="248.32" r="110.59" fill="#7fa8a0" fill-opacity="0.10"/>
+  <g fill="#e6edea"><path d="M248.62 190.78 Z M245.49 209.60 Z M251.13 228.48 Z M215.52 181.06 Z M195.86 246.22 Z M240.54 246.22 Z M245.61 304.45 Z M240.54 265.89 Z M240.54 284.32 Z M278.17 221.12 Z M288.77 303.28 Z M310.16 242.70 Z M323.01 242.70 Z M310.16 216.01 Z M304.94 216.01 Z M310.16 269.60 Z M305.86 190.26 Z M301.14 190.26 Z M255.10 218.66 Z "/></g>
+</svg>

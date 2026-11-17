@@ -7,6 +7,11 @@
       "description": "右键助手 · 产品识别素材"
     },
     {
+      "id": "product:stillwave",
+      "name": "静澜 Stillwave",
+      "description": "助眠冥想声景网站 · 品牌识别素材"
+    },
+    {
       "id": "shared",
       "name": "共享素材",
       "description": "本库初始化示例，可作为文档与方案的制作起点"
@@ -23,6 +28,13 @@
       "name": "MacRightClick 应用图标",
       "owner": "product:macrightclick",
       "description": "水墨浅色与月夜深蓝，保留主用款和候选的原始记录。",
+      "accent": "night"
+    },
+    {
+      "id": "stillwave-jing-logo",
+      "name": "静澜 · 静字标",
+      "owner": "product:stillwave",
+      "description": "为静澜 Stillwave 助眠冥想网站制作的「静」字古风标识，固定马善政字体与右下古月章。",
       "accent": "night"
     },
     {

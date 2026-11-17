@@ -1,0 +1,87 @@
+{
+  "schema": "visual-shelf.icon-kit.v2",
+  "state": "approved-source-kit",
+  "entity": "product:stillwave",
+  "source_asset": "product-stillwave-jing-logo-circle-calligraphy-v02-png",
+  "source_sha256": "7b69ae5cc3a47c0853f2b285ad1c814cd4993a0fd532e3cb4c178377937b1456",
+  "supersedes": "stillwave-web-icon-kit-v01（该包 source 为系统 PingFang SC 的 v01，字体不合规、禁止接入；本 v02 用固定 MaShanZheng-Regular）",
+  "renderer": ".drafts/stillwave-mashanzheng-v02/render.swift (Swift 6.3.3 CoreText 从固定 MaShanZheng-Regular.ttf 取真实字形轮廓 + CoreGraphics 绘制；字体 SHA 6d2546bb… 与 provenance 一致，PS 名硬校验、缺字报错；非系统字体、非图像模型画字)",
+  "font": {
+    "postscript": "MaShanZheng-Regular",
+    "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+    "provenance": "resources/fonts/mashanzheng/provenance.json"
+  },
+  "colors_source": "site tokens.css #0e1418 / #7fa8a0 / #e6edea",
+  "generated": "2026-11-17",
+  "agent_entry": "AGENTS.md",
+  "readme": "README.md",
+  "head_snippet": "head-snippet.html",
+  "outputs": {
+    "favicon.ico": "多帧 16/32/48 PNG 封装（16 帧为涟漪符号可读性例外，32/48 帧为书法体）",
+    "favicon-16.png": "16x16 圆形，透明外部，涟漪符号（16px 可读性例外；书法体与旧苹方在此尺寸均不可辨）",
+    "favicon-32.png": "32x32 圆形，透明外部",
+    "favicon-48.png": "48x48 圆形，透明外部，清晰可辨",
+    "apple-touch-icon.png": "180x180 满幅不透明方形（iOS 自动加圆角）",
+    "icon-192.png": "192x192 满幅不透明（PWA any）",
+    "icon-512.png": "512x512 满幅不透明（PWA any）",
+    "maskable-192.png": "192x192 满幅不透明，关键内容缩到中心安全区（PWA maskable）",
+    "maskable-512.png": "512x512 满幅不透明，关键内容缩到中心安全区（PWA maskable）",
+    "stillwave-jing-circle.svg": "1024x1024 完整矢量（形状+背景+涟漪+固定书法字形轮廓）"
+  },
+  "files": {
+    "favicon.ico": "3a3d4d1d109750f373a5e6870e0aba7ac63945957b3bd1a06b0c4932e05a647f",
+    "favicon-16.png": "abeafda5111ae976b9fd597a4e6e6ded0c9271252e54eadf454654ca4e3d98ab",
+    "favicon-32.png": "ab961c21520997e6d178a340b9b7df98ae50925cce4887f6860e59cbe4ebf795",
+    "favicon-48.png": "bd0543e8e9e33b78f98b94361bf201d3daca8ada16823b0bb9b852df24088524",
+    "apple-touch-icon.png": "0e2732fac00f9b21dea90e3530857c1200ea585e4a030bd1bea2e3695ba999a4",
+    "icon-192.png": "01179112738a8badb479986b631f05a2dad47930ce38941afa51162ac068cee4",
+    "icon-512.png": "cd781c6fc1600502a5a9de0bdbfca572979cdce4069698b51ba6f8506e3581ac",
+    "maskable-192.png": "fbaf1822feb6e58ca9f5412d17e62e194337e1fabd907b152b4a356d80db9ea2",
+    "maskable-512.png": "67f45c818bb7382d78e1851c51a53158e64e666b072e0d2587e34a3f4c74227b",
+    "stillwave-jing-circle.svg": "82af8eec2e5d03171d1d710c31e2154674bcd32a6f8c5c92b37f490f53df4ed6"
+  },
+  "verification": {
+    "font_compliance": "固定 MaShanZheng-Regular TTF 加载、SHA 与 provenance 一致、PS 名硬校验；错误字体 ArialMT 实测被拒不产文件",
+    "shape_alpha": "square(apple-touch/PWA/maskable) 四角 alpha=255 不透明；circle(favicon) 四角 alpha=0 透明",
+    "sizes": "全部交付 PNG 尺寸经 sips 确认与标称一致；ICO 3 帧 16/32/48",
+    "svg_safety": "无 <script>/javascript:/xlink:href/@import/<image>，字形注释标注固定字体",
+    "visual": "实看 16px 三方对照（书法体字糊、旧苹方字同样糊、涟漪符号清晰）、32px 书法体可辨、48px 清晰、1024 圆形；代码审查字形中心零误差",
+    "backward_compat": "渲染器默认参数字节不变，48px 书法体 PNG 与入库主推版哈希一致 bd0543e8…；16px 例外只改该帧，不影响其他尺寸"
+  },
+  "small_size_exception": {
+    "status": "ADOPTED",
+    "dimension": "16px favicon only（favicon-16.png 与 favicon.ico 的 16 帧）",
+    "replacement": "青灰涟漪符号（源自原 optional/favicon-16-ripple.png，转正后不重复保留旧路径）",
+    "evidence": "同尺寸放大实图对照：16px 书法体「静」与旧 v01 苹方「静」均糊成不可辨墨点，涟漪符号清晰；32px 书法体可辨、48px 清晰。换字体不能解决该尺寸的信息量问题。",
+    "authorization": "用户 2026-11-17 明确：特殊情况可用更清晰方案或字体，不必僵硬遵守要求而制造垃圾",
+    "scope": "仅限上述 16px 产物；32/48px、apple-touch、PWA、SVG 仍为固定 MaShanZheng-Regular 书法体",
+    "rule_source": "AGENTS.md §2 小尺寸可读性例外；docs/PERSONAL-STYLE.md §小尺寸可读性例外；docs/VISUAL-QA.md §实际尺寸",
+    "record": "docs/creation-runs/2026-11-17-stillwave-calligraphy-logo.md"
+  },
+  "optional": {
+    "status": "PROPOSED_NOT_ADOPTED",
+    "reason": "16px 涟漪版已转正为主文件（见 small_size_exception）；这里只保留 32/48px 涟漪候选与矢量，供项目侧若想让更大尺寸也用符号时明确选择。",
+    "files": {
+      "optional/favicon-32-ripple.png": "f1c9443b1d08e1c454883770e8cf4812c0fa9931dec64ce0ef90eaedd112b4a0",
+      "optional/favicon-48-ripple.png": "ed09a1449a1585812e83ca723e9a7ae45c403954c301fd4dfdb6fa27b620d956",
+      "optional/ripple-symbol.svg": "414e27d33ab65060cf54a60a435a7a9bff1293e0b44aa8bb46c4e627c0eb1110"
+    }
+  },
+  "code_reviewed_facts": {
+    "site_favicon": "站点 <link rel=icon href=data:,> 刻意留空，为 A6 零404 工程决策；接入属产品侧改版，需改站点仓库并重跑其 QA",
+    "site_repo": "/Users/guyue/WorkBuddy/2026-11-09-23-43-37/stillwave",
+    "static_contract": "ST-01 只校验清单齐全不查多余文件；ST-30 published 集合不含站点根目录，通常无需改 EXPECTED_FILES；ST-02 要求 ./ 相对路径",
+    "unverified": "站点 browser QA 因缺 playwright 基线即失败；BR-29 对真实图标请求的实测无法预判；真实设备渲染未验"
+  },
+  "site_integration": {
+    "status": "NOT_INTEGRATED",
+    "reason": "仅图标满意不等于授权跨仓库改站点；本包供项目侧 AI 准确接入并自行验证",
+    "when_authorized": "复制交付文件到站点根；替换 index.html 的 data:, 声明（见 head-snippet.html）；按 ST-02 用 ./ 相对路径；重跑 qa/run_all.py 确认零404；核对真实 URL/缓存与 SHA；最后更新实体卡使用记录"
+  },
+  "limitations": [
+    "manifest 仅图标信息，站点当前无 manifest，接入需另行设计完整 PWA 配置",
+    "未做真实设备(iOS/Android)图标渲染验收，仅本地 CoreGraphics 尺寸/透明度/安全区检查",
+    "SVG 未在浏览器 favicon 场景实测",
+    "本场景包不计入 catalog 单素材计数"
+  ]
+}
