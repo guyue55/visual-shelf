@@ -1,0 +1,102 @@
+{
+  "url": "https://guyue55.github.io/visual-shelf/",
+  "source_commit": "9841a40a37be27d763bb1688ab67ff3b89430327",
+  "ci_run": 44037308299,
+  "pages_run": 44037494681,
+  "assets": [
+    {
+      "id": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+      "sha256": "412ac308bc31dd5ae4aae944f979ff6290c9160077a651640825512c270ac8ef",
+      "bytes": 1655496
+    },
+    {
+      "id": "product-macrightclick-app-icon-ink-light-b-q96-v01-png",
+      "sha256": "b2c0a629af3dbad2dff081514f84c14207d7191d704f2ff8e663fca238497604",
+      "bytes": 1362823
+    },
+    {
+      "id": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+      "sha256": "edd55002dca93b97c645e260191757c9a71b007d2458c7a23ff0bc2180562e57",
+      "bytes": 1367009
+    },
+    {
+      "id": "archive-box",
+      "sha256": "73a3a79b9921652ef36f76cfa63b32c782780b5bf5561bac72963785e7a3923b",
+      "bytes": 217
+    },
+    {
+      "id": "check-tile",
+      "sha256": "6ff7b9907c20362d3a0d8df07893749c179505b770458bdb7fc19bf0159fdabd",
+      "bytes": 252
+    },
+    {
+      "id": "flow-nodes",
+      "sha256": "a53e24a8c8d13f3d893084b7ba9fe2f57aa41a167cec31ae1df81667d70ed5c7",
+      "bytes": 353
+    },
+    {
+      "id": "design-archive",
+      "sha256": "fafac28ed22204b309ae3638ad7fdff74de6e4c30f777ac1be3fe6552b94faa2",
+      "bytes": 639
+    },
+    {
+      "id": "field-guide",
+      "sha256": "9e9e3c8ea6034f88c6e9a4300ef23c13372bea53bcc2a9b0fd650b5444624193",
+      "bytes": 636
+    },
+    {
+      "id": "project-notes",
+      "sha256": "ec6bbfe132808ff9eff97fea41919e43bf142b2cccf92ef0c62f3cc7a6df9f84",
+      "bytes": 638
+    },
+    {
+      "id": "shared-guyue-background-ink-light-a-v01-png",
+      "sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+      "bytes": 2742314
+    },
+    {
+      "id": "shared-guyue-background-moonlit-blue-v01-png",
+      "sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+      "bytes": 2521128
+    },
+    {
+      "id": "shared-guyue-seal-ink-b-v01-png",
+      "sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+      "bytes": 2916
+    },
+    {
+      "id": "shared-guyue-yue-circle-light-v06-png",
+      "sha256": "84f20f1d4f8fd7403daf5c07b1dec5dd4241fb3592656b73fccde14cdb0c51d5",
+      "bytes": 1314243
+    },
+    {
+      "id": "shared-guyue-yue-rounded-moonlit-v06-png",
+      "sha256": "0ed70ade05da6938ffa1facfbf890945ca19f14ea8218ce0ce3d6e942e24f58a",
+      "bytes": 1399426
+    },
+    {
+      "id": "status-progress",
+      "sha256": "e571fb6dbbd962db755a11cbc86ff51ddab8d973238b7e6d90abb50ef49acd62",
+      "bytes": 457
+    },
+    {
+      "id": "status-ready",
+      "sha256": "81a3b0d95a854b1295af7ad2305df2f0aa79749758f51adaddbbd6fddf719528",
+      "bytes": 451
+    }
+  ],
+  "statistics": {
+    "assets": 16,
+    "bytes": 12368998,
+    "series": 7,
+    "products": 1,
+    "projects": 0,
+    "components": 7
+  },
+  "resources": [
+    "style.css?v=5785d3cb0755",
+    "catalog-model.js?v=9a9fdda79f1a",
+    "app.js?v=2116b0fceeae"
+  ],
+  "result": "live index IDs, all16 asset SHA, JS/CSS match local dist; legacy v04 absent from current index"
+}

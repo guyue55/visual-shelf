@@ -36,7 +36,7 @@ Python标准库构建dist，运行时只是HTML/CSS/JS/JSON和素材。站点使
 
 当前工作流使用checkout@v6、setup-python@v6、configure-pages@v5、upload-pages-artifact@v4和deploy-pages@v4。构建job读取源码并跑测试，部署job具有pages:write/id-token:write，在github-pages环境发布dist。用户授权本次发布不意味着后续任意任务都可擅自推送；按当次任务授权判断。
 
-参考：[GitHub Pages自定义工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)、[Pages REST API](https://docs.github.com/en/rest/pages/pages)、[gh repo create](https://cli.github.com/manual/gh_repo_create)。本次执行证据见 [发布验收](deployments/2026-11-17-github-pages.md)。
+参考：[GitHub Pages自定义工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)、[Pages REST API](https://docs.github.com/en/rest/pages/pages)、[gh repo create](https://cli.github.com/manual/gh_repo_create)。当前v06与精简页面的执行证据见 [发布验收](deployments/2026-11-17-v06-pages.md)，初始化发布另见历史记录。
 
 ## 线上验收与引用
 
