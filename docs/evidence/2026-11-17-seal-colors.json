@@ -1,0 +1,31 @@
+{
+  "source_asset" : "shared-guyue-seal-ink-b-v01-png",
+  "variants" : [
+    {
+      "all_alpha_pixels_equal" : true,
+      "color" : "A63A30",
+      "dimensions" : [
+        64,
+        114
+      ],
+      "file" : "seal-light.png",
+      "opaque_rgb_exact" : true,
+      "sha256" : "15130dace8ffd1d8c5300c43d9c7670e13848c570174990bc26e5b4e5044fe49",
+      "source_sha256" : "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+      "theme" : "light"
+    },
+    {
+      "all_alpha_pixels_equal" : true,
+      "color" : "CF6650",
+      "dimensions" : [
+        64,
+        114
+      ],
+      "file" : "seal-dark.png",
+      "opaque_rgb_exact" : true,
+      "sha256" : "b39bda14f89f7c12726af2860fdb9874c847da7c9ce7246d2cf968e148c2d57a",
+      "source_sha256" : "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+      "theme" : "dark"
+    }
+  ]
+}

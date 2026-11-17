@@ -54,7 +54,7 @@ foreground.svg包含正文真实轮廓和内嵌PNG章，不是纯矢量；source
 
 当前整套205场景输出，比旧185多出10个带章profile各自的seal-source.png和seal-layer.png；仍只作为1套包，不重复登记205条catalog。加上原清单、源工程及AI/QA资料，当前233文件，以实际package.json为准。
 
-assets/catalog是当前16份单素材；packages是正式归档；.exports为可重建分发目录/ZIP；.drafts为过程稿；retired只留元数据。后三者和packages均不进入dist/Pages。
+assets/catalog是当前18份单素材；packages是正式归档；.exports为可重建分发目录/ZIP；.drafts为过程稿；retired只留元数据。后三者和packages均不进入dist/Pages。
 
 新整套先export-kit到.drafts，实际看图，再archive；必须真实--approval和--visual-review-note，layout_version≥3，固定章SHA/主题色/比例/完整边界、安全区、主字几何、尺寸/封装与配方通过visual_qa。不能换id把旧章重新归档。完整确认新版本后，才清理被替代文件和出口；advisories拒绝旧id导出，避免旧包混用。
 

@@ -1,0 +1,42 @@
+{
+  "id": "shared-guyue-seal-ink-b-light-vermilion-v01-png",
+  "name": "古月 · 独立章 · 亮朱红（深色背景）",
+  "kind": "logos",
+  "path": "assets/logos/shared/guyue-signature-seals/signature-seal/shared-guyue-seal-ink-b-light-vermilion-v01-png.png",
+  "tags": [
+    "owner:shared",
+    "family:guyue-signature-seals",
+    "variant:light-vermilion",
+    "revision:v01",
+    "status:ready",
+    "用户已确认",
+    "古月",
+    "独立章",
+    "亮朱红",
+    "深色背景",
+    "color:cf6650",
+    "透明PNG",
+    "固定章形"
+  ],
+  "source": "original",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-17",
+  "description": "深色/月夜背景用亮朱红#CF6650；与原笔迹蒙版逐像素alpha完全一致，64×114透明PNG。源shared-guyue-seal-ink-b-v01-png，SHA 5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b；scripts/export_seal_colors.swift确定性着色，实际重解码核对透明度与实色像素。字体名/逐图许可unknown，非纯矢量。",
+  "sha256": "b39bda14f89f7c12726af2860fdb9874c847da7c9ce7246d2cf968e148c2d57a",
+  "organization": {
+    "owner": "shared",
+    "series": "guyue-signature-seals",
+    "component": "signature-seal",
+    "functions": [
+      "个人署名"
+    ],
+    "platforms": [
+      "通用"
+    ]
+  },
+  "approval": {
+    "user_confirmation": "沿用用户2026-11-17已明确满意并准许正式收录的固定浅色B章形/大小和月夜CF6650主题方案；本轮要求将已确认配色补入独立印章系列。仅确定性着色、不改笔迹与透明度。",
+    "reviewed_sha256": "b39bda14f89f7c12726af2860fdb9874c847da7c9ce7246d2cf968e148c2d57a"
+  }
+}

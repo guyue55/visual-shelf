@@ -137,3 +137,7 @@ python3 scripts/visual_qa.py .drafts/<新套件目录>
 ## 独立印章已正式切换
 
 当前固定章由resources/seals/guyue-b/provenance.json提供原图路径、哈希与主题色。render-logo默认应用已确认章，拒绝绕过哈希的--seal-image覆盖；单独extract/preview工具只用于.drafts探索，不能替代正式渲染与工程QA。当前正式收录、包与清理见 [交付记录](docs/creation-runs/2026-11-17-v06-final-delivery.md)。
+
+## 导出独立章的已确认两档朱红
+
+`swift scripts/export_seal_colors.swift .drafts/<新任务>` 生成64×114两份PNG和colors.json，只着色、不重画、不裁切；保存后重解码核对每个alpha与实色RGB。只允许新目录、校验固定源SHA。直接取用优先从古月独立章系列选相应色版；[版本用途](docs/SEAL-VARIANTS.md)。

@@ -1,0 +1,42 @@
+{
+  "id": "shared-guyue-seal-ink-b-dark-vermilion-v01-png",
+  "name": "古月 · 独立章 · 暗朱红（浅色背景）",
+  "kind": "logos",
+  "path": "assets/logos/shared/guyue-signature-seals/signature-seal/shared-guyue-seal-ink-b-dark-vermilion-v01-png.png",
+  "tags": [
+    "owner:shared",
+    "family:guyue-signature-seals",
+    "variant:dark-vermilion",
+    "revision:v01",
+    "status:ready",
+    "用户已确认",
+    "古月",
+    "独立章",
+    "暗朱红",
+    "浅色背景",
+    "color:a63a30",
+    "透明PNG",
+    "固定章形"
+  ],
+  "source": "original",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-17",
+  "description": "浅色/纸纹背景用暗朱红#A63A30；与原笔迹蒙版逐像素alpha完全一致，64×114透明PNG。源shared-guyue-seal-ink-b-v01-png，SHA 5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b；scripts/export_seal_colors.swift确定性着色，实际重解码核对透明度与实色像素。字体名/逐图许可unknown，非纯矢量。",
+  "sha256": "15130dace8ffd1d8c5300c43d9c7670e13848c570174990bc26e5b4e5044fe49",
+  "organization": {
+    "owner": "shared",
+    "series": "guyue-signature-seals",
+    "component": "signature-seal",
+    "functions": [
+      "个人署名"
+    ],
+    "platforms": [
+      "通用"
+    ]
+  },
+  "approval": {
+    "user_confirmation": "沿用用户2026-11-17已明确满意并准许正式收录的固定浅色B章形/大小和浅色A63A30主题方案；本轮要求将已确认配色补入独立印章系列。仅确定性着色、不改笔迹与透明度。",
+    "reviewed_sha256": "15130dace8ffd1d8c5300c43d9c7670e13848c570174990bc26e5b4e5044fe49"
+  }
+}
