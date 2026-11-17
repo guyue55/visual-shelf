@@ -94,7 +94,7 @@ def documentation(folder, data, root):
     routes = '\n'.join(f"| {surface} | " + '、'.join(f'`payload/{p}`' for p in ENTRYPOINTS[surface]) + ' |' for surface in surfaces)
     (folder/'README.md').write_text(f'''# {data['name']}
 
-状态：{data['state']}。正文：{data['text']}；默认署名章：古月；固定字体：MaShanZheng-Regular。
+模式：editable（可编辑复现包；归档本身未标mode时也适用）。状态：{data['state']}。正文：{data['text']}；默认署名章：古月；固定字体：MaShanZheng-Regular。
 本包是已确认效果的交付材料，未安装到任何项目，也不表示获得了未核实的第三方再分发许可。
 
 先运行 `python3 VERIFY.py`。{qa_usage}再读 quality-review.json 和 source/VISUAL-QA.md 的检查范围。打开 `index.html` 查看已确认场景；若浏览器不支持本地预览，使用收件项目正常开发服务，不绕过安全提示。原始草稿预览和 render.json 的 draft 字样仅为历史生成状态；当前确认和文件范围以 package.json 为准。
@@ -239,6 +239,43 @@ def selected_payload(name, surfaces):
     return any(name.startswith(PREFIXES[s]) or (s=='web' and name in WEB_ROOT) or (s=='cover' and name=='og-image.png') for s in surfaces)
 
 
+def install_payload(name, surfaces):
+    """Only platform entrypoints and their required resources, not design previews."""
+    return any(
+        (surface == 'web' and name in WEB_ROOT)
+        or (surface == 'logo' and name in ENTRYPOINTS['logo'])
+        or (surface == 'cover' and name in ENTRYPOINTS['cover'])
+        or (surface == 'macos' and name.startswith('macos-legacy/') and name != 'macos-legacy/export.json')
+        or (surface == 'android' and name.startswith('android-res/'))
+        for surface in surfaces)
+
+
+def install_documentation(folder, data, root):
+    routes = '\n'.join(f"| {surface} | " + '、'.join(f'`payload/{p}`' for p in ENTRYPOINTS[surface]) + ' |' for surface in data['surfaces'])
+    (folder/'README.md').write_text(f"""# {data['name']} · 只接入包
+
+模式：install（只接入）；状态：{data['state']}；正文：{data['text']}。
+先运行 `python3 VERIFY.py`，再读 AGENTS.md、package.json、source-assets.json 和 quality-review.json。
+
+| 场景 | 入口 |
+| --- | --- |
+{routes}
+
+只复制目标入口及其必要资源。此包没有字体、底图、渲染器、分层和设计预览，不具备离线改字能力；需要修改时用原库 export --mode editable。不得直接重写已确认文字或声称本包是可编辑工程。
+
+Web：同步检查 head-snippet.html、site.webmanifest、真实 base path 和 OG 绝对域名占位符；不表示已完成安装。
+macOS：仅传统 ICNS 路线，完整 iconset 槽位保留，不是现代 .icon。
+Android：密度前背景与 v26 XML 一起接入；旧 API 回退及 monochrome 仍需目标工程处理。
+
+source-assets.json 保存原图来源、逐图权利与准确确认；unknown 不是自由商用许可。licenses/ 如存在仅说明所附文件许可，不授予其他图像或商标权利。quality-review.json 是父套件检查报告，不是本包逐设备安装验收；此包不执行缺少源工程的整套 visual_qa。
+
+用户确认：{data['approval']['user_confirmation']}
+哈希、确认与入口以本包 package.json 为准；parent_package 指向已验证来源归档。新字体、印章、文案或形状须另做草稿展示确认。不要从包内资料推断覆盖目标工程或发布的权限。
+""", encoding='utf-8')
+    (folder/'AGENTS.md').write_text('先读 README.md、package.json、source-assets.json、quality-review.json，运行 python3 VERIFY.py。此为只接入包，无可编辑源。按目标用途取最少必要文件，保留平台必需槽位/密度/引用。检查域名和base path、来源许可与准确确认；不重复询问已确认文件是否满意。新设计另做草稿确认，未实际验证的设备效果如实说明，不推断覆盖或发布权限。\n', encoding='utf-8')
+    shutil.copyfile(root/'templates/delivery/VERIFY.py', folder/'VERIFY.py')
+
+
 def advisory(root, section, identifier):
     path=root/'packages/advisories.json'
     if not path.exists():
@@ -257,6 +294,9 @@ def export(args, root=ROOT):
     source=package_dir(root,args.id);data=verifier(root)(source)
     if data['state']!='approved':
         raise ValueError('只能导出已确认交付包')
+    mode=getattr(args,'mode','install')
+    if mode not in ('install','editable'):
+        raise ValueError('模式仅支持 install / editable')
     surfaces=list(SURFACES) if 'all' in args.surface else list(dict.fromkeys(args.surface))
     if not surfaces or any(s not in SURFACES for s in surfaces):
         raise ValueError('无效场景')
@@ -267,11 +307,22 @@ def export(args, root=ROOT):
     with tempfile.TemporaryDirectory(prefix='.export-',dir=out.parent) as tmp:
         staging=Path(tmp)/out.name;staging.mkdir()
         for name in data['files']:
-            if name.startswith('source/') or name in ('source-assets.json','quality-review.json') or (name.startswith('payload/') and ('all' in args.surface or selected_payload(name[8:],surfaces))):
+            evidence=name in ('source-assets.json','quality-review.json')
+            selected=(name.startswith('payload/') and install_payload(name[8:],surfaces)) if mode=='install' else (name.startswith('source/') or (name.startswith('payload/') and ('all' in args.surface or selected_payload(name[8:],surfaces))))
+            if evidence or selected:
                 dest=staging/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source/name,dest)
+        if mode=='install':
+            for license_file in (source/'source/resources/fonts').glob('*/OFL.txt'):
+                dest=staging/'licenses'/license_file.parent.name/'OFL.txt'
+                dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(license_file,dest)
         exported={key:value for key,value in data.items() if key not in ('files','inventory_sha256')}
-        exported.update(surfaces=surfaces,parent_package=args.id,exported_at=stamp(),entrypoints={s:data['entrypoints'][s] for s in surfaces})
-        documentation(staging,exported,root);finish(staging,exported);verifier(root)(staging)
+        exported.update(mode=mode,surfaces=surfaces,parent_package=args.id,exported_at=stamp(),entrypoints={s:data['entrypoints'][s] for s in surfaces})
+        missing=[name for paths in exported['entrypoints'].values() for name in paths if not (staging/name).exists()]
+        if missing:
+            raise ValueError('选定场景缺少接入入口：'+', '.join(missing))
+        if mode=='install': install_documentation(staging,exported,root)
+        else: documentation(staging,exported,root)
+        finish(staging,exported);verifier(root)(staging)
         archive_path=Path(tmp)/(out.name+'.zip')
         with zipfile.ZipFile(archive_path,'w',compression=zipfile.ZIP_DEFLATED) as z:
             for file in sorted(staging.rglob('*')):
@@ -302,7 +353,7 @@ def asset(args, root=ROOT):
         (staging/'AGENTS.md').write_text('先读 README.md、package.json 和 source-assets.json，运行 python3 VERIFY.py。只交付已确认原文件；不能从此包推断覆盖目标工程、修改品牌或发布的权限。新设计重新展示确认，未知来源/许可不补造。\n',encoding='utf-8')
         shutil.copyfile(root/'templates/delivery/VERIFY.py',staging/'VERIFY.py')
         data={'version':1,'id':args.id,'name':item['name'],'state':'approved','created':stamp(),
-              'type':'single-asset','source_assets':[args.id],'entrypoints':{'original':['payload/'+name]},
+              'type':'single-asset','mode':'install','source_assets':[args.id],'entrypoints':{'original':['payload/'+name]},
               'approval':item['approval'],'limitations':['仅原文件，不声称已做平台转换或设备验收']}
         finish(staging,data);verifier(root)(staging)
         zipped=Path(tmp)/(out.name+'.zip')
@@ -323,7 +374,7 @@ def main():
     p.add_argument('--visual-review-note',required=True)
     p=sub.add_parser('verify');p.add_argument('directory',type=Path)
     p=sub.add_parser('asset');p.add_argument('--id',required=True);p.add_argument('--output',type=Path,required=True)
-    p=sub.add_parser('export');p.add_argument('--id',required=True);p.add_argument('--surface',choices=['all',*SURFACES],action='append',required=True);p.add_argument('--output',type=Path,required=True)
+    p=sub.add_parser('export');p.add_argument('--id',required=True);p.add_argument('--surface',choices=['all',*SURFACES],action='append',required=True);p.add_argument('--mode',choices=['install','editable'],default='install',help='默认install只接入；editable携带源工程');p.add_argument('--output',type=Path,required=True)
     args=parser.parse_args()
     try:
         if args.command=='verify':

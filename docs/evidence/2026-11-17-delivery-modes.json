@@ -1,0 +1,34 @@
+{
+  "web-install": {
+    "mode": "install",
+    "files": 20,
+    "zip_bytes": 2351736,
+    "entrypoints_present": true,
+    "zip_hashes_match": true,
+    "parent_package": "yue-surface-kit-v02"
+  },
+  "web-editable": {
+    "mode": "editable",
+    "files": 120,
+    "zip_bytes": 28286564,
+    "entrypoints_present": true,
+    "zip_hashes_match": true,
+    "parent_package": "yue-surface-kit-v02"
+  },
+  "macos-install": {
+    "mode": "install",
+    "files": 19,
+    "zip_bytes": 6202308,
+    "entrypoints_present": true,
+    "zip_hashes_match": true,
+    "parent_package": "yue-surface-kit-v02"
+  },
+  "android-install": {
+    "mode": "install",
+    "files": 18,
+    "zip_bytes": 716806,
+    "entrypoints_present": true,
+    "zip_hashes_match": true,
+    "parent_package": "yue-surface-kit-v02"
+  }
+}

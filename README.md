@@ -134,8 +134,12 @@ python3 scripts/library.py build
 
 旧阅字v02/v03、旧套件v01、碎片底图及相关草稿/导出已按用户要求清理；模板和页面只使用当前版本。retired仅为历史元数据/替代关系，不含可取用的旧图片或ZIP。
 
-可以说：“导出阅的Web/macOS包”或“把这个已确认图例打个AI接入包”。AI直接复用当前版本，包内有README/AGENTS、来源、准确确认、独立校验、工程QA报告及离线复现材料。见 [交付规范](docs/DELIVERY-PACKAGES.md)、[最终收录与清理记录](docs/creation-runs/2026-11-16-v04-final-delivery.md)。
+可以说：“导出阅的Web/macOS包”或“把这个已确认图例打个AI接入包”。现在默认按目标导出“只接入”包；需要离线修改时用 `--mode editable` 导出“可编辑”包，不再日常默认整套。AI直接复用当前版本，两种包均有README/AGENTS、来源、准确确认、独立校验和父工程QA报告；字体、底图、渲染器等离线复现材料仅可编辑包携带。见 [交付规范](docs/DELIVERY-PACKAGES.md)、[最终收录与清理记录](docs/creation-runs/2026-11-16-v04-final-delivery.md)。
 
 ## 制作经验与检查
 
 每次制作先读 [视觉QA规范](docs/VISUAL-QA.md) 和机器可读清单。覆盖参照、主字几何/光学、印章关系、形状/描边、固定字体、背景、透明、小尺寸、平台、来源、确认与版本管理。scripts/visual_qa.py 独立复算关键坐标；机器通过不代替实图与设备验收。
+
+## 待确认独立印章
+
+按用户指定的浅色B原图提取了固定“古月”透明章，并生成两款阅字对照，均为awaiting-user。当前v04、模板与正式套件保持原版，确认候选后再统一切换；[准确文件、哈希及检查范围](docs/creation-runs/2026-11-17-independent-seal-preview.md)。

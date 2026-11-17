@@ -1,0 +1,110 @@
+{
+  "state": "awaiting-user",
+  "source_asset": "product-macrightclick-app-icon-ink-light-b-q96-v01-png",
+  "source_sha256": "b2c0a629af3dbad2dff081514f84c14207d7191d704f2ff8e663fca238497604",
+  "seal_file": "seal-source-mask.png",
+  "seal_sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+  "seal_dimensions": [
+    64,
+    114
+  ],
+  "source_crop_top_left_xywh": [
+    776,
+    721,
+    64,
+    114
+  ],
+  "extraction": "Native source pixel luminance mask; alpha=clamp((145-meanRGB)/55); ink color463A33; no generated strokes",
+  "font": "unknown",
+  "license": "unknown",
+  "source_resolution_limit": "Small raster original; not a pure vector master or identified font",
+  "rejected": "Two imagegen attempts altered contours/halo; neither used in candidates",
+  "candidates": {
+    "light": {
+      "actual_seal_bounds": [
+        844.8,
+        294.27200000000005,
+        66.56,
+        123.136
+      ],
+      "approved_reference_sha256": "ae52f8e3773261fd1e4ec3bf56d6471f3ca705170d43f9331b3cf38528f16b56",
+      "aspect_preserved": true,
+      "base_sha256": "f6ea348b922b80db21b4300bc8ed1834f566e6dc51a4d4b026c35c2c3f5ef682",
+      "color": "463A33",
+      "coordinate_system": "CoreGraphics bottom-left; PNG rows top-down",
+      "limitations": [
+        "original small raster seal; not an original vector font",
+        "not approved or archived; no platform acceptance"
+      ],
+      "method": "fixed-source-alpha-mask; no glyph generation",
+      "pixels_changed_outside_seal_region": 0,
+      "placement_box": [
+        844.8,
+        281.6,
+        66.56,
+        148.48
+      ],
+      "png_sha256": "6e60f3ea3664804207beb85d82ca56a0ea80a15dbcc6f1a245635eed36e873ec",
+      "seal_file": ".drafts/guyue-seal-b-v01/seal-source-mask.png",
+      "seal_font": "unknown; source PNG outline",
+      "seal_sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+      "source_alpha_bounds": [
+        1,
+        1,
+        61,
+        112
+      ],
+      "state": "awaiting-user",
+      "review_job": "yue-seal-b-light-v05",
+      "main_center_actual": {
+        "x": 512,
+        "y": 512
+      },
+      "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "background_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03"
+    },
+    "dark": {
+      "actual_seal_bounds": [
+        870.4,
+        294.27200000000005,
+        66.56,
+        123.136
+      ],
+      "approved_reference_sha256": "fc207509de42b75ac6c4005366b1ebcedb14c3c549ad71579e7376cce02babfa",
+      "aspect_preserved": true,
+      "base_sha256": "7359022c1625f85bb0491a5785e73637cab2a0efee4e074a155d87748df4ff8d",
+      "color": "CF6650",
+      "coordinate_system": "CoreGraphics bottom-left; PNG rows top-down",
+      "limitations": [
+        "original small raster seal; not an original vector font",
+        "not approved or archived; no platform acceptance"
+      ],
+      "method": "fixed-source-alpha-mask; no glyph generation",
+      "pixels_changed_outside_seal_region": 0,
+      "placement_box": [
+        870.4,
+        281.6,
+        66.56,
+        148.48
+      ],
+      "png_sha256": "0ed70ade05da6938ffa1facfbf890945ca19f14ea8218ce0ce3d6e942e24f58a",
+      "seal_file": ".drafts/guyue-seal-b-v01/seal-source-mask.png",
+      "seal_font": "unknown; source PNG outline",
+      "seal_sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+      "source_alpha_bounds": [
+        1,
+        1,
+        61,
+        112
+      ],
+      "state": "awaiting-user",
+      "review_job": "yue-seal-b-dark-v05",
+      "main_center_actual": {
+        "x": 512,
+        "y": 512
+      },
+      "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "background_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b"
+    }
+  }
+}

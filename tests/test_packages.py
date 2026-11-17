@@ -43,7 +43,7 @@ class PackageTests(unittest.TestCase):
         (self.folder/'alias').symlink_to(self.folder/'README.md')
         with self.assertRaises(ValueError):packages.verifier(self.root)(self.folder)
     def test_web_export_has_ai_context_and_excludes_android(self):
-        args=argparse.Namespace(id='test-kit',surface=['web'],output=self.root/'.exports/web-kit')
+        args=argparse.Namespace(id='test-kit',surface=['web'],mode='editable',output=self.root/'.exports/web-kit')
         result=packages.export(args,self.root);packages.verifier(self.root)(result)
         self.assertTrue((result/'quality-review.json').exists());self.assertNotIn('python3 source/scripts/visual_qa.py payload',(result/'README.md').read_text());self.assertTrue((result/'AGENTS.md').exists());self.assertTrue((result/'source/background.png').exists())
         self.assertTrue((result/'payload/favicon.ico').exists());self.assertFalse((result/'payload/android-res').exists())
@@ -56,8 +56,41 @@ class PackageTests(unittest.TestCase):
         self.data['state']='draft';packages.finish(self.folder,self.data)
         with self.assertRaises(ValueError):packages.export(argparse.Namespace(id='test-kit',surface=['web'],output=self.root/'.exports/a'),self.root)
     def test_all_export_keeps_original_artifact_files(self):
-        result=packages.export(argparse.Namespace(id='test-kit',surface=['all'],output=self.root/'.exports/full'),self.root)
+        result=packages.export(argparse.Namespace(id='test-kit',surface=['all'],mode='editable',output=self.root/'.exports/full'),self.root)
         self.assertTrue((result/'payload/android-res/icon.png').exists());self.assertTrue((result/'payload/rounded-logo/logo.png').exists())
+    def test_default_install_omits_editable_material_and_preserves_web_dependencies(self):
+        result=packages.export(argparse.Namespace(id='test-kit',surface=['web'],output=self.root/'.exports/install'),self.root)
+        data=packages.verifier(self.root)(result)
+        self.assertEqual(data['mode'],'install')
+        self.assertFalse((result/'source').exists())
+        self.assertTrue((result/'payload/favicon.ico').exists())
+        self.assertTrue((result/'payload/site.webmanifest').exists())
+        self.assertTrue((result/'source-assets.json').exists())
+        self.assertTrue((result/'quality-review.json').exists())
+        self.assertNotIn('python3 source/scripts/visual_qa.py payload',(result/'README.md').read_text())
+        self.assertFalse((result/'payload/android-res').exists())
+
+    def test_install_keeps_platform_resources_but_not_design_layers(self):
+        for name in ('payload/macos-legacy/AppIcon.icns','payload/macos-legacy/AppIcon.iconset/icon_16x16.png','payload/macos-legacy/export.json','payload/android-adaptive/foreground-layer.png','payload/rounded-logo/preview-128.png'):
+            file=self.folder/name;file.parent.mkdir(parents=True,exist_ok=True);file.write_text(name)
+        packages.finish(self.folder,self.data)
+        result=packages.export(argparse.Namespace(id='test-kit',surface=['macos','android'],output=self.root/'.exports/platform'),self.root)
+        self.assertTrue((result/'payload/macos-legacy/AppIcon.iconset/icon_16x16.png').exists())
+        self.assertTrue((result/'payload/android-res/icon.png').exists())
+        self.assertFalse((result/'payload/macos-legacy/export.json').exists())
+        self.assertFalse((result/'payload/android-adaptive').exists())
+        self.assertFalse((result/'payload/rounded-logo').exists())
+        with self.assertRaises(ValueError):
+            packages.export(argparse.Namespace(id='test-kit',surface=['web'],mode='bad',output=self.root/'.exports/bad-mode'),self.root)
+
+    def test_missing_platform_entrypoint_is_not_exported_as_complete(self):
+        self.data['entrypoints']['web']=['payload/missing-icon.png']
+        packages.finish(self.folder,self.data)
+        out=self.root/'.exports/missing'
+        with self.assertRaisesRegex(ValueError,'缺少接入入口'):
+            packages.export(argparse.Namespace(id='test-kit',surface=['web'],output=out),self.root)
+        self.assertFalse(out.exists());self.assertFalse(out.with_suffix('.zip').exists())
+
     def test_cannot_escape_package_id(self):
         for identifier in ('../elsewhere','/tmp/a','bad_ID'):
             with self.assertRaises(ValueError):packages.package_dir(self.root,identifier)

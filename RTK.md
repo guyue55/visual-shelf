@@ -124,7 +124,8 @@ python3 -m unittest discover -s tests -v
 ```sh
 python3 scripts/packages.py list
 python3 scripts/packages.py verify packages/yue-surface-kit-v02
-python3 scripts/packages.py export --id yue-surface-kit-v02 --surface all --output .exports/yue-all-new
+python3 scripts/packages.py export --id yue-surface-kit-v02 --surface web --output .exports/yue-web-install-new
+python3 scripts/packages.py export --id yue-surface-kit-v02 --surface all --mode editable --output .exports/yue-all-editable-new
 python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v04-png --output .exports/yue-circle-new
 python3 scripts/visual_qa.py .drafts/<新套件目录>
 ```
@@ -132,3 +133,15 @@ python3 scripts/visual_qa.py .drafts/<新套件目录>
 正式整套包带quality-review.json；收件人先python3 VERIFY.py，再python3 source/scripts/visual_qa.py payload。新archive还必须--visual-review-note记录实际看过的图和未验证项，不允许自动编造视觉检查。
 
 渲染检查layout_version=2、main_center_expected/actual、main_canvas_offset及seal_bounds/placement/frame_inside_shape；通用主字误差≤0.5px。完整规则见 [视觉QA](docs/VISUAL-QA.md)，包命令与限制见 [交付规范](docs/DELIVERY-PACKAGES.md)。
+
+## 独立印章候选（不改变正式模板）
+
+浅色B章候选与两款阅字对照见 [制作记录](docs/creation-runs/2026-11-17-independent-seal-preview.md)，等待用户确认。
+
+```sh
+swift scripts/extract_seal_b.swift --help
+swift scripts/preview_seal.swift --help
+python3 scripts/packages.py export --help
+```
+
+提取只接受已核对SHA的浅色B原PNG，并只输出到.drafts新文件；预览合成强制核对章区域之外与已确认原图一致，保留比例。它不修改render-logo默认章，不生成正式归档所需新章工程QA，也不代表候选已获确认。正文/背景用原渲染器--no-seal暂时生成中间层不是最终去章偏好。
