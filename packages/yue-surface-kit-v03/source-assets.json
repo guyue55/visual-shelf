@@ -1,0 +1,375 @@
+[
+  {
+    "id": "shared-guyue-yue-circle-light-v06-png",
+    "name": "古月 · 阅 · 圆形水墨",
+    "kind": "logos",
+    "path": "assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-circle-light-v06-png.png",
+    "tags": [
+      "owner:shared",
+      "family:guyue-yue-logos",
+      "variant:circle-light",
+      "revision:v06",
+      "status:ready",
+      "用户已确认",
+      "logo",
+      "阅",
+      "古风",
+      "古月章",
+      "独立印章",
+      "固定字体",
+      "暗朱红",
+      "圆形",
+      "已校验居中"
+    ],
+    "source": "original",
+    "license": "unknown",
+    "author": "unknown",
+    "created": "2026-11-17",
+    "description": "最终v06：正文轮廓居中，马善政主字；独立浅色B古月章蒙版固定原章轮廓、等比右下内收，浅色暗朱红A63A30。字体与章源分开校验；替代v04及深褐预览，不复用旧章。",
+    "sha256": "84f20f1d4f8fd7403daf5c07b1dec5dd4241fb3592656b73fccde14cdb0c51d5",
+    "organization": {
+      "owner": "shared",
+      "series": "guyue-yue-logos",
+      "component": "personal-identity",
+      "functions": [
+        "个人识别"
+      ],
+      "platforms": [
+        "通用"
+      ]
+    },
+    "approval": {
+      "user_confirmation": "用户2026-11-17：满意，按你的建议处理，同时正式收录，统一更新渲染器、模板引用和整套包，按只接入/可编辑重新导出，处理替代旧素材草稿出口。浅色暗朱红A63A30、深色CF6650方案已明确。",
+      "reviewed_sha256": "84f20f1d4f8fd7403daf5c07b1dec5dd4241fb3592656b73fccde14cdb0c51d5",
+      "task": "yue-final-light-v06",
+      "checks": "已实际查看1024图；主字512,512；固定章5f36bc…，等比60:111，完整章框在圆内；浅色A63A30符合明确确认；工程几何独立复算通过。未做设备验收。",
+      "tool": "Swift/CoreText固定主文字体+CoreGraphics固定浅色B笔迹蒙版",
+      "template": "ink-light-a",
+      "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+      "approved_at": "2026-11-17T03:16:33.031433+00:00",
+      "render": {
+        "profile": "circle-logo",
+        "width": 1024,
+        "height": 1024,
+        "text": "阅",
+        "font_postscript": "MaShanZheng-Regular",
+        "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+        "background_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+        "foreground_sha256": "180b454d5ff8e40af08facd98cd911769a7040ea8817c307f648d1c5db8faaaa",
+        "seal": "古月",
+        "theme": "light",
+        "layout_columns": 1,
+        "layout_rows": 1,
+        "color_space": "sRGB",
+        "os_version": "Version 15.6.1 (Build 24G90)",
+        "layout_version": 3,
+        "main_center_policy": "canvas-center",
+        "coordinate_system": "CoreGraphics bottom-left; image_y = height - y",
+        "main_bounds": {
+          "height": 442.77760000000006,
+          "width": 341.5772531573988,
+          "x": 341.21137342130066,
+          "y": 290.6112
+        },
+        "main_center_actual": {
+          "x": 512,
+          "y": 512
+        },
+        "main_center_expected": {
+          "x": 512,
+          "y": 512
+        },
+        "main_canvas_offset": {
+          "dx": 0,
+          "dy_y_up": 0
+        },
+        "main_center_check_passed": true,
+        "seal_placement": "right-lower",
+        "seal_bounds": {
+          "height": 123.136,
+          "width": 66.56,
+          "x": 844.8,
+          "y": 294.27200000000005
+        },
+        "seal_frame_inside_shape": true,
+        "seal_kind": "fixed-alpha-mask",
+        "seal_asset_id": "shared-guyue-seal-ink-b-v01-png",
+        "seal_sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+        "seal_color": "A63A30",
+        "seal_alpha_bounds": [
+          1,
+          1,
+          61,
+          112
+        ],
+        "seal_source_dimensions": [
+          64,
+          114
+        ],
+        "seal_placement_box": {
+          "height": 148.48,
+          "width": 66.56,
+          "x": 844.8,
+          "y": 281.6
+        },
+        "seal_layer_sha256": "d637431c27a5389cb4d1dcbd48d8f4c72af434f2eb05c34ec3c5a23df6fc93f1"
+      }
+    }
+  },
+  {
+    "id": "shared-guyue-yue-rounded-moonlit-v06-png",
+    "name": "古月 · 阅 · 圆角月夜",
+    "kind": "logos",
+    "path": "assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-rounded-moonlit-v06-png.png",
+    "tags": [
+      "owner:shared",
+      "family:guyue-yue-logos",
+      "variant:rounded-moonlit",
+      "revision:v06",
+      "status:ready",
+      "用户已确认",
+      "logo",
+      "阅",
+      "古风",
+      "古月章",
+      "独立印章",
+      "固定字体",
+      "亮朱红",
+      "圆角方形",
+      "已校验居中"
+    ],
+    "source": "original",
+    "license": "unknown",
+    "author": "unknown",
+    "created": "2026-11-17",
+    "description": "最终v06：正文轮廓居中，马善政主字；独立浅色B古月章蒙版固定轮廓、等比右下落款，月夜亮朱红CF6650。与用户认可的独立章月夜候选完全同字节；替代v04旧章。",
+    "sha256": "0ed70ade05da6938ffa1facfbf890945ca19f14ea8218ce0ce3d6e942e24f58a",
+    "organization": {
+      "owner": "shared",
+      "series": "guyue-yue-logos",
+      "component": "personal-identity",
+      "functions": [
+        "个人识别"
+      ],
+      "platforms": [
+        "通用"
+      ]
+    },
+    "approval": {
+      "user_confirmation": "用户2026-11-17：满意，按你的建议处理，同时正式收录，统一更新渲染器、模板引用和整套包，按只接入/可编辑重新导出，处理替代旧素材草稿出口。浅色A63A30、深色CF6650。",
+      "reviewed_sha256": "0ed70ade05da6938ffa1facfbf890945ca19f14ea8218ce0ce3d6e942e24f58a",
+      "task": "yue-final-dark-v06",
+      "checks": "已实际查看1024图；与用户认可月夜候选字节完全一致；主字512,512，固定章等比，CF6650；边界和工程复算通过。未做设备验收。",
+      "tool": "Swift/CoreText固定主文字体+CoreGraphics固定浅色B笔迹蒙版",
+      "template": "moonlit-blue",
+      "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+      "approved_at": "2026-11-17T03:16:33.266727+00:00",
+      "render": {
+        "profile": "rounded-logo",
+        "width": 1024,
+        "height": 1024,
+        "text": "阅",
+        "font_postscript": "MaShanZheng-Regular",
+        "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+        "background_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+        "foreground_sha256": "078ce6c3e7007d5865291aa44bcc3d6a3bb0c454a4eebfe1da25d00bd9bdd1a3",
+        "seal": "古月",
+        "theme": "dark",
+        "layout_columns": 1,
+        "layout_rows": 1,
+        "color_space": "sRGB",
+        "os_version": "Version 15.6.1 (Build 24G90)",
+        "layout_version": 3,
+        "main_center_policy": "canvas-center",
+        "coordinate_system": "CoreGraphics bottom-left; image_y = height - y",
+        "main_bounds": {
+          "height": 442.77760000000006,
+          "width": 341.5772531573988,
+          "x": 341.21137342130066,
+          "y": 290.6112
+        },
+        "main_center_actual": {
+          "x": 512,
+          "y": 512
+        },
+        "main_center_expected": {
+          "x": 512,
+          "y": 512
+        },
+        "main_canvas_offset": {
+          "dx": 0,
+          "dy_y_up": 0
+        },
+        "main_center_check_passed": true,
+        "seal_placement": "right-lower",
+        "seal_bounds": {
+          "height": 123.136,
+          "width": 66.56,
+          "x": 870.4,
+          "y": 294.27200000000005
+        },
+        "seal_frame_inside_shape": true,
+        "seal_kind": "fixed-alpha-mask",
+        "seal_asset_id": "shared-guyue-seal-ink-b-v01-png",
+        "seal_sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+        "seal_color": "CF6650",
+        "seal_alpha_bounds": [
+          1,
+          1,
+          61,
+          112
+        ],
+        "seal_source_dimensions": [
+          64,
+          114
+        ],
+        "seal_placement_box": {
+          "height": 148.48,
+          "width": 66.56,
+          "x": 870.4,
+          "y": 281.6
+        },
+        "seal_layer_sha256": "e54c278e5d5ba7f942116dd17dfdd764e598692cd75d8eec9bb93783c068acb6"
+      }
+    }
+  },
+  {
+    "id": "shared-guyue-background-ink-light-a-v01-png",
+    "name": "古月 · 水墨浅色 A · 无字底图",
+    "kind": "icons",
+    "path": "assets/icons/shared/guyue-ink-backgrounds/template-background/shared-guyue-background-ink-light-a-v01-png.png",
+    "tags": [
+      "owner:shared",
+      "family:guyue-ink-background",
+      "variant:ink-light-a",
+      "revision:v01",
+      "status:ready",
+      "用户已确认",
+      "app-icon",
+      "古风",
+      "水墨",
+      "无字底图",
+      "制作模板"
+    ],
+    "source": "original",
+    "license": "unknown",
+    "author": "unknown",
+    "created": "2026-11-16",
+    "description": "1254×1254 RGBA；用户确认底图 A。来自 MacRightClick 浅色 A 参考，经内置 image_gen 去字去章与补绘，具体后端模型及逐图许可 unknown；保持原图比例，供固定马善政字形与古月章合成，不是新产品的官方标识。生成式补绘存在细节差异。",
+    "sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+    "organization": {
+      "owner": "shared",
+      "series": "guyue-ink-backgrounds",
+      "component": "template-background",
+      "functions": [
+        "分层创作"
+      ],
+      "platforms": [
+        "通用"
+      ]
+    },
+    "approval": {
+      "user_confirmation": "用户本轮明确：之前几轮需要我确认才能收录到都满意，你正常收录（A、C 满意、A、B 的效果满意）；本项为底图 A。",
+      "reviewed_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+      "task": "template-ink-light-a",
+      "checks": "已目视：大字与印章已移除，人物山水保留；生成式补绘存在细节差异，透明边缘及小尺寸仍需用户验收，不保证像素级不变",
+      "tool": "image_gen builtin; backend model unknown",
+      "template": "ink-light-a",
+      "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+      "approved_at": "2026-11-16T08:38:16.000686+00:00"
+    }
+  },
+  {
+    "id": "shared-guyue-background-moonlit-blue-v01-png",
+    "name": "古月 · 月夜深蓝 · 无字底图",
+    "kind": "icons",
+    "path": "assets/icons/shared/guyue-ink-backgrounds/template-background/shared-guyue-background-moonlit-blue-v01-png.png",
+    "tags": [
+      "owner:shared",
+      "family:guyue-ink-background",
+      "variant:moonlit-blue",
+      "revision:v01",
+      "status:ready",
+      "用户已确认",
+      "app-icon",
+      "古风",
+      "月夜",
+      "无字底图",
+      "制作模板"
+    ],
+    "source": "original",
+    "license": "unknown",
+    "author": "unknown",
+    "created": "2026-11-16",
+    "description": "1254×1254 RGBA；用户确认底图 C。来自 MacRightClick 月夜参考，经内置 image_gen 去字去章与补绘，具体后端模型及逐图许可 unknown；月亮人物山水保留，云雾为重绘。供固定字体和古月章分层合成，不替换 MacRightClick 原图。",
+    "sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+    "organization": {
+      "owner": "shared",
+      "series": "guyue-ink-backgrounds",
+      "component": "template-background",
+      "functions": [
+        "分层创作"
+      ],
+      "platforms": [
+        "通用"
+      ]
+    },
+    "approval": {
+      "user_confirmation": "用户本轮明确：之前几轮需要我确认才能收录到都满意，你正常收录（A、C 满意、A、B 的效果满意）；本项为底图 C（月夜深蓝）。",
+      "reviewed_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+      "task": "template-moonlit-blue",
+      "checks": "已目视：大字与印章已移除，月夜人物山水保留；中央云雾为重绘，透明边缘及小尺寸仍需用户验收",
+      "tool": "image_gen builtin; backend model unknown",
+      "template": "moonlit-blue",
+      "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+      "approved_at": "2026-11-16T08:38:16.122211+00:00"
+    }
+  },
+  {
+    "id": "shared-guyue-seal-ink-b-v01-png",
+    "name": "古月 · 独立署名章 · 浅色B原笔迹",
+    "kind": "logos",
+    "path": "assets/logos/shared/guyue-signature-seals/signature-seal/shared-guyue-seal-ink-b-v01-png.png",
+    "tags": [
+      "owner:shared",
+      "family:guyue-signature-seals",
+      "variant:ink-b-mask",
+      "revision:v01",
+      "status:ready",
+      "用户已确认",
+      "logo",
+      "古月",
+      "独立章",
+      "浅色B原笔迹",
+      "透明蒙版",
+      "固定章形"
+    ],
+    "source": "original",
+    "license": "unknown",
+    "author": "unknown",
+    "created": "2026-11-17",
+    "description": "64×114透明笔迹蒙版，源自MacRightClick水墨浅色B的古月章；固定轮廓与边框，非识别出的字体、非纯矢量。源SHA b2c0a629af3dbad2dff081514f84c14207d7191d704f2ff8e663fca238497604；用scripts/extract_seal_b.swift确定性提取。浅色暗朱红A63A30、深色亮朱红CF6650，等比合成。字体/逐图许可unknown。",
+    "sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+    "organization": {
+      "owner": "shared",
+      "series": "guyue-signature-seals",
+      "component": "signature-seal",
+      "functions": [
+        "个人署名"
+      ],
+      "platforms": [
+        "通用"
+      ]
+    },
+    "approval": {
+      "user_confirmation": "用户2026-11-17确认章字与大小，满意并授权按浅色暗朱红/月夜亮朱红方案正式收录、统一渲染模板整套及清理替代版本。独立蒙版原字节固定；颜色由主题合成。",
+      "reviewed_sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+      "task": "guyue-seal-b-master-v01",
+      "checks": "实际查看独立透明PNG与原浅色B；准确源SHA校验，固定区域原像素亮度蒙版；竖排古月与不规则框线，64x114位图；未伪称矢量或识别出字体；两款图标共用此SHA；待用户确认",
+      "tool": "Swift/CoreGraphics原像素蒙版提取；无模型重画笔画",
+      "template": "ink-light-b",
+      "reference": "product-macrightclick-app-icon-ink-light-b-q96-v01-png",
+      "approved_at": "2026-11-17T03:12:47.136058+00:00"
+    }
+  }
+]

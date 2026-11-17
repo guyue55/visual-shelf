@@ -132,7 +132,9 @@ def review(args):
                 'layout_columns', 'layout_rows', 'color_space', 'os_version', 'layout_version',
                 'main_center_policy', 'coordinate_system', 'main_bounds', 'main_center_actual',
                 'main_center_expected', 'main_canvas_offset', 'main_center_check_passed',
-                'seal_placement', 'seal_bounds', 'seal_frame_inside_shape')
+                'seal_placement', 'seal_bounds', 'seal_frame_inside_shape', 'seal_kind',
+                'seal_asset_id', 'seal_sha256', 'seal_color', 'seal_alpha_bounds',
+                'seal_source_dimensions', 'seal_placement_box', 'seal_layer_sha256')
         task['render'] = {key: recipe[key] for key in keys if key in recipe}
     task.pop('approval', None)
     save(directory / 'task.json', task)

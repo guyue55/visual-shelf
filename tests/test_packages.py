@@ -143,7 +143,7 @@ class PackageTests(unittest.TestCase):
         packages.write_json(render,{'background_sha256':item['sha256'],'layout_version':1})
         packages.write_json(source/'kit.json',{'profiles':['rounded-logo'],'files':{'rounded-logo/render.json':packages.sha(render)}})
         args=argparse.Namespace(id='legacy-rearchive',name='测试包',source=source,approval='测试夹具确认',asset=['sample'],background_asset='sample')
-        with self.assertRaisesRegex(ValueError,'layout_version=2'):packages.archive(args,self.root)
+        with self.assertRaisesRegex(ValueError,'layout_version=3'):packages.archive(args,self.root)
         self.assertFalse((self.root/'packages/legacy-rearchive').exists())
 
     def test_manifest_path_escape_is_rejected(self):
@@ -154,11 +154,11 @@ class PackageTests(unittest.TestCase):
 
 class ApprovedArchiveTests(unittest.TestCase):
     def test_approved_original_bytes_and_reproduction_context(self):
-        folder=ROOT/'packages/yue-surface-kit-v02'
+        folder=ROOT/'packages/yue-surface-kit-v03'
         if not folder.exists():self.skipTest('本测试副本未包含正式交付包')
         data=packages.verifier(ROOT)(folder)
         self.assertTrue((folder/'quality-review.json').exists())
-        self.assertEqual(data['state'],'approved');self.assertEqual(data['approval']['original_file_count'],185)
+        self.assertEqual(data['state'],'approved');self.assertEqual(data['approval']['original_file_count'],205)
         for name,digest in data['approval']['original_files'].items():
             self.assertEqual(packages.sha(folder/'payload'/name),digest)
         self.assertTrue((folder/'source/scripts/render-logo.sh').exists());self.assertTrue((folder/'source/resources/fonts/mashanzheng/OFL.txt').exists())

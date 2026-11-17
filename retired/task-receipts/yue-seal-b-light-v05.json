@@ -1,0 +1,30 @@
+{
+  "job": "yue-seal-b-light-v05",
+  "style": "ink-light-a",
+  "purpose": "logo",
+  "text": "阅",
+  "owner": "shared",
+  "instructions": "仅替换为浅色B原章透明蒙版；正文背景不变；尚未确认，不更新模板或正式包",
+  "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
+  "profile": "circle-logo",
+  "platform": "generic",
+  "seal": "古月",
+  "font": "MaShanZheng-Regular",
+  "approved_background": "shared-guyue-background-ink-light-a-v01-png",
+  "background_sha256": "defcd773dbbfa4043f2fafd0f12d9ebc715e58c98f6675dd69d55b372bb46a03",
+  "accepted_examples": [
+    "shared-guyue-yue-circle-light-v04-png"
+  ],
+  "delivery_packages": [],
+  "layout_notice": "2026-11-16用户已确认v04：主字居中、古月小章右下落款；旧v02/v03不再用于制作或导出。",
+  "seal_placement": "right-lower",
+  "seal_reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+  "reference_file": "reference.png",
+  "reference_sha256": "412ac308bc31dd5ae4aae944f979ff6290c9160077a651640825512c270ac8ef",
+  "state": "awaiting-user",
+  "created": "2026-11-17T02:04:27.223690+00:00",
+  "candidate": "candidate.png",
+  "candidate_sha256": "6e60f3ea3664804207beb85d82ca56a0ea80a15dbcc6f1a245635eed36e873ec",
+  "checks": "实际查看1024成品；主字和背景与v04在章区域之外逐像素一致；原章蒙版固定SHA，等比适配，浅色深褐；字体名unknown；原小位图无新增细节；未获用户确认，未做目标设备验收",
+  "tool": "Swift/CoreGraphics固定原像素透明蒙版；imagegen两次结果形变，均弃用"
+}

@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "passed": true,
+  "errors": [],
+  "profiles": [
+    {
+      "profile": "circle-logo",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "rounded-logo",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "square-master",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "favicon",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "apple-touch",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "pwa-maskable",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "android-adaptive",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "og-image",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "cover",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "web",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "profile": "favicon-simple-option",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "scope": "确定性轮廓、配方、尺寸与封装校验；PNG只读header，不冒充完整解码或设备/光学验收",
+  "requires_visual_review": [
+    "参照是否正确",
+    "正文与印章整体关系",
+    "背景人物残影/裁切",
+    "真实小尺寸与深浅背景",
+    "目标设备及工程接入"
+  ],
+  "limitations": [
+    "真实设备安装未由本脚本验证",
+    "OG域名仍须消费工程填入",
+    "固定字体与底图许可分别处理"
+  ],
+  "visual_review_note": "实际查看原浅色B、两份v06 1024、整套circle/rounded/PWA/Android128px、favicon32px及OG/cover/web大图。固定原章蒙版等比且内收；主字居中。极小章仍弱、无章仅备选。未做目标设备安装、现代.icon、monochrome及真实域名接入。"
+}

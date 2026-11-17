@@ -3,6 +3,7 @@ import CoreGraphics
 import CoreText
 import ImageIO
 import UniformTypeIdentifiers
+import CryptoKit
 
 func fail(_ message: String) -> Never {
     FileHandle.standardError.write(Data(("失败：" + message + "\n").utf8)); exit(1)
@@ -49,7 +50,7 @@ func glyphPath(_ string: String) -> CGPath {
     return path
 }
 for char in characters { _ = glyphPath(String(char)) }
-_ = glyphPath("古"); _ = glyphPath("月")
+
 guard let imageSource = CGImageSourceCreateWithURL(URL(fileURLWithPath:options["background"]!) as CFURL,nil), let background = CGImageSourceCreateImageAtIndex(imageSource,0,nil) else { fail("背景无法解码") }
 let width = profile == "cover" || profile == "web" ? 1600 : (profile == "og-image" ? 1200 : (profile == "apple-touch" ? 180 : (profile == "favicon" ? 256 : (profile == "android-adaptive" ? 1080 : 1024))))
 let height = profile == "cover" ? 900 : (profile == "web" ? 600 : (profile == "og-image" ? 630 : width))
@@ -155,16 +156,32 @@ else if profile == "favicon" { stamp=CGRect(x:w*0.79,y:h*0.25,width:w*0.10,heigh
 else if profile == "android-adaptive" { stamp=CGRect(x:w*0.66,y:h*0.40,width:w*0.05,height:h*0.12) }
 else if profile == "pwa-maskable" { stamp=CGRect(x:w*0.69,y:h*0.36,width:w*0.065,height:h*0.14) }
 else { stamp=CGRect(x:w*0.77,y:h*0.35,width:w*0.075,height:h*0.17) }
-let strokeBounds = stamp.insetBy(dx:-w*0.0015,dy:-w*0.0015)
-let sealFrameInsideShape = [CGPoint(x:strokeBounds.minX,y:strokeBounds.minY),CGPoint(x:strokeBounds.maxX,y:strokeBounds.minY),CGPoint(x:strokeBounds.minX,y:strokeBounds.maxY),CGPoint(x:strokeBounds.maxX,y:strokeBounds.maxY)].allSatisfy { outline.contains($0) }
-if options["no-seal"] == nil && !sealFrameInsideShape { fail("印章边框超出形状安全边界") }
+// Fixed original-B alpha mask: never typeset or generate the signature glyphs.
+var sealImage:CGImage? = nil
+var sealCrop=CGRect.zero
+var actualSeal=stamp
 if options["no-seal"] == nil {
-    context.setStrokeColor(stampColor); context.setLineWidth(w*0.003)
-    context.addPath(CGPath(roundedRect:stamp,cornerWidth:w*0.007,cornerHeight:w*0.007,transform:nil)); context.strokePath()
-    let inset=stamp.insetBy(dx:stamp.width*0.12,dy:stamp.height*0.08)
-    drawGlyph("古",CGRect(x:inset.minX,y:inset.midY,width:inset.width,height:inset.height*0.48),stampColor,"seal")
-    drawGlyph("月",CGRect(x:inset.minX,y:inset.minY,width:inset.width,height:inset.height*0.48),stampColor,"seal")
+    guard let path=options["seal-image"], let src=CGImageSourceCreateWithURL(URL(fileURLWithPath:path) as CFURL,nil),let im=CGImageSourceCreateImageAtIndex(src,0,nil) else { fail("缺少固定独立章PNG") }
+    let digest=SHA256.hash(data:try Data(contentsOf:URL(fileURLWithPath:path))).map{String(format:"%02x",$0)}.joined()
+    guard digest=="5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b" else { fail("独立章不是已确认的原笔迹蒙版") }
+    let sc=CGContext(data:nil,width:im.width,height:im.height,bitsPerComponent:8,bytesPerRow:im.width*4,space:colorSpace,bitmapInfo:CGImageAlphaInfo.premultipliedLast.rawValue)!
+    sc.draw(im,in:CGRect(x:0,y:0,width:im.width,height:im.height))
+    let pixels=sc.data!.assumingMemoryBound(to:UInt8.self)
+    var x0=im.width,y0=im.height,x1 = -1,y1 = -1
+    for y in 0..<im.height { for x in 0..<im.width { if pixels[(y*im.width+x)*4+3]>0 { x0=min(x0,x);y0=min(y0,y);x1=max(x1,x);y1=max(y1,y) } } }
+    guard x1>=0 else { fail("独立章为空") }
+    sealCrop=CGRect(x:x0,y:y0,width:x1-x0+1,height:y1-y0+1)
+    sealImage=im.cropping(to:sealCrop)!
+    let scale=min(stamp.width/sealCrop.width,stamp.height/sealCrop.height)
+    actualSeal=CGRect(x:stamp.midX-sealCrop.width*scale/2,y:stamp.midY-sealCrop.height*scale/2,width:sealCrop.width*scale,height:sealCrop.height*scale)
 }
+func sealCorners(_ rect:CGRect)->[CGPoint] { [CGPoint(x:rect.minX,y:rect.minY),CGPoint(x:rect.maxX,y:rect.minY),CGPoint(x:rect.minX,y:rect.maxY),CGPoint(x:rect.maxX,y:rect.maxY)] }
+let sealFrameInsideShape = sealCorners(actualSeal).allSatisfy { outline.contains($0) }
+if options["no-seal"] == nil && !sealFrameInsideShape { fail("独立章完整含框边界超出形状") }
+func drawSeal(_ target:CGContext) {
+    if let im=sealImage { target.saveGState();target.interpolationQuality = .high;target.clip(to:actualSeal,mask:im);target.setFillColor(stampColor);target.fill(actualSeal);target.restoreGState() }
+}
+drawSeal(context)
 guard let final = context.makeImage() else { fail("生成图像失败") }
 try fm.createDirectory(at:output,withIntermediateDirectories:true)
 func writePNG(_ image:CGImage,_ url:URL) {
@@ -179,20 +196,26 @@ for (index,path) in placedPaths.enumerated() {
     foregroundContext.setFillColor((glyphRecords[index]["role"] as! String)=="main" ? ink:stampColor)
     foregroundContext.addPath(path); foregroundContext.fillPath()
 }
-if options["no-seal"] == nil {
-    foregroundContext.setStrokeColor(stampColor);foregroundContext.setLineWidth(w*0.003)
-    foregroundContext.addPath(CGPath(roundedRect:stamp,cornerWidth:w*0.007,cornerHeight:w*0.007,transform:nil));foregroundContext.strokePath()
-}
+drawSeal(foregroundContext)
 writePNG(foregroundContext.makeImage()!,output.appendingPathComponent("foreground-layer.png"))
 var svg="<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 \(width) \(height)\"><g transform=\"translate(0 \(height)) scale(1 -1)\">"
 for rec in glyphRecords {
     let hex=(rec["role"] as! String)=="main" ? (dark ? "F1E2BE":"211F1B") : (dark ? "CF6650":"A63A30")
     svg += "<path d=\"\(rec["svg_path"] as! String)\" fill=\"#\(hex)\"/>"
 }
-if options["no-seal"] == nil {
-    svg += "<rect x=\"\(stamp.minX)\" y=\"\(stamp.minY)\" width=\"\(stamp.width)\" height=\"\(stamp.height)\" rx=\"\(w*0.007)\" fill=\"none\" stroke=\"#\(dark ? "CF6650":"A63A30")\" stroke-width=\"\(w*0.003)\"/>"
+svg += "</g>"
+if let im=sealImage {
+    // Embed a tight tinted raster in the SVG; this is deliberately not advertised as pure vector.
+    let sc=CGContext(data:nil,width:im.width,height:im.height,bitsPerComponent:8,bytesPerRow:im.width*4,space:colorSpace,bitmapInfo:CGImageAlphaInfo.premultipliedLast.rawValue)!
+    let rect=CGRect(x:0,y:0,width:im.width,height:im.height)
+    sc.clip(to:rect,mask:im);sc.setFillColor(stampColor);sc.fill(rect)
+    let layer=sc.makeImage()!
+    writePNG(layer,output.appendingPathComponent("seal-layer.png"))
+    try Data(contentsOf:URL(fileURLWithPath:options["seal-image"]!)).write(to:output.appendingPathComponent("seal-source.png"))
+    let encoded=try Data(contentsOf:output.appendingPathComponent("seal-layer.png")).base64EncodedString()
+    svg += "<image x=\"\(actualSeal.minX)\" y=\"\(h-actualSeal.maxY)\" width=\"\(actualSeal.width)\" height=\"\(actualSeal.height)\" href=\"data:image/png;base64,\(encoded)\"/>"
 }
-svg += "</g></svg>"
+svg += "</svg>"
 try svg.write(to:output.appendingPathComponent("foreground.svg"),atomically:true,encoding:.utf8)
 for size in [16,32,48,64,128,192,256,512] {
     let ph=Int(CGFloat(size)*h/w)
@@ -201,9 +224,16 @@ for size in [16,32,48,64,128,192,256,512] {
     writePNG(c.makeImage()!,output.appendingPathComponent("preview-\(size).png"))
 }
 var record: [String:Any] = ["profile":profile,"width":width,"height":height,"text":text,"font_postscript":postScriptName,"font_file":fontURL.path,"seal":options["no-seal"] == nil ? "古月" : "none","layout_columns":cols,"layout_rows":rows,"glyphs":glyphRecords,"color_space":"sRGB","background":options["background"]!,"theme":options["theme"]!,"state":"draft"]
-record["layout_version"] = 2
+record["layout_version"] = 3
+record["seal_kind"] = options["no-seal"] == nil ? "fixed-alpha-mask" : "none"
+record["seal_color"] = dark ? "CF6650" : "A63A30"
+record["seal_asset_id"] = options["no-seal"] == nil ? "shared-guyue-seal-ink-b-v01-png" : "none"
+record["seal_file"] = options["seal-image"] ?? ""
+record["seal_alpha_bounds"] = [sealCrop.minX,sealCrop.minY,sealCrop.maxX,sealCrop.maxY]
+record["seal_source_dimensions"] = [64,114]
+record["seal_placement_box"] = ["x":stamp.minX,"y":stamp.minY,"width":stamp.width,"height":stamp.height]
 record["seal_placement"] = sealPlacement
-record["seal_bounds"] = ["x":stamp.minX,"y":stamp.minY,"width":stamp.width,"height":stamp.height]
+record["seal_bounds"] = ["x":actualSeal.minX,"y":actualSeal.minY,"width":actualSeal.width,"height":actualSeal.height]
 record["seal_frame_inside_shape"] = options["no-seal"] != nil || sealFrameInsideShape
 record["main_center_policy"] = mainCenterPolicy
 record["coordinate_system"] = "CoreGraphics bottom-left; image_y = height - y"
@@ -223,7 +253,8 @@ record["alpha_top_right"] = Int(pixels[(width*height-1)*4+3])
 record["alpha_center"] = Int(pixels[((height/2)*width+width/2)*4+3])
 if profile == "pwa-maskable" {
     let radius=w*0.4
-    let valid=glyphRecords.allSatisfy { rec in
+    let sealSafe = options["no-seal"] != nil || sealCorners(actualSeal).allSatisfy { hypot($0.x-w/2,$0.y-h/2)<=radius }
+    let valid=sealSafe && glyphRecords.allSatisfy { rec in
         let x=rec["x"] as! CGFloat, y=rec["y"] as! CGFloat, gw=rec["width"] as! CGFloat, gh=rec["height"] as! CGFloat
         return [CGPoint(x:x,y:y),CGPoint(x:x+gw,y:y),CGPoint(x:x,y:y+gh),CGPoint(x:x+gw,y:y+gh)].allSatisfy { point in hypot(point.x-w/2,point.y-h/2) <= radius }
     }
@@ -231,7 +262,8 @@ if profile == "pwa-maskable" {
     if !valid { fail("文字超出 PWA safe zone，不可交付") }
 }
 if profile == "android-adaptive" {
-    let safe=glyphRecords.allSatisfy { rec in
+    let sealSafe = options["no-seal"] != nil || sealCorners(actualSeal).allSatisfy { hypot($0.x-w/2,$0.y-h/2)<=w*33/108 }
+    let safe=sealSafe && glyphRecords.allSatisfy { rec in
         let x=rec["x"] as! CGFloat,y=rec["y"] as! CGFloat,gw=rec["width"] as! CGFloat,gh=rec["height"] as! CGFloat
         return [CGPoint(x:x,y:y),CGPoint(x:x+gw,y:y),CGPoint(x:x,y:y+gh),CGPoint(x:x+gw,y:y+gh)].allSatisfy { hypot($0.x-w/2,$0.y-h/2)<=w*33/108 }
     }

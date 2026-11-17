@@ -61,8 +61,8 @@
 - 单文件最大 5 MiB；分发素材支持 SVG/PNG/JPG/JPEG/WebP。大体积设计工程另行存储。
 - 不盲目重绘或优化品牌图形。保留比例与透明区域，检查深浅背景和缩小后的可辨识度。
 - SVG 使用当前工具允许的静态子集，不注入页面 DOM，不添加脚本、外部资源等活动内容。
-- 居中检查必须以主文案实际轮廓联合边界为准，不把印章、背景或字体 advance/baseline 当成主字中心。通用方形/圆形 Logo 默认画布居中（≤0.5px）；场景特定标题区明确记录目标中心。检查 render.json 的 layout_version、main_center_* 及实际预览；当前范本为已确认v04，通用Logo默认right-lower小章；旧阅字及旧套件已退出可用目录，遵循packages/advisories.json和retired替代记录，不从历史文档复制旧路径。
-- 用户个人作品默认古风并带“古月”署名章；以 docs/PERSONAL-STYLE.md 为当前规则。正文与印章使用固定真实字体轮廓，不让模型画字，不静默 fallback。按字数等比排版，形状变化同时适配核心内容与印章。
+- 居中检查必须以主文案实际轮廓联合边界为准，不把印章、背景或字体 advance/baseline 当成主字中心。通用方形/圆形 Logo 默认画布居中（≤0.5px）；场景特定标题区明确记录目标中心。检查 render.json 的 layout_version、main_center_* 及实际预览；当前范本为已确认v06，通用Logo默认right-lower小章；旧阅字及旧套件已退出可用目录，遵循packages/advisories.json和retired替代记录，不从历史文档复制旧路径。
+- 用户个人作品默认古风并带“古月”署名章；以 docs/PERSONAL-STYLE.md 为当前规则。正文使用固定真实字体轮廓，印章使用已确认固定浅色B透明蒙版，不让模型画字，不静默 fallback。按字数等比排版，形状变化同时适配核心内容与印章。
 - 每次制作执行 docs/VISUAL-QA.md 和机器可读清单，从参照、几何/光学、印章、形状/描边、字体、背景、小尺寸、平台、来源、确认和版本逐项检查；记录passed/failed/not-verified/not-applicable。整套archive强制visual_qa并要求真实--visual-review-note，不能以程序成功冒充看过图或设备验收。
 - 正式平台导出先明确 OS/工具链及路线，区分现代 Apple 未裁方形图层、传统 macOS ICNS、圆形通用 Logo、PWA maskable 和 Android adaptive；按 docs/PLATFORM-PROFILES.md 检查，不能改扩展名或只缩放就称适配。
 - 制作前先读取对应实体的品牌档案、认可参考与场景流程，复用已确认信息，只询问阻塞结果的关键缺口；非关键空白用明示的临时假设推进，不反复让用户填写品牌问卷。

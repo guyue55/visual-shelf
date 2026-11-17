@@ -59,6 +59,13 @@
       "owner": "shared",
       "description": "用户已确认的阅字圆形浅色与圆角月夜 Logo，固定马善政字体及古月章。",
       "accent": "night"
+    },
+    {
+      "id": "guyue-signature-seals",
+      "name": "古月 · 独立署名章",
+      "owner": "shared",
+      "description": "浅色B原笔迹提取的固定透明古月章，形状固定、主题朱红配色。",
+      "accent": "clay"
     }
   ],
   "components": [
@@ -85,6 +92,10 @@
     {
       "id": "personal-identity",
       "name": "个人字标"
+    },
+    {
+      "id": "signature-seal",
+      "name": "署名印章"
     }
   ]
 }

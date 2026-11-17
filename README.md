@@ -2,7 +2,7 @@
 
 一个放得下 Logo、图标、图例和封面的个人视觉素材库。为日常文档、方案、项目 README 和网页收藏常用素材，也保存自己创建的视觉内容。
 
-**文件可直接使用，来源可以追溯，新增有统一入口。** 已托管到 [guyue55/visual-shelf](https://github.com/guyue55/visual-shelf)，并部署到 [GitHub Pages 在线素材馆](https://guyue55.github.io/visual-shelf/)。当前15份正式素材、6个系列，含已确认阅字v04与可复用交付套件。
+**文件可直接使用，来源可以追溯，新增有统一入口。** 已托管到 [guyue55/visual-shelf](https://github.com/guyue55/visual-shelf)，并部署到 [GitHub Pages 在线素材馆](https://guyue55.github.io/visual-shelf/)。当前16份正式素材、7个系列，含已确认阅字v06与可复用交付套件。
 
 ## 立即使用
 
@@ -36,7 +36,7 @@
 | 图例 | assets/legends/ | 架构图节点、状态、流程图图例 |
 | 封面 | assets/covers/ | 项目、文档、文章封面 |
 
-已收录 15 份正式素材：MacRightClick 的 3 张原图、8 份初始化 SVG，以及用户本轮确认的 2 份古风无字底图和 2 份“阅”Logo。另有 1 套已确认多场景交付包，包内文件不重复计作单素材。所有示例保守标为 `LicenseRef-All-Rights-Reserved`，作者为 `unknown`，等待库主人决定署名和开放许可。
+已收录 16 份正式素材：MacRightClick 的 3 张原图、8 份初始化 SVG，以及用户本轮确认的 2 份古风无字底图和 2 份“阅”Logo，以及1份固定透明古月章。另有 1 套已确认多场景交付包，包内文件不重复计作单素材。所有示例保守标为 `LicenseRef-All-Rights-Reserved`，作者为 `unknown`，等待库主人决定署名和开放许可。
 
 ```text
 assets/       可直接引用的素材文件
@@ -73,9 +73,9 @@ tests/        有实际边界意义的离线测试
 
 ## 形状、字体与平台导出
 
-个人作品默认古风并带“古月”署名章，正文与章使用固定真实字体，不由图像模型编造文字。支持圆形、圆角方形、方形母版、封面/web 排版及 PWA 安全区配置；macOS 传统 ICNS 与现代 Icon Composer 路线分开处理。见 [个人风格与字数排版](docs/PERSONAL-STYLE.md)、[形状与平台规范](docs/PLATFORM-PROFILES.md)。
+个人作品默认古风并带“古月”署名章，正文使用固定真实字体、章使用固定浅色B透明蒙版，不由图像模型编造文字。支持圆形、圆角方形、方形母版、封面/web 排版及 PWA 安全区配置；macOS 传统 ICNS 与现代 Icon Composer 路线分开处理。见 [个人风格与字数排版](docs/PERSONAL-STYLE.md)、[形状与平台规范](docs/PLATFORM-PROFILES.md)。
 
-原生渲染命令 `./scripts/render-logo.sh --help`，当前需 macOS/Swift；传统图标打包命令 `./scripts/export-macos.sh 输入.png 新目录`。新示例仍走草稿确认；已确认的“阅”圆形浅色和圆角月夜 v04 已正式入库。字体文件及 OFL 许可位于 resources/fonts/mashanzheng。
+原生渲染命令 `./scripts/render-logo.sh --help`，当前需 macOS/Swift；传统图标打包命令 `./scripts/export-macos.sh 输入.png 新目录`。新示例仍走草稿确认；已确认的“阅”圆形浅色和圆角月夜 v06 已正式入库。字体文件及 OFL 许可位于 resources/fonts/mashanzheng。
 
 ## 常用场景模板套件
 
@@ -130,7 +130,7 @@ python3 scripts/library.py build
 
 ## 当前确认与交付基线
 
-已正式收录无字底图A/C和阅字最终v04（正文居中、古月小章右下落款）。当前共15份单素材，另有1套修正包 **yue-surface-kit-v02**，包内185个场景输出不重复计入单图。
+已正式收录无字底图A/C和阅字最终v06（正文居中、古月小章右下落款）。当前共16份单素材，另有1套修正包 **yue-surface-kit-v03**，包内205个场景输出不重复计入单图。
 
 旧阅字v02/v03、旧套件v01、碎片底图及相关草稿/导出已按用户要求清理；模板和页面只使用当前版本。retired仅为历史元数据/替代关系，不含可取用的旧图片或ZIP。
 
@@ -140,6 +140,7 @@ python3 scripts/library.py build
 
 每次制作先读 [视觉QA规范](docs/VISUAL-QA.md) 和机器可读清单。覆盖参照、主字几何/光学、印章关系、形状/描边、固定字体、背景、透明、小尺寸、平台、来源、确认与版本管理。scripts/visual_qa.py 独立复算关键坐标；机器通过不代替实图与设备验收。
 
-## 待确认独立印章
 
-按用户指定的浅色B原图提取了固定“古月”透明章，并生成两款阅字对照，均为awaiting-user。当前v04、模板与正式套件保持原版，确认候选后再统一切换；[准确文件、哈希及检查范围](docs/creation-runs/2026-11-17-independent-seal-preview.md)。
+## 已确认独立古月章
+
+2026-11-17正式收录固定浅色B原笔迹章与两款阅字v06，浅色暗朱红A63A30、月夜亮朱红CF6650；正文与章分开管理。渲染器/模板/整套v03已统一，旧v04及旧包不再取用。当前共16份素材、7系列；整套保留205场景输出，含独立章源与颜色层。确认与清理范围见 [本轮交付记录](docs/creation-runs/2026-11-17-v06-final-delivery.md)。

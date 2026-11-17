@@ -4,25 +4,46 @@
     "yue-surface-kit-v01": {
       "block_export": true,
       "reason": "旧版本已按用户要求清理；改用最终v04及修正套件v02",
-      "record": "docs/creation-runs/2026-11-16-v04-final-delivery.md",
+      "record": "docs/creation-runs/2026-11-17-v06-final-delivery.md",
       "state": "removed-from-active-library",
-      "replacement": "yue-surface-kit-v02"
+      "replacement": "yue-surface-kit-v03"
+    },
+    "yue-surface-kit-v02": {
+      "block_export": true,
+      "state": "superseded-and-removed",
+      "replacement": "yue-surface-kit-v03",
+      "reason": "已由固定浅色B章整套v03替代，使用install/editable按需导出",
+      "record": "docs/creation-runs/2026-11-17-v06-final-delivery.md"
     }
   },
   "assets": {
     "shared-guyue-yue-circle-light-v02-png": {
       "block_export": true,
       "reason": "旧版本已按用户要求清理；改用最终v04及修正套件v02",
-      "record": "docs/creation-runs/2026-11-16-v04-final-delivery.md",
+      "record": "docs/creation-runs/2026-11-17-v06-final-delivery.md",
       "state": "removed-from-active-library",
-      "replacement": "shared-guyue-yue-circle-light-v04-png"
+      "replacement": "shared-guyue-yue-circle-light-v06-png"
     },
     "shared-guyue-yue-rounded-moonlit-v02-png": {
       "block_export": true,
       "reason": "旧版本已按用户要求清理；改用最终v04及修正套件v02",
-      "record": "docs/creation-runs/2026-11-16-v04-final-delivery.md",
+      "record": "docs/creation-runs/2026-11-17-v06-final-delivery.md",
       "state": "removed-from-active-library",
-      "replacement": "shared-guyue-yue-rounded-moonlit-v04-png"
+      "replacement": "shared-guyue-yue-rounded-moonlit-v06-png"
+    },
+    "shared-guyue-yue-circle-light-v04-png": {
+      "block_export": true,
+      "state": "superseded-and-removed",
+      "replacement": "shared-guyue-yue-circle-light-v06-png",
+      "reason": "已由固定浅色B章及朱红方案v06替代，禁止旧章混用",
+      "record": "docs/creation-runs/2026-11-17-v06-final-delivery.md"
+    },
+    "shared-guyue-yue-rounded-moonlit-v04-png": {
+      "block_export": true,
+      "state": "superseded-and-removed",
+      "replacement": "shared-guyue-yue-rounded-moonlit-v06-png",
+      "reason": "已由固定浅色B章及朱红方案v06替代，禁止旧章混用",
+      "record": "docs/creation-runs/2026-11-17-v06-final-delivery.md"
     }
   }
 }

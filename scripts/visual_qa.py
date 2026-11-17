@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Deterministic geometry/recipe/file checks. Does not replace optical or device review."""
 import argparse
+import base64
 import hashlib
 import json
 import math
@@ -10,6 +11,8 @@ import xml.etree.ElementTree as ET
 
 DIMENSIONS={'circle-logo':(1024,1024),'rounded-logo':(1024,1024),'square-master':(1024,1024),'favicon':(256,256),'apple-touch':(180,180),'pwa-maskable':(1024,1024),'android-adaptive':(1080,1080),'og-image':(1200,630),'cover':(1600,900),'web':(1600,600)}
 GENERIC={'circle-logo','rounded-logo','square-master','apple-touch'}
+SEAL_SHA='5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b'
+SEAL_ASSET='shared-guyue-seal-ink-b-v01-png'
 
 def sha(file):return hashlib.sha256(file.read_bytes()).hexdigest()
 
@@ -49,19 +52,38 @@ def inspect_geometry(data):
     if abs((left+right)/2-expected[0])>0.5 or abs((bottom+top)/2-expected[1])>0.5:errors.append('正文实际轮廓未居中于目标')
     if not data.get('main_center_check_passed') or not data.get('all_glyph_bounds_inside_shape'):errors.append('中心/形状检查未通过')
     sealed=data['seal']!='none';seal=[g for g in glyphs if g['role']=='seal']
-    if sealed and ''.join(g['text'] for g in seal)!='古月':errors.append('印章文字不准确')
+    raster=data.get('seal_kind')=='fixed-alpha-mask'
+    if sealed and data.get('layout_version',0)>=3 and not raster:errors.append('新版布局必须使用固定独立章')
+    if sealed and raster:
+        if data.get('layout_version',0)<3 or data.get('seal_sha256')!=SEAL_SHA or data.get('seal_asset_id')!=SEAL_ASSET:errors.append('独立章来源或布局版本不符')
+        if seal:errors.append('固定章不能冒充字体字形')
+        if data.get('seal_alpha_bounds')!=[1,1,61,112] or data.get('seal_source_dimensions')!=[64,114]:errors.append('独立章原尺寸或透明轮廓边界漂移')
+        if data.get('seal_color')!={'light':'A63A30','dark':'CF6650'}.get(data.get('theme')):errors.append('印章主题朱红配色不符')
+        bounds=data.get('seal_bounds',{})
+        if bounds.get('height',0)<=0 or abs(bounds.get('width',0)/bounds.get('height',1)-60/111)>1e-6:errors.append('独立章比例发生拉伸')
+        if profile in GENERIC: box=(w*(.825 if profile=='circle-logo' else .85),h*.275,w*.065,h*.145)
+        elif w!=h: box=(w*.84,h*.31,h*.09,h*.19)
+        elif profile=='favicon':box=(w*.79,h*.25,w*.10,h*.25)
+        elif profile=='android-adaptive':box=(w*.66,h*.40,w*.05,h*.12)
+        elif profile=='pwa-maskable':box=(w*.69,h*.36,w*.065,h*.14)
+        else:box=(w*.77,h*.35,w*.075,h*.17)
+        factor=min(box[2]/60,box[3]/111)
+        expected_seal=(box[0]+box[2]/2-60*factor/2,box[1]+box[3]/2-111*factor/2,60*factor,111*factor)
+        if any(abs(bounds.get(key,float('inf'))-v)>.01 for key,v in zip(('x','y','width','height'),expected_seal)):errors.append('独立章位置/大小不符合固定profile')
+    elif sealed and ''.join(g['text'] for g in seal)!='古月':errors.append('印章文字不准确')
     if sealed and not data.get('seal_frame_inside_shape'):errors.append('印章含描边未通过形状边界检查')
     if sealed and profile in GENERIC and data.get('seal_placement')!='right-lower':errors.append('通用Logo未使用已确认右下章位')
     if sealed and 'seal_bounds' in data:
         s=data['seal_bounds']
         if not all(isinstance(s[k],(int,float)) and math.isfinite(s[k]) for k in ('x','y','width','height')):return errors+['章框坐标非有限数值']
-        stroke=w*0.0015
+        stroke=0 if raster else w*0.0015
         expanded={'x':s['x']-stroke,'y':s['y']-stroke,'width':s['width']+stroke*2,'height':s['height']+stroke*2}
         if not all(inside_shape(x,y,profile,w,h) for x,y in corners(expanded)):errors.append('完整章框含描边超出形状')
         if max(left,s['x'])<min(right,s['x']+s['width']) and max(bottom,s['y'])<min(top,s['y']+s['height']):errors.append('主文字与章框重叠')
     if profile in ('pwa-maskable','android-adaptive'):
         radius=w*(0.4 if profile=='pwa-maskable' else 33/108)
-        if not all(math.hypot(x-w/2,y-h/2)<=radius+1e-6 for g in glyphs for x,y in corners(g)):errors.append('实际轮廓超出平台安全圆')
+        safe_shapes=glyphs+([data['seal_bounds']] if sealed and raster else [])
+        if not all(math.hypot(x-w/2,y-h/2)<=radius+1e-6 for g in safe_shapes for x,y in corners(g)):errors.append('实际轮廓超出平台安全圆')
     if profile=='pwa-maskable' and not data.get('maskable_glyph_safe_zone_passed'):errors.append('PWA安全圆未通过')
     if profile=='android-adaptive' and not data.get('android_glyph_safe_zone_passed'):errors.append('Android安全圆未通过')
     return errors
@@ -79,6 +101,20 @@ def audit_kit(folder, expected_background=None, expected_font=None):
             if expected_background and data['background_sha256']!=expected_background:local.append('背景不是已确认来源')
             if expected_font and data['font_sha256']!=expected_font:local.append('固定字体漂移')
             if data['font_postscript']!='MaShanZheng-Regular':local.append('字体名称漂移')
+            if data.get('seal_kind')=='fixed-alpha-mask' and data['seal']!='none':
+                if sha(directory/'seal-source.png')!=SEAL_SHA:local.append('独立章源文件实际哈希漂移')
+                if png_size(directory/'seal-source.png')!=(64,114) or png_size(directory/'seal-layer.png')!=(60,111):local.append('独立章真实文件尺寸不符')
+                if sha(directory/'seal-layer.png')!=data['seal_layer_sha256']:local.append('章颜色层哈希漂移')
+                svg=ET.parse(directory/'foreground.svg').getroot()
+                images=svg.findall('{http://www.w3.org/2000/svg}image')
+                if len(images)!=1:local.append('SVG缺少唯一固定章图层')
+                else:
+                    node=images[0];href=node.attrib.get('href','')
+                    if not href.startswith('data:image/png;base64,') or base64.b64decode(href.split(',',1)[1],validate=True)!=(directory/'seal-layer.png').read_bytes():local.append('SVG内嵌章与真实颜色层不符')
+                    b=data['seal_bounds']
+                    for key,value in {'x':b['x'],'y':data['height']-b['y']-b['height'],'width':b['width'],'height':b['height']}.items():
+                        if abs(float(node.attrib[key])-value)>1e-6:local.append('SVG章坐标不符')
+
         except (ValueError,OSError,KeyError,TypeError) as exc:local.append(str(exc))
         errors.extend(f'{profile}: {x}' for x in local);results.append({'profile':profile,'passed':not local,'errors':local})
     try:

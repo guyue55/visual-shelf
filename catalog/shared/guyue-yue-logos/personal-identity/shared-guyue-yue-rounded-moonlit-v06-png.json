@@ -1,0 +1,117 @@
+{
+  "id": "shared-guyue-yue-rounded-moonlit-v06-png",
+  "name": "古月 · 阅 · 圆角月夜",
+  "kind": "logos",
+  "path": "assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-rounded-moonlit-v06-png.png",
+  "tags": [
+    "owner:shared",
+    "family:guyue-yue-logos",
+    "variant:rounded-moonlit",
+    "revision:v06",
+    "status:ready",
+    "用户已确认",
+    "logo",
+    "阅",
+    "古风",
+    "古月章",
+    "独立印章",
+    "固定字体",
+    "亮朱红",
+    "圆角方形",
+    "已校验居中"
+  ],
+  "source": "original",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-17",
+  "description": "最终v06：正文轮廓居中，马善政主字；独立浅色B古月章蒙版固定轮廓、等比右下落款，月夜亮朱红CF6650。与用户认可的独立章月夜候选完全同字节；替代v04旧章。",
+  "sha256": "0ed70ade05da6938ffa1facfbf890945ca19f14ea8218ce0ce3d6e942e24f58a",
+  "organization": {
+    "owner": "shared",
+    "series": "guyue-yue-logos",
+    "component": "personal-identity",
+    "functions": [
+      "个人识别"
+    ],
+    "platforms": [
+      "通用"
+    ]
+  },
+  "approval": {
+    "user_confirmation": "用户2026-11-17：满意，按你的建议处理，同时正式收录，统一更新渲染器、模板引用和整套包，按只接入/可编辑重新导出，处理替代旧素材草稿出口。浅色A63A30、深色CF6650。",
+    "reviewed_sha256": "0ed70ade05da6938ffa1facfbf890945ca19f14ea8218ce0ce3d6e942e24f58a",
+    "task": "yue-final-dark-v06",
+    "checks": "已实际查看1024图；与用户认可月夜候选字节完全一致；主字512,512，固定章等比，CF6650；边界和工程复算通过。未做设备验收。",
+    "tool": "Swift/CoreText固定主文字体+CoreGraphics固定浅色B笔迹蒙版",
+    "template": "moonlit-blue",
+    "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+    "approved_at": "2026-11-17T03:16:33.266727+00:00",
+    "render": {
+      "profile": "rounded-logo",
+      "width": 1024,
+      "height": 1024,
+      "text": "阅",
+      "font_postscript": "MaShanZheng-Regular",
+      "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "background_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+      "foreground_sha256": "078ce6c3e7007d5865291aa44bcc3d6a3bb0c454a4eebfe1da25d00bd9bdd1a3",
+      "seal": "古月",
+      "theme": "dark",
+      "layout_columns": 1,
+      "layout_rows": 1,
+      "color_space": "sRGB",
+      "os_version": "Version 15.6.1 (Build 24G90)",
+      "layout_version": 3,
+      "main_center_policy": "canvas-center",
+      "coordinate_system": "CoreGraphics bottom-left; image_y = height - y",
+      "main_bounds": {
+        "height": 442.77760000000006,
+        "width": 341.5772531573988,
+        "x": 341.21137342130066,
+        "y": 290.6112
+      },
+      "main_center_actual": {
+        "x": 512,
+        "y": 512
+      },
+      "main_center_expected": {
+        "x": 512,
+        "y": 512
+      },
+      "main_canvas_offset": {
+        "dx": 0,
+        "dy_y_up": 0
+      },
+      "main_center_check_passed": true,
+      "seal_placement": "right-lower",
+      "seal_bounds": {
+        "height": 123.136,
+        "width": 66.56,
+        "x": 870.4,
+        "y": 294.27200000000005
+      },
+      "seal_frame_inside_shape": true,
+      "seal_kind": "fixed-alpha-mask",
+      "seal_asset_id": "shared-guyue-seal-ink-b-v01-png",
+      "seal_sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+      "seal_color": "CF6650",
+      "seal_alpha_bounds": [
+        1,
+        1,
+        61,
+        112
+      ],
+      "seal_source_dimensions": [
+        64,
+        114
+      ],
+      "seal_placement_box": {
+        "height": 148.48,
+        "width": 66.56,
+        "x": 870.4,
+        "y": 281.6
+      },
+      "seal_layer_sha256": "e54c278e5d5ba7f942116dd17dfdd764e598692cd75d8eec9bb93783c068acb6"
+    }
+  }
+}

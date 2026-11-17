@@ -1,10 +1,10 @@
 # 视觉制作与交付检查规范
 
-更新：2026-11-16。由“阅”主字偏移、印章参照误解、旧包混用这几轮复核沉淀。适用于 Logo、图标、图例、封面及其平台衍生；机器通过与视觉满意分开记录。
+更新：2026-11-17。由“阅”主字偏移、印章参照误解、旧包混用这几轮复核沉淀。适用于 Logo、图标、图例、封面及其平台衍生；机器通过与视觉满意分开记录。
 
 ## 当前已确认基线
 
-个人作品默认古风、固定 MaShanZheng-Regular、古月章。通用 Logo 正文实际轮廓联合边界居中；古月小章右下落款，圆形额外内收。已确认范本为阅字 v04，不再使用旧 v02/v03 或旧 yue-surface-kit-v01。无字底图 A/C 继续有效。当前可用包为 yue-surface-kit-v02。
+个人作品默认古风、固定 MaShanZheng-Regular、古月章。通用 Logo 正文实际轮廓联合边界居中；古月小章右下落款，圆形额外内收。已确认范本为阅字v06；当前固定章为浅色B原笔迹透明蒙版，正文继续马善政，浅色A63A30/深色CF6650。旧v04与套件v02停用，无字底图A/C继续有效。当前包yue-surface-kit-v03。
 
 ## 从各维度检查
 
@@ -34,7 +34,7 @@
 ```sh
 python3 scripts/visual_qa.py .drafts/<新套件目录>
 python3 scripts/library.py validate
-python3 scripts/packages.py verify packages/yue-surface-kit-v02
+python3 scripts/packages.py verify packages/yue-surface-kit-v03
 ```
 
 机器可读清单为 templates/visual/review-checklist.json；归档整套时强制执行visual_qa并要求真实--visual-review-note，写入包内quality-review.json，携带本规范和清单。它只证明所列工程检查通过，不含身份认证或全自动审美判断。明确错误必须修正，不用“用户之前满意”掩盖新发现的问题。
@@ -53,8 +53,16 @@ python3 scripts/packages.py verify packages/yue-surface-kit-v02
 
 ## 印章字形与章框分开核对
 
-章位相似不代表字形一致。记录准确参照id，分别检查古/月轮廓、收笔、字框比例、边框粗细/纹理与颜色；正文和章的字体源分开说明。仅有PNG时字体名为unknown，不凭相似认定。浅色B为用户2026-11-17指出的优先章样式参照；当前v04不自动替换，见 [复核记录](creation-runs/2026-11-17-seal-reference-and-package-size.md)。
+章位相似不代表字形一致。记录准确参照id，分别检查古/月轮廓、收笔、字框比例、边框粗细/纹理与颜色；正文和章的字体源分开说明。仅有PNG时字体名为unknown，不凭相似认定。浅色B为用户2026-11-17指出的优先章样式参照；后续已确认固定独立章并统一为v06，历史比较，见 [复核记录](creation-runs/2026-11-17-seal-reference-and-package-size.md)。
 
 ### 独立章候选的检查经验（2026-11-17）
 
-透明提取不能仅以“输出了PNG”判定成功：两次模型提取分别有晕边和笔形漂移，实际看图后弃用。原图小章可先固定来源SHA和笔迹蒙版，保留真实分辨率/算法/颜色与阈值取舍；不臆称已取得原字体或纯矢量。章等比适配，不用拉伸满足旧章框比例。替换示例应从已确认背景/正文重建，在章区域之外逐像素核对无变化，再看实际1024与小尺寸效果。当前固定蒙版还在待确认阶段，正式渲染/QA与模板不提前切换，见 [制作记录](creation-runs/2026-11-17-independent-seal-preview.md)。
+透明提取不能仅以“输出了PNG”判定成功：两次模型提取分别有晕边和笔形漂移，实际看图后弃用。原图小章可先固定来源SHA和笔迹蒙版，保留真实分辨率/算法/颜色与阈值取舍；不臆称已取得原字体或纯矢量。章等比适配，不用拉伸满足旧章框比例。替换示例应从已确认背景/正文重建，在章区域之外逐像素核对无变化，再看实际1024与小尺寸效果。固定蒙版现已获确认，正式渲染/QA与模板已切换为v06/布局3，见 [制作记录](creation-runs/2026-11-17-independent-seal-preview.md)。
+
+## 当前固定章工程门槛（布局3）
+
+固定章必须为shared-guyue-seal-ink-b-v01-png，SHA 5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b。原尺寸64×114、alpha边界[1,1,61,112]、实际轮廓60:111；按profile容纳框等比居中，不再字体重排或另画边框。light只用A63A30，dark只用CF6650，其他配色需要明确需求。
+
+visual_qa独立检查seal_kind/asset/SHA/主题色，复算实际章边界/位置/比例和平台安全圆；核对seal-source.png与seal-layer.png实际哈希/尺寸、foreground.svg唯一内嵌PNG字节及坐标。主字glyph中不得伪造古/月字体轮廓。新版布局缺少fixed-alpha-mask直接失败；新archive要求布局≥3，不能把旧字形章换id收录。SVG含位图章须如实说明，不称纯矢量。
+
+整套与两种模式包核对后，才处理旧素材与出口；清理留retired元数据，禁止旧ID新导出。实际下载也核对SHA，包内脚本要与当前工程一致，并从包内材料复现两款确认PNG为同字节。当前结果见 [v06正式交付](creation-runs/2026-11-17-v06-final-delivery.md)。

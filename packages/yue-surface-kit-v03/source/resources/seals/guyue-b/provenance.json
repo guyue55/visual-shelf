@@ -1,0 +1,27 @@
+{
+  "id": "shared-guyue-seal-ink-b-v01-png",
+  "path": "assets/logos/shared/guyue-signature-seals/signature-seal/shared-guyue-seal-ink-b-v01-png.png",
+  "sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+  "source_asset": "product-macrightclick-app-icon-ink-light-b-q96-v01-png",
+  "source_sha256": "b2c0a629af3dbad2dff081514f84c14207d7191d704f2ff8e663fca238497604",
+  "font": "unknown",
+  "kind": "fixed-alpha-mask",
+  "dimensions": [
+    64,
+    114
+  ],
+  "alpha_bounds": [
+    1,
+    1,
+    61,
+    112
+  ],
+  "colors": {
+    "light": "A63A30",
+    "dark": "CF6650"
+  },
+  "approval": "用户2026-11-17满意并授权统一更新；章字与大小已确认，按建议固定深浅朱红。",
+  "limitations": [
+    "小位图透明蒙版，不是纯矢量或原字体工程"
+  ]
+}

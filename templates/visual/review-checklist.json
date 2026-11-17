@@ -1,20 +1,73 @@
 {
-  "version": 1,
+  "version": 2,
   "guide": "docs/VISUAL-QA.md",
   "dimensions": [
-    {"id":"reference", "check":"明确asset id并实际查看，核准文案/用途/形状", "method":"visual"},
-    {"id":"main-center", "check":"真实正文联合边界对齐profile目标，误差≤0.5px", "method":"automatic+visual"},
-    {"id":"optical-balance", "check":"视觉重心和留白，不能只靠几何", "method":"visual"},
-    {"id":"seal", "check":"绝对/相对位置、大小、落款与人物关系；章框含描边在形状内", "method":"automatic+visual"},
-    {"id":"font", "check":"固定字体SHA、正文与古月逐字准确、无fallback", "method":"automatic+visual"},
-    {"id":"background", "check":"残影/碎片/补绘/人物月亮及构图裁切", "method":"visual"},
-    {"id":"shape-alpha", "check":"圆形/圆角适配，透明外缘和深浅背景", "method":"automatic+visual"},
-    {"id":"small-sizes", "check":"真实16/32/48/128像素可辨性，不擅自启用无章版", "method":"visual"},
-    {"id":"platform", "check":"真实尺寸、manifest、ICO/iconset/ICNS、Android密度XML、安全区", "method":"automatic+device"},
-    {"id":"provenance", "check":"来源/许可/作者/模型未知不编造，源与成品哈希一致", "method":"metadata"},
-    {"id":"approval", "check":"准确哈希确认与衍生授权范围，不把测试当满意", "method":"user-evidence"},
-    {"id":"delivery-version", "check":"可离线接手、ZIP逐项核对、仅当前引用，旧错误清理留台账", "method":"automatic+manual"}
+    {
+      "id": "reference",
+      "check": "明确asset id并实际查看，核准文案/用途/形状",
+      "method": "visual"
+    },
+    {
+      "id": "main-center",
+      "check": "真实正文联合边界对齐profile目标，误差≤0.5px",
+      "method": "automatic+visual"
+    },
+    {
+      "id": "optical-balance",
+      "check": "视觉重心和留白，不能只靠几何",
+      "method": "visual"
+    },
+    {
+      "id": "seal",
+      "check": "固定浅色B蒙版SHA/原像素边界，60:111等比、实际章框/容纳框、落款与人物；主题light A63A30/dark CF6650；完整章源边界及安全圆",
+      "method": "automatic+visual"
+    },
+    {
+      "id": "font",
+      "check": "正文固定马善政SHA无fallback；章不是正文书法体，蒙版源另校验，SVG内嵌PNG不冒称纯矢量",
+      "method": "automatic+visual"
+    },
+    {
+      "id": "background",
+      "check": "残影/碎片/补绘/人物月亮及构图裁切",
+      "method": "visual"
+    },
+    {
+      "id": "shape-alpha",
+      "check": "圆形/圆角适配，透明外缘和深浅背景",
+      "method": "automatic+visual"
+    },
+    {
+      "id": "small-sizes",
+      "check": "真实16/32/48/128像素可辨性，不擅自启用无章版",
+      "method": "visual"
+    },
+    {
+      "id": "platform",
+      "check": "真实尺寸、manifest、ICO/iconset/ICNS、Android密度XML、安全区",
+      "method": "automatic+device"
+    },
+    {
+      "id": "provenance",
+      "check": "来源/许可/作者/模型未知不编造，源与成品哈希一致",
+      "method": "metadata"
+    },
+    {
+      "id": "approval",
+      "check": "准确哈希确认与衍生授权范围，不把测试当满意",
+      "method": "user-evidence"
+    },
+    {
+      "id": "delivery-version",
+      "check": "install/editable与surface明确，包内复现、ZIP逐项核对、只有当前引用；替代旧图/草稿/包清理留元数据",
+      "method": "automatic+manual"
+    }
   ],
-  "statuses": ["passed", "failed", "not-verified", "not-applicable"],
+  "statuses": [
+    "passed",
+    "failed",
+    "not-verified",
+    "not-applicable"
+  ],
   "rule": "记录事实、范围与未验证项；不得默认所有维度passed"
 }

@@ -1,0 +1,74 @@
+{
+  "yue-surface-kit-v03-all-install": {
+    "mode": "install",
+    "surfaces": [
+      "all"
+    ],
+    "files": 48,
+    "zip_bytes": 17154617,
+    "directory_and_zip_sha_verified": true,
+    "entrypoints_present": true
+  },
+  "yue-surface-kit-v03-all-editable": {
+    "mode": "editable",
+    "surfaces": [
+      "all"
+    ],
+    "files": 233,
+    "zip_bytes": 54388264,
+    "directory_and_zip_sha_verified": true,
+    "entrypoints_present": true
+  },
+  "yue-surface-kit-v03-web-install": {
+    "mode": "install",
+    "surfaces": [
+      "web"
+    ],
+    "files": 20,
+    "zip_bytes": 2352453,
+    "directory_and_zip_sha_verified": true,
+    "entrypoints_present": true
+  },
+  "yue-surface-kit-v03-web-editable": {
+    "mode": "editable",
+    "surfaces": [
+      "web"
+    ],
+    "files": 132,
+    "zip_bytes": 28300808,
+    "directory_and_zip_sha_verified": true,
+    "entrypoints_present": true
+  },
+  "yue-surface-kit-v03-macos-install": {
+    "mode": "install",
+    "surfaces": [
+      "macos"
+    ],
+    "files": 19,
+    "zip_bytes": 6206999,
+    "directory_and_zip_sha_verified": true,
+    "entrypoints_present": true
+  },
+  "yue-surface-kit-v03-android-install": {
+    "mode": "install",
+    "surfaces": [
+      "android"
+    ],
+    "files": 18,
+    "zip_bytes": 718838,
+    "directory_and_zip_sha_verified": true,
+    "entrypoints_present": true
+  },
+  "yue-circle-v06-original": {
+    "mode": "install",
+    "files": 6,
+    "zip_bytes": 1319215,
+    "directory_and_zip_sha_verified": true
+  },
+  "yue-rounded-v06-original": {
+    "mode": "install",
+    "files": 6,
+    "zip_bytes": 1404293,
+    "directory_and_zip_sha_verified": true
+  }
+}

@@ -23,7 +23,7 @@ class RenderTests(unittest.TestCase):
         output=self.render('阅'); data=json.loads((output/'render.json').read_text())
         self.assertEqual(data['font_postscript'],'MaShanZheng-Regular')
         self.assertEqual(data['seal_placement'],'right-lower')
-        self.assertEqual([x['text'] for x in data['glyphs']],['阅','古','月'])
+        self.assertEqual([x['text'] for x in data['glyphs']],['阅'])
         self.assertTrue(data['all_glyph_bounds_inside_shape'])
         self.assertEqual(data['alpha_bottom_left'],0)
         self.assertEqual(data['alpha_center'],255)
@@ -31,7 +31,7 @@ class RenderTests(unittest.TestCase):
         for profile,text,no_seal in [('circle-logo','阅',False),('rounded-logo','阅',False),('square-master','古月阅',False),('circle-logo','古月',True)]:
             output=self.render(text,profile=profile,name=profile+str(no_seal),extra=('--no-seal',) if no_seal else ())
             data=json.loads((output/'render.json').read_text())
-            self.assertEqual(data['layout_version'],2)
+            self.assertEqual(data['layout_version'],3)
             self.assertEqual(data['main_center_policy'],'canvas-center')
             glyphs=[x for x in data['glyphs'] if x['role']=='main']
             center_x=(min(x['x'] for x in glyphs)+max(x['x']+x['width'] for x in glyphs))/2
@@ -47,11 +47,28 @@ class RenderTests(unittest.TestCase):
             proposed=self.render('阅',profile=profile,name=profile+'-seal',extra=('--seal-placement','right-lower'))
             before=json.loads((base/'render.json').read_text());after=json.loads((proposed/'render.json').read_text())
             self.assertEqual([g for g in before['glyphs'] if g['role']=='main'],[g for g in after['glyphs'] if g['role']=='main'])
-            old=[g for g in before['glyphs'] if g['role']=='seal'];new=[g for g in after['glyphs'] if g['role']=='seal']
-            self.assertTrue(all(b['x']>a['x'] and b['y']<a['y'] and b['height']<a['height'] for a,b in zip(old,new)))
+            old=before['seal_bounds'];new=after['seal_bounds']
+            self.assertTrue(new['x']>old['x'] and new['y']<old['y'] and new['height']<old['height'])
+            self.assertEqual(after['seal_kind'],'fixed-alpha-mask')
+            self.assertAlmostEqual(new['width']/new['height'],60/111)
+            self.assertEqual(after['seal_color'],'A63A30')
             self.assertTrue(after['seal_frame_inside_shape']);self.assertTrue(after['all_glyph_bounds_inside_shape'])
             self.assertEqual(after['seal_placement'],'right-lower')
         self.render('阅',profile='favicon',name='bad-seal',extra=('--seal-placement','right-lower'),expected=1)
+
+    def test_independent_seal_is_pinned_tinted_and_embedded(self):
+        import base64
+        import xml.etree.ElementTree as ET
+        for theme,color in [('light','A63A30'),('dark','CF6650')]:
+            out=self.render('阅',name='seal-'+theme,extra=('--theme',theme))
+            d=json.loads((out/'render.json').read_text())
+            self.assertEqual(d['seal_sha256'],'5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b')
+            self.assertEqual(d['seal_color'],color)
+            self.assertEqual([g['role'] for g in d['glyphs']],['main'])
+            self.assertEqual(hashlib.sha256((out/'seal-source.png').read_bytes()).hexdigest(),d['seal_sha256'])
+            image=ET.parse(out/'foreground.svg').getroot().find('{http://www.w3.org/2000/svg}image')
+            self.assertEqual(base64.b64decode(image.attrib['href'].split(',',1)[1]),(out/'seal-layer.png').read_bytes())
+        self.render('阅',name='override',extra=('--seal-image','bad.png'),expected=1)
 
     def test_multichar_layout_and_bounds(self):
         for text,cols,rows in [('古月',2,1),('古月阅',2,2),('古月读书',2,2),('古月读书手记',3,2)]:

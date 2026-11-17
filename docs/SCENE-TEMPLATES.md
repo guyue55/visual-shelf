@@ -67,6 +67,6 @@ AI 接入真实项目时还需确认 base path、manifest 的部署位置、名�
 
 ## 当前正式交付（2026-11-16）
 
-用户确认阅字最终v04并授权重导整套，当前包为 packages/yue-surface-kit-v02；源输出仍含185个场景文件，附加资料不混入此原始数量。采用正文居中、通用Logo右下小章，其他平台维持各自安全区规则。整套归档强制通过 scripts/visual_qa.py，交付含quality-review.json与视觉检查清单。
+用户确认阅字最终v06并授权重导整套，当前包为 packages/yue-surface-kit-v03；源输出含205个场景文件（增加独立章源和颜色层），附加资料不混入此原始数量。采用正文居中、通用Logo右下小章，其他平台维持各自安全区规则。整套归档强制通过 scripts/visual_qa.py，交付含quality-review.json与视觉检查清单。
 
 旧v01和错误草稿/导出已清理，旧id有阻止导出的替代提示，不要使用历史文档里的旧路径。详见 [交付规范](DELIVERY-PACKAGES.md) 和 [视觉QA](VISUAL-QA.md)。

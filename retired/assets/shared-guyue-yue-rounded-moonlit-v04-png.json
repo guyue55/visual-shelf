@@ -1,0 +1,101 @@
+{
+  "state": "superseded-and-removed",
+  "replacement": "shared-guyue-yue-rounded-moonlit-v06-png",
+  "reason": "用户确认独立浅色B章与主题朱红v06；清理旧章版本以免混用",
+  "record": "docs/creation-runs/2026-11-17-v06-final-delivery.md",
+  "metadata": {
+    "id": "shared-guyue-yue-rounded-moonlit-v04-png",
+    "name": "古月 · 阅 · 圆角月夜",
+    "kind": "logos",
+    "path": "assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-rounded-moonlit-v04-png.png",
+    "tags": [
+      "owner:shared",
+      "family:guyue-yue-logo",
+      "variant:rounded-moonlit",
+      "revision:v04",
+      "status:ready",
+      "用户已确认",
+      "logo",
+      "古风",
+      "阅",
+      "古月章",
+      "圆角方形",
+      "固定字体",
+      "右下落款",
+      "已校验居中"
+    ],
+    "source": "original",
+    "license": "unknown",
+    "author": "unknown",
+    "created": "2026-11-16",
+    "description": "用户确认最终v04：主字轮廓中心512,512；固定MaShanZheng-Regular字体，古月小章右下落款。使用已确认月夜无字底图；对应修正整套包yue-surface-kit-v02，不是现代Apple.icon；底图逐图许可unknown。",
+    "sha256": "fc207509de42b75ac6c4005366b1ebcedb14c3c549ad71579e7376cce02babfa",
+    "organization": {
+      "owner": "shared",
+      "series": "guyue-yue-logos",
+      "component": "personal-identity",
+      "functions": [
+        "个人识别"
+      ],
+      "platforms": [
+        "通用"
+      ]
+    },
+    "approval": {
+      "user_confirmation": "用户2026-11-16明确：更合适，确认无误正式收录，错误素材草稿导出包处理好，更新模板和文档并重导修正整套包；本项为圆角月夜v04右下印章。",
+      "reviewed_sha256": "fc207509de42b75ac6c4005366b1ebcedb14c3c549ad71579e7376cce02babfa",
+      "task": "yue-rounded-v04-right-lower-seal",
+      "checks": "比较基准明确为 MacRightClick 原右字图标；保留已认可阅字居中，仅印章向右下并缩小；印章边框和字形在形状内，未压人物；1024已目视，待用户复核印章关系",
+      "tool": "macOS CoreText/CoreGraphics; pinned font; right-lower seal proposal",
+      "template": "moonlit-blue",
+      "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
+      "approved_at": "2026-11-16T09:38:40.041375+00:00",
+      "render": {
+        "profile": "rounded-logo",
+        "width": 1024,
+        "height": 1024,
+        "text": "阅",
+        "font_postscript": "MaShanZheng-Regular",
+        "font_sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+        "background_sha256": "dc959806d8d7ce003d3d121f88f169c668018b434bb7c42d5306d99bffa0736b",
+        "foreground_sha256": "fad51a1f3784f222dcace6ae52343fca8dff1f5afda5db117075361f4524b7c9",
+        "seal": "古月",
+        "theme": "dark",
+        "layout_columns": 1,
+        "layout_rows": 1,
+        "color_space": "sRGB",
+        "os_version": "Version 15.6.1 (Build 24G90)",
+        "layout_version": 2,
+        "main_center_policy": "canvas-center",
+        "coordinate_system": "CoreGraphics bottom-left; image_y = height - y",
+        "main_bounds": {
+          "height": 442.77760000000006,
+          "width": 341.5772531573988,
+          "x": 341.21137342130066,
+          "y": 290.6112
+        },
+        "main_center_actual": {
+          "x": 512,
+          "y": 512
+        },
+        "main_center_expected": {
+          "x": 512,
+          "y": 512
+        },
+        "main_canvas_offset": {
+          "dx": 0,
+          "dy_y_up": 0
+        },
+        "main_center_check_passed": true,
+        "seal_placement": "right-lower",
+        "seal_bounds": {
+          "height": 148.48,
+          "width": 66.56,
+          "x": 870.4,
+          "y": 281.6
+        },
+        "seal_frame_inside_shape": true
+      }
+    }
+  }
+}

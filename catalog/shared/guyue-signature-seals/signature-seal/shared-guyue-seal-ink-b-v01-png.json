@@ -1,0 +1,47 @@
+{
+  "id": "shared-guyue-seal-ink-b-v01-png",
+  "name": "古月 · 独立署名章 · 浅色B原笔迹",
+  "kind": "logos",
+  "path": "assets/logos/shared/guyue-signature-seals/signature-seal/shared-guyue-seal-ink-b-v01-png.png",
+  "tags": [
+    "owner:shared",
+    "family:guyue-signature-seals",
+    "variant:ink-b-mask",
+    "revision:v01",
+    "status:ready",
+    "用户已确认",
+    "logo",
+    "古月",
+    "独立章",
+    "浅色B原笔迹",
+    "透明蒙版",
+    "固定章形"
+  ],
+  "source": "original",
+  "license": "unknown",
+  "author": "unknown",
+  "created": "2026-11-17",
+  "description": "64×114透明笔迹蒙版，源自MacRightClick水墨浅色B的古月章；固定轮廓与边框，非识别出的字体、非纯矢量。源SHA b2c0a629af3dbad2dff081514f84c14207d7191d704f2ff8e663fca238497604；用scripts/extract_seal_b.swift确定性提取。浅色暗朱红A63A30、深色亮朱红CF6650，等比合成。字体/逐图许可unknown。",
+  "sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+  "organization": {
+    "owner": "shared",
+    "series": "guyue-signature-seals",
+    "component": "signature-seal",
+    "functions": [
+      "个人署名"
+    ],
+    "platforms": [
+      "通用"
+    ]
+  },
+  "approval": {
+    "user_confirmation": "用户2026-11-17确认章字与大小，满意并授权按浅色暗朱红/月夜亮朱红方案正式收录、统一渲染模板整套及清理替代版本。独立蒙版原字节固定；颜色由主题合成。",
+    "reviewed_sha256": "5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b",
+    "task": "guyue-seal-b-master-v01",
+    "checks": "实际查看独立透明PNG与原浅色B；准确源SHA校验，固定区域原像素亮度蒙版；竖排古月与不规则框线，64x114位图；未伪称矢量或识别出字体；两款图标共用此SHA；待用户确认",
+    "tool": "Swift/CoreGraphics原像素蒙版提取；无模型重画笔画",
+    "template": "ink-light-b",
+    "reference": "product-macrightclick-app-icon-ink-light-b-q96-v01-png",
+    "approved_at": "2026-11-17T03:12:47.136058+00:00"
+  }
+}

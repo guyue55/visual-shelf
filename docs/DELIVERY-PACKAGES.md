@@ -1,97 +1,61 @@
-# 确认素材与 AI 交付包
+# 确认素材与AI交付包
 
-更新：2026-11-17。当前已确认范本为阅字v04，当前可用整套为 **yue-surface-kit-v02**。旧包v01与旧错误图片/草稿/ZIP已清理；不能从历史文档取旧路径继续使用。
+更新：2026-11-17。当前阅字v06、固定浅色B古月章、整套 **yue-surface-kit-v03**。旧v04和整套v02退出取用；retired只留指纹、确认及替代关系。完整记录见 [本轮正式交付](creation-runs/2026-11-17-v06-final-delivery.md)。
 
-## 日常协作与确认范围
+## 默认按用途选择
 
-用户确认合用后正常收录，不重复询问同一准确文件是否满意。未提及交付时，可简短问需要原文件包还是Web/macOS/Android等场景；已明确目标和授权则直接导出。原样打包或挑选已确认场景不重复审批；新文案、形状、图形、字体、印章等可见变化仍要新草稿和展示。
+| 模式 | 参数 | 内容 |
+| --- | --- | --- |
+| 只接入 | `--mode install`，省略时默认 | 所选场景成品、必要尺寸/槽位/密度、README/AGENTS、来源与准确确认、父QA、所需许可文本、独立VERIFY；无字体/底图/渲染器/设计分层 |
+| 可编辑 | `--mode editable` | 所选场景输出、分层/预览/配方及完整source：固定正文字体/OFL、独立章蒙版/配置、背景、确认原图、渲染器与QA规范 |
 
-本轮用户明确确认v04，并要求重新导出修正整套，故衍生按已确认规则和各平台profile执行。approval.scope如实说明“准确v04确认+整套修正重导授权”，不编造逐文件/逐设备都经用户目视验收。
-
-## 源与副本
-
-| 位置 | 含义 |
-| --- | --- |
-| assets/ + catalog/ | 当前正式单素材，15份；每份确认绑定准确SHA |
-| packages/yue-surface-kit-v02/ | 当前正式交付源，随本地Git保存 |
-| .exports/ | 当前导出目录/ZIP，忽略提交，可从正式包重建 |
-| .drafts/ | 新创作过程；本轮已完成/错误工作副本已清理 |
-| retired/ | 仅停用元数据、指纹和替代关系，不留旧图/ZIP作为取用入口 |
-
-185个场景输出作为1套包，不制造185条catalog。新包附加QA报告/规范/清单、两款背景与确认原图、固定字体/OFL、原生渲染器及AI接入资料，总计 **211文件**（210内容文件+package.json），以实际清单为准。单catalog文件仍受5MiB约束；交付工程包单独管理。
-
-packages、.exports、retired都不进入dist/Pages。本地归档和导出不表示已上传、发布、安装或获得未核实的版权许可。
-
-## AI 从哪里开始
-
-README.md → AGENTS.md → package.json → source-assets.json → quality-review.json。
-
-```sh
-python3 VERIFY.py
-python3 source/scripts/visual_qa.py payload
-```
-
-第一条适用于所有包，验证完整文件集合、字节大小、SHA与清单校验值；第二条仅适用于包含完整payload/kit.json的可编辑整套，重算工程几何、配方、尺寸与封装。只接入包和场景子包不执行缺少源工程的整套审核。质量报告还记录实际AI看过的图和未验证项；机器检查不能替代光学、背景细节或设备验收。哈希不是身份认证签名，真实授权仍来自用户消息。
-
-payload保持场景输出与生成状态快照；render.json旧绝对工作路径不作为运行依赖。source/background.png为月夜默认背景，source/backgrounds包含A/C；source/approved-examples保存两份已确认v04。可用包内固定字体及渲染器离线修改文案，缺字失败，新设计另行确认。
-
-## 场景选择
-
-- web：favicon SVG/PNG/ICO、触屏、PWA any/maskable、分享图与接入片段。
-- logo：圆形/圆角/方形母版；整套默认月夜主题，浅色原图另见source/approved-examples。
-- cover：封面、横幅与分享图。
-- macos：传统ICNS、10槽iconset和PNG，不是现代.icon。
-- android：前背景、5档密度及v26 XML；monochrome/旧API回退另处理。
-- all：全部185场景输出和完整接入、复现资料。
-
-默认古月章，无章favicon仅为备选，不因整包认可擅自改默认。manifest只有图标信息；OG域名占位符、base path、产品名与缓存策略须消费工程核对。
-
-## 可执行命令
+surface必须指定。用户已给平台直接按需导出，不默认all；缺关键环境只补问平台/工程。只要原图时用asset，不假装具备可编辑工程或自动平台转换。只有明确全平台需求才选all；all+install仍是全平台接入，all+editable才含全部复现资料。
 
 ```sh
 python3 scripts/packages.py list
-python3 scripts/packages.py verify packages/yue-surface-kit-v02
-python3 scripts/packages.py export --id yue-surface-kit-v02 --surface all --mode editable --output .exports/yue-all-next
-python3 scripts/packages.py export --id yue-surface-kit-v02 --surface web --surface macos --output .exports/yue-web-macos-next
-python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v04-png --output .exports/yue-circle-next
+python3 scripts/packages.py verify packages/yue-surface-kit-v03
+python3 scripts/packages.py export --id yue-surface-kit-v03 --surface web --output .exports/yue-web-install-next
+python3 scripts/packages.py export --id yue-surface-kit-v03 --surface web --mode editable --output .exports/yue-web-editable-next
+python3 scripts/packages.py export --id yue-surface-kit-v03 --surface macos --surface android --output .exports/yue-native-install-next
+python3 scripts/packages.py export --id yue-surface-kit-v03 --surface all --mode editable --output .exports/yue-all-editable-next
+python3 scripts/packages.py asset --id shared-guyue-yue-circle-light-v06-png --output .exports/yue-circle-original-next
 ```
 
-输出目录和同名ZIP必须不存在；next用于避免覆盖。当前已生成yue-surface-kit-v02-all、yue-surface-kit-v02-web及yue-circle-v04-original的目录和ZIP。
+输出必须是.exports下新目录和同名ZIP，拒绝覆盖。package.json记录mode、surfaces、parent_package和准确文件清单；单素材包type=single-asset、mode=install。来源未核实、许可unknown不能补造成自由商用。已确认文件原样打包不重复审批，新图形/章形/配色/文案仍另做草稿确认，用户已明确本轮配色和重导授权正常执行。
 
-单素材包只交付原文件、元数据、AI入口和独立校验，不凭空生成或声称平台转换。缺实际确认的历史素材不能冒充已确认导出。
+## 场景与依赖
 
-## 新整套的归档门槛
+- web：favicon SVG/PNG/ICO、Apple Touch、PWA any/maskable、OG和接入片段；保持manifest引用尺寸齐全。
+- logo：圆形/圆角/方形成品；整套主主题月夜，浅色确认原图另在可编辑source/approved-examples，不把月夜circle误当浅色原图。
+- cover：封面、横幅、OG。
+- macos：传统ICNS、PNG及完整10槽iconset，不是现代.icon。
+- android：5密度前背景与v26 XML，monochrome/旧API回退由消费项目处理。
+- all：上述所有场景，按mode决定是否携带设计源。
 
-先export-kit.py在.drafts新目录生成，实际看图并取得相应确认/重导授权，再packages.py archive。必须提供已确认asset/background id、真实--approval与--visual-review-note。每场景布局版本≥2、正文目标中心、字体/背景、章位/完整章框、实际尺寸与封装检查均须通过；不能换id重收旧布局。
+install去除重复设计预览和源工程，但不删平台必需槽位/密度来凑小体积。若所选场景缺少清单入口，导出直接拒绝。OG真实域名、base path、manifest产品名和缓存策略须消费工程核对；提供资源不等于安装成功。
 
-依据 [视觉QA规范](VISUAL-QA.md) 覆盖十二个维度，使用passed/failed/not-verified/not-applicable记录；未知来源、许可、模型不能补造。确认完整交付后再清理旧稿，清理指纹与替代记录见retired。旧id仍由advisories阻止导出并指向新版本。
+## 接手、验证与复现
 
-## 体积与按需交付（2026-11-17）
-
-完整包是可复现归档，当前211文件约54.80MiB，ZIP约51.84MiB。按SHA识别完全同字节的多余副本约10.82MiB，其中既有可优化的背景副本，也有平台固定入口/槽名；不直接删文件破坏校验和接入。详见 [实测和取舍](creation-runs/2026-11-17-seal-reference-and-package-size.md)。
-
-日常优先单素材asset包（现有圆形ZIP约1.26MiB）或指定surface子包；明确全平台/离线修改需求再发all。Web子包约26.98MiB，当前仍包含完整source，是可复现开发包，并非最轻运行包。本轮已实现两种模式，见下节；历史Web子包相当于可编辑模式。字体/底图/渲染器不应成为每次仅安装图标的必带项；平台必要槽位、密度、来源、确认和校验不可随意去除。
-
-## 两种模式：默认按需导出（已实现）
-
-| 模式 | 参数 | 内容与用途 |
-| --- | --- | --- |
-| 只接入 | `--mode install`（省略时默认） | 所选场景的成品入口、必要图标尺寸/资源、README/AGENTS、来源/准确确认、父质量报告、许可文本及独立VERIFY；无字体、底图、渲染器、分层及冗余设计预览 |
-| 可编辑 | `--mode editable` | 所选场景原输出/分层/预览/配方，以及完整source字体/OFL、背景、确认例图、渲染器、QA规范；适合离线改字和复现，原生渲染器仍需macOS |
+README→AGENTS→package.json→source-assets.json→quality-review.json，先运行：
 
 ```sh
-# 日常Web接入，默认install；目标已明确不再问要不要整套
-python3 scripts/packages.py export --id yue-surface-kit-v02 --surface web --output .exports/yue-web-install-next
-# 本地继续制作时明确要可编辑
-python3 scripts/packages.py export --id yue-surface-kit-v02 --surface web --mode editable --output .exports/yue-web-editable-next
-# 可组合平台；不默认all
-python3 scripts/packages.py export --id yue-surface-kit-v02 --surface macos --surface android --output .exports/yue-native-install-next
+python3 VERIFY.py
+# 仅可编辑完整整套、实际含payload/kit.json时再运行：
+python3 source/scripts/visual_qa.py payload
 ```
 
-必须指定surface。未给目标且影响接入时只补问平台；只需单图仍优先asset原文件包。all是明确请求全平台才用；all + install仍只交付全平台接入资源，all + editable才是完整可复现导出。
+VERIFY校验文件集合、大小、SHA及清单校验值，不是认证签名。子包父QA只说明来源整套检查范围，不能对缺少全套结构的子包运行整套审核，更不能声称设备验收。
 
-install保留Web所有根入口及manifest引用尺寸；logo只带圆形/圆角/方形logo.png，cover只带cover/web/OG成品；macOS保留ICNS、PNG与完整10槽iconset；Android保留五密度前背景和v26 XML。不能为了去重删必要槽位。入口缺失将拒绝导出，输出目录/ZIP仍拒绝覆盖。package.json记录mode、surfaces、parent_package及实际清单；quality-review是父套件工程检查，不冒充本包目标设备验收。
+可编辑包中source/background.png为月夜背景，source/backgrounds为A/C，source/approved-examples为两份准确v06。resources/seals/guyue-b/provenance.json给出包内固定章路径和SHA，正文与章分开，章绝非正文书法字体。按包内README在macOS使用source/scripts/render-logo.sh；缺字、字体或章哈希漂移会失败。两款已从包内材料实际复现为同字节，不依赖清理前草稿的绝对路径。
 
-实测当前确认v04：Web install 20文件/ZIP约2.24MiB；Web editable 120文件/约26.98MiB；macOS install 19文件/约5.91MiB；Android install 18文件/约0.68MiB。均核对目录、ZIP逐文件SHA和入口存在；[精确体积记录](evidence/2026-11-17-delivery-modes.json)。这些是已有v04的模式验证包，不包含待确认的浅色B独立章，正式归档字节未改写。
+foreground.svg包含正文真实轮廓和内嵌PNG章，不是纯矢量；source章64×114，不能声称无限放大无损。新文案和可见修改须另行展示确认。
 
-待独立章及两款阅字候选获用户确认后，再更新渲染/QA支持、模板引用和正式新包；不能因为导出模式已实现就提前把候选加入正式包。候选与后续清单见 [本轮制作记录](creation-runs/2026-11-17-independent-seal-preview.md)。
+## 归档与版本管理
+
+当前整套205场景输出，比旧185多出10个带章profile各自的seal-source.png和seal-layer.png；仍只作为1套包，不重复登记205条catalog。加上原清单、源工程及AI/QA资料，当前233文件，以实际package.json为准。
+
+assets/catalog是当前16份单素材；packages是正式归档；.exports为可重建分发目录/ZIP；.drafts为过程稿；retired只留元数据。后三者和packages均不进入dist/Pages。
+
+新整套先export-kit到.drafts，实际看图，再archive；必须真实--approval和--visual-review-note，layout_version≥3，固定章SHA/主题色/比例/完整边界、安全区、主字几何、尺寸/封装与配方通过visual_qa。不能换id把旧章重新归档。完整确认新版本后，才清理被替代文件和出口；advisories拒绝旧id导出，避免旧包混用。
+
+未验证项如实保留：实际设备安装、现代Apple Icon Composer、Android monochrome/旧API回退、PWA完整安装、OG真实域名接入不由本库自动完成。所有许可分别说明，不从字体OFL推断底图或商标权利。

@@ -17,8 +17,8 @@
 默认字体选为 **Ma Shan Zheng Regular（马善政书法体）**，PostScript `MaShanZheng-Regular`，固定文件和 SHA-256 位于 resources/fonts/mashanzheng/provenance.json，许可与来源同目录保存。字体选择是本轮实现方案，两个“阅”示例展示其实际效果；用户若要求换字体，应改为另一份固定字体并重新验收，不随机生成笔画。
 
 - 主文案从字体直接取轮廓，统一等比缩放，不改变字形宽高比例；不把它宣称为原 PNG 中“右”的同一手写字体。
-- 古月印章使用相同固定字体竖排“古”“月”，配独立朱文边框，浅色用暗朱红、深色用亮朱红。它是可复用书法署名章，不冒称篆体/传统篆刻原稿。
-- 印章、正文、背景独立组合。`foreground.svg` 保留真实字形轮廓，可精确复用，不依赖收件人已安装字体；背景仍是位图，整图不能冒称纯矢量 Logo。
+- 古月章使用已确认浅色B原笔迹透明蒙版 shared-guyue-seal-ink-b-v01-png，章字与框线固定，不能换成正文书法字体或让模型重画。资源配置为resources/seals/guyue-b/provenance.json，固定SHA；原字体名和逐图许可unknown。浅色暗朱红A63A30、深色亮朱红CF6650，只按明确theme选两档，不任意识别背景改色。
+- 印章、正文、背景独立组合。`foreground.svg` 保留正文真实字形轮廓并内嵌固定章PNG，配有独立seal-source.png/颜色层，可精确复用，不依赖收件人安装字体；章和背景是位图，foreground和整图均不能冒称纯矢量。
 - 缺字立即报错；不静默换字、转繁体或使用系统 fallback。字体文件变化会被入口脚本的哈希检查阻止。
 
 ## 字数适配（本项目默认）
@@ -44,9 +44,9 @@
 - 背景、文字、印章保持分层思路；需要无字背景时才使用图像编辑工具清理。当前导出 PNG、真实轮廓 foreground.svg、预览和 render.json。
 - 所有输出继续放在 .drafts；字体和个人规则可以进入仓库，未批准的新图不能自动入正式 catalog。
 
-## 当前已确认基线（2026-11-16）
+## 当前已确认基线（2026-11-17）
 
-最终阅字v04已经用户明确确认：正文实际轮廓居中，古月小章右下落款；圆形额外内收。样例 id 为 shared-guyue-yue-circle-light-v04-png 与 shared-guyue-yue-rounded-moonlit-v04-png；模板索引仅引用它们。无字底图A/C继续复用，不重新去字去章。默认字体已获实际效果认可。
+最终阅字v06已经用户明确确认：正文实际轮廓居中，古月小章右下落款；圆形额外内收。样例 id 为 shared-guyue-yue-circle-light-v06-png 与 shared-guyue-yue-rounded-moonlit-v06-png；模板索引仅引用它们。无字底图A/C继续复用，不重新去字去章。默认字体已获实际效果认可。
 
 ## 居中与落款执行规则
 
@@ -54,16 +54,13 @@
 
 通用circle-logo/rounded-logo/square-master/apple-touch默认right-lower：圆角章框x85%、y27.5%、宽6.5%、高14.5%；圆形x82.5%，其余同（CoreGraphics y向上）。小章居于右下，完整章框含描边要留在形状内。profile-default仅用于其他平台的专门安全区布局或明确的旧版复现，不能作为新通用Logo默认。
 
-favicon/PWA/Android/封面/横幅保持各自profile标题区和安全区，不套用通用章位。render.json记录layout_version=2、main_center_*、main_bounds、main_canvas_offset、seal_placement、seal_bounds和seal_frame_inside_shape。核对工程检查后，仍检查真实图、留白、人物、透明边缘和小尺寸。
+favicon/PWA/Android/封面/横幅保持各自profile标题区和安全区，不套用通用章位。render.json记录layout_version=3、main_center_*、main_bounds、main_canvas_offset、seal_placement、seal_bounds和seal_frame_inside_shape。核对工程检查后，仍检查真实图、留白、人物、透明边缘和小尺寸。
 
-详细维度、经验和失败处理见 [视觉QA规范](VISUAL-QA.md)。旧阅字v02/v03和旧套件已按用户要求退出可用目录；追溯见retired记录及Git，不能从历史文档路径取旧图继续用。最终收录与清理见 [交付记录](creation-runs/2026-11-16-v04-final-delivery.md)。
+详细维度、经验和失败处理见 [视觉QA规范](VISUAL-QA.md)。旧阅字v02/v03/v04和旧套件已按用户要求退出可用目录；追溯见retired记录及Git，不能从历史文档路径取旧图继续用。最终收录与清理见 [交付记录](creation-runs/2026-11-17-v06-final-delivery.md)。
 
-## 印章字形偏好补充（2026-11-17）
 
-用户明确认为 **MacRightClick 水墨浅色 B** 的“古月”章字体最顺眼。后续章样式优先参照 `product-macrightclick-app-icon-ink-light-b-q96-v01-png`；准确来源为 `img/app-icons-q96/img-2-appicon-q96.png`。这张原PNG的确切字体名/独立章源仍为unknown，不用马善政或猜测字体冒充原章。
+## 固定章的边界与来源
 
-当前v04实际使用马善政章，既有成品确认继续有效；本次偏好只确定比较基准，尚未制作/确认可替换的独立章。后续须将正文与章字形分开管理，主文字体继续固定；新章先展示对照、确认准确文件后再更新模板和交付。实图比对、证据及后续门槛见 [印章与包体积复核](creation-runs/2026-11-17-seal-reference-and-package-size.md)。
+透明母版64×114，真实alpha边界x1,y1至x61,y112，裁切轮廓60×111。通用章位数值表示容纳框，实际章在框内按60:111等比居中，完整章框已经包含在蒙版中，不再另描边。它来自原浅色B，不是识别出的字体或无限放大矢量；保留源SHA、提取脚本及确认记录。高分辨率重建若改变笔形，须另行展示确认。
 
-### 独立章候选已制作，待确认
-
-已从准确浅色B原PNG提取64×114原笔迹透明蒙版，生成浅色圆形/圆角月夜两份阅字候选；没有采用两次发生形变的AI提取结果。浅色保留深褐，月夜只换当前朱红提高可见性，字形/章框共用同一SHA。原章是小位图，不能冒称纯矢量或已鉴定字体。参见 [候选记录](creation-runs/2026-11-17-independent-seal-preview.md)。候选展示前后的状态与确认必须绑定准确SHA；用户满意后再纳入正式章源、改渲染器/QA、模板与整套，不从本轮制作授权推断效果已获认可。
+小尺寸章会很弱；favicon仍默认带章，无章只作为备选。复杂背景或特殊单色需求先建议方案，不静默换章色。用户已授权本轮统一重导，不重复询问相同配色/章形。

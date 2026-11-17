@@ -23,6 +23,17 @@ class VisualQATests(unittest.TestCase):
     def test_full_seal_border_is_checked_even_when_flag_is_true(self):
         d=self.fixture();d['seal_bounds']['x']=1000;self.assertIn('完整章框含描边超出形状',inspect_geometry(d))
 
+    def test_fixed_seal_geometry_color_and_origin_are_independent(self):
+        d=self.fixture();d.update(layout_version=3,seal_kind='fixed-alpha-mask',seal_sha256='5f36bc94e402258a98de0fccf577fbf4fb3c464e784f5c926d3e6c39ceb30f9b',seal_asset_id='shared-guyue-seal-ink-b-v01-png',seal_alpha_bounds=[1,1,61,112],seal_source_dimensions=[64,114],seal_color='A63A30',theme='light')
+        d['glyphs']=d['glyphs'][:1];d['seal_bounds']={'x':870.4,'y':294.272,'width':66.56,'height':123.136}
+        self.assertEqual(inspect_geometry(d),[])
+        for field,value,fragment in [('seal_sha256','bad','来源'),('seal_color','463A33','配色'),('seal_alpha_bounds',[0,0,60,111],'边界')]:
+            altered=copy.deepcopy(d);altered[field]=value;self.assertTrue(any(fragment in x for x in inspect_geometry(altered)))
+        altered=copy.deepcopy(d);altered['seal_bounds']['height']+=10
+        self.assertTrue(any('拉伸' in x for x in inspect_geometry(altered)))
+        altered=copy.deepcopy(d);altered.pop('seal_kind')
+        self.assertIn('新版布局必须使用固定独立章',inspect_geometry(altered))
+
 class CurrentReferenceTests(unittest.TestCase):
     def test_templates_only_reference_current_approved_assets_and_package(self):
         import json
@@ -31,10 +42,19 @@ class CurrentReferenceTests(unittest.TestCase):
         records={json.loads(p.read_text())['id']:json.loads(p.read_text()) for p in (root/'catalog').rglob('*.json')}
         for style in ('ink-light-a','moonlit-blue'):
             for identifier in styles[style]['accepted_examples']:
-                self.assertIn('-v04-',identifier);self.assertIn(identifier,records)
+                self.assertIn('-v06-',identifier);self.assertIn(identifier,records)
                 self.assertEqual(records[identifier]['approval']['render']['seal_placement'],'right-lower')
             self.assertEqual(styles[style]['seal_placement'],'right-lower')
-        self.assertEqual(styles['moonlit-blue']['delivery_packages'],['yue-surface-kit-v02'])
-        self.assertTrue((root/'packages/yue-surface-kit-v02/package.json').exists())
+        self.assertEqual(styles['moonlit-blue']['delivery_packages'],['yue-surface-kit-v03'])
+        self.assertTrue((root/'packages/yue-surface-kit-v03/package.json').exists())
         self.assertFalse((root/'packages/yue-surface-kit-v01').exists())
         self.assertFalse(any('-v02-png' in x and 'guyue-yue' in x for x in records))
+
+        self.assertFalse((root/'packages/yue-surface-kit-v02').exists())
+        self.assertFalse(any('guyue-yue' in x and '-v04-' in x for x in records))
+        for style in styles.values():
+            self.assertEqual(style['seal_reference'],'shared-guyue-seal-ink-b-v01-png')
+            self.assertEqual(style['seal_colors'],{'light':'A63A30','dark':'CF6650'})
+        config=json.loads((root/'resources/seals/guyue-b/provenance.json').read_text())
+        import hashlib
+        self.assertEqual(hashlib.sha256((root/config['path']).read_bytes()).hexdigest(),config['sha256'])

@@ -3,17 +3,25 @@
     "name": "水墨浅色 A",
     "reference": "product-macrightclick-app-icon-ink-light-a-q96-v01-png",
     "direction": "纸色、墨色书法与山水，人物位于左下，主体靠近画布边缘",
-    "preference": "用户明确认可古风方向；2026-11-16确认无字底图A/C、阅字最终v04，并授权更新整套衍生包。新设计仍需实际展示确认。",
+    "preference": "已确认古风、无字底图A/C、固定正文与独立浅色B章；用户2026-11-17授权按主题朱红方案统一收录及重导，新设计仍需实际确认。",
     "default_seal": "古月",
     "font": "MaShanZheng-Regular",
     "profile_index": "templates/visual/profiles.json",
     "approved_background": "shared-guyue-background-ink-light-a-v01-png",
     "accepted_examples": [
-      "shared-guyue-yue-circle-light-v04-png"
+      "shared-guyue-yue-circle-light-v06-png"
     ],
-    "layout_notice": "2026-11-16用户已确认v04：主字居中、古月小章右下落款；旧v02/v03不再用于制作或导出。",
-    "seal_reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
-    "seal_placement": "right-lower"
+    "layout_notice": "2026-11-17用户确认v06：正文居中，独立浅色B固定章、等比右下落款，浅色暗朱红/深色亮朱红。旧v04及旧套件不再取用。",
+    "seal_reference": "shared-guyue-seal-ink-b-v01-png",
+    "seal_placement": "right-lower",
+    "seal_kind": "fixed-alpha-mask",
+    "seal_colors": {
+      "light": "A63A30",
+      "dark": "CF6650"
+    },
+    "delivery_packages": [
+      "yue-surface-kit-v03"
+    ]
   },
   "ink-light-b": {
     "name": "水墨浅色 B",
@@ -23,25 +31,36 @@
     "default_seal": "古月",
     "font": "MaShanZheng-Regular",
     "profile_index": "templates/visual/profiles.json",
-    "layout_notice": "仅保留原图风格参考；有碎片的衍生底图已清理，没有可复用已确认无字底图。"
+    "layout_notice": "2026-11-17用户确认v06：正文居中，独立浅色B固定章、等比右下落款，浅色暗朱红/深色亮朱红。旧v04及旧套件不再取用。",
+    "seal_reference": "shared-guyue-seal-ink-b-v01-png",
+    "seal_kind": "fixed-alpha-mask",
+    "seal_colors": {
+      "light": "A63A30",
+      "dark": "CF6650"
+    }
   },
   "moonlit-blue": {
     "name": "月夜深蓝",
     "reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
     "direction": "深蓝月夜、米白主字、山水与右下人物，月亮在左上",
-    "preference": "用户明确认可古风方向；2026-11-16确认无字底图A/C、阅字最终v04，并授权更新整套衍生包。新设计仍需实际展示确认。",
+    "preference": "已确认古风、无字底图A/C、固定正文与独立浅色B章；用户2026-11-17授权按主题朱红方案统一收录及重导，新设计仍需实际确认。",
     "default_seal": "古月",
     "font": "MaShanZheng-Regular",
     "profile_index": "templates/visual/profiles.json",
     "approved_background": "shared-guyue-background-moonlit-blue-v01-png",
     "accepted_examples": [
-      "shared-guyue-yue-rounded-moonlit-v04-png"
+      "shared-guyue-yue-rounded-moonlit-v06-png"
     ],
     "delivery_packages": [
-      "yue-surface-kit-v02"
+      "yue-surface-kit-v03"
     ],
-    "layout_notice": "2026-11-16用户已确认v04：主字居中、古月小章右下落款；旧v02/v03不再用于制作或导出。",
-    "seal_reference": "product-macrightclick-app-icon-moonlit-blue-q96-v01-png",
-    "seal_placement": "right-lower"
+    "layout_notice": "2026-11-17用户确认v06：正文居中，独立浅色B固定章、等比右下落款，浅色暗朱红/深色亮朱红。旧v04及旧套件不再取用。",
+    "seal_reference": "shared-guyue-seal-ink-b-v01-png",
+    "seal_placement": "right-lower",
+    "seal_kind": "fixed-alpha-mask",
+    "seal_colors": {
+      "light": "A63A30",
+      "dark": "CF6650"
+    }
   }
 }

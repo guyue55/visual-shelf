@@ -10,7 +10,7 @@
     "renderer": true,
     "main_alignment": "layout_version=2：正文实际轮廓联合边界居中于画布；印章独立定位，不计入正文中心；误差≤0.5px",
     "seal_placement": "right-lower",
-    "seal_status": "用户已确认v04；正文居中，圆形章额外内收"
+    "seal_status": "已确认v06：固定浅色B章蒙版，等比适配，浅色A63A30/深色CF6650"
   },
   "rounded-logo": {
     "canvas": [
@@ -23,7 +23,7 @@
     "renderer": true,
     "main_alignment": "layout_version=2：正文实际轮廓联合边界居中于画布；印章独立定位，不计入正文中心；误差≤0.5px",
     "seal_placement": "right-lower",
-    "seal_status": "用户已确认v04；正文居中，圆形章额外内收"
+    "seal_status": "已确认v06：固定浅色B章蒙版，等比适配，浅色A63A30/深色CF6650"
   },
   "square-master": {
     "canvas": [
@@ -36,7 +36,7 @@
     "renderer": true,
     "main_alignment": "layout_version=2：正文实际轮廓联合边界居中于画布；印章独立定位，不计入正文中心；误差≤0.5px",
     "seal_placement": "right-lower",
-    "seal_status": "用户已确认v04；正文居中，圆形章额外内收"
+    "seal_status": "已确认v06：固定浅色B章蒙版，等比适配，浅色A63A30/深色CF6650"
   },
   "cover": {
     "canvas": [
@@ -132,7 +132,7 @@
     "warning": "满幅不透明，实际 Safari 添加主屏幕仍需验收",
     "main_alignment": "layout_version=2：正文实际轮廓联合边界居中于画布；印章独立定位，不计入正文中心；误差≤0.5px",
     "seal_placement": "right-lower",
-    "seal_status": "用户已确认v04；正文居中，圆形章额外内收"
+    "seal_status": "已确认v06：固定浅色B章蒙版，等比适配，浅色A63A30/深色CF6650"
   },
   "og-image": {
     "canvas": [

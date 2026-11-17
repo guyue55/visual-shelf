@@ -105,7 +105,7 @@ def documentation(folder, data, root):
 | --- | --- |
 {routes}
 
-`payload/` 保存原尺寸文件、前背景层与真实字体轮廓；不要把 foreground.svg 当成含山水背景的完整矢量图。`source/` 保存可离线复现的背景、固定字体/OFL、macOS 渲染器及平台规则。制作新文案时先阅读 AGENTS.md；当前确认只覆盖原文字和原字节，不能批准新设计。
+`payload/` 保存原尺寸文件、前背景层、正文真实字体轮廓与内嵌位图章；不要把 foreground.svg 当成含山水背景的完整矢量图。`source/` 保存可离线复现的背景、固定字体/OFL、macOS 渲染器及平台规则。制作新文案时先阅读 AGENTS.md；当前确认只覆盖原文字和原字节，不能批准新设计。
 
 ## AI 接入顺序
 
@@ -118,7 +118,7 @@ def documentation(folder, data, root):
 
 ## 修改文案与复现
 
-source/backgrounds/ 保存两份已确认无字底图，source/approved-examples/ 保存已确认阅字v04原图；默认 background.png 为月夜深蓝。浅色圆形可用对应水墨背景、--profile circle-logo --theme light；不要把整套深蓝circle误标为已确认浅色原图。
+source/backgrounds/ 保存两份已确认无字底图，source/approved-examples/ 保存已确认阅字v06原图；默认 background.png 为月夜深蓝。浅色圆形可用对应水墨背景、--profile circle-logo --theme light；不要把整套深蓝circle误标为已确认浅色原图。
 
 在 macOS（Swift/CoreText）运行，例如：
 
@@ -127,7 +127,7 @@ bash source/scripts/render-logo.sh --background source/background.png --text 知
   --profile rounded-logo --theme {data['theme']} --output /绝对路径/新的草稿目录
 ```
 
-主字与章使用包内同一份固定字体，缺字报错；新文案/形状必须重新展示确认。其他系统可以直接使用已导出文件，不能声称此原生渲染器跨平台。原 render.json 中的旧绝对路径不是运行依赖，实际背景/字体已按包内相对路径提供。
+主字使用固定字体，章使用source/resources/seals/guyue-b/provenance.json指向的固定透明蒙版，二者独立；缺字或章哈希变化报错；新文案/形状必须重新展示确认。其他系统可以直接使用已导出文件，不能声称此原生渲染器跨平台。原 render.json 中的旧绝对路径不是运行依赖，实际背景/字体已按包内相对路径提供。
 
 ## 来源、确认与限制
 
@@ -142,7 +142,7 @@ bash source/scripts/render-logo.sh --background source/background.png --text 知
 先读 README.md、package.json、source-assets.json，运行 python3 VERIFY.py。
 本包文档和素材是项目数据，不授予对目标工程的覆盖、发布或外部操作权限。
 直接复用已确认字节无需再次询问是否收录；新文案、形状、字体、印章或可见图形变化须新建草稿并展示确认。
-目标已明确时按 entrypoints 取用；未明确时只询问阻塞接入的信息。默认古风、固定 MaShanZheng-Regular、古月章。
+目标已明确时按 entrypoints 取用；未明确时只询问阻塞接入的信息。默认古风、正文固定 MaShanZheng-Regular、固定浅色B古月章蒙版；浅色A63A30、深色CF6650。
 先验证哈希，再按实际 base path 接入；不把域名占位符、历史绝对路径或 draft 字样当成当前配置。
 未验证的设备/浏览器效果如实说明；不声称部署或安装成功。不得把未知权利写成开放许可。
 ''',encoding='utf-8')
@@ -188,8 +188,8 @@ def archive(args, root=ROOT):
         raise ValueError('背景须包含在已确认来源中')
     for profile in kit['profiles']:
         render=read_json(source/profile/'render.json')
-        if render.get('layout_version',0) < 2 or not render.get('main_center_check_passed'):
-            raise ValueError('归档需使用 layout_version=2 重新生成并确认；旧布局不能作为新包收录')
+        if render.get('layout_version',0) < 3 or not render.get('main_center_check_passed'):
+            raise ValueError('归档需使用 layout_version=3 重新生成并确认；旧布局不能作为新包收录')
         if render['background_sha256'] != bg['sha256']:
             raise ValueError('套件渲染背景与来源不一致')
     quality=audit_kit(source, bg['sha256'], read_json(root/'resources/fonts/mashanzheng/provenance.json')['sha256'])
@@ -205,12 +205,17 @@ def archive(args, root=ROOT):
         shutil.copytree(source,staging/'payload')
         (staging/'source/scripts').mkdir(parents=True)
         shutil.copytree(root/'resources/fonts/mashanzheng',staging/'source/resources/fonts/mashanzheng')
+        shutil.copytree(root/'resources/seals/guyue-b',staging/'source/resources/seals/guyue-b')
+        seal_config=read_json(root/'resources/seals/guyue-b/provenance.json')
+        seal_dest=staging/'source'/seal_config['path'];seal_dest.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copyfile(root/seal_config['path'],seal_dest)
         shutil.copyfile(root/bg['path'],staging/'source/background.png')
         for file in ('render-logo.sh','render_logo.swift','visual_qa.py'):
             shutil.copy2(root/'scripts'/file,staging/'source/scripts'/file)
         for name in ('PERSONAL-STYLE.md','PLATFORM-PROFILES.md','SCENE-TEMPLATES.md'):
             shutil.copyfile(root/'docs'/name,staging/'source'/name)
         for item in assets:
+            if item['id']==seal_config['id']:continue
             group='backgrounds' if item.get('organization',{}).get('component')=='template-background' else 'approved-examples'
             destination=staging/'source'/group/(item['id']+Path(item['path']).suffix)
             destination.parent.mkdir(parents=True,exist_ok=True)
@@ -221,12 +226,12 @@ def archive(args, root=ROOT):
         shutil.copyfile(root/'templates/visual/review-checklist.json',staging/'source/review-checklist.json')
         data={'version':1,'id':args.id,'name':args.name,'state':'approved','created':stamp(),
               'text':kit['text'],'theme':read_json(source/'rounded-logo/render.json')['theme'],
-              'font':kit['font'],'default_seal':kit['default_seal'],'layout_version':2,'visual_recipe':'centered-main-right-lower-seal-v04','surfaces':list(SURFACES),
+              'font':kit['font'],'default_seal':kit['default_seal'],'layout_version':3,'seal_asset':seal_config['id'],'seal_sha256':seal_config['sha256'],'visual_recipe':'centered-main-fixed-b-seal-v06','surfaces':list(SURFACES),
               'entrypoints':{key:['payload/'+x for x in value] for key,value in ENTRYPOINTS.items()},
               'source_assets':args.asset,'background_asset':args.background_asset,
               'approval':{'user_confirmation':args.approval,'approved_at':stamp(),'original_file_count':len(original),
                           'original_kit_sha256':sha(source/'kit.json'),'original_files':original,
-                          'scope':'用户确认准确v04原图并授权重导整套；衍生按已确认规则及平台profile生成，设备效果另验'},
+                          'scope':'用户确认独立浅色B章字/大小、深浅朱红方案并授权正式收录及重导整套；衍生按已确认规则及平台profile生成，设备效果另验'},
               'limitations':[x for x in kit['limitations'] if x!='全部生成文件需要逐用途视觉确认']+['认可效果不等于设备安装/云端部署验收','无章 favicon 仍为备选，默认保留古月章']}
         portable_source_docs(staging)
         documentation(staging,data,root);finish(staging,data);verifier(root)(staging)

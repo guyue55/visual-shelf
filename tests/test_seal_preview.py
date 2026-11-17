@@ -15,7 +15,7 @@ class SealPreviewTests(unittest.TestCase):
     def setUp(self):
         (ROOT/'.drafts').mkdir(exist_ok=True)
         self.tmp=tempfile.TemporaryDirectory(dir=ROOT/'.drafts');self.folder=Path(self.tmp.name)
-        self.base=ROOT/'assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-circle-light-v04-png.png'
+        self.base=ROOT/'assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-circle-light-v06-png.png'
         self.mask=self.folder/'mask.png'
         self.png(self.mask,False)
     def tearDown(self):self.tmp.cleanup()
@@ -53,6 +53,6 @@ class SealPreviewTests(unittest.TestCase):
         self.assertNotEqual(bad.returncode,0);self.assertFalse((self.folder/'bad.png').exists())
 
     def test_unrelated_background_change_is_rejected(self):
-        other=ROOT/'assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-rounded-moonlit-v04-png.png'
+        other=ROOT/'assets/logos/shared/guyue-yue-logos/personal-identity/shared-guyue-yue-rounded-moonlit-v06-png.png'
         self.run_preview('--base',str(other),expected=1)
         self.assertFalse((self.folder/'out').exists())
